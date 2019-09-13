@@ -12,22 +12,22 @@
 
 #include <string.h>
 
-static size_t	check_start(const char *str)
+static int	check_start(const char *str)
 {
-	size_t	i;
+	int		i;
 
 	i = 0;
 	while ((str[i] == '\r') || (str[i] == '\v') || (str[i] == '\n')
-			|| (str[i] == '\t') || (str[i] == '\f') || (str[i] == ' '))
+		   || (str[i] == '\t') || (str[i] == '\f') || (str[i] == ' '))
 		i++;
 	return (i);
 }
 
-int				ft_atoi(const char *str)
+int			ft_atoi(const char *str)
 {
-	int			neg;
-	long long	val;
-	size_t		num_char;
+	int				neg;
+	unsigned int	val;
+	int				num_char;
 
 	neg = 0;
 	val = 0;
@@ -43,8 +43,10 @@ int				ft_atoi(const char *str)
 	}
 	while ((str[num_char] >= '0') && (str[num_char] <= '9'))
 	{
-		val = (val * 10) - (str[num_char] - '0');
+		val = (val * 10) + (str[num_char] - '0');
 		num_char++;
 	}
-	return (neg == 1 ? val : -val);
+
+	return (neg == 1 ? -(int)val : (int)val);
 }
+

@@ -6,7 +6,7 @@
 #    By: odrinkwa <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 12:13:46 by odrinkwa          #+#    #+#              #
-#    Updated: 2019/09/10 18:52:25 by odrinkwa         ###   ########.fr        #
+#    Updated: 2019/09/11 21:40:58 by semenbegunov     ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ SOURCES  = ft_atoi.c ft_toupper.c ft_tolower.c ft_strncat.c \
 		   ft_strsplit.c ft_strjoin.c ft_strlcat.c ft_strlen.c ft_strmap.c \
 		   ft_strmapi.c ft_strstr.c ft_strtrim.c ft_strcat.c ft_strcmp.c \
 		   ft_striteri.c ft_strrchr.c ft_lstdelone.c ft_lstdeli.c \
-		   ft_printstrsplit.c
+		   ft_printstrsplit.c ft_bin.c
 OBJECTS = $(SOURCES:.c=.o)
 HEADERS = ./
 

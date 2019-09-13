@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/semenbegunov/semrunner_git/get_next_line/./libft/libft.h
+stdlib.h
+-
+string.h
+-
+unistd.h
+-
+
+/Users/semenbegunov/semrunner_git/get_next_line/get_next_line.c
+get_next_line.h
+/Users/semenbegunov/semrunner_git/get_next_line/get_next_line.h
+
+/Users/semenbegunov/semrunner_git/get_next_line/get_next_line.h
+./libft/libft.h
+/Users/semenbegunov/semrunner_git/get_next_line/./libft/libft.h
+
