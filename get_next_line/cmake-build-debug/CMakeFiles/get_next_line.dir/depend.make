@@ -169,6 +169,9 @@ CMakeFiles/get_next_line.dir/libft/ft_strnequ.c.o: ../libft/libft.h
 CMakeFiles/get_next_line.dir/libft/ft_strnew.c.o: ../libft/ft_strnew.c
 CMakeFiles/get_next_line.dir/libft/ft_strnew.c.o: ../libft/libft.h
 
+CMakeFiles/get_next_line.dir/libft/ft_strnjoin.c.o: ../libft/ft_strnjoin.c
+CMakeFiles/get_next_line.dir/libft/ft_strnjoin.c.o: ../libft/libft.h
+
 CMakeFiles/get_next_line.dir/libft/ft_strnstr.c.o: ../libft/ft_strnstr.c
 CMakeFiles/get_next_line.dir/libft/ft_strnstr.c.o: ../libft/libft.h
 

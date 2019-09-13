@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/13 22:54:55 by odrinkwa          #+#    #+#             */
+/*   Updated: 2019/09/13 23:42:27 by odrinkwa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 
 #include "get_next_line.h"
@@ -20,9 +31,29 @@ char 	*remake_str(char **str, char *new_point)
 	return (ptr);
 }
 
+t_list	*ft_getvaluefromdict(t_list **dict, int key)
+{
+	t_list	*new;
+	t_list	*counter;
+
+	counter = *dict;
+	while (counter)
+	{
+		if ((counter)->content_size == (size_t)key)
+			return (counter);
+		else
+			counter = (counter)->next;
+	}
+	new = ft_lstnew(NULL, (size_t)key);
+	ft_lstadd(dict, new);
+	return (*dict);
+}
+
+
 int		get_next_line(const int fd, char **line)
 {
-	static char			*str;
+	static t_list		*files;
+	char				*str;
 	char 				*buff;
 	int					read_count;
 	char 				*chr_n;
@@ -30,6 +61,7 @@ int		get_next_line(const int fd, char **line)
 	if (!(buff = (char*)malloc(sizeof(char) * BUFF_SIZE)))
 		return (-1);
 	*line = NULL;
+	str = (char*)(ft_getvaluefromdict(&files, fd))->content;
 	if (str != NULL)
 	{
 		if ((chr_n = ft_strnstr(str, "\n", ft_strlen(str))))

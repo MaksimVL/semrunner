@@ -57,6 +57,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/get_next_line.dir/libft/ft_strncpy.c.o"
   "CMakeFiles/get_next_line.dir/libft/ft_strnequ.c.o"
   "CMakeFiles/get_next_line.dir/libft/ft_strnew.c.o"
+  "CMakeFiles/get_next_line.dir/libft/ft_strnjoin.c.o"
   "CMakeFiles/get_next_line.dir/libft/ft_strnstr.c.o"
   "CMakeFiles/get_next_line.dir/libft/ft_strrchr.c.o"
   "CMakeFiles/get_next_line.dir/libft/ft_strsplit.c.o"

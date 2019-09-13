@@ -48,10 +48,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/semenbegunov/semrunner_git/get_next_line
+CMAKE_SOURCE_DIR = /Users/odrinkwa/semrunner_git/get_next_line
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/semenbegunov/semrunner_git/get_next_line/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/odrinkwa/semrunner_git/get_next_line/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/semenbegunov/semrunner_git/get_next_line/cmake-build-debug/CMakeFiles /Users/semenbegunov/semrunner_git/get_next_line/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/odrinkwa/semrunner_git/get_next_line/cmake-build-debug/CMakeFiles /Users/odrinkwa/semrunner_git/get_next_line/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/semenbegunov/semrunner_git/get_next_line/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/odrinkwa/semrunner_git/get_next_line/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -1662,6 +1662,33 @@ libft/ft_strnew.c.s:
 	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/libft/ft_strnew.c.s
 .PHONY : libft/ft_strnew.c.s
 
+libft/ft_strnjoin.o: libft/ft_strnjoin.c.o
+
+.PHONY : libft/ft_strnjoin.o
+
+# target to build an object file
+libft/ft_strnjoin.c.o:
+	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/libft/ft_strnjoin.c.o
+.PHONY : libft/ft_strnjoin.c.o
+
+libft/ft_strnjoin.i: libft/ft_strnjoin.c.i
+
+.PHONY : libft/ft_strnjoin.i
+
+# target to preprocess a source file
+libft/ft_strnjoin.c.i:
+	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/libft/ft_strnjoin.c.i
+.PHONY : libft/ft_strnjoin.c.i
+
+libft/ft_strnjoin.s: libft/ft_strnjoin.c.s
+
+.PHONY : libft/ft_strnjoin.s
+
+# target to generate assembly for a file
+libft/ft_strnjoin.c.s:
+	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/libft/ft_strnjoin.c.s
+.PHONY : libft/ft_strnjoin.c.s
+
 libft/ft_strnstr.o: libft/ft_strnstr.c.o
 
 .PHONY : libft/ft_strnstr.o
@@ -2085,6 +2112,9 @@ help:
 	@echo "... libft/ft_strnew.o"
 	@echo "... libft/ft_strnew.i"
 	@echo "... libft/ft_strnew.s"
+	@echo "... libft/ft_strnjoin.o"
+	@echo "... libft/ft_strnjoin.i"
+	@echo "... libft/ft_strnjoin.s"
 	@echo "... libft/ft_strnstr.o"
 	@echo "... libft/ft_strnstr.i"
 	@echo "... libft/ft_strnstr.s"

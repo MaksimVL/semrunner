@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 15:07:12 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/09/10 14:40:23 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/09/13 18:58:06 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,35 @@ void	del(void *list, size_t n)
 {
 	return ;
 }
+
+
+int        ft_atoi1(const char *str)
+{
+	int                i;
+	int                sign;
+	char            *str1;
+	long long int    nbr;
+	i = 0;
+	nbr = 0;
+	sign = 1;
+	str1 = (char*)str;
+	while (str1[i] == 32 || (str1[i] > 8 && str1[i] <= 13))
+		i++;
+	if (str1[i] == '-' || str1[i] == '+')
+	if (str1[i++] == '-')
+	sign = -1;
+	while (str1[i] >= 48 && str1[i] <= 57)
+	{
+		nbr = nbr * 10 + str1[i] - 48;
+		if (nbr < 0)
+			return ((sign < 0) ? 0 : -1);
+		if (nbr != nbr + (*str - '0') - (*str - '0'))
+		return ((sign < 0) ? 0 : -1);
+		i++;
+	}
+	return (sign * nbr);
+}
+
 int main()
 {
 	char s[11];
@@ -169,6 +198,5 @@ int main()
 	printf("res strtrim: \"%s\"\n", ft_strtrim(test_strtrim));
 
 
-	char test_atoi[] = "-52222222";
-	printf("diff = %d atoi = %d, ft_atoi = %d\n", atoi(test_atoi) - ft_atoi(test_atoi), atoi(test_atoi), ft_atoi((test_atoi)));
-}
+	char test_atoi[] = "777777777777777888888888885265222222";
+	printf("diff = %d atoi = %d, ft_atoi = %d\n", atoi(test_atoi) - ft_atoi1(test_atoi), atoi(test_atoi), ft_atoi1((test_atoi)

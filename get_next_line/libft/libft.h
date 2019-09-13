@@ -90,5 +90,6 @@ void				ft_lstdeli(t_list **alst, size_t nbr, void (*del)(void *,
 								size_t));
 void				ft_printstrsplit(char **tab);
 void				bin32(unsigned long k);
+void				*ft_strnjoin(char **s1, const char *s2, size_t n);
 
 #endif

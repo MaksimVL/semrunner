@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/Users/semenbegunov/semrunner_git/get_next_line/./libft/libft.h
+/Users/odrinkwa/semrunner_git/get_next_line/./libft/libft.h
 stdlib.h
 -
 string.h
@@ -14,11 +14,27 @@ string.h
 unistd.h
 -
 
-/Users/semenbegunov/semrunner_git/get_next_line/get_next_line.c
-get_next_line.h
-/Users/semenbegunov/semrunner_git/get_next_line/get_next_line.h
-
-/Users/semenbegunov/semrunner_git/get_next_line/get_next_line.h
+/Users/odrinkwa/semrunner_git/get_next_line/get_next_line.h
 ./libft/libft.h
-/Users/semenbegunov/semrunner_git/get_next_line/./libft/libft.h
+/Users/odrinkwa/semrunner_git/get_next_line/./libft/libft.h
+
+/Users/odrinkwa/semrunner_git/get_next_line/main.c
+stdio.h
+-
+sys/types.h
+-
+sys/stat.h
+-
+fcntl.h
+-
+unistd.h
+-
+errno.h
+-
+stdlib.h
+-
+./libft/libft.h
+/Users/odrinkwa/semrunner_git/get_next_line/./libft/libft.h
+get_next_line.h
+/Users/odrinkwa/semrunner_git/get_next_line/get_next_line.h
 
