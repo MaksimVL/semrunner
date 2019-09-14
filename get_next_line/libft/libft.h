@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 20:59:45 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/09/11 21:40:09 by semenbegunov     ###   ########.fr       */
+/*   Updated: 2019/09/14 12:04:07 by semenbegunov     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@ typedef struct		s_list
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
+
+typedef struct 		s_dict
+{
+	void 			*content;
+	size_t 			content_size;
+	int 			key;
+	struct s_dict	*next;
+}					t_dict;
 
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_bzero(void *s, size_t n);
@@ -91,5 +99,8 @@ void				ft_lstdeli(t_list **alst, size_t nbr, void (*del)(void *,
 void				ft_printstrsplit(char **tab);
 void				bin32(unsigned long k);
 void				*ft_strnjoin(char **s1, const char *s2, size_t n);
+t_dict				*ft_dictnew(void const *content, size_t content_size, int key);
+void				ft_dictadd(t_dict **adict, t_dict *new);
+t_dict				*ft_dictgetoraddvalue(t_dict **dict, int key);
 
 #endif

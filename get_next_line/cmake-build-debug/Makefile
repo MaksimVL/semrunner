@@ -48,10 +48,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/odrinkwa/semrunner_git/get_next_line
+CMAKE_SOURCE_DIR = /Users/semenbegunov/semrunner_git2/get_next_line
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/odrinkwa/semrunner_git/get_next_line/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/semenbegunov/semrunner_git2/get_next_line/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/odrinkwa/semrunner_git/get_next_line/cmake-build-debug/CMakeFiles /Users/odrinkwa/semrunner_git/get_next_line/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/semenbegunov/semrunner_git2/get_next_line/cmake-build-debug/CMakeFiles /Users/semenbegunov/semrunner_git2/get_next_line/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/odrinkwa/semrunner_git/get_next_line/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/semenbegunov/semrunner_git2/get_next_line/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -230,6 +230,87 @@ libft/ft_bzero.s: libft/ft_bzero.c.s
 libft/ft_bzero.c.s:
 	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/libft/ft_bzero.c.s
 .PHONY : libft/ft_bzero.c.s
+
+libft/ft_dictadd.o: libft/ft_dictadd.c.o
+
+.PHONY : libft/ft_dictadd.o
+
+# target to build an object file
+libft/ft_dictadd.c.o:
+	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/libft/ft_dictadd.c.o
+.PHONY : libft/ft_dictadd.c.o
+
+libft/ft_dictadd.i: libft/ft_dictadd.c.i
+
+.PHONY : libft/ft_dictadd.i
+
+# target to preprocess a source file
+libft/ft_dictadd.c.i:
+	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/libft/ft_dictadd.c.i
+.PHONY : libft/ft_dictadd.c.i
+
+libft/ft_dictadd.s: libft/ft_dictadd.c.s
+
+.PHONY : libft/ft_dictadd.s
+
+# target to generate assembly for a file
+libft/ft_dictadd.c.s:
+	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/libft/ft_dictadd.c.s
+.PHONY : libft/ft_dictadd.c.s
+
+libft/ft_dictgetoraddvalue.o: libft/ft_dictgetoraddvalue.c.o
+
+.PHONY : libft/ft_dictgetoraddvalue.o
+
+# target to build an object file
+libft/ft_dictgetoraddvalue.c.o:
+	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/libft/ft_dictgetoraddvalue.c.o
+.PHONY : libft/ft_dictgetoraddvalue.c.o
+
+libft/ft_dictgetoraddvalue.i: libft/ft_dictgetoraddvalue.c.i
+
+.PHONY : libft/ft_dictgetoraddvalue.i
+
+# target to preprocess a source file
+libft/ft_dictgetoraddvalue.c.i:
+	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/libft/ft_dictgetoraddvalue.c.i
+.PHONY : libft/ft_dictgetoraddvalue.c.i
+
+libft/ft_dictgetoraddvalue.s: libft/ft_dictgetoraddvalue.c.s
+
+.PHONY : libft/ft_dictgetoraddvalue.s
+
+# target to generate assembly for a file
+libft/ft_dictgetoraddvalue.c.s:
+	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/libft/ft_dictgetoraddvalue.c.s
+.PHONY : libft/ft_dictgetoraddvalue.c.s
+
+libft/ft_dictnew.o: libft/ft_dictnew.c.o
+
+.PHONY : libft/ft_dictnew.o
+
+# target to build an object file
+libft/ft_dictnew.c.o:
+	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/libft/ft_dictnew.c.o
+.PHONY : libft/ft_dictnew.c.o
+
+libft/ft_dictnew.i: libft/ft_dictnew.c.i
+
+.PHONY : libft/ft_dictnew.i
+
+# target to preprocess a source file
+libft/ft_dictnew.c.i:
+	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/libft/ft_dictnew.c.i
+.PHONY : libft/ft_dictnew.c.i
+
+libft/ft_dictnew.s: libft/ft_dictnew.c.s
+
+.PHONY : libft/ft_dictnew.s
+
+# target to generate assembly for a file
+libft/ft_dictnew.c.s:
+	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/libft/ft_dictnew.c.s
+.PHONY : libft/ft_dictnew.c.s
 
 libft/ft_isalnum.o: libft/ft_isalnum.c.o
 
@@ -1953,6 +2034,15 @@ help:
 	@echo "... libft/ft_bzero.o"
 	@echo "... libft/ft_bzero.i"
 	@echo "... libft/ft_bzero.s"
+	@echo "... libft/ft_dictadd.o"
+	@echo "... libft/ft_dictadd.i"
+	@echo "... libft/ft_dictadd.s"
+	@echo "... libft/ft_dictgetoraddvalue.o"
+	@echo "... libft/ft_dictgetoraddvalue.i"
+	@echo "... libft/ft_dictgetoraddvalue.s"
+	@echo "... libft/ft_dictnew.o"
+	@echo "... libft/ft_dictnew.i"
+	@echo "... libft/ft_dictnew.s"
 	@echo "... libft/ft_isalnum.o"
 	@echo "... libft/ft_isalnum.i"
 	@echo "... libft/ft_isalnum.s"

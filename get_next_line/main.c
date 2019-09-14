@@ -6,7 +6,7 @@
 /*   By: semenbegunov <semenbegunov@student.42.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 22:42:55 by semenbegunov      #+#    #+#             */
-/*   Updated: 2019/09/13 23:47:07 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/09/14 10:44:33 by semenbegunov     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,24 @@ int			main(int argc, char **argv)
 	get_next_line(fd2, &line);
 	printf("%s\n", line);
 	free(line);
+
+	//testing t_list
+
+	printf("---- test list ----\n");
+	t_list	*list;
+	char	*s1;
+	char	**s2;
+
+	s1 = (char*)malloc(sizeof(char)*3);
+	s1[0] = 'a'; s1[1] = 'b'; s1[2] = '\0';
+	list = ft_lstnew(s1, 3);
+	s2 = (char**)(&(list->content));
+
+	printf("%s\n", *s2);
+	printf("%s\n", list->content);
+
+	*s2 = (char*)malloc(sizeof(char) * 3);;
+	(*s2)[0] = 'c'; (*s2)[1] = 'd'; (*s2)[2] = '\0';
+	printf("s2 = %s\n", *s2);
+	printf("list->cont = %s\n", list->content);
 }

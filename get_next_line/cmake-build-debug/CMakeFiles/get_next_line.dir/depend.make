@@ -13,6 +13,15 @@ CMakeFiles/get_next_line.dir/libft/ft_bin.c.o: ../libft/libft.h
 CMakeFiles/get_next_line.dir/libft/ft_bzero.c.o: ../libft/ft_bzero.c
 CMakeFiles/get_next_line.dir/libft/ft_bzero.c.o: ../libft/libft.h
 
+CMakeFiles/get_next_line.dir/libft/ft_dictadd.c.o: ../libft/ft_dictadd.c
+CMakeFiles/get_next_line.dir/libft/ft_dictadd.c.o: ../libft/libft.h
+
+CMakeFiles/get_next_line.dir/libft/ft_dictgetoraddvalue.c.o: ../libft/ft_dictgetoraddvalue.c
+CMakeFiles/get_next_line.dir/libft/ft_dictgetoraddvalue.c.o: ../libft/libft.h
+
+CMakeFiles/get_next_line.dir/libft/ft_dictnew.c.o: ../libft/ft_dictnew.c
+CMakeFiles/get_next_line.dir/libft/ft_dictnew.c.o: ../libft/libft.h
+
 CMakeFiles/get_next_line.dir/libft/ft_isalnum.c.o: ../libft/ft_isalnum.c
 CMakeFiles/get_next_line.dir/libft/ft_isalnum.c.o: ../libft/libft.h
 
