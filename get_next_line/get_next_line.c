@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 22:54:55 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/09/14 19:52:58 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/09/14 21:00:41 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ static int	readfile(const int fd, char **line, char **str)
 		else if (!(*line = ft_strnjoin(line, buff, read_count)))
 			return (crash_f(&buff, NULL, NULL, NULL));
 	}
+	ft_memdel((void**)&buff);
 	return (0);
 }
 

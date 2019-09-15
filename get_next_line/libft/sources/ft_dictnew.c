@@ -19,6 +19,7 @@ t_dict		*ft_dictnew(void const *content, size_t content_size, int key)
 	if (!(ptr = (t_dict*)malloc(sizeof(t_dict))))
 		return (NULL);
 	ptr->next = NULL;
+	ptr->prev = NULL;
 	ptr->key = key;
 	if (content)
 	{

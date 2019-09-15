@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 18:14:44 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/09/14 18:14:44 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/09/15 15:59:47 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,15 @@ void	ft_dictadd(t_dict **adict, t_dict *new)
 	if (new)
 	{
 		if ((*adict)->next == NULL)
+		{
 			(*adict)->next = new;
+			new->prev = (*adict);
+		}
 		else
 		{
 			next = (*adict)->next;
 			(*adict)->next = new;
+			new->prev = (*adict);
 			new->next = next;
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 22:42:55 by semenbeguno       #+#    #+#             */
-/*   Updated: 2019/09/14 20:56:26 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/09/15 18:00:35 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,45 +38,48 @@ int			file_open(int *fd, char *file_name)
 	return (1);
 }
 
-
 int				main(void)
 {
+	char 	*line;
+	int		out;
+	int		p[2];
+	char 	*str;
+	int		len = 50;
 
-	int			fd;
+	str = (char *)malloc(1000 * 1000);
+	*str = '\0';
+	while (len--)
+		strcat(str, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in leo dignissim, gravida leo id, imperdiet urna. Aliquam magna nunc, maximus quis eleifend et, scelerisque non dolor. Suspendisse augue augue, tempus");
+	out = dup(1);
+	pipe(p);
+	dup2(p[1], 1);
 
+	if (str)
+		write(1, str, strlen(str));
+	close(p[1]);
+	dup2(out, 1);
+	get_next_line(p[0], &line);
+	printf("%s\n", line);
+	printf("%s\n", str);
+	printf("%zu\n", ft_strlen(str));
+	printf("%zu\n", ft_strlen(line));
+	printf("%d\n", strcmp(line, str));
+	printf("%d\n", strcmp(line, str) == 0);
 
-	char		*filename;
-
-
-	filename = "gnl7_1.txt";
-	fd = open(filename, O_RDONLY);
-
-	get_next_line(-99, ((void*)0));
+	//	char		*line;
+//	int			fd;
+//	int			ret;
+//	int			count_lines;
+//	char		*filename;
+//	int			errors;
+//
+//	filename = "gnl1_2.txt";
+//	fd = open(filename, O_RDONLY);
+//	if (fd > 2)
+//	{
+//		line = NULL;
+//		while ((ret =  get_next_line(fd, &line)) > 0)
+//			printf("%s\n", line);
+//	}
+//	return (0);
 }
-
-
-
-//int			main(int argc, char **argv)
-//{
-//	int		fd1, fd2;
-//	int		i;
-//	char 	*filename1 = "gnl7_1.txt";
-//	char	*filename2 = "testfile2";
-//	char 	*line;
-//
-//	file_open(&fd1, filename1);
-//	file_open(&fd2, filename2);
-//
-//	get_next_line(fd1, &line);
-//	printf("%s\n", line);
-//	free(line);
-//
-//	get_next_line(fd1, &line);
-//	printf("%s\n", line);
-//	free(line);
-//
-//
-//
-//	close(fd1);
-//	close(fd2);
-//}

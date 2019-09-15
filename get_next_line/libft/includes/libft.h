@@ -30,6 +30,7 @@ typedef struct		s_dict
 	size_t			content_size;
 	int				key;
 	struct s_dict	*next;
+	struct s_dict	*prev;
 }					t_dict;
 
 void				*ft_memset(void *b, int c, size_t len);

@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 16:22:00 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/09/14 18:14:09 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/09/15 16:32:10 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static void		ft_cycledict(t_dict **curr, t_dict **prev)
 		(*prev)->next = (*curr)->next;
 		ft_memdel((void**)curr);
 		(*curr) = (*prev)->next;
+		if (*curr != NULL)
+			(*curr)->prev = *prev;
 	}
 	else
 	{
@@ -38,6 +40,8 @@ void			ft_dictclearzero(t_dict **dict)
 	{
 		curr = *dict;
 		(*dict) = (*dict)->next;
+		if (*dict != NULL)
+			(*dict)->prev = NULL;
 		ft_memdel((void**)&curr);
 	}
 	if (*dict == NULL)

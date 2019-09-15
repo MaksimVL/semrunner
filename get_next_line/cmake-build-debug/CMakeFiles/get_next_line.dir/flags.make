@@ -6,5 +6,5 @@ C_FLAGS = -g   -std=gnu11
 
 C_DEFINES = 
 
-C_INCLUDES = 
+C_INCLUDES = -I/Users/odrinkwa/semrunner_git2/get_next_line/libft/includes 
 

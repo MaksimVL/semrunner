@@ -10,5 +10,5 @@ file(GLOB get_next_line_SRC
 file(GLOB libft_SRC
         "./libft/sources/*.c"
         )
-
-add_executable(get_next_line ${get_next_line_SRC} ${libft_SRC} ./libft/includes/libft.h main.c)
+include_directories(libft/includes)
+add_executable(get_next_line ${get_next_line_SRC} ${libft_SRC} main.c)

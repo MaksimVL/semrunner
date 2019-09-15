@@ -44,6 +44,7 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="/Users/odrinkwa/semrunner_git2/get_next_line/libft/includes"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
@@ -65,6 +66,7 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="/Users/odrinkwa/semrunner_git2/get_next_line/libft/includes"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
@@ -84,9 +86,6 @@
 			<Option target="get_next_line"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/get_next_line/get_next_line.h">
-			<Option target="get_next_line"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/semrunner_git2/get_next_line/libft/includes/libft.h">
 			<Option target="get_next_line"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/get_next_line/libft/sources/ft_atoi.c">
