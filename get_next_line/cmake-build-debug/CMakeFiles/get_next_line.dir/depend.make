@@ -15,7 +15,16 @@ CMakeFiles/get_next_line.dir/libft/sources/ft_dictadd.c.o: ../libft/sources/ft_d
 CMakeFiles/get_next_line.dir/libft/sources/ft_dictclearzero.c.o: ../libft/includes/libft.h
 CMakeFiles/get_next_line.dir/libft/sources/ft_dictclearzero.c.o: ../libft/sources/ft_dictclearzero.c
 
+CMakeFiles/get_next_line.dir/libft/sources/ft_dictdelbykey.c.o: ../libft/includes/libft.h
+CMakeFiles/get_next_line.dir/libft/sources/ft_dictdelbykey.c.o: ../libft/sources/ft_dictdelbykey.c
+
+CMakeFiles/get_next_line.dir/libft/sources/ft_dictdelelement.c.o: ../libft/includes/libft.h
+CMakeFiles/get_next_line.dir/libft/sources/ft_dictdelelement.c.o: ../libft/sources/ft_dictdelelement.c
+
 CMakeFiles/get_next_line.dir/libft/sources/ft_dictgetoraddvalue.c.o: ../libft/sources/ft_dictgetoraddvalue.c
+
+CMakeFiles/get_next_line.dir/libft/sources/ft_dictgetvalue.c.o: ../libft/includes/libft.h
+CMakeFiles/get_next_line.dir/libft/sources/ft_dictgetvalue.c.o: ../libft/sources/ft_dictgetvalue.c
 
 CMakeFiles/get_next_line.dir/libft/sources/ft_dictnew.c.o: ../libft/includes/libft.h
 CMakeFiles/get_next_line.dir/libft/sources/ft_dictnew.c.o: ../libft/sources/ft_dictnew.c

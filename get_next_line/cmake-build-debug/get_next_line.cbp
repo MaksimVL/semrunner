@@ -100,7 +100,16 @@
 		<Unit filename="/Users/odrinkwa/semrunner_git2/get_next_line/libft/sources/ft_dictclearzero.c">
 			<Option target="get_next_line"/>
 		</Unit>
+		<Unit filename="/Users/odrinkwa/semrunner_git2/get_next_line/libft/sources/ft_dictdelbykey.c">
+			<Option target="get_next_line"/>
+		</Unit>
+		<Unit filename="/Users/odrinkwa/semrunner_git2/get_next_line/libft/sources/ft_dictdelelement.c">
+			<Option target="get_next_line"/>
+		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/get_next_line/libft/sources/ft_dictgetoraddvalue.c">
+			<Option target="get_next_line"/>
+		</Unit>
+		<Unit filename="/Users/odrinkwa/semrunner_git2/get_next_line/libft/sources/ft_dictgetvalue.c">
 			<Option target="get_next_line"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/get_next_line/libft/sources/ft_dictnew.c">

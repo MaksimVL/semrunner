@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 22:42:55 by semenbeguno       #+#    #+#             */
-/*   Updated: 2019/09/15 18:00:35 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/09/15 21:53:10 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,19 @@ void 	test_static(void)
 	printf("p=%p\n", static_c);
 }
 
+void    printdictcontent(t_dict *dict)
+{
+    t_dict *dicttest;
+    dicttest = dict;
+    printf("--- print dict content --- \n");
+    while (dicttest)
+    {
+        printf("%d:%s, ", dicttest->key, dicttest->content);
+        dicttest = dicttest->next;
+    }
+    printf("\n");
+}
+
 
 int			file_open(int *fd, char *file_name)
 {
@@ -38,48 +51,97 @@ int			file_open(int *fd, char *file_name)
 	return (1);
 }
 
-int				main(void)
+int     main(void)
 {
-	char 	*line;
-	int		out;
-	int		p[2];
-	char 	*str;
-	int		len = 50;
+    char    filename[] = "testtest.txt";
+    char    filename2[] = "testtest2.txt";
+    int     fd;
+    int     fd2;
+    int     change_fd;
+    char    *line;
 
-	str = (char *)malloc(1000 * 1000);
-	*str = '\0';
-	while (len--)
-		strcat(str, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in leo dignissim, gravida leo id, imperdiet urna. Aliquam magna nunc, maximus quis eleifend et, scelerisque non dolor. Suspendisse augue augue, tempus");
-	out = dup(1);
-	pipe(p);
-	dup2(p[1], 1);
+    fd = open(filename, O_RDONLY);
+    fd2 = open(filename2, O_RDONLY);
 
-	if (str)
-		write(1, str, strlen(str));
-	close(p[1]);
-	dup2(out, 1);
-	get_next_line(p[0], &line);
-	printf("%s\n", line);
-	printf("%s\n", str);
-	printf("%zu\n", ft_strlen(str));
-	printf("%zu\n", ft_strlen(line));
-	printf("%d\n", strcmp(line, str));
-	printf("%d\n", strcmp(line, str) == 0);
-
-	//	char		*line;
-//	int			fd;
-//	int			ret;
-//	int			count_lines;
-//	char		*filename;
-//	int			errors;
-//
-//	filename = "gnl1_2.txt";
-//	fd = open(filename, O_RDONLY);
-//	if (fd > 2)
-//	{
-//		line = NULL;
-//		while ((ret =  get_next_line(fd, &line)) > 0)
-//			printf("%s\n", line);
-//	}
-//	return (0);
+    change_fd = fd;
+    while (get_next_line(change_fd, &line) == 1)
+    {
+        if (change_fd == fd)
+            change_fd = fd2;
+        else
+            change_fd = fd;
+        printf("%s\n", line);
+        ft_memdel((void**)&line);
+    }
+    if (line)
+        ft_memdel((void**)&line);
 }
+
+
+//int				main(void)
+//{
+//    t_dict  *dict;
+//    t_dict  *dicttest;
+//
+//    dict = ft_dictnew("test1", 6, 1);
+//    ft_dictadd(&dict, ft_dictnew("test2", 6, 2));
+//    ft_dictadd(&dict, ft_dictnew("test3", 6, 3));
+//    ft_dictadd(&dict, ft_dictnew("test4", 6, 4));
+//    ft_dictadd(&dict, ft_dictnew("test5", 6, 5));
+//
+//    dicttest = ft_dictgetoraddvalue(&dict, 1);
+//    while (dicttest)
+//    {
+//        printf("%s\n", dicttest->content);
+//        dicttest = dicttest->next;
+//    }
+//    printf("---\n");
+//
+//    dicttest = ft_dictgetoraddvalue(&dict, 2);
+//    while (dicttest)
+//    {
+//        printf("%s\n", dicttest->content);
+//        dicttest = dicttest->prev;
+//    }
+//
+//    printf("--- testing del element ---------\n");
+//
+//    dicttest = ft_dictgetoraddvalue(&dict, 4);
+//    ft_dictdelelement(&dict, &dicttest, NULL);
+//
+//    dicttest = ft_dictgetoraddvalue(&dict, 1);
+//    while (dicttest)
+//    {
+//        printf("%s\n", dicttest->content);
+//        dicttest = dicttest->next;
+//    }
+//    printf("---\n");
+//
+//    dicttest = ft_dictgetoraddvalue(&dict, 2);
+//    while (dicttest)
+//    {
+//        printf("%s\n", dicttest->content);
+//        dicttest = dicttest->prev;
+//    }
+//
+//    dicttest = dict;
+//    printf("--- test from start dict --- \n");
+//    while (dicttest)
+//    {
+//        printf("%s\n", dicttest->content);
+//        dicttest = dicttest->next;
+//    }
+//
+//    printf("--- test dictgetvalue ---\n");
+//    dicttest = ft_dictgetvalue(dict, 2);
+//    printf("%s\n", dicttest->content);
+//    dicttest = ft_dictgetvalue(dict, 10);
+//    if (dicttest)
+//        printf("%s\n", dicttest->content);
+//
+//    printdictcontent(dict);
+//    printf(" --- test dictdelbykey ---\n");
+//
+//    ft_dictdelbykey(&dict, 5, NULL);
+//    printdictcontent(dict);
+//}

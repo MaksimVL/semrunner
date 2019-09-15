@@ -6,31 +6,29 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 22:54:55 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/09/14 21:00:41 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/09/15 22:07:27 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static int	crash_f(char **str1, char **str2, char **str3, t_dict **files)
+static int	crash_f(char **str1, char **str2, t_dict **files, t_dict **file)
 {
 	if (str1 != NULL)
 		ft_memdel((void**)str1);
 	if (str2 != NULL)
 		ft_memdel((void**)str2);
-	if (str3 != NULL)
-		ft_memdel((void**)str3);
 	if (files != NULL)
-		ft_dictclearzero(files);
+		ft_dictdelelement(files, file, NULL);
 	return (-1);
 }
 
-static int	return_ok(int ok, char **str1, t_dict **files)
+static int	return_ok(int ok, char **str1, t_dict **files, t_dict **file)
 {
 	if (str1 != NULL)
 		ft_memdel((void**)str1);
 	if (files != NULL)
-		ft_dictclearzero(files);
+		ft_dictdelelement(files, file, NULL);
 	return (ok);
 }
 
@@ -83,14 +81,12 @@ static int	readfile(const int fd, char **line, char **str)
 				if (!(*str = ft_strnjoin(str, chr_n + 1,
 						read_count - (chr_n - buff + 1))))
 					return (crash_f(&buff, NULL, NULL, NULL));
-			ft_memdel((void**)&buff);
-			return (1);
+			return (return_ok(1, &buff, NULL, NULL));
 		}
 		else if (!(*line = ft_strnjoin(line, buff, read_count)))
 			return (crash_f(&buff, NULL, NULL, NULL));
 	}
-	ft_memdel((void**)&buff);
-	return (0);
+	return (return_ok(0, &buff, NULL, NULL));
 }
 
 int			get_next_line(const int fd, char **line)
@@ -104,19 +100,19 @@ int			get_next_line(const int fd, char **line)
 	if (!(file = ft_dictgetoraddvalue(&files, fd)))
 		return (-1);
 	if (!(*line = (char*)ft_memalloc(1)))
-		return (crash_f(NULL, NULL, NULL, &files));
+		return (crash_f(NULL, NULL, &files, &file));
 	if (file->content != NULL)
 	{
 		read_count = str_is_not_null((char**)&(file->content), line);
 		if (read_count == 0)
-			return (crash_f((char**)&(file->content), NULL, line, NULL));
+			return (crash_f((char**)&(file->content), line, NULL, NULL));
 		else if (read_count == 1)
-			return (return_ok(1, NULL, &files));
+			return (return_ok(1, NULL, &files, &file));
 	}
 	read_count = readfile(fd, line, (char**)&(file->content));
 	if (read_count == -1)
-		return (crash_f((char**)&(file->content), line, NULL, &files));
+		return (crash_f((char**)&(file->content), line, &files, &file));
 	else if (read_count == 1 || ft_strlen(*line) != 0)
-		return (return_ok(1, NULL, &files));
-	return (return_ok(0, NULL, &files));
+		return (return_ok(1, NULL, &files, &file));
+	return (return_ok(0, NULL, &files, &file));
 }

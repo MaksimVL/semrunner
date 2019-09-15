@@ -39,10 +39,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake
+CMAKE_COMMAND = /Users/odrinkwa/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake
 
 # The command to remove a file.
-RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
+RM = /Users/odrinkwa/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /Users/odrinkwa/semrunner_git2/get_next_line/cmake-build-debu
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/Users/odrinkwa/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -70,7 +70,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/Users/odrinkwa/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -258,6 +258,60 @@ libft/sources/ft_dictclearzero.c.s:
 	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/libft/sources/ft_dictclearzero.c.s
 .PHONY : libft/sources/ft_dictclearzero.c.s
 
+libft/sources/ft_dictdelbykey.o: libft/sources/ft_dictdelbykey.c.o
+
+.PHONY : libft/sources/ft_dictdelbykey.o
+
+# target to build an object file
+libft/sources/ft_dictdelbykey.c.o:
+	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/libft/sources/ft_dictdelbykey.c.o
+.PHONY : libft/sources/ft_dictdelbykey.c.o
+
+libft/sources/ft_dictdelbykey.i: libft/sources/ft_dictdelbykey.c.i
+
+.PHONY : libft/sources/ft_dictdelbykey.i
+
+# target to preprocess a source file
+libft/sources/ft_dictdelbykey.c.i:
+	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/libft/sources/ft_dictdelbykey.c.i
+.PHONY : libft/sources/ft_dictdelbykey.c.i
+
+libft/sources/ft_dictdelbykey.s: libft/sources/ft_dictdelbykey.c.s
+
+.PHONY : libft/sources/ft_dictdelbykey.s
+
+# target to generate assembly for a file
+libft/sources/ft_dictdelbykey.c.s:
+	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/libft/sources/ft_dictdelbykey.c.s
+.PHONY : libft/sources/ft_dictdelbykey.c.s
+
+libft/sources/ft_dictdelelement.o: libft/sources/ft_dictdelelement.c.o
+
+.PHONY : libft/sources/ft_dictdelelement.o
+
+# target to build an object file
+libft/sources/ft_dictdelelement.c.o:
+	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/libft/sources/ft_dictdelelement.c.o
+.PHONY : libft/sources/ft_dictdelelement.c.o
+
+libft/sources/ft_dictdelelement.i: libft/sources/ft_dictdelelement.c.i
+
+.PHONY : libft/sources/ft_dictdelelement.i
+
+# target to preprocess a source file
+libft/sources/ft_dictdelelement.c.i:
+	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/libft/sources/ft_dictdelelement.c.i
+.PHONY : libft/sources/ft_dictdelelement.c.i
+
+libft/sources/ft_dictdelelement.s: libft/sources/ft_dictdelelement.c.s
+
+.PHONY : libft/sources/ft_dictdelelement.s
+
+# target to generate assembly for a file
+libft/sources/ft_dictdelelement.c.s:
+	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/libft/sources/ft_dictdelelement.c.s
+.PHONY : libft/sources/ft_dictdelelement.c.s
+
 libft/sources/ft_dictgetoraddvalue.o: libft/sources/ft_dictgetoraddvalue.c.o
 
 .PHONY : libft/sources/ft_dictgetoraddvalue.o
@@ -284,6 +338,33 @@ libft/sources/ft_dictgetoraddvalue.s: libft/sources/ft_dictgetoraddvalue.c.s
 libft/sources/ft_dictgetoraddvalue.c.s:
 	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/libft/sources/ft_dictgetoraddvalue.c.s
 .PHONY : libft/sources/ft_dictgetoraddvalue.c.s
+
+libft/sources/ft_dictgetvalue.o: libft/sources/ft_dictgetvalue.c.o
+
+.PHONY : libft/sources/ft_dictgetvalue.o
+
+# target to build an object file
+libft/sources/ft_dictgetvalue.c.o:
+	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/libft/sources/ft_dictgetvalue.c.o
+.PHONY : libft/sources/ft_dictgetvalue.c.o
+
+libft/sources/ft_dictgetvalue.i: libft/sources/ft_dictgetvalue.c.i
+
+.PHONY : libft/sources/ft_dictgetvalue.i
+
+# target to preprocess a source file
+libft/sources/ft_dictgetvalue.c.i:
+	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/libft/sources/ft_dictgetvalue.c.i
+.PHONY : libft/sources/ft_dictgetvalue.c.i
+
+libft/sources/ft_dictgetvalue.s: libft/sources/ft_dictgetvalue.c.s
+
+.PHONY : libft/sources/ft_dictgetvalue.s
+
+# target to generate assembly for a file
+libft/sources/ft_dictgetvalue.c.s:
+	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/libft/sources/ft_dictgetvalue.c.s
+.PHONY : libft/sources/ft_dictgetvalue.c.s
 
 libft/sources/ft_dictnew.o: libft/sources/ft_dictnew.c.o
 
@@ -2037,9 +2118,18 @@ help:
 	@echo "... libft/sources/ft_dictclearzero.o"
 	@echo "... libft/sources/ft_dictclearzero.i"
 	@echo "... libft/sources/ft_dictclearzero.s"
+	@echo "... libft/sources/ft_dictdelbykey.o"
+	@echo "... libft/sources/ft_dictdelbykey.i"
+	@echo "... libft/sources/ft_dictdelbykey.s"
+	@echo "... libft/sources/ft_dictdelelement.o"
+	@echo "... libft/sources/ft_dictdelelement.i"
+	@echo "... libft/sources/ft_dictdelelement.s"
 	@echo "... libft/sources/ft_dictgetoraddvalue.o"
 	@echo "... libft/sources/ft_dictgetoraddvalue.i"
 	@echo "... libft/sources/ft_dictgetoraddvalue.s"
+	@echo "... libft/sources/ft_dictgetvalue.o"
+	@echo "... libft/sources/ft_dictgetvalue.i"
+	@echo "... libft/sources/ft_dictgetvalue.s"
 	@echo "... libft/sources/ft_dictnew.o"
 	@echo "... libft/sources/ft_dictnew.i"
 	@echo "... libft/sources/ft_dictnew.s"
