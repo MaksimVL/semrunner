@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolf <hwolf@student.42.fr>                +#+  +:+       +#+        */
+/*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 11:54:25 by hwolf             #+#    #+#             */
-/*   Updated: 2019/09/17 22:09:39 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/09/18 19:28:40 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef FILLIT_H
 # define FILLIT_H

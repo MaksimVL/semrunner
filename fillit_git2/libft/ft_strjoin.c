@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/17 11:54:25 by hwolf             #+#    #+#             */
-/*   Updated: 2019/09/18 19:30:28 by odrinkwa         ###   ########.fr       */
+/*   Created: 2019/09/05 22:34:48 by hwolf             #+#    #+#             */
+/*   Updated: 2019/09/18 23:06:14 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
 #include "libft.h"
 
-typedef struct s_fig{
-	char label;
-	int is_set;
-	int row[3];
-	int col[3];
-}	t_fig;
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*ptr;
+	int		len;
 
-t_list		*read_figs_str(const int fd);
-char		*get_fig(int label, char *line, int count);
-void		lst_print(t_list *ptr);
-int			read_figs(t_fig *dist, t_list *fig_str);
-int			check_figs_list(t_list *src, t_list *etalon);
-int			check_fig_list(t_list *src, t_list *etalon);
-
-#endif
+	if (s1 && s2)
+	{
+		len = ft_strlen(s2) + ft_strlen(s1);
+		if (!(ptr = (char*)malloc((1 + len) * sizeof(*s1))))
+			return (NULL);
+		ft_strcpy(ptr, s1);
+		ft_strcat(ptr, s2);
+		return (ptr);
+	}
+	return (NULL);
+}
