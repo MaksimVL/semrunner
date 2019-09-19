@@ -36,24 +36,24 @@ static int		count_side_minimal_map(int count_figures)
 	return (i);
 }
 
-static void		initialize_map(char *map, int size_map)
+static void		initialize_map(t_map *m)
 {
 	int i;
 	int j;
 
 	i = 0;
-	while (i < size_map)
+	while (i < m->size_map)
 	{
 		j = 0;
-		while (j < size_map)
+		while (j < m->size_map)
 		{
-			map[i * (size_map + 1) + j] = '.';
+			m->map[i * (m->size_map + 1) + j] = '.';
 			j++;
 		}
-		map[i * (size_map + 1) + j] = '\n';
+		m->map[i * (m->size_map + 1) + j] = '\n';
 		i++;
 	}
-	map[i * (size_map + 1) + size_map] = '\0';
+	m->map[i * (m->size_map + 1) + m->size_map] = '\0';
 }
 
 static int		solve_recursion(t_map *m, t_fig figs[26],
@@ -88,18 +88,23 @@ static int		solve_recursion(t_map *m, t_fig figs[26],
 int				solve_tetrimino(t_fig figs[], int count_figures)
 {
 	t_map	*m;
-
-	m = (t_map*)ft_memalloc(sizeof(t_map));
-	m->map = (char*)ft_memalloc(sizeof(char) * (21 * 21 + 1));
+	
+	if (!(m = (t_map*)ft_memalloc(sizeof(t_map))))
+		return (0);
+	if (!(m->map = (char*)ft_memalloc(sizeof(char) * (21 * 21 + 1))))
+	{
+		ft_memdel((void**)&m);
+		return (0);
+	}
 	m->size_map = count_side_minimal_map(count_figures);
-	initialize_map(m->map, m->size_map);
+	initialize_map(m);
 	while (solve_recursion(m, figs, count_figures, 0) == 0)
 	{
 		m->size_map++;
-		initialize_map(m->map, m->size_map);
+		initialize_map(m);
 	}
 	printmap(m);
 	free(m->map);
 	free(m);
-	return (0);
+	return (1);
 }
