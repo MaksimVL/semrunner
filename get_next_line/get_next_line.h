@@ -6,7 +6,7 @@
 /*   By: odrinkwa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 21:07:27 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/09/15 15:00:05 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/09/20 20:10:08 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "libft.h"
 
-# define BUFF_SIZE 1
+# define BUFF_SIZE 20
 
 int					get_next_line(const int fd, char **line);
 

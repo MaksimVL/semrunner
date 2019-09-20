@@ -136,6 +136,7 @@ CMakeFiles/get_next_line.dir/libft/sources/ft_strnequ.c.o
 CMakeFiles/get_next_line.dir/libft/sources/ft_strnew.c.o
  /Users/odrinkwa/semrunner_git2/get_next_line/libft/sources/ft_strnew.c
 CMakeFiles/get_next_line.dir/libft/sources/ft_strnjoin.c.o
+ ../libft/includes/libft.h
  /Users/odrinkwa/semrunner_git2/get_next_line/libft/sources/ft_strnjoin.c
 CMakeFiles/get_next_line.dir/libft/sources/ft_strnstr.c.o
  /Users/odrinkwa/semrunner_git2/get_next_line/libft/sources/ft_strnstr.c

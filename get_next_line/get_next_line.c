@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 22:54:55 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/09/15 22:07:27 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/09/20 20:40:57 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ static int	return_ok(int ok, char **str1, t_dict **files, t_dict **file)
 	if (str1 != NULL)
 		ft_memdel((void**)str1);
 	if (files != NULL)
-		ft_dictdelelement(files, file, NULL);
+		if ((*file)->content == NULL)
+			ft_dictdelelement(files, file, NULL);
 	return (ok);
 }
 

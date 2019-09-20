@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 22:42:55 by semenbeguno       #+#    #+#             */
-/*   Updated: 2019/09/15 21:53:10 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/09/20 20:10:45 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,14 @@ int     main(void)
     change_fd = fd;
     while (get_next_line(change_fd, &line) == 1)
     {
-        if (change_fd == fd)
-            change_fd = fd2;
-        else
-            change_fd = fd;
+    	change_fd = change_fd == fd ? fd2 : fd;
         printf("%s\n", line);
         ft_memdel((void**)&line);
     }
     if (line)
         ft_memdel((void**)&line);
+    close(fd);
+    close(fd2);
 }
 
 
