@@ -30,6 +30,7 @@ int	main(int argc, char **argv)
 		ft_putstr("error\n");
 		return (0);
 	}
-	solve_tetrimino(figs, size);
+	if (solve_tetrimino(figs, size) == 0)
+		ft_putstr("error\n");
 	return (0);
 }
