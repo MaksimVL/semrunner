@@ -6,26 +6,24 @@
 /*   By: hwolf <hwolf@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 14:39:51 by hwolf             #+#    #+#             */
-/*   Updated: 2019/09/17 15:14:52 by hwolf            ###   ########.fr       */
+/*   Updated: 2019/09/18 22:19:08 by hwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "libft.h"
 
 t_list	*ft_lstappend(t_list *head, t_list *new)
 {
 	t_list *ptr;
-	ptr = head;
 
+	ptr = head;
 	if (new && head)
 		if (head)
 		{
-			while((head)->next)
+			while ((head)->next)
 				head = (head)->next;
 			(head)->next = new;
 			return (ptr);
 		}
-		return (new);
-	return (NULL);
+	return (new);
 }

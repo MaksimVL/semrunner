@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolf <hwolf@student.42.fr>                +#+  +:+       +#+        */
+/*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 15:12:19 by hwolf             #+#    #+#             */
-/*   Updated: 2019/09/17 12:55:14 by hwolf            ###   ########.fr       */
+/*   Updated: 2019/09/18 23:34:50 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*ft_replace(const char *str, int c)
+static char		*ft_replace(const char *str, int c)
 {
 	char *ptr;
 
@@ -40,13 +40,15 @@ static int		get_new_line(char **line, t_list **ptr)
 		(*ptr)->content = tmp;
 		return (1);
 	}
+	if ((*ptr)->content != NULL)
+		ft_memdel(&((*ptr)->content));
 	free((*ptr));
 	(*ptr) = NULL;
 	*line = NULL;
 	return (0);
 }
 
-int		get_next_line(const int fd, char **line)
+int				get_next_line(const int fd, char **line)
 {
 	char			buf[BUFF_SIZE + 1];
 	int				ret;

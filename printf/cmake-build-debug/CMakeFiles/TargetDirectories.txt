@@ -1,0 +1,3 @@
+/Users/odrinkwa/semrunner_git2/printf/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/odrinkwa/semrunner_git2/printf/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/odrinkwa/semrunner_git2/printf/cmake-build-debug/CMakeFiles/ft_printf.dir

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolf <hwolf@student.42.fr>                +#+  +:+       +#+        */
+/*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 11:17:51 by hwolf             #+#    #+#             */
-/*   Updated: 2019/09/17 19:52:52 by hwolf            ###   ########.fr       */
+/*   Updated: 2019/09/19 00:12:28 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,6 @@ int					ft_lstlen(const t_list *list);
 void				ft_sort_str_table(char **tab, int size);
 int					get_next_line(const int fd, char **line);
 t_list				*ft_lstappend(t_list *head, t_list *new);
-void	ft_lst_del(t_list **alst);
+void				ft_lst_del(t_list **alst);
 
 #endif

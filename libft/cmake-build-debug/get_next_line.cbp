@@ -37,8 +37,8 @@
 					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/semrunner_git2/libft/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="get_next_line">
-				<Option output="/Users/odrinkwa/semrunner_git2/libft/cmake-build-debug/get_next_line" prefix_auto="0" extension_auto="0"/>
+			<Target title="test_libft">
+				<Option output="/Users/odrinkwa/semrunner_git2/libft/cmake-build-debug/test_libft" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/Users/odrinkwa/semrunner_git2/libft/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -53,14 +53,14 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/semrunner_git2/libft/cmake-build-debug/Makefile&quot;  VERBOSE=1 get_next_line"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/semrunner_git2/libft/cmake-build-debug/Makefile&quot;  VERBOSE=1 test_libft"/>
 					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/semrunner_git2/libft/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/semrunner_git2/libft/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/semrunner_git2/libft/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="get_next_line/fast">
-				<Option output="/Users/odrinkwa/semrunner_git2/libft/cmake-build-debug/get_next_line" prefix_auto="0" extension_auto="0"/>
+			<Target title="test_libft/fast">
+				<Option output="/Users/odrinkwa/semrunner_git2/libft/cmake-build-debug/test_libft" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/Users/odrinkwa/semrunner_git2/libft/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -75,7 +75,7 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/semrunner_git2/libft/cmake-build-debug/Makefile&quot;  VERBOSE=1 get_next_line/fast"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/semrunner_git2/libft/cmake-build-debug/Makefile&quot;  VERBOSE=1 test_libft/fast"/>
 					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/semrunner_git2/libft/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/semrunner_git2/libft/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/semrunner_git2/libft/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -83,223 +83,223 @@
 			</Target>
 		</Build>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_atoi.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_bzero.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_dictadd.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_dictclearzero.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_dictdelbykey.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_dictdelelement.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_dictgetoraddvalue.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_dictgetvalue.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_dictnew.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_isalnum.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_isalpha.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_isascii.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_isdigit.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_isprint.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_itoa.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_lstadd.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_lstaddback.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_lstdel.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_lstdeli.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_lstdelone.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_lsti.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_lstiter.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_lstlen.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_lstmap.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_lstnew.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_memalloc.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_memccpy.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_memchr.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_memcmp.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_memcpy.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_memdel.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_memmove.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_memset.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_printstrsplit.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_putchar.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_putchar_fd.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_putendl.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_putendl_fd.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_putnbr.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_putnbr_fd.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_putstr.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_putstr_fd.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_strcat.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_strchr.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_strclr.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_strcmp.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_strcpy.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_strdel.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_strdup.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_strequ.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_striter.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_striteri.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_strjoin.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_strlcat.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_strlen.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_strmap.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_strmapi.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_strncat.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_strncmp.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_strncpy.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_strnequ.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_strnew.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_strnjoin.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_strnstr.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_strrchr.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_strsplit.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_strstr.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_strsub.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_strtrim.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_tolower.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/ft_toupper.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/libft/sources/get_next_line.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/main.c">
-			<Option target="get_next_line"/>
+			<Option target="test_libft"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git2/libft/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>

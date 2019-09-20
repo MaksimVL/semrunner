@@ -47,5 +47,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/get_next_line.dir/DependInfo.cmake"
+  "CMakeFiles/test_libft.dir/DependInfo.cmake"
   )

@@ -3,36 +3,52 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+         #
+#    By: hwolf <hwolf@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 12:13:46 by odrinkwa          #+#    #+#              #
-#    Updated: 2019/09/17 23:08:46 by odrinkwa         ###   ########.fr        #
+#    Updated: 2019/09/20 16:29:13 by hwolf            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit
-COMPILERC = gcc
-MAKERLIB = ar rc
-FLAGS = -Wall -Wextra -Werror
-FLAGS1 = -c
-SOURCES_DIR = sources/
-SOURCES  = main.c read.c slv_auxf.c slv_tetr.c
-SOURCESLIB = libft/libft.a
+
+SRC_DIR := ./fillit_proj
+INC_DIR := ./fillit_proj
+OBJ_DIR := ./fillit_proj
+LIB_DIR := ./libft
+
+SRC  := main.c read.c slv_auxf.c slv_tetr.c analyse.c
+HDRS := fillit_proj/fillit.h fillit_proj/slv_tetr.h
+OBJ  := $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 OBJECTS = $(SOURCES:.c=.o)
-HEADERS = includes
-HEADERSLIB = libft/includes
+
+CC := gcc
+CFLAGS := -Wall -Wextra -Werror
+
+L_FT := libft
+
+include $(L_FT)/libft_base.mk
+
+SRC_LIB = $(addprefix $(L_FT)/,$(LIBFT_SRC))
+HEADER_LIB = $(L_FT)/libft.h
+
+.PHONY: all clean fclean re
 
 all: $(NAME)
 
-$(NAME):
-	$(COMPILERC) $(FLAGS) $(addprefix $(SOURCES_DIR),$(SOURCES)) $(SOURCESLIB) -I $(HEADERS) -L libft/ -lft
-	gcc $(OBJECTS) -o $(NAME)
-    #$(COMPILERC) $(FLAGS) $(addprefix $(SOURCES_DIR), $(SOURCES)) $(SOURCESLIB) -I$(HEADERS)
-
 clean:
-	rm -f $(OBJECTS)
+	rm -rf $(OBJ)
+	$(MAKE) -C libft clean
 
 fclean: clean
-	rm -f $(NAME)	
+	rm -rf $(NAME)
+	$(MAKE) -C $(L_FT) fclean
 
 re: fclean all
+
+$(OBJ_DIR)/%.o:$(SRC_DIR)/%.c $(HDRS)
+	$(CC) $(CFLAGS) $(LIB_INC) -I $(INC_DIR) -o $@ -c $<
+
+$(NAME): $(OBJ) $(SRC_LIB) $(HEADER_LIB) $(HDRS)
+	$(MAKE) -C $(L_FT)
+	$(CC) $(CFLAGS) $(OBJ) $(LIB_LNK) -o $(NAME)
