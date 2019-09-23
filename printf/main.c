@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 22:42:55 by semenbeguno       #+#    #+#             */
-/*   Updated: 2019/09/23 10:18:20 by semenbegunov     ###   ########.fr       */
+/*   Updated: 2019/09/23 22:30:11 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,53 @@ void 	test_static(void)
 	printf("p=%p\n", static_c);
 }
 
+
+int		len_num_box(unsigned long long num, int shift)
+{
+	int 	count;
+
+	count = 0;
+	while(num > 0)
+	{
+		num = (num >> shift);
+		count++;
+	}
+	return (count);
+}
+
+int		ft_itoa_box(unsigned long long num, char box, int fd)
+{
+	char *base_chars;
+	int shift;
+	int mask;
+	int start_point;
+
+	base_chars = (box == 'x') ? "0123456789abcdef" : "0123456789ABCDEF";
+	if (box == 'b')
+	{
+		mask = 1;
+		shift = 1;
+	}
+	else if (box == 'o')
+	{
+		mask = 7;
+		shift = 3;
+	}
+	else
+	{
+		mask = 15;
+		shift = 4;
+	}
+	if (!(start_point = len_num_box(num, shift)))
+		return (0);
+
+	while(start_point-- > 0)
+	{
+		ft_putchar_fd(base_chars[(num >> (start_point * shift)) & mask], fd);
+	}
+}
+
+
 int     main(void)
 {
 	float aa;
@@ -34,46 +81,69 @@ int     main(void)
 	char *s;
 	unsigned long long int ulli;
 	long long int lli;
+	unsigned long long int ulli_test;
 
 	s = (char*)malloc(sizeof(char));
-	ulli = (long long int)s;
+	printf("pointer s = %p\n", s);
+	ulli = (unsigned long long int)s;
+	printf("ulli = %llx\n", ulli);
 
-	aa = 10.0 / 3.0;
-	bb = 10.0 / 3.0;
-	printf("%p\n", s);
-	printf("0x%llx\n", ulli);
+	ulli_test = ulli;
 
-	lli = 100;
-	ulli = lli;
-	printf("100: %lld, %llu\n", lli, ulli);
+	int size_ulli;
 
-	lli = -9223372036854775808;
-	ulli = -lli;
-	printf("-9223372036854775808: %lld, %llu\n", lli, ulli);
+	size_ulli = sizeof(s) * 8;
+	printf("size_ulli = %d\n", size_ulli);
 
-	double dd;
-	int		itmp;
-	int 	fract;
+	unsigned long long int mask;
 
-	dd = 13.0201;
-
-	dd -= (int)dd;
-	double dd1;
-
-	for (long long int i = 1; i < 15; i++)
+	mask = 0xf;
+	int i = 0;
+	while(ulli_test > 0)
 	{
-		dd = dd * 10;
-
+		ulli_test = ulli_test >> 4;
+		i += 4;
 	}
 
-	dd += 0.5;
-	printf("dd = %d\n", (long long int)dd);
+	int count_nums = i;
+	printf("i = %d\n", i);
 
+	ulli_test = ulli;
+	printf("ulli_test:");
 
+	while (i > 0)
+	{
+		i-=4;
+		printf("%llx", ulli_test >> i & 0xF);
+	}
 
-	printf("aaaa %f bbbb\n", dd);
+	printf("\nulli_test_bin:");
+	i = count_nums;
+	int j;
+	while(i > 0)
+	{
+		i -= 4;
+		j = 4;
+		while(j > 0)
+		{
+			printf("%d", ulli_test >> (i + j-1) & 1);
+			j--;
+		}
+	}
 
-	int i1 = 1, i2 = 2, i3 = 3;
+	printf("\n------------------\n");
+	printf("%04x\n", 0x3af);
 
-	printf("%2$d %1$d %3$d", i1, i2, i3);
+	printf("sizeof(float) = %lu\n", sizeof(float));
+	printf("sizeof(double) = %lu\n", sizeof(double));
+	printf("sizeof(long double) = %lu\n", sizeof(long double));
+
+	printf("sizeof(int) = %lu\n", sizeof(unsigned long long int));
+
+	ulli = 18446744073709551615;
+	ft_itoa_box(ulli, 'X', 1);
+	printf("\n");
+	ft_itoa_box((unsigned long long)s, 'x', 1);
+	printf("\n");
+	ft_itoa_box((unsigned long long)s, 'b', 1);
 }

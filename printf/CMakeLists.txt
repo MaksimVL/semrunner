@@ -10,6 +10,7 @@ file(GLOB ft_printf_SRC
 file(GLOB libft_SRC
         "./libft/sources/*.c"
         )
+
 include_directories(libft/includes)
 
 add_executable(ft_printf ${ft_printf_SRC} ${libft_SRC} main.c)
