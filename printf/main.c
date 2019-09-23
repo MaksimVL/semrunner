@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 22:42:55 by semenbeguno       #+#    #+#             */
-/*   Updated: 2019/09/23 22:30:11 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/09/24 01:03:08 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,53 +26,6 @@ void 	test_static(void)
 
 	printf("p=%p\n", static_c);
 }
-
-
-int		len_num_box(unsigned long long num, int shift)
-{
-	int 	count;
-
-	count = 0;
-	while(num > 0)
-	{
-		num = (num >> shift);
-		count++;
-	}
-	return (count);
-}
-
-int		ft_itoa_box(unsigned long long num, char box, int fd)
-{
-	char *base_chars;
-	int shift;
-	int mask;
-	int start_point;
-
-	base_chars = (box == 'x') ? "0123456789abcdef" : "0123456789ABCDEF";
-	if (box == 'b')
-	{
-		mask = 1;
-		shift = 1;
-	}
-	else if (box == 'o')
-	{
-		mask = 7;
-		shift = 3;
-	}
-	else
-	{
-		mask = 15;
-		shift = 4;
-	}
-	if (!(start_point = len_num_box(num, shift)))
-		return (0);
-
-	while(start_point-- > 0)
-	{
-		ft_putchar_fd(base_chars[(num >> (start_point * shift)) & mask], fd);
-	}
-}
-
 
 int     main(void)
 {
@@ -140,10 +93,7 @@ int     main(void)
 
 	printf("sizeof(int) = %lu\n", sizeof(unsigned long long int));
 
-	ulli = 18446744073709551615;
-	ft_itoa_box(ulli, 'X', 1);
-	printf("\n");
-	ft_itoa_box((unsigned long long)s, 'x', 1);
-	printf("\n");
-	ft_itoa_box((unsigned long long)s, 'b', 1);
+	printf("%x\n", 1515);
+	ft_printf("s = %p %lo %lx %lb\n", s, s, s, s);
+	printf("s = %p %lo %lx\n", s, s, s);
 }

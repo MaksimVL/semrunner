@@ -1,25 +1,99 @@
 #include "libft.h"
 #include "ft_printf.h"
 
-int		parse_csp(char *ptr, va_list arg)
+int		len_num_box(unsigned long long num, int shift)
 {
-	char 		tmp_char;
-	char 		*tmp_str;
+	int 	count;
 
-	ptr++;
-	if (*ptr == '\0')
+	count = 0;
+	while(num > 0)
+	{
+		num = (num >> shift);
+		count++;
+	}
+	return (count);
+}
+
+int		ft_itoa_box(unsigned long long num, char box, int fd)
+{
+	char *base_chars;
+	int shift;
+	int mask;
+	int start_point;
+
+	base_chars = (box == 'x') ? "0123456789abcdef" : "0123456789ABCDEF";
+	if (box == 'b')
+	{
+		mask = 1;
+		shift = 1;
+	}
+	else if (box == 'o')
+	{
+		mask = 7;
+		shift = 3;
+	}
+	else
+	{
+		mask = 15;
+		shift = 4;
+	}
+	if (!(start_point = len_num_box(num, shift)))
 		return (0);
-	else if (*ptr == 'c')
+
+	while(start_point-- > 0)
+	{
+		ft_putchar_fd(base_chars[(num >> (start_point * shift)) & mask], fd);
+	}
+	return (1);
+}
+
+int		parse_csp(const char *ptr, va_list arg, int fd)
+{
+	if (*ptr == 'c')
 		ft_putchar(va_arg(arg, int));
 	else if (*ptr == 's')
 		ft_putstr(va_arg(arg, char*));
 	else if (*ptr == 'p')
 	{
-
-		return (1); //TODO сделать вывод адреса (значения указателя)
+		ft_putstr("0x");
+		ft_itoa_box((unsigned long long) va_arg(arg, void*), 'x', fd);
 	}
-	else
-		ft_putchar(*ptr);
+	return (1);
+}
+
+int		parse_box(const char *ptr, va_list arg, int fd)
+{
+	ft_itoa_box((unsigned int)va_arg(arg,unsigned int), *ptr, fd);
+	return (1);
+}
+
+int		parse_lbox(const char *ptr, va_list arg, int fd)
+{
+	ft_itoa_box((unsigned long int)va_arg(arg,unsigned long int), *ptr, fd);
+	return (1);
+}
+
+int parse_ld(const char *ptr, va_list arg, int fd)
+{
+	;
+}
+
+int		parse(char **ptr, va_list arg, int fd)
+{
+	if (**ptr == 'c' || **ptr == 's' || **ptr == 'p')
+		parse_csp(*ptr, arg, fd);
+	if (**ptr == 'x' || **ptr == 'X' || **ptr == 'o' || **ptr == 'b')
+		parse_box(*ptr, arg, fd);
+	if (**ptr == 'l')
+	{
+		(*ptr)++;
+		if (**ptr == '\0')
+			return (0);
+		else if (**ptr == 'x' || **ptr == 'X' || **ptr == 'o' || **ptr == 'b')
+			parse_lbox(*ptr, arg, fd);
+		else if (**ptr == 'd')
+			parse_ld(*ptr, arg, fd);
+	}
 	return (1);
 }
 
@@ -39,10 +113,12 @@ int 	ft_printf(const char *format, ...)
 			ft_putchar(*ptr);
 		else
 		{
-			if (parse_csp(ptr, arg) == 0)
+			ptr++;
+			if (ptr == '\0')
 				return (0);
 			else
-				ptr++;
+				if (parse(&ptr, arg, 1) == 0)
+					return (0);
 		}
 		ptr++;
 	}
