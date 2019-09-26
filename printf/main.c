@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 22:42:55 by semenbeguno       #+#    #+#             */
-/*   Updated: 2019/09/25 17:14:55 by semenbegunov     ###   ########.fr       */
+/*   Updated: 2019/09/25 23:21:46 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,192 +27,40 @@ void 	test_static(void)
 	printf("p=%p\n", static_c);
 }
 
-#define SIZE_BN 100
-#define BASE_BN 10000
 
-typedef struct		s_bignum
-{
-	long long int	number[100];
-	int 			sign;
-	int 			size;
-}					t_bignum;
-
-void initialize_bignum(t_bignum *n)
-{
-	int i;
-
-	i = 0;
-	while (i < SIZE_BN)
-	{
-		n->number[i] = 0;
-		i++;
-	}
-	n->sign = 0;
-	n->size = 0;
-}
-
-void ft_itoa_bignum(t_bignum *bn, long long n)
-{
-	int i;
-
-	initialize_bignum(bn);
-	if (n == 0)
-		return ;
-	bn->sign = (n < 0) ? -1 : 1;
-
-	i = 0;
-	if (n < 0)
-	{
-		bn->number[i++] = -(n % BASE_BN);
-		n = -(n / BASE_BN);
-	}
-	while (n != 0)
-	{
-		bn->number[i++] = (int)(n % BASE_BN);
-		n = n / BASE_BN;
-	}
-	bn->size = i;
-}
-
-void ft_print_bignum(t_bignum bn)
-{
-	int i;
-
-	if (bn.sign == -1)
-		ft_putchar('-');
-	i = bn.size;
-	while(i-- > 0)
-	{
-		ft_printf("%lld", bn.number[i]);
-	}
-}
-
-void fixzero_bignum(t_bignum *bn)
-{
-	int i;
-
-	i = 0;
-	while (i < SIZE_BN)
-	{
-		if (bn->number[i] != 0)
-			return ;
-		i++;
-	}
-	bn->size = 0;
-	bn->sign = 0;
-}
-
-void fixsize_bignum(t_bignum *bn)
-{
-	int i;
-
-	i = SIZE_BN - 1;
-	while (i >= 0)
-	{
-		if (bn->number[i] != 0)
-			break ;
-		i--;
-	}
-	bn->size = i + 1;
-}
-
-void fixup_bignum(t_bignum *bn)
-{
-	int i;
-
-	i = 0;
-	while(i < SIZE_BN - 1)
-	{
-		bn->number[i + 1] += bn->number[i] / BASE_BN;
-		bn->number[i] = bn->number[i] % BASE_BN;
-		i++;
-	}
-	fixzero_bignum(bn);
-}
-
-void ft_sumabs_bignum(t_bignum *res, t_bignum bn1, t_bignum bn2)
-{
-	int i;
-
-	i = 0;
-	initialize_bignum(res);
-	while(i < SIZE_BN)
-	{
-		res->number[i] = bn1.number[i] + bn2.number[i];
-		fixup_bignum(res);
-		i++;
-	}
-	fixsize_bignum(res);
-	if (res->size > 0)
-		res->sign = 1;
-}
-
-void ft_mult_bignum(t_bignum *res, t_bignum bn1, t_bignum bn2)
-{
-	int i;
-	int j;
-
-	initialize_bignum(res);
-	i = 0;
-
-	while (i < SIZE_BN)
-	{
-		j = 0;
-		while (j < SIZE_BN - i)
-		{
-			res->number[i + j] += bn1.number[i] * bn2.number[j];
-			j++;
-		}
-		i++;
-	}
-	res->sign = bn1.sign * bn2.sign;
-	fixup_bignum(res);
-	fixsize_bignum(res);
-}
-
-void ft_assign_bignum(t_bignum *res, t_bignum bn)
-{
-	int i;
-
-	i = 0;
-	while (i < SIZE_BN)
-	{
-		res->number[i] = bn.number[i];
-		i++;
-	}
-	res->sign = bn.sign;
-	res->size = bn.size;
-}
-
-void ft_power_bignum(t_bignum *res, t_bignum bn, unsigned int n)
-{
-	unsigned int i;
-	t_bignum tmp_bn;
-
-	ft_assign_bignum(&tmp_bn, bn);
-	i = 1;
-	while (i < n)
-	{
-		ft_mult_bignum(res, tmp_bn, bn);
-		ft_assign_bignum(&tmp_bn, *res);
-		i++;
-	}
-
-}
 
 int     main(void)
 {
-	long long n = 45678787879;
+	long double n = 16383455344432;
+	n = n * n;
+	n = n * n;
+	n = n * n;
+	n = n * n;
+	n = n * n;
 	t_bignum bn1;
 	t_bignum bn2;
-	t_bignum res;
 
-	ft_itoa_bignum(&bn1, n);
-	ft_power_bignum(&res, bn1, 30);
-
-	ft_print_bignum(res);
+	printf("%Lf\n", n);
 
 
+	ft_printf("%Lf\n", n);
+
+
+	ft_assign_bignum(&bn1, 11111111);
+	ft_print_bignum(bn1);
+	ft_printf("\n");
+	ft_isumabs_bignum(&bn1, bn1);
+	ft_print_bignum(bn1);
+	ft_printf("\n");
+	ft_isumabs_bignum(&bn1, bn1);
+	ft_print_bignum(bn1);
+	ft_printf("\n");
+	ft_isumabs_bignum(&bn1, bn1);
+	ft_print_bignum(bn1);
+	ft_printf("\n");
+	ft_isumabs_bignum(&bn1, bn1);
+	ft_print_bignum(bn1);
+	ft_printf("\n");
 	/*
 	float aa;
 	double bb;
