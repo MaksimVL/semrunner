@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 19:31:16 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/09/26 14:00:36 by semenbegunov     ###   ########.fr       */
+/*   Updated: 2019/09/27 23:35:39 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,109 @@ void	ft_assign_bignum(t_bignum *bn, long long n)
 	bn->size = i;
 }
 
-void ft_print_bignum(t_bignum bn)
+static void		ft_putn_output(long long n, char *output)
+{
+	char 	s[2];
+
+	s[1] = '\0';
+	if (n > 0)
+	{
+		ft_putn_output(n / 10, output);
+		s[0] = n % 10 + '0';
+		ft_strcat(output, s);
+	}
+}
+
+void			ft_putnbr_output(long int n, char *output)
+{
+	long long nb;
+
+	nb = n;
+	if (nb == 0)
+	{
+		ft_strcat(output, "0");
+		return ;
+	}
+	else if (nb < 0)
+	{
+		ft_strcat(output, "-");
+		nb = -nb;
+	}
+	ft_putn_output(nb, output);
+}
+
+void			ft_strcatnbr(char *output, long int nbr)
+{
+	char tmp_str[30];
+
+	tmp_str[0] = '\0';
+	ft_putnbr_output(nbr, tmp_str);
+	ft_strcat(output, tmp_str);
+}
+
+void			putzeros_bignum(char *output, long long nbr)
+{
+	int i;
+	i = BASE_BN / 10;
+
+	while (nbr < i)
+	{
+		ft_strcat(output, "0");
+		i /= 10;
+	}
+}
+
+void			ft_putintpart_bignum(t_bignum bn, char *output)
+{
+	int i;
+
+	if (bn.sign == -1)
+		ft_strcat(output, "-");
+	i = bn.size - 1;
+	if (i < 0)
+	{
+		ft_strcat(output, "0");
+		return ;
+	}
+	else
+		ft_strcatnbr(output, bn.number[i]);
+	while (i-- > 0)
+	{
+		putzeros_bignum(output, bn.number[i]);
+		if (bn.number[i] != 0)
+			ft_strcatnbr(output, bn.number[i]);
+	}
+}
+
+void	putnzeros(char *output, int prec)
+{
+	while (prec-- > 0)
+	{
+		ft_strcat(output, "0");
+	}
+}
+
+void			ft_putfractpart_bignum(t_bignum bn, char *output, int pow)
+{
+	int i;
+
+	i = bn.size;
+	if (i < 0)
+	{
+		ft_strcat(output, "0");
+		return ;
+	}
+	if (bn.size * 4 < pow)
+		putnzeros(output, pow - bn.size * 4);
+	while (i-- > 0)
+	{
+		putzeros_bignum(output, bn.number[i]);
+		if (bn.number[i] != 0)
+			ft_strcatnbr(output, bn.number[i]);
+	}
+}
+
+void			ft_print_bignum(t_bignum bn)
 {
 	int i;
 
@@ -76,7 +178,7 @@ void ft_print_bignum(t_bignum bn)
 	}
 }
 
-void fixzero_bignum(t_bignum *bn)
+void			fixzero_bignum(t_bignum *bn)
 {
 	int i;
 
@@ -91,7 +193,7 @@ void fixzero_bignum(t_bignum *bn)
 	bn->sign = 0;
 }
 
-void fixsize_bignum(t_bignum *bn)
+void			fixsize_bignum(t_bignum *bn)
 {
 	int i;
 
@@ -105,7 +207,7 @@ void fixsize_bignum(t_bignum *bn)
 	bn->size = i + 1;
 }
 
-void fixup_bignum(t_bignum *bn)
+void			fixup_bignum(t_bignum *bn)
 {
 	int i;
 
@@ -119,7 +221,7 @@ void fixup_bignum(t_bignum *bn)
 	fixzero_bignum(bn);
 }
 
-void ft_isumabs_bignum(t_bignum *res, t_bignum bn2)
+void			ft_isumabs_bignum(t_bignum *res, t_bignum bn2)
 {
 	int i;
 	t_bignum	temp_bn;
@@ -138,7 +240,7 @@ void ft_isumabs_bignum(t_bignum *res, t_bignum bn2)
 	ft_deepcopy_bignum(res, temp_bn);
 }
 
-void ft_imul_bignum(t_bignum *res, t_bignum bn2)
+void			ft_imul_bignum(t_bignum *res, t_bignum bn2)
 {
 	int 		i;
 	int			j;
@@ -162,7 +264,7 @@ void ft_imul_bignum(t_bignum *res, t_bignum bn2)
 	ft_deepcopy_bignum(res, temp_bn);
 }
 
-t_bignum	ft_mul_bignum(t_bignum bn1, t_bignum bn2)
+t_bignum		ft_mul_bignum(t_bignum bn1, t_bignum bn2)
 {
 	int 		i;
 	int			j;
@@ -186,7 +288,7 @@ t_bignum	ft_mul_bignum(t_bignum bn1, t_bignum bn2)
 	return (res_bn);
 }
 
-t_bignum	ft_pow_bignum(t_bignum bn, unsigned int n)
+t_bignum		ft_pow_bignum(t_bignum bn, unsigned int n)
 {
 	unsigned int i;
 	t_bignum res_bn;
@@ -206,7 +308,7 @@ t_bignum	ft_pow_bignum(t_bignum bn, unsigned int n)
 	return (res_bn);
 }
 
-void 		ft_deepcopy_bignum(t_bignum *res, t_bignum bn)
+void 			ft_deepcopy_bignum(t_bignum *res, t_bignum bn)
 {
 	int i;
 
@@ -220,7 +322,7 @@ void 		ft_deepcopy_bignum(t_bignum *res, t_bignum bn)
 	res->size = bn.size;
 }
 
-void		ft_ipow_bignum(t_bignum *res, unsigned int n)
+void			ft_ipow_bignum(t_bignum *res, unsigned int n)
 {
 	unsigned int i;
 	t_bignum tmp_bn;

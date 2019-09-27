@@ -1,0 +1,142 @@
+objects/ft_putchar.o: sources/ft_putchar.c includes/libft.h includes/ft_printf.h
+objects/ft_putstr.o: sources/ft_putstr.c includes/libft.h includes/ft_printf.h
+objects/ft_putendl.o: sources/ft_putendl.c includes/libft.h includes/ft_printf.h
+objects/ft_putchar_fd.o: sources/ft_putchar_fd.c includes/libft.h \
+  includes/ft_printf.h
+objects/ft_strlen.o: sources/ft_strlen.c includes/libft.h includes/ft_printf.h
+objects/ft_putstr_fd.o: sources/ft_putstr_fd.c includes/libft.h \
+  includes/ft_printf.h
+objects/ft_putendl_fd.o: sources/ft_putendl_fd.c includes/libft.h \
+  includes/ft_printf.h
+objects/ft_isalpha.o: sources/ft_isalpha.c includes/libft.h includes/ft_printf.h
+objects/ft_isdigit.o: sources/ft_isdigit.c includes/libft.h includes/ft_printf.h
+objects/ft_isalnum.o: sources/ft_isalnum.c includes/libft.h includes/ft_printf.h
+objects/ft_isascii.o: sources/ft_isascii.c includes/libft.h includes/ft_printf.h
+objects/ft_isprint.o: sources/ft_isprint.c includes/libft.h includes/ft_printf.h
+objects/ft_toupper.o: sources/ft_toupper.c includes/libft.h includes/ft_printf.h
+objects/ft_tolower.o: sources/ft_tolower.c includes/libft.h includes/ft_printf.h
+objects/ft_bzero.o: sources/ft_bzero.c includes/libft.h includes/ft_printf.h
+objects/ft_itoa.o: sources/ft_itoa.c includes/libft.h includes/ft_printf.h
+objects/ft_putnbr.o: sources/ft_putnbr.c includes/libft.h includes/ft_printf.h
+objects/ft_putnbr_fd.o: sources/ft_putnbr_fd.c includes/libft.h \
+  includes/ft_printf.h
+objects/ft_memalloc.o: sources/ft_memalloc.c includes/libft.h \
+  includes/ft_printf.h
+objects/ft_memdel.o: sources/ft_memdel.c includes/libft.h includes/ft_printf.h
+objects/ft_strnew.o: sources/ft_strnew.c includes/libft.h includes/ft_printf.h
+objects/ft_strdel.o: sources/ft_strdel.c includes/libft.h includes/ft_printf.h
+objects/ft_strclr.o: sources/ft_strclr.c includes/libft.h includes/ft_printf.h
+objects/ft_striter.o: sources/ft_striter.c includes/libft.h includes/ft_printf.h
+objects/ft_striteri.o: sources/ft_striteri.c includes/libft.h \
+  includes/ft_printf.h
+objects/ft_strmap.o: sources/ft_strmap.c includes/libft.h includes/ft_printf.h
+objects/ft_strmapi.o: sources/ft_strmapi.c includes/libft.h includes/ft_printf.h
+objects/ft_strequ.o: sources/ft_strequ.c includes/libft.h includes/ft_printf.h
+objects/ft_memset.o: sources/ft_memset.c includes/libft.h includes/ft_printf.h
+objects/ft_memcpy.o: sources/ft_memcpy.c includes/libft.h includes/ft_printf.h
+objects/ft_memccpy.o: sources/ft_memccpy.c includes/libft.h includes/ft_printf.h
+objects/ft_memmove.o: sources/ft_memmove.c includes/libft.h includes/ft_printf.h
+objects/ft_memchr.o: sources/ft_memchr.c includes/libft.h includes/ft_printf.h
+objects/ft_memcmp.o: sources/ft_memcmp.c includes/libft.h includes/ft_printf.h
+objects/ft_strsub.o: sources/ft_strsub.c includes/libft.h includes/ft_printf.h
+objects/ft_strtrim.o: sources/ft_strtrim.c includes/libft.h includes/ft_printf.h
+objects/ft_isws.o: sources/ft_isws.c includes/libft.h includes/ft_printf.h
+objects/ft_strdup.o: sources/ft_strdup.c includes/libft.h includes/ft_printf.h
+objects/ft_strcpy.o: sources/ft_strcpy.c includes/libft.h includes/ft_printf.h
+objects/ft_strncpy.o: sources/ft_strncpy.c includes/libft.h includes/ft_printf.h
+objects/ft_strcat.o: sources/ft_strcat.c includes/libft.h includes/ft_printf.h
+objects/ft_strncat.o: sources/ft_strncat.c includes/libft.h includes/ft_printf.h
+objects/ft_strjoin.o: sources/ft_strjoin.c includes/libft.h includes/ft_printf.h
+objects/ft_strlcat.o: sources/ft_strlcat.c includes/libft.h includes/ft_printf.h
+objects/ft_strchr.o: sources/ft_strchr.c includes/libft.h includes/ft_printf.h
+objects/ft_strnequ.o: sources/ft_strnequ.c includes/libft.h includes/ft_printf.h
+objects/ft_strrchr.o: sources/ft_strrchr.c includes/libft.h includes/ft_printf.h
+objects/ft_strstr.o: sources/ft_strstr.c includes/libft.h includes/ft_printf.h
+objects/ft_strnstr.o: sources/ft_strnstr.c includes/libft.h includes/ft_printf.h
+objects/ft_strcmp.o: sources/ft_strcmp.c includes/libft.h includes/ft_printf.h
+objects/ft_strncmp.o: sources/ft_strncmp.c includes/libft.h includes/ft_printf.h
+objects/ft_cwords.o: sources/ft_cwords.c includes/libft.h includes/ft_printf.h
+objects/ft_ccwords.o: sources/ft_ccwords.c includes/libft.h includes/ft_printf.h
+objects/ft_findlwordlc.o: sources/ft_findlwordlc.c includes/libft.h \
+  includes/ft_printf.h
+objects/ft_strsplit.o: sources/ft_strsplit.c includes/libft.h \
+  includes/ft_printf.h
+objects/ft_atoi.o: sources/ft_atoi.c includes/libft.h includes/ft_printf.h
+objects/ft_lstnew.o: sources/ft_lstnew.c includes/libft.h includes/ft_printf.h
+objects/ft_lstdelone.o: sources/ft_lstdelone.c includes/libft.h \
+  includes/ft_printf.h
+objects/ft_lstdel.o: sources/ft_lstdel.c includes/libft.h includes/ft_printf.h
+objects/ft_lstadd.o: sources/ft_lstadd.c includes/libft.h includes/ft_printf.h
+objects/ft_lstiter.o: sources/ft_lstiter.c includes/libft.h includes/ft_printf.h
+objects/ft_lstmap.o: sources/ft_lstmap.c includes/libft.h includes/ft_printf.h
+objects/ft_free.o: sources/ft_free.c includes/libft.h includes/ft_printf.h
+objects/ft_lstfind.o: sources/ft_lstfind.c includes/libft.h includes/ft_printf.h
+objects/ft_lstdelnode.o: sources/ft_lstdelnode.c includes/libft.h \
+  includes/ft_printf.h
+objects/ft_remalloc.o: sources/ft_remalloc.c includes/libft.h \
+  includes/ft_printf.h
+objects/ft_get_next_line.o: sources/ft_get_next_line.c includes/libft.h \
+  includes/ft_printf.h includes/ft_get_next_line.h
+objects/ft_del_arr.o: sources/ft_del_arr.c includes/libft.h includes/ft_printf.h
+objects/ft_pow.o: sources/ft_pow.c includes/libft.h includes/ft_printf.h
+objects/ft_strset.o: sources/ft_strset.c includes/libft.h includes/ft_printf.h
+objects/ft_zerostr.o: sources/ft_zerostr.c includes/libft.h includes/ft_printf.h
+objects/ft_skip_digits.o: sources/ft_skip_digits.c includes/libft.h \
+  includes/ft_printf.h
+objects/ft_getnbr_base.o: sources/ft_getnbr_base.c includes/libft.h \
+  includes/ft_printf.h
+objects/ft_printf.o: sources/ft_printf.c includes/ft_printf.h \
+  includes/handle_spec.h includes/libft.h
+objects/handle_spec.o: sources/printf_src/handle_spec.c includes/handle_spec.h \
+  includes/ft_printf_spec.h includes/libft.h includes/ft_printf.h \
+includes/read_spec.h includes/spectostr_funcs.h \
+includes/get_item_by_size.h includes/print_output.h \
+  includes/handle_stars.h
+objects/read_spec.o: sources/printf_src/read_spec.c includes/read_spec.h \
+  includes/ft_printf_spec.h includes/libft.h includes/ft_printf.h \
+includes/extend_dollar.h
+objects/print_output.o: sources/printf_src/print_output.c includes/print_output.h \
+  includes/ft_printf_spec.h includes/libft.h includes/ft_printf.h
+objects/get_item_by_size.o: sources/printf_src/get_item_by_size.c \
+  includes/get_item_by_size.h includes/ft_printf_spec.h includes/libft.h \
+  includes/ft_printf.h
+objects/spectostr_percent.o: sources/printf_src/spectostr_percent.c \
+includes/spectostr_funcs.h includes/ft_printf_spec.h \
+  includes/get_item_by_size.h includes/libft.h includes/ft_printf.h
+objects/spectostr_string.o: sources/printf_src/spectostr_string.c \
+includes/spectostr_funcs.h includes/ft_printf_spec.h \
+  includes/get_item_by_size.h includes/libft.h includes/ft_printf.h
+objects/spectostr_char.o: sources/printf_src/spectostr_char.c \
+includes/spectostr_funcs.h includes/ft_printf_spec.h \
+  includes/get_item_by_size.h includes/libft.h includes/ft_printf.h
+objects/spectostr_ptr.o: sources/printf_src/spectostr_ptr.c \
+includes/spectostr_funcs.h includes/ft_printf_spec.h \
+  includes/get_item_by_size.h includes/libft.h includes/ft_printf.h
+objects/spectostr_sdec.o: sources/printf_src/spectostr_sdec.c \
+includes/spectostr_funcs.h includes/ft_printf_spec.h \
+  includes/get_item_by_size.h includes/libft.h includes/ft_printf.h
+objects/spectostr_oct.o: sources/printf_src/spectostr_oct.c \
+includes/spectostr_funcs.h includes/ft_printf_spec.h \
+  includes/get_item_by_size.h includes/libft.h includes/ft_printf.h
+objects/spectostr_lowhex.o: sources/printf_src/spectostr_lowhex.c \
+includes/spectostr_funcs.h includes/ft_printf_spec.h \
+  includes/get_item_by_size.h includes/libft.h includes/ft_printf.h
+objects/spectostr_bighex.o: sources/printf_src/spectostr_bighex.c \
+includes/spectostr_funcs.h includes/ft_printf_spec.h \
+  includes/get_item_by_size.h includes/libft.h includes/ft_printf.h
+objects/spectostr_udec.o: sources/printf_src/spectostr_udec.c \
+includes/spectostr_funcs.h includes/ft_printf_spec.h \
+  includes/get_item_by_size.h includes/libft.h includes/ft_printf.h
+objects/spectostr_bin.o: sources/printf_src/spectostr_bin.c \
+includes/spectostr_funcs.h includes/ft_printf_spec.h \
+  includes/get_item_by_size.h includes/libft.h includes/ft_printf.h
+objects/change_fd.o: sources/printf_src/change_fd.c includes/spectostr_funcs.h \
+  includes/ft_printf_spec.h includes/get_item_by_size.h includes/libft.h \
+  includes/ft_printf.h
+objects/spectostr_float.o: sources/printf_src/spectostr_float.c \
+includes/spectostr_funcs.h includes/ft_printf_spec.h \
+  includes/get_item_by_size.h includes/libft.h includes/ft_printf.h
+objects/extend_dollar.o: sources/printf_src/extend_dollar.c \
+includes/extend_dollar.h includes/libft.h includes/ft_printf.h
+objects/handle_stars.o: sources/printf_src/handle_stars.c includes/handle_stars.h \
+  includes/ft_printf_spec.h

@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 22:42:55 by semenbeguno       #+#    #+#             */
-/*   Updated: 2019/09/26 18:28:59 by semenbegunov     ###   ########.fr       */
+/*   Updated: 2019/09/27 23:56:35 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,35 @@ void 	test_static(void)
 	printf("p=%p\n", static_c);
 }
 
+void	ft_itoa_f_test(long double d, int prec, char *str)
+{
+	union u_double ud;
+	t_printf p1;
 
+	p1.output = str;
+
+	ud.ld = d;
+	ft_itoa_f(ud, &p1, prec);
+}
 
 int     main(void)
 {
 	long double n;
-	n = 1.252999999999999999999;
+	n = 10;
 
-	printf("%Lf\n", n);
-	ft_printf("%Lf\n", n);
+	char test_ld[1500];
+
+	test_ld[0] = '\0';
+
+	ft_itoa_f_test(n, 1, test_ld);
+
+
+	printf("%.100Lf\n", n);
+	printf("%s", test_ld);
+
+/*
+
+	//ft_printf("%Lf\n", n);
 
 	ft_printf("\x1b[31mfuck\n\x1b[0m");
 
@@ -43,8 +63,8 @@ int     main(void)
 
 	printf("%11c %11s\n", 't', "test2");
 	int test = 100;
-
 	printf("%## 08x\n", test);
+	ft_printf("%d\n", test);*/
 	/*
 	float aa;
 	double bb;

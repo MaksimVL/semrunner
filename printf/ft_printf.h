@@ -3,7 +3,7 @@
 
 # include <stdarg.h>
 
-# define SIZE_BN 100
+# define SIZE_BN 500
 # define BASE_BN 10000
 
 # define NRM "\x1b[00m"
@@ -51,11 +51,17 @@ union 						u_double
 
 typedef struct		s_bignum
 {
-	long long int	number[100];
+	long long int	number[SIZE_BN];
 	int 			sign;
 	int 			size;
 }					t_bignum;
 
+typedef struct 		s_bd
+{
+	t_bignum		intpart;
+	t_bignum		fractpart;
+	int				sizefract;
+}					t_bd;
 int 					ft_printf(const char *format, ...);
 
 void 			initialize_bignum(t_bignum *n);
@@ -70,5 +76,9 @@ void			ft_deepcopy_bignum(t_bignum *res, t_bignum bn);
 void			ft_ipow_bignum(t_bignum *res, unsigned int n);
 t_bignum		ft_mul_bignum(t_bignum bn1, t_bignum bn2);
 t_bignum		ft_pow_bignum(t_bignum bn, unsigned int n);
+void			ft_putintpart_bignum(t_bignum bn, char *output);
+void			ft_putfractpart_bignum(t_bignum bn, char *output, int pow);
+void			putnzeros(char *output, int prec);
+int 			ft_itoa_f(union u_double d, t_printf *p, int prec);
 
 #endif

@@ -43,7 +43,7 @@ int		len_num_u(unsigned long long int num)
 	return (count);
 }
 
-int		ft_itoa_d(long long int num, int fd)
+int		ft_itoa_d(long long int num, t_printf *p)
 {
 	char 	n[30];
 	int 	i;
@@ -52,7 +52,7 @@ int		ft_itoa_d(long long int num, int fd)
 	n[29] = '\0';
 	if (num == 0)
 	{
-		ft_putchar_fd('0', fd);
+		ft_putchar_fd('0', p->fd);
 		return (1);
 	}
 	i = 28;
@@ -71,11 +71,11 @@ int		ft_itoa_d(long long int num, int fd)
 		n[i] = '-';
 	else
 		i++;
-	ft_putstr(&n[i]);
+	ft_putstr_fd(&n[i], p->fd);
 	return  (1);
 }
 
-int		ft_itoa_u(long long int num, int fd)
+int		ft_itoa_u(long long int num, t_printf *p)
 {
 	char 	n[30];
 	int 	i;
@@ -83,7 +83,7 @@ int		ft_itoa_u(long long int num, int fd)
 	n[29] = '\0';
 	if (num == 0)
 	{
-		ft_putchar_fd('0', fd);
+		ft_putchar_fd('0', p->fd);
 		return (1);
 	}
 	i = 28;
@@ -92,7 +92,7 @@ int		ft_itoa_u(long long int num, int fd)
 		n[i--] = (char)(num % 10 + 48);
 		num = num / 10;
 	}
-	ft_putstr(&n[++i]);
+	ft_putstr_fd(&n[++i], p->fd);
 	return (1);
 }
 
@@ -149,39 +149,39 @@ int		parse_csp(t_printf *p)
 }
 
 
-void	ft_intpart(int pow, unsigned long int mant,int exp)
+void	ft_intpart(int pow, unsigned long int mant, int exp, char *output, t_bd *bd)
 {
 	t_bignum	mult;
-	t_bignum	res;
+	t_bignum	*res;
 
+	res = &(bd->intpart);
+	ft_assign_bignum(res, 0);
 	if (exp <= 0)
 	{
-		ft_putchar('0');
 		return ;
 	}
-	ft_assign_bignum(&res, 0);
 	ft_assign_bignum(&mult, 2);
 	ft_ipow_bignum(&mult, pow);
 	while (mant > 0)
 	{
 		if (mant & 1)
-		{
-			ft_isumabs_bignum(&res, mult);
-		}
+			ft_isumabs_bignum(res, mult);
 		mant >>= 1;
 		ft_isumabs_bignum(&mult, mult);
 	}
-	ft_print_bignum(res);
+//	ft_putintpart_bignum(res, output);
 }
 
-void 	ft_fractpart(int pow, unsigned long int mant)
+void 	ft_fractpart(int pow, unsigned long int mant, char *output, t_bd *bd)
 {
 	int		i;
 	t_bignum	five;
 	t_bignum	two;
-	t_bignum	res;
+	t_bignum	*res;
 
-	ft_assign_bignum(&res, 0);
+	res = &(bd->fractpart);
+
+	ft_assign_bignum(res, 0);
 	ft_assign_bignum(&five, 5);
 	ft_assign_bignum(&two, 2);
 	ft_ipow_bignum(&five, 64 + pow);
@@ -189,30 +189,64 @@ void 	ft_fractpart(int pow, unsigned long int mant)
 	while (++i <= 64)
 	{
 		if (mant &0x8000000000000000)
-			ft_isumabs_bignum(&res, ft_mul_bignum(five, ft_pow_bignum(two, 64 - i + (pow == 0 ? 0 : 1))));
+			ft_isumabs_bignum(res, ft_mul_bignum(five, ft_pow_bignum(two, 64 - i + (pow == 0 ? 0 : 1))));
 		mant <<= 1;
 	}
-	ft_print_bignum(res);
+	bd->sizefract = 64 + pow;
+//	ft_putfractpart_bignum(res, output, 64 + pow);
 }
 
-int 	ft_itoa_f(union u_double d, int fd)
+int check_specvalues(union u_double d, char *output)
+{
+	if (!((d.ld != d.ld || d.ld == 1.0 / 0.0 || d.ld == -1.0 / 0.0 ||
+		(d.s_parts.e == 0 && d.s_parts.m == 0))))
+		return (0);
+	else
+	{
+		if (d.ld != d.ld)
+			ft_strcat(output, "nan");
+		else if (d.ld == 1.0 / 0.0)
+			ft_strcat(output, "inf");
+		else if (d.ld == -1.0 / 0.0)
+			ft_strcat(output, "-inf");
+		else if (d.s_parts.e == 0 && d.s_parts.m == 0)
+		{
+			if (d.s_parts.s == 1)
+				ft_strcat(output, "-0");
+			else
+				ft_strcat(output, "0");
+		}
+	}
+	return (1);
+}
+
+void	roundandoutput(t_bd *bd, char *output, int prec)
+{
+	t_bignum	tmp;
+	t_bignum	ten;
+	int i;
+
+	ft_assign_bignum(&tmp, 1);
+	ft_assign_bignum(&ten, 10);
+	i = 0;
+	while (i < prec)
+	{
+		ft_imul_bignum(&tmp, ten);
+		i++;
+	}
+	ft_isumabs_bignum(&(bd->fractpart), tmp);
+}
+
+int 	ft_itoa_f(union u_double d, t_printf *p, int prec)
 {
 	int 				exp;
 	int 				pow;
 	unsigned long int	mant;
+	t_bd				bd;
 
-	if (d.ld != d.ld)
-		ft_putstr("nan");
-	else if (d.ld == 1.0 / 0.0)
-		ft_putstr("inf");
-	else if (d.ld == -1.0 / 0.0)
-		ft_putstr("-inf");
-	else if (d.s_parts.e == 0 && d.s_parts.m == 0)
+	if (check_specvalues(d, p->output))
 	{
-		if (d.s_parts.s == 1)
-			ft_putstr("-0");
-		else
-			ft_putchar('0');
+		return (1);
 	}
 	else
 	{
@@ -225,9 +259,26 @@ int 	ft_itoa_f(union u_double d, int fd)
 			pow = (exp <= 0) ? -exp + 1 : exp - 64;
 			mant = d.s_parts.m;
 		}
-		ft_intpart(pow, mant, exp);
-		ft_putchar('.');
-		ft_fractpart(pow, exp <= 0 ? d.s_parts.m : d.s_parts.m << exp);
+		ft_intpart(pow, mant, exp, p->output, &bd);
+		if (prec == 0)
+		{
+			ft_putintpart_bignum(bd.intpart, &(bd->intpart));
+			return (1);
+		}
+		else
+		{
+
+			if (exp > 65)
+			{
+				ft_putintpart_bignum(bd.intpart, p->output);
+				ft_strcat(p->output, ".");
+				putnzeros(p->output, prec);
+			}
+			else
+				ft_fractpart(pow, exp <= 0 ? d.s_parts.m : d.s_parts.m << exp, p->output, &bd);
+		}
+		roundandoutput(&bd, p->output, prec);
+//		ft_putstr(p->output);
 	}
 }
 
@@ -244,69 +295,71 @@ int		parse_boxudf(t_printf *p)
 	else if (*p->str == 'f')
 	{
 		d.ld = va_arg(p->arg, double);
-		ft_itoa_f(d, p);
+		ft_itoa_f(d, p, 10);
 	}
 	return (1);
 }
-/*
-int		parse_lboxud(const char *ptr, t_param *p, int fd)
+
+int		parse_lboxudf(t_printf *p)
 {
 	union u_double d;
 
-	if (*ptr == 'x' || *ptr == 'X' || *ptr == 'o' || *ptr == 'b')
-		ft_itoa_box((unsigned long int)va_arg(p->arg,unsigned long int), *ptr, fd);
-	else if (*ptr == 'd' || *ptr =='i')
-		ft_itoa_d(va_arg(p->arg, long int), fd);
-	else if (*ptr == 'u')
-		ft_itoa_d(va_arg(p->arg, unsigned long int), fd);
-	else if (*ptr == 'f')
+	if (*p->str == 'x' || *p->str == 'X' || *p->str == 'o' || *p->str == 'b')
+		ft_itoa_box((unsigned long int)va_arg(p->arg,unsigned long int), p);
+	else if (*p->str == 'd' || *p->str =='i')
+		ft_itoa_d(va_arg(p->arg, long int), p);
+	else if (*p->str == 'u')
+		ft_itoa_d(va_arg(p->arg, unsigned long int), p);
+	else if (*p->str == 'f')
 	{
 		d.ld = va_arg(p->arg, double);
-		ft_itoa_f(d, fd);
+		ft_itoa_f(d, p, 10);
 	}
 	return (1);
 }
 
-int		parse_llboxud(const char *ptr, t_param *p, int fd)
+
+
+int		parse_llboxudf(t_printf *p)
 {
 	union u_double d;
 
-	if (*ptr == 'x' || *ptr == 'X' || *ptr == 'o' || *ptr == 'b')
-		ft_itoa_box((unsigned long long int)va_arg(p->arg,unsigned long long int), *ptr, fd);
-	else if (*ptr == 'd' || *ptr =='i')
-		ft_itoa_d(va_arg(p->arg, long long int), fd);
-	else if (*ptr == 'u')
-		ft_itoa_d(va_arg(p->arg, unsigned long long int), fd);
-	else if (*ptr == 'f')
-	{
+	if (*p->str == 'x' || *p->str == 'X' || *p->str == 'o' || *p->str == 'b')
+			ft_itoa_box((unsigned long long int)va_arg(p->arg,unsigned long long int), p);
+		else if (*p->str == 'd' || *p->str =='i')
+			ft_itoa_d(va_arg(p->arg, long long int), p);
+		else if (*p->str == 'u')
+			ft_itoa_d(va_arg(p->arg, unsigned long long int), p);
+		else if (*p->str == 'f')
+		{
 		d.ld = va_arg(p->arg, long double);
-		ft_itoa_f(d, fd);
+		ft_itoa_f(d, p, 10);
 	}
 	return (1);
 }
 
-int		parse_hboxud(const char *ptr, t_param *p, int fd)
+int		parse_hboxud(t_printf *p)
 {
-	if (*ptr == 'x' || *ptr == 'X' || *ptr == 'o' || *ptr == 'b')
-		ft_itoa_box((unsigned short)va_arg(p->arg,unsigned int), *ptr, fd);
-	else if (*ptr == 'd' || *ptr =='i')
-		ft_itoa_d((short)va_arg(p->arg, int), fd);
-	else if (*ptr == 'u')
-		ft_itoa_u((unsigned short)va_arg(p->arg, unsigned int), fd);
+	if (*p->str == 'x' || *p->str == 'X' || *p->str == 'o' || *p->str == 'b')
+		ft_itoa_box((unsigned short)va_arg(p->arg,unsigned int), p);
+	else if (*p->str == 'd' || *p->str =='i')
+		ft_itoa_d((short)va_arg(p->arg, int), p);
+	else if (*p->str == 'u')
+		ft_itoa_u((unsigned short)va_arg(p->arg, unsigned int), p);
 	return (1);
 }
 
-int		parse_hhboxud(const char *ptr, t_param *p, int fd)
+int		parse_hhboxud(t_printf *p)
 {
-	if (*ptr == 'x' || *ptr == 'X' || *ptr == 'o' || *ptr == 'b')
-		ft_itoa_box((unsigned char)va_arg(p->arg,unsigned int), *ptr, fd);
-	else if (*ptr == 'd' || *ptr =='i')
-		ft_itoa_d((char)va_arg(p->arg, int), fd);
-	else if (*ptr == 'u')
-		ft_itoa_u((unsigned char)va_arg(p->arg, unsigned int), fd);
+	if (*p->str == 'x' || *p->str == 'X' || *p->str == 'o' || *p->str == 'b')
+		ft_itoa_box((unsigned char)va_arg(p->arg,unsigned int), p);
+	else if (*p->str == 'd' || *p->str =='i')
+		ft_itoa_d((char)va_arg(p->arg, int), p);
+	else if (*p->str == 'u')
+		ft_itoa_u((unsigned char)va_arg(p->arg, unsigned int), p);
 	return (1);
 }
-*/
+
 int		parseflags(t_printf *p)
 {
 	if (p == '\0')
@@ -385,7 +438,7 @@ int		parse(t_printf *p)
 	else if (*p->str == 'x' || *p->str == 'X' || *p->str == 'o' || *p->str == 'b'||
 			*p->str =='d' || *p->str =='i' || *p->str == 'u' || *p->str == 'f')
 		parse_boxudf(p);
-/*	else if (*p->str == 'L')
+	else if (*p->str == 'L')
 	{
 		p->str++;
 		if (*p->str == '\0')
@@ -393,6 +446,7 @@ int		parse(t_printf *p)
 		else if (*p->str == 'f')
 			parse_llboxudf(p);
 	}
+
 	else if (*p->str == 'l')
 	{
 		p->str++;
@@ -403,7 +457,7 @@ int		parse(t_printf *p)
 			parse_lboxudf(p);
 		else if (*p->str == 'l')
 		{
-			(*ptr)++;
+			*p->str++;
 			if (*p->str == '\0')
 				return (0);
 			else if (*p->str == 'x' || *p->str == 'X' || *p->str == 'o' || *p->str == 'b'||
@@ -413,7 +467,7 @@ int		parse(t_printf *p)
 	}
 	else if (*p->str == 'h')
 	{
-		(*ptr)++;
+		p->str++;
 		if (*p->str == '\0')
 			return (0);
 		else if (*p->str == 'x' || *p->str == 'X' || *p->str == 'o' || *p->str == 'b'||
@@ -421,20 +475,21 @@ int		parse(t_printf *p)
 			parse_hboxud(p);
 		else if (*p->str == 'h')
 		{
-			(*ptr)++;
+			p->str++;
 			if (*p->str == '\0')
 				return (0);
 			else if (*p->str == 'x' || *p->str == 'X' || *p->str == 'o' || *p->str == 'b' ||
 					 *p->str == 'd' || *p->str == 'i' || *p->str == 'u')
 				parse_hhboxud(p);
 		}
-	}*/
+	}
+
 	return (1);
 }
 
 void	initialize_printf(t_printf *p, const char *format, int fd)
 {
-	p->str[0] = '\0';
+	p->buff[0] = '\0';
 	p->str = (char*)format;
 	p->flags = 0;
 	p->fd = fd;
