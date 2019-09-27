@@ -96,7 +96,7 @@ int		ft_itoa_u(long long int num, int fd)
 	return (1);
 }
 
-int		ft_itoa_box(unsigned long long num, t_printf *p)
+int		ft_itoa_box(unsigned long long num, char box, int fd)
 {
 	char *base_chars;
 	int shift;
@@ -105,17 +105,17 @@ int		ft_itoa_box(unsigned long long num, t_printf *p)
 
 	if (num == 0)
 	{
-		ft_strcat(p->buff, "0");
+		ft_putchar_fd('0', fd);
 		return (1);
 	}
 
-	base_chars = (*p->str == 'x' || *p->str == 'p') ? "0123456789abcdef" : "0123456789ABCDEF";
-	if (*p->str == 'b')
+	base_chars = (box == 'x') ? "0123456789abcdef" : "0123456789ABCDEF";
+	if (box == 'b')
 	{
 		mask = 1;
 		shift = 1;
 	}
-	else if (*p->str == 'o')
+	else if (box == 'o')
 	{
 		mask = 7;
 		shift = 3;
@@ -129,21 +129,22 @@ int		ft_itoa_box(unsigned long long num, t_printf *p)
 		return (0);
 
 	while(start_point-- > 0)
-		*(p->output++) = base_chars[(num >> (start_point * shift)) & mask];
-	*p->output = '\0';
+	{
+		ft_putchar_fd(base_chars[(num >> (start_point * shift)) & mask], fd);
+	}
 	return (1);
 }
 
-int		parse_csp(t_printf *p)
+int		parse_csp(const char *ptr, t_param *p, int fd)
 {
-	if (*p->str == 'c')
+	if (*ptr == 'c')
 		ft_putchar(va_arg(p->arg, int));
-	else if (*p->str == 's')
+	else if (*ptr == 's')
 		ft_putstr(va_arg(p->arg, char*));
-	else if (*p->str == 'p')
+	else if (*ptr == 'p')
 	{
-		p->flags |= F_OCTO;
-		ft_itoa_box((unsigned long long) va_arg(p->arg, void*), p);
+		ft_putstr("0x");
+		ft_itoa_box((unsigned long long) va_arg(p->arg, void*), 'x', fd);
 	}
 	return (1);
 }
@@ -231,24 +232,24 @@ int 	ft_itoa_f(union u_double d, int fd)
 	}
 }
 
-int		parse_boxudf(t_printf *p)
+int		parse_boxud(const char *ptr, t_param *p, int fd)
 {
 	union u_double d;
 
-	if (*p->str == 'x' || *p->str == 'X' || *p->str == 'o' || *p->str == 'b')
-		ft_itoa_box((unsigned int)va_arg(p->arg,unsigned int), p);
-	else if (*p->str == 'd' || *p->str =='i')
-		ft_itoa_d(va_arg(p->arg, int), p);
-	else if (*p->str == 'u')
-		ft_itoa_u(va_arg(p->arg, unsigned int), p);
-	else if (*p->str == 'f')
+	if (*ptr == 'x' || *ptr == 'X' || *ptr == 'o' || *ptr == 'b')
+		ft_itoa_box((unsigned int)va_arg(p->arg,unsigned int), *ptr, fd);
+	else if (*ptr == 'd' || *ptr =='i')
+		ft_itoa_d(va_arg(p->arg, int), fd);
+	else if (*ptr == 'u')
+		ft_itoa_u(va_arg(p->arg, unsigned int), fd);
+	else if (*ptr == 'f')
 	{
 		d.ld = va_arg(p->arg, double);
-		ft_itoa_f(d, p);
+		ft_itoa_f(d, fd);
 	}
 	return (1);
 }
-/*
+
 int		parse_lboxud(const char *ptr, t_param *p, int fd)
 {
 	union u_double d;
@@ -306,171 +307,120 @@ int		parse_hhboxud(const char *ptr, t_param *p, int fd)
 		ft_itoa_u((unsigned char)va_arg(p->arg, unsigned int), fd);
 	return (1);
 }
-*/
-int		parseflags(t_printf *p)
-{
-	if (p == '\0')
-		return (0);
-	if (*p->str == '+' || *p->str == '-' || *p->str == ' ' || *p->str == '0' || *p->str == '#')
-	{
-		if (*p->str == '+')
-			p->flags |= F_PLUS;
-		if (*p->str == '-')
-			p->flags |= F_MINUS;
-		if (*p->str == ' ')
-			p->flags |= F_SPACE;
-		if (*p->str == '0')
-			p->flags |= F_ZERO;
-		if (*p->str == '#')
-			p->flags |= F_OCTO;
-		p->str++;
-		return (parseflags(p));
-	}
-	return (1);
-}
 
-int		parsewidth(t_printf *p)
+int		parse(char **ptr, t_param *p, int fd)
 {
-	if (*p->str == '*')
-	{
-		p->width = va_arg(p->arg,int);
-		*p->str++;
-	}
-	else
-		while ('0' <= *p->str && *p->str <= '9')
-		{
-			p->width = p->width * 10 + (*p->str - '0');
-			p->str++;
-		}
-	if (*p->str == '\0')
-		return (0);
-}
-
-int		parseprec(t_printf *p)
-{
-	if (*p->str == '\0')
-		return (0);
-	if (*p->str != '.')
-		return (1);
-	p->str++;
-	if (*p->str == '*')
-	{
-		p->prec = va_arg(p->arg, int);
-		p->str++;
-	}
-	else
-	{
-		p->prec = 0;
-		while ('0' <= *p->str && *p->str <= '9')
-		{
-			p->prec = p->prec * 10 + (*p->str - '0');
-			p->str++;
-		}
-	}
-	if (*p->str == '\0')
-		return (0);
-}
-
-
-int		parse(t_printf *p)
-{
-	if (parseflags(p) == 0)
-		return (0);
-	if (parsewidth(p) == 0)
-		return (0);
-	if (parseprec(p) == 0)
-		return (0);
-	if (*p->str == 'c' || *p->str == 's' || *p->str == 'p')
-		parse_csp(p);
-	else if (*p->str == 'x' || *p->str == 'X' || *p->str == 'o' || *p->str == 'b'||
-			*p->str =='d' || *p->str =='i' || *p->str == 'u' || *p->str == 'f')
-		parse_boxudf(p);
-/*	else if (*p->str == 'L')
-	{
-		p->str++;
-		if (*p->str == '\0')
-			return (0);
-		else if (*p->str == 'f')
-			parse_llboxudf(p);
-	}
-	else if (*p->str == 'l')
-	{
-		p->str++;
-		if (*p->str == '\0')
-			return (0);
-		else if (*p->str == 'x' || *p->str == 'X' || *p->str == 'o' || *p->str == 'b'||
-				 *p->str =='d' || *p->str =='i' || *p->str == 'u'|| *p->str == 'f')
-			parse_lboxudf(p);
-		else if (*p->str == 'l')
-		{
-			(*ptr)++;
-			if (*p->str == '\0')
-				return (0);
-			else if (*p->str == 'x' || *p->str == 'X' || *p->str == 'o' || *p->str == 'b'||
-					 *p->str =='d' || *p->str =='i' || *p->str == 'u')
-				parse_llboxudf(p);
-		}
-	}
-	else if (*p->str == 'h')
+	if (**ptr == 'c' || **ptr == 's' || **ptr == 'p')
+		parse_csp(*ptr, p, fd);
+	else if (**ptr == 'x' || **ptr == 'X' || **ptr == 'o' || **ptr == 'b'||
+			**ptr =='d' || **ptr =='i' || **ptr == 'u' || **ptr == 'f')
+		parse_boxud(*ptr, p, fd);
+	else if (**ptr == 'L')
 	{
 		(*ptr)++;
-		if (*p->str == '\0')
+		if (**ptr == '\0')
 			return (0);
-		else if (*p->str == 'x' || *p->str == 'X' || *p->str == 'o' || *p->str == 'b'||
-				 *p->str =='d' || *p->str =='i' || *p->str == 'u')
-			parse_hboxud(p);
-		else if (*p->str == 'h')
+		else if (**ptr == 'f')
+			parse_llboxud(*ptr, p, fd);
+	}
+	else if (**ptr == 'l')
+	{
+		(*ptr)++;
+		if (**ptr == '\0')
+			return (0);
+		else if (**ptr == 'x' || **ptr == 'X' || **ptr == 'o' || **ptr == 'b'||
+				 **ptr =='d' || **ptr =='i' || **ptr == 'u'|| **ptr == 'f')
+			parse_lboxud(*ptr, p, fd);
+		else if (**ptr == 'l')
 		{
 			(*ptr)++;
-			if (*p->str == '\0')
+			if (**ptr == '\0')
 				return (0);
-			else if (*p->str == 'x' || *p->str == 'X' || *p->str == 'o' || *p->str == 'b' ||
-					 *p->str == 'd' || *p->str == 'i' || *p->str == 'u')
-				parse_hhboxud(p);
+			else if (**ptr == 'x' || **ptr == 'X' || **ptr == 'o' || **ptr == 'b'||
+					 **ptr =='d' || **ptr =='i' || **ptr == 'u')
+				parse_llboxud(*ptr, p, fd);
 		}
-	}*/
+	}
+	else if (**ptr == 'h')
+	{
+		(*ptr)++;
+		if (**ptr == '\0')
+			return (0);
+		else if (**ptr == 'x' || **ptr == 'X' || **ptr == 'o' || **ptr == 'b'||
+				 **ptr =='d' || **ptr =='i' || **ptr == 'u')
+			parse_hboxud(*ptr, p, fd);
+		else if (**ptr == 'h')
+		{
+			(*ptr)++;
+			if (**ptr == '\0')
+				return (0);
+			else if (**ptr == 'x' || **ptr == 'X' || **ptr == 'o' || **ptr == 'b' ||
+					 **ptr == 'd' || **ptr == 'i' || **ptr == 'u')
+				parse_hhboxud(*ptr, p, fd);
+		}
+	}
 	return (1);
 }
 
-void	initialize_printf(t_printf *p, const char *format, int fd)
+int 	ft_printf_(const char *format, ...)
+{
+	t_param		par;
+	char		*ptr;
+	char 		tmp_char;
+	char 		*tmp_str;
+
+
+	va_start(par.arg, format);
+	ptr = (char*)format;
+	while(*ptr)
+	{
+		if (*ptr != '%')
+			ft_putchar(*ptr);
+		else
+		{
+			ptr++;
+			if (ptr == '\0')
+				return (0);
+			else
+				if (parse(&ptr, &par, 1) == 0)
+					return (0);
+		}
+		ptr++;
+	}
+	va_end(par.arg);
+	return (0);
+}
+
+
+void initialize_printf(t_printf *p, const char *format)
 {
 	p->str[0] = '\0';
 	p->str = (char*)format;
-	p->flags = 0;
-	p->fd = fd;
-	p->width = 0;
-	p->prec = -1;
-	p->output = (p->buff);
 }
 
-void 	mainparse(t_printf *p)
-{
-	while (*p->str)
-	{
-		if (*p->str != '%')
-			ft_putchar_fd(*p->str, p->fd);
-		else
-		{
-			p->str++;
-			if (p->str == '\0')
-				return ;
-			else
-			{
-				if (parse(p) == 0)
-					return ;
-			}
-		}
-		p->str++;
-	}
-}
+
 
 int 	ft_printf(const char *format, ...)
 {
 	t_printf	p;
 
-	initialize_printf(&p, format, 1);
+	initialize_printf(&p, format);
 	va_start(p.arg, format);
-	mainparse(&p);
+	while(*p.str)
+	{
+		if (*p.str != '%')
+			ft_putchar(*p.str);
+		else
+		{
+			p.str++;
+			if (p.str == '\0')
+				return (0);
+			else
+			if (parse(&(p.str)) == 0)
+				return (0);
+		}
+		ptr++;
+	}
 	va_end(p.arg);
 	return (0);
 }

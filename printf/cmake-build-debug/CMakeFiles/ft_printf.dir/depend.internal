@@ -3,225 +3,225 @@
 
 CMakeFiles/ft_printf.dir/bignum.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/bignum.c
- /Users/odrinkwa/semrunner_git2/printf/ft_printf.h
+ /Users/semenbegunov/semrunner_git2/printf/bignum.c
+ /Users/semenbegunov/semrunner_git2/printf/ft_printf.h
 CMakeFiles/ft_printf.dir/ft_printf.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/ft_printf.c
- /Users/odrinkwa/semrunner_git2/printf/ft_printf.h
+ /Users/semenbegunov/semrunner_git2/printf/ft_printf.c
+ /Users/semenbegunov/semrunner_git2/printf/ft_printf.h
 CMakeFiles/ft_printf.dir/libft/sources/ft_atoi.c.o
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_atoi.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_atoi.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_bzero.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_bzero.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_bzero.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_dictadd.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_dictadd.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_dictadd.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_dictclearzero.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_dictclearzero.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_dictclearzero.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_dictdelbykey.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_dictdelbykey.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_dictdelbykey.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_dictdelelement.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_dictdelelement.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_dictdelelement.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_dictgetoraddvalue.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_dictgetoraddvalue.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_dictgetoraddvalue.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_dictgetvalue.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_dictgetvalue.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_dictgetvalue.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_dictnew.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_dictnew.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_dictnew.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_isalnum.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_isalnum.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_isalnum.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_isalpha.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_isalpha.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_isalpha.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_isascii.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_isascii.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_isascii.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_isdigit.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_isdigit.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_isdigit.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_isprint.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_isprint.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_isprint.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_itoa.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_itoa.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_itoa.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_lstadd.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_lstadd.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_lstadd.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_lstaddback.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_lstaddback.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_lstaddback.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_lstdel.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_lstdel.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_lstdel.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_lstdeli.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_lstdeli.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_lstdeli.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_lstdelone.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_lstdelone.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_lstdelone.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_lsti.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_lsti.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_lsti.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_lstiter.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_lstiter.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_lstiter.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_lstlen.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_lstlen.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_lstlen.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_lstmap.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_lstmap.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_lstmap.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_lstnew.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_lstnew.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_lstnew.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_memalloc.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_memalloc.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_memalloc.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_memccpy.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_memccpy.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_memccpy.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_memchr.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_memchr.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_memchr.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_memcmp.c.o
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_memcmp.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_memcmp.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_memcpy.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_memcpy.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_memcpy.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_memdel.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_memdel.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_memdel.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_memmove.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_memmove.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_memmove.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_memset.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_memset.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_memset.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_printstrsplit.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_printstrsplit.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_printstrsplit.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_putchar.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_putchar.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_putchar.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_putchar_fd.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_putchar_fd.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_putchar_fd.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_putendl.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_putendl.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_putendl.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_putendl_fd.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_putendl_fd.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_putendl_fd.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_putnbr.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_putnbr.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_putnbr.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_putnbr_fd.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_putnbr_fd.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_putnbr_fd.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_putstr.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_putstr.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_putstr.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_putstr_fd.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_putstr_fd.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_putstr_fd.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_strcat.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_strcat.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_strcat.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_strchr.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_strchr.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_strchr.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_strclr.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_strclr.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_strclr.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_strcmp.c.o
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_strcmp.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_strcmp.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_strcpy.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_strcpy.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_strcpy.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_strdel.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_strdel.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_strdel.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_strdup.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_strdup.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_strdup.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_strequ.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_strequ.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_strequ.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_striter.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_striter.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_striter.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_striteri.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_striteri.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_striteri.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_strjoin.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_strjoin.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_strjoin.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_strlcat.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_strlcat.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_strlcat.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_strlen.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_strlen.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_strlen.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_strmap.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_strmap.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_strmap.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_strmapi.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_strmapi.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_strmapi.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_strncat.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_strncat.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_strncat.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_strncmp.c.o
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_strncmp.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_strncmp.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_strncpy.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_strncpy.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_strncpy.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_strnequ.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_strnequ.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_strnequ.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_strnew.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_strnew.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_strnew.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_strnjoin.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_strnjoin.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_strnjoin.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_strnstr.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_strnstr.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_strnstr.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_strrchr.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_strrchr.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_strrchr.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_strsplit.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_strsplit.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_strsplit.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_strstr.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_strstr.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_strstr.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_strsub.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_strsub.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_strsub.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_strtrim.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_strtrim.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_strtrim.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_tolower.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_tolower.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_tolower.c
 CMakeFiles/ft_printf.dir/libft/sources/ft_toupper.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/ft_toupper.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/ft_toupper.c
 CMakeFiles/ft_printf.dir/libft/sources/get_next_line.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/libft/sources/get_next_line.c
+ /Users/semenbegunov/semrunner_git2/printf/libft/sources/get_next_line.c
 CMakeFiles/ft_printf.dir/main.c.o
  ../libft/includes/libft.h
- /Users/odrinkwa/semrunner_git2/printf/ft_printf.h
- /Users/odrinkwa/semrunner_git2/printf/main.c
+ /Users/semenbegunov/semrunner_git2/printf/ft_printf.h
+ /Users/semenbegunov/semrunner_git2/printf/main.c

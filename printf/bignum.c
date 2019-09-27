@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 19:31:16 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/09/25 23:04:14 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/09/26 14:00:36 by semenbegunov     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,50 @@ void ft_imul_bignum(t_bignum *res, t_bignum bn2)
 	ft_deepcopy_bignum(res, temp_bn);
 }
 
+t_bignum	ft_mul_bignum(t_bignum bn1, t_bignum bn2)
+{
+	int 		i;
+	int			j;
+	t_bignum	res_bn;
+
+	initialize_bignum(&res_bn);
+	i = 0;
+	while (i < SIZE_BN)
+	{
+		j = 0;
+		while (j < SIZE_BN - i)
+		{
+			res_bn.number[i + j] += bn1.number[i] * bn2.number[j];
+			j++;
+		}
+		i++;
+	}
+	res_bn.sign = bn1.sign * bn2.sign;
+	fixup_bignum(&res_bn);
+	fixsize_bignum(&res_bn);
+	return (res_bn);
+}
+
+t_bignum	ft_pow_bignum(t_bignum bn, unsigned int n)
+{
+	unsigned int i;
+	t_bignum res_bn;
+
+	if (n == 0)
+	{
+		ft_assign_bignum(&res_bn, 1);
+		return (res_bn);
+	}
+	ft_deepcopy_bignum(&res_bn, bn);
+	i = 1;
+	while (i < n)
+	{
+		ft_imul_bignum(&res_bn, bn);
+		i++;
+	}
+	return (res_bn);
+}
+
 void 		ft_deepcopy_bignum(t_bignum *res, t_bignum bn)
 {
 	int i;
@@ -180,6 +224,12 @@ void		ft_ipow_bignum(t_bignum *res, unsigned int n)
 {
 	unsigned int i;
 	t_bignum tmp_bn;
+
+	if (n == 0)
+	{
+		ft_assign_bignum(res, 1);
+		return ;
+	}
 
 	ft_deepcopy_bignum(&tmp_bn, *res);
 	i = 1;

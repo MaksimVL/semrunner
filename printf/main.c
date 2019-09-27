@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 22:42:55 by semenbeguno       #+#    #+#             */
-/*   Updated: 2019/09/25 23:21:46 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/09/26 18:28:59 by semenbegunov     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,36 +31,20 @@ void 	test_static(void)
 
 int     main(void)
 {
-	long double n = 16383455344432;
-	n = n * n;
-	n = n * n;
-	n = n * n;
-	n = n * n;
-	n = n * n;
-	t_bignum bn1;
-	t_bignum bn2;
+	long double n;
+	n = 1.252999999999999999999;
 
 	printf("%Lf\n", n);
-
-
 	ft_printf("%Lf\n", n);
 
+	ft_printf("\x1b[31mfuck\n\x1b[0m");
 
-	ft_assign_bignum(&bn1, 11111111);
-	ft_print_bignum(bn1);
-	ft_printf("\n");
-	ft_isumabs_bignum(&bn1, bn1);
-	ft_print_bignum(bn1);
-	ft_printf("\n");
-	ft_isumabs_bignum(&bn1, bn1);
-	ft_print_bignum(bn1);
-	ft_printf("\n");
-	ft_isumabs_bignum(&bn1, bn1);
-	ft_print_bignum(bn1);
-	ft_printf("\n");
-	ft_isumabs_bignum(&bn1, bn1);
-	ft_print_bignum(bn1);
-	ft_printf("\n");
+	printf("%11.-3s %11s\n", "test1", "test2");
+
+	printf("%11c %11s\n", 't', "test2");
+	int test = 100;
+
+	printf("%## 08x\n", test);
 	/*
 	float aa;
 	double bb;
