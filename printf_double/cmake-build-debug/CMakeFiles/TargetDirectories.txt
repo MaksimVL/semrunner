@@ -1,0 +1,3 @@
+/Users/semenbegunov/semrunner_git2/printf_double/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/semenbegunov/semrunner_git2/printf_double/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/semenbegunov/semrunner_git2/printf_double/cmake-build-debug/CMakeFiles/ft_printf.dir

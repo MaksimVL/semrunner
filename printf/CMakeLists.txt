@@ -13,4 +13,4 @@ file(GLOB libft_SRC
 
 include_directories(libft/includes)
 
-add_executable(ft_printf ${ft_printf_SRC} ${libft_SRC} main.c)
+add_executable(ft_printf ${ft_printf_SRC} ${libft_SRC} main.c double.h)

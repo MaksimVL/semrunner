@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 22:42:55 by semenbeguno       #+#    #+#             */
-/*   Updated: 2019/09/27 23:56:35 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/09/29 14:03:57 by semenbegunov     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <stdlib.h>
 #include "libft.h"
 #include "ft_printf.h"
+#include "double.h"
 
 void 	test_static(void)
 {
@@ -27,31 +28,39 @@ void 	test_static(void)
 	printf("p=%p\n", static_c);
 }
 
-void	ft_itoa_f_test(long double d, int prec, char *str)
-{
-	union u_double ud;
-	t_printf p1;
-
-	p1.output = str;
-
-	ud.ld = d;
-	ft_itoa_f(ud, &p1, prec);
-}
-
 int     main(void)
 {
 	long double n;
-	n = 10;
+	int prec;
+//	n = 10.99;
+//	prec = 21;
 
+	n=11322222112.00000919111;
+	n = n * n;
+	n = n * n;
+	n = n * n;
+	prec= 20;
 	char test_ld[1500];
 
 	test_ld[0] = '\0';
 
-	ft_itoa_f_test(n, 1, test_ld);
+	prf_dblcalc(n, prec, test_ld);
 
 
-	printf("%.100Lf\n", n);
-	printf("%s", test_ld);
+	printf("%.*Lf\n", prec, n);
+	printf("%s\n", test_ld);
+
+	t_bigdec bd;
+
+	initialize_bignum(&(bd.fractpart));
+	bd.fractpart.number[0] = 4567;
+	bd.fractpart.number[1] = 123;
+	bd.fractpart.sign = 1;
+	bd.fractpart.size = 2;
+	bd.sizefract = 7;
+	roundbd(&bd, 2);
+
+	printf("i in fract = %d\n", getiinfract(bd, 0));
 
 /*
 

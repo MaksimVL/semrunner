@@ -1,5 +1,12 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/ft_printf.dir/bignum.c.o"
+  "CMakeFiles/ft_printf.dir/bn_fix.c.o"
+  "CMakeFiles/ft_printf.dir/bn_fstr.c.o"
+  "CMakeFiles/ft_printf.dir/bn_init.c.o"
+  "CMakeFiles/ft_printf.dir/bn_opers.c.o"
+  "CMakeFiles/ft_printf.dir/bn_outp.c.o"
+  "CMakeFiles/ft_printf.dir/bn_round.c.o"
+  "CMakeFiles/ft_printf.dir/dbl_input.c.o"
+  "CMakeFiles/ft_printf.dir/double.c.o"
   "CMakeFiles/ft_printf.dir/ft_printf.c.o"
   "CMakeFiles/ft_printf.dir/main.c.o"
   "CMakeFiles/ft_printf.dir/libft/sources/ft_atoi.c.o"

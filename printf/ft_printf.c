@@ -1,6 +1,5 @@
-#include <stdio.h>
-#include <mach/notify.h>
 #include "libft.h"
+#include "double.h"
 #include "ft_printf.h"
 
 int		len_num_box(unsigned long long num, int shift)
@@ -148,140 +147,6 @@ int		parse_csp(t_printf *p)
 	return (1);
 }
 
-
-void	ft_intpart(int pow, unsigned long int mant, int exp, char *output, t_bd *bd)
-{
-	t_bignum	mult;
-	t_bignum	*res;
-
-	res = &(bd->intpart);
-	ft_assign_bignum(res, 0);
-	if (exp <= 0)
-	{
-		return ;
-	}
-	ft_assign_bignum(&mult, 2);
-	ft_ipow_bignum(&mult, pow);
-	while (mant > 0)
-	{
-		if (mant & 1)
-			ft_isumabs_bignum(res, mult);
-		mant >>= 1;
-		ft_isumabs_bignum(&mult, mult);
-	}
-//	ft_putintpart_bignum(res, output);
-}
-
-void 	ft_fractpart(int pow, unsigned long int mant, char *output, t_bd *bd)
-{
-	int		i;
-	t_bignum	five;
-	t_bignum	two;
-	t_bignum	*res;
-
-	res = &(bd->fractpart);
-
-	ft_assign_bignum(res, 0);
-	ft_assign_bignum(&five, 5);
-	ft_assign_bignum(&two, 2);
-	ft_ipow_bignum(&five, 64 + pow);
-	i = 0;
-	while (++i <= 64)
-	{
-		if (mant &0x8000000000000000)
-			ft_isumabs_bignum(res, ft_mul_bignum(five, ft_pow_bignum(two, 64 - i + (pow == 0 ? 0 : 1))));
-		mant <<= 1;
-	}
-	bd->sizefract = 64 + pow;
-//	ft_putfractpart_bignum(res, output, 64 + pow);
-}
-
-int check_specvalues(union u_double d, char *output)
-{
-	if (!((d.ld != d.ld || d.ld == 1.0 / 0.0 || d.ld == -1.0 / 0.0 ||
-		(d.s_parts.e == 0 && d.s_parts.m == 0))))
-		return (0);
-	else
-	{
-		if (d.ld != d.ld)
-			ft_strcat(output, "nan");
-		else if (d.ld == 1.0 / 0.0)
-			ft_strcat(output, "inf");
-		else if (d.ld == -1.0 / 0.0)
-			ft_strcat(output, "-inf");
-		else if (d.s_parts.e == 0 && d.s_parts.m == 0)
-		{
-			if (d.s_parts.s == 1)
-				ft_strcat(output, "-0");
-			else
-				ft_strcat(output, "0");
-		}
-	}
-	return (1);
-}
-
-void	roundandoutput(t_bd *bd, char *output, int prec)
-{
-	t_bignum	tmp;
-	t_bignum	ten;
-	int i;
-
-	ft_assign_bignum(&tmp, 1);
-	ft_assign_bignum(&ten, 10);
-	i = 0;
-	while (i < prec)
-	{
-		ft_imul_bignum(&tmp, ten);
-		i++;
-	}
-	ft_isumabs_bignum(&(bd->fractpart), tmp);
-}
-
-int 	ft_itoa_f(union u_double d, t_printf *p, int prec)
-{
-	int 				exp;
-	int 				pow;
-	unsigned long int	mant;
-	t_bd				bd;
-
-	if (check_specvalues(d, p->output))
-	{
-		return (1);
-	}
-	else
-	{
-		pow = 0;
-		exp = (d.s_parts.e == 0) ? 0 : d.s_parts.e - 16382;
-		if (exp > 0 && exp < 65)
-			mant = d.s_parts.m >> (64 - exp);
-		else
-		{
-			pow = (exp <= 0) ? -exp + 1 : exp - 64;
-			mant = d.s_parts.m;
-		}
-		ft_intpart(pow, mant, exp, p->output, &bd);
-		if (prec == 0)
-		{
-			ft_putintpart_bignum(bd.intpart, &(bd->intpart));
-			return (1);
-		}
-		else
-		{
-
-			if (exp > 65)
-			{
-				ft_putintpart_bignum(bd.intpart, p->output);
-				ft_strcat(p->output, ".");
-				putnzeros(p->output, prec);
-			}
-			else
-				ft_fractpart(pow, exp <= 0 ? d.s_parts.m : d.s_parts.m << exp, p->output, &bd);
-		}
-		roundandoutput(&bd, p->output, prec);
-//		ft_putstr(p->output);
-	}
-}
-
 int		parse_boxudf(t_printf *p)
 {
 	union u_double d;
@@ -295,7 +160,7 @@ int		parse_boxudf(t_printf *p)
 	else if (*p->str == 'f')
 	{
 		d.ld = va_arg(p->arg, double);
-		ft_itoa_f(d, p, 10);
+		ft_itoa_f1(d, p, 10);
 	}
 	return (1);
 }
@@ -313,12 +178,10 @@ int		parse_lboxudf(t_printf *p)
 	else if (*p->str == 'f')
 	{
 		d.ld = va_arg(p->arg, double);
-		ft_itoa_f(d, p, 10);
+		ft_itoa_f1(d, p, 10);
 	}
 	return (1);
 }
-
-
 
 int		parse_llboxudf(t_printf *p)
 {
@@ -333,9 +196,42 @@ int		parse_llboxudf(t_printf *p)
 		else if (*p->str == 'f')
 		{
 		d.ld = va_arg(p->arg, long double);
-		ft_itoa_f(d, p, 10);
+		ft_itoa_f1(d, p, 10);
 	}
 	return (1);
+}
+
+int 	ft_itoa_f1(union u_double d, t_printf *p, int prec)
+{
+	int 				exp;
+	int 				pow;
+	unsigned long int	mant;
+	t_bigdec			bd;
+
+	if (check_specvalues(d, p->output))
+		return (1);
+	else
+	{
+		pow = 0;
+		exp = (d.s_parts.e == 0) ? 0 : d.s_parts.e - 16382;
+		if (exp > 0 && exp < 65)
+			mant = d.s_parts.m >> (64 - exp);
+		else
+		{
+			pow = (exp <= 0) ? -exp + 1 : exp - 64;
+			mant = d.s_parts.m;
+		}
+		initialize_bd(&bd);
+		bd.sign = d.s_parts.s == 1 ? -1 : 1;
+		ft_intpart(pow, mant, exp, &bd);
+		if (prec != 0 && exp <= 65)
+		{
+
+			ft_fractpart(pow, exp <= 0 ? d.s_parts.m : d.s_parts.m << exp, p->output, &bd);
+			roundbd(&bd, prec);
+		}
+		put_bd_output(bd, p->output, prec);
+	}
 }
 
 int		parse_hboxud(t_printf *p)
@@ -423,7 +319,6 @@ int		parseprec(t_printf *p)
 	if (*p->str == '\0')
 		return (0);
 }
-
 
 int		parse(t_printf *p)
 {

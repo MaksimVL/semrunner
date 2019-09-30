@@ -39,19 +39,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /Users/odrinkwa/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake
+CMAKE_COMMAND = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake
 
 # The command to remove a file.
-RM = /Users/odrinkwa/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
+RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/odrinkwa/semrunner_git2/printf
+CMAKE_SOURCE_DIR = /Users/semenbegunov/semrunner_git2/printf
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/odrinkwa/semrunner_git2/printf/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/semenbegunov/semrunner_git2/printf/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /Users/odrinkwa/semrunner_git2/printf/cmake-build-debug
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/Users/odrinkwa/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -70,7 +70,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/Users/odrinkwa/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/odrinkwa/semrunner_git2/printf/cmake-build-debug/CMakeFiles /Users/odrinkwa/semrunner_git2/printf/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/semenbegunov/semrunner_git2/printf/cmake-build-debug/CMakeFiles /Users/semenbegunov/semrunner_git2/printf/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/odrinkwa/semrunner_git2/printf/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/semenbegunov/semrunner_git2/printf/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -123,32 +123,221 @@ ft_printf/fast:
 	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/build
 .PHONY : ft_printf/fast
 
-bignum.o: bignum.c.o
+bn_fix.o: bn_fix.c.o
 
-.PHONY : bignum.o
+.PHONY : bn_fix.o
 
 # target to build an object file
-bignum.c.o:
-	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/bignum.c.o
-.PHONY : bignum.c.o
+bn_fix.c.o:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/bn_fix.c.o
+.PHONY : bn_fix.c.o
 
-bignum.i: bignum.c.i
+bn_fix.i: bn_fix.c.i
 
-.PHONY : bignum.i
+.PHONY : bn_fix.i
 
 # target to preprocess a source file
-bignum.c.i:
-	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/bignum.c.i
-.PHONY : bignum.c.i
+bn_fix.c.i:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/bn_fix.c.i
+.PHONY : bn_fix.c.i
 
-bignum.s: bignum.c.s
+bn_fix.s: bn_fix.c.s
 
-.PHONY : bignum.s
+.PHONY : bn_fix.s
 
 # target to generate assembly for a file
-bignum.c.s:
-	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/bignum.c.s
-.PHONY : bignum.c.s
+bn_fix.c.s:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/bn_fix.c.s
+.PHONY : bn_fix.c.s
+
+bn_fstr.o: bn_fstr.c.o
+
+.PHONY : bn_fstr.o
+
+# target to build an object file
+bn_fstr.c.o:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/bn_fstr.c.o
+.PHONY : bn_fstr.c.o
+
+bn_fstr.i: bn_fstr.c.i
+
+.PHONY : bn_fstr.i
+
+# target to preprocess a source file
+bn_fstr.c.i:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/bn_fstr.c.i
+.PHONY : bn_fstr.c.i
+
+bn_fstr.s: bn_fstr.c.s
+
+.PHONY : bn_fstr.s
+
+# target to generate assembly for a file
+bn_fstr.c.s:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/bn_fstr.c.s
+.PHONY : bn_fstr.c.s
+
+bn_init.o: bn_init.c.o
+
+.PHONY : bn_init.o
+
+# target to build an object file
+bn_init.c.o:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/bn_init.c.o
+.PHONY : bn_init.c.o
+
+bn_init.i: bn_init.c.i
+
+.PHONY : bn_init.i
+
+# target to preprocess a source file
+bn_init.c.i:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/bn_init.c.i
+.PHONY : bn_init.c.i
+
+bn_init.s: bn_init.c.s
+
+.PHONY : bn_init.s
+
+# target to generate assembly for a file
+bn_init.c.s:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/bn_init.c.s
+.PHONY : bn_init.c.s
+
+bn_opers.o: bn_opers.c.o
+
+.PHONY : bn_opers.o
+
+# target to build an object file
+bn_opers.c.o:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/bn_opers.c.o
+.PHONY : bn_opers.c.o
+
+bn_opers.i: bn_opers.c.i
+
+.PHONY : bn_opers.i
+
+# target to preprocess a source file
+bn_opers.c.i:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/bn_opers.c.i
+.PHONY : bn_opers.c.i
+
+bn_opers.s: bn_opers.c.s
+
+.PHONY : bn_opers.s
+
+# target to generate assembly for a file
+bn_opers.c.s:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/bn_opers.c.s
+.PHONY : bn_opers.c.s
+
+bn_outp.o: bn_outp.c.o
+
+.PHONY : bn_outp.o
+
+# target to build an object file
+bn_outp.c.o:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/bn_outp.c.o
+.PHONY : bn_outp.c.o
+
+bn_outp.i: bn_outp.c.i
+
+.PHONY : bn_outp.i
+
+# target to preprocess a source file
+bn_outp.c.i:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/bn_outp.c.i
+.PHONY : bn_outp.c.i
+
+bn_outp.s: bn_outp.c.s
+
+.PHONY : bn_outp.s
+
+# target to generate assembly for a file
+bn_outp.c.s:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/bn_outp.c.s
+.PHONY : bn_outp.c.s
+
+bn_round.o: bn_round.c.o
+
+.PHONY : bn_round.o
+
+# target to build an object file
+bn_round.c.o:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/bn_round.c.o
+.PHONY : bn_round.c.o
+
+bn_round.i: bn_round.c.i
+
+.PHONY : bn_round.i
+
+# target to preprocess a source file
+bn_round.c.i:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/bn_round.c.i
+.PHONY : bn_round.c.i
+
+bn_round.s: bn_round.c.s
+
+.PHONY : bn_round.s
+
+# target to generate assembly for a file
+bn_round.c.s:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/bn_round.c.s
+.PHONY : bn_round.c.s
+
+dbl_input.o: dbl_input.c.o
+
+.PHONY : dbl_input.o
+
+# target to build an object file
+dbl_input.c.o:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/dbl_input.c.o
+.PHONY : dbl_input.c.o
+
+dbl_input.i: dbl_input.c.i
+
+.PHONY : dbl_input.i
+
+# target to preprocess a source file
+dbl_input.c.i:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/dbl_input.c.i
+.PHONY : dbl_input.c.i
+
+dbl_input.s: dbl_input.c.s
+
+.PHONY : dbl_input.s
+
+# target to generate assembly for a file
+dbl_input.c.s:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/dbl_input.c.s
+.PHONY : dbl_input.c.s
+
+double.o: double.c.o
+
+.PHONY : double.o
+
+# target to build an object file
+double.c.o:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/double.c.o
+.PHONY : double.c.o
+
+double.i: double.c.i
+
+.PHONY : double.i
+
+# target to preprocess a source file
+double.c.i:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/double.c.i
+.PHONY : double.c.i
+
+double.s: double.c.s
+
+.PHONY : double.s
+
+# target to generate assembly for a file
+double.c.s:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/double.c.s
+.PHONY : double.c.s
 
 ft_printf.o: ft_printf.c.o
 
@@ -2157,9 +2346,30 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... ft_printf"
-	@echo "... bignum.o"
-	@echo "... bignum.i"
-	@echo "... bignum.s"
+	@echo "... bn_fix.o"
+	@echo "... bn_fix.i"
+	@echo "... bn_fix.s"
+	@echo "... bn_fstr.o"
+	@echo "... bn_fstr.i"
+	@echo "... bn_fstr.s"
+	@echo "... bn_init.o"
+	@echo "... bn_init.i"
+	@echo "... bn_init.s"
+	@echo "... bn_opers.o"
+	@echo "... bn_opers.i"
+	@echo "... bn_opers.s"
+	@echo "... bn_outp.o"
+	@echo "... bn_outp.i"
+	@echo "... bn_outp.s"
+	@echo "... bn_round.o"
+	@echo "... bn_round.i"
+	@echo "... bn_round.s"
+	@echo "... dbl_input.o"
+	@echo "... dbl_input.i"
+	@echo "... dbl_input.s"
+	@echo "... double.o"
+	@echo "... double.i"
+	@echo "... double.s"
 	@echo "... ft_printf.o"
 	@echo "... ft_printf.i"
 	@echo "... ft_printf.s"
