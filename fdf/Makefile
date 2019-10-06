@@ -6,7 +6,7 @@
 #    By: hwolf <hwolf@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 12:13:46 by odrinkwa          #+#    #+#              #
-#    Updated: 2019/10/05 02:44:23 by odrinkwa         ###   ########.fr        #
+#    Updated: 2019/10/05 11:52:48 by semenbegunov     ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ OBJECTS = $(SOURCES:.c=.o)
 
 CC := gcc
 CFLAGS := -Wall -Wextra -Werror -g3
-MLXPARAMS := -I /usr/local/include -I /usr/local/lib -lmlx -framework OpenGL -framework AppKit
+MLXPARAMS := -I /mlx -L ./mlx -lmlx -framework OpenGL -framework AppKit
 
 L_FT := libft
 

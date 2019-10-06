@@ -8,440 +8,47 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/Users/odrinkwa/fdf_test_git/fdf/cmake-build-debug"/>
+				<Option working_dir="/Users/semenbegunov/semrunner_git/fdf/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/fdf_test_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/fdf_test_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/fdf_test_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/fdf_test_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/Users/odrinkwa/fdf_test_git/fdf/cmake-build-debug"/>
+				<Option working_dir="/Users/semenbegunov/semrunner_git/fdf/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/fdf_test_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/fdf_test_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/fdf_test_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/fdf_test_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/Users/odrinkwa/fdf_test_git/fdf/cmake-build-debug"/>
+				<Option working_dir="/Users/semenbegunov/semrunner_git/fdf/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/fdf_test_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/fdf_test_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/fdf_test_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/fdf_test_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="fdf">
-				<Option output="/Users/odrinkwa/fdf_test_git/fdf/cmake-build-debug/fdf" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/odrinkwa/fdf_test_git/fdf/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/Users/odrinkwa/fdf_test_git/fdf/libft/includes"/>
-					<Add directory="/Users/odrinkwa/fdf_test_git/fdf/minilibx"/>
-					<Add directory="/Users/odrinkwa/fdf_test_git/fdf/minilibx_macos"/>
-					<Add directory="/usr/lib"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
-				</Compiler>
+				<Option working_dir="/Users/semenbegunov/semrunner_git/fdf/cmake-build-debug"/>
+				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/fdf_test_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 fdf"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/fdf_test_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/fdf_test_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/fdf_test_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="fdf/fast">
-				<Option output="/Users/odrinkwa/fdf_test_git/fdf/cmake-build-debug/fdf" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/odrinkwa/fdf_test_git/fdf/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/Users/odrinkwa/fdf_test_git/fdf/libft/includes"/>
-					<Add directory="/Users/odrinkwa/fdf_test_git/fdf/minilibx"/>
-					<Add directory="/Users/odrinkwa/fdf_test_git/fdf/minilibx_macos"/>
-					<Add directory="/usr/lib"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/fdf_test_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 fdf/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/fdf_test_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/fdf_test_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/fdf_test_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 fdf"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/includes/libft.h">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_atoi.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_bzero.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_dictadd.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_dictclearzero.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_dictdelbykey.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_dictdelelement.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_dictgetoraddvalue.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_dictgetvalue.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_dictnew.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_isalnum.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_isalpha.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_isascii.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_isdigit.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_isprint.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_itoa.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_lstadd.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_lstaddback.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_lstdel.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_lstdeli.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_lstdelone.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_lsti.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_lstiter.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_lstlen.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_lstmap.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_lstnew.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_memalloc.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_memccpy.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_memchr.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_memcmp.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_memcpy.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_memdel.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_memmove.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_memset.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_printstrsplit.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_putchar.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_putchar_fd.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_putendl.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_putendl_fd.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_putnbr.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_putnbr_fd.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_putstr.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_putstr_fd.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_strcat.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_strchr.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_strclr.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_strcmp.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_strcpy.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_strdel.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_strdup.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_strequ.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_striter.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_striteri.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_strjoin.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_strlcat.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_strlen.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_strmap.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_strmapi.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_strncat.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_strncmp.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_strncpy.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_strnequ.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_strnew.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_strnjoin.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_strnstr.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_strrchr.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_strsplit.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_strstr.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_strsub.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_strtrim.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_tolower.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/ft_toupper.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/libft/sources/get_next_line.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/main.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx/mlx.h">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx/mlx_clear_window.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx/mlx_destroy_image.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx/mlx_destroy_window.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx/mlx_expose_hook.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx/mlx_flush_event.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx/mlx_get_color_value.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx/mlx_get_data_addr.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx/mlx_hook.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx/mlx_init.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx/mlx_int.h">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx/mlx_int_anti_resize_win.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx/mlx_int_do_nothing.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx/mlx_int_get_visual.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx/mlx_int_param_event.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx/mlx_int_set_win_event_mask.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx/mlx_int_str_to_wordtab.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx/mlx_int_wait_first_expose.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx/mlx_key_hook.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx/mlx_lib_xpm.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx/mlx_loop.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx/mlx_loop_hook.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx/mlx_mouse_hook.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx/mlx_new_image.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx/mlx_new_window.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx/mlx_pixel_put.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx/mlx_put_image_to_window.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx/mlx_rgb.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx/mlx_string_put.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx/mlx_xpm.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx/test/main.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx/test/new_win.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx_macos/font.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx_macos/mlx.h">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx_macos/mlx_init_loop.m">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx_macos/mlx_int.h">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx_macos/mlx_int_str_to_wordtab.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx_macos/mlx_new_image.m">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx_macos/mlx_new_window.h">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx_macos/mlx_new_window.m">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx_macos/mlx_rgb.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx_macos/mlx_shaders.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/minilibx_macos/mlx_xpm.c">
-			<Option target="fdf"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/fdf_test_git/fdf/CMakeLists.txt">
+		<Unit filename="/Users/semenbegunov/semrunner_git/fdf/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

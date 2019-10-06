@@ -1,4 +1,4 @@
-/Users/odrinkwa/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/odrinkwa/fdf_test_git/fdf
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/semenbegunov/semrunner_git/fdf
 -- Configuring done
 -- Generating done
--- Build files have been written to: /Users/odrinkwa/fdf_test_git/fdf/cmake-build-debug
+-- Build files have been written to: /Users/semenbegunov/semrunner_git/fdf/cmake-build-debug

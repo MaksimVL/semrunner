@@ -6,7 +6,7 @@
 #    By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 12:13:46 by odrinkwa          #+#    #+#              #
-#    Updated: 2019/09/26 13:18:25 by semenbegunov     ###   ########.fr        #
+#    Updated: 2019/10/05 12:25:34 by semenbegunov     ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ SRC 		= $(LIBFT_SRC)
 
 OBJ			= $(addprefix $(OBJ_DIR),$(SRC:.c=.o))
 
-CFLAGS 		= -Wall -Wextra -Werror
+CFLAGS 		= -Wall -Wextra -Werror -g3
 CC			= gcc
 
 .PHONY: all clean fclean re
@@ -68,7 +68,7 @@ $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(FULL_HD_NAME)
-	$(CC) $(FLAGS) $(FT_INC) -o $@ -c $<
+	$(CC) $(CFLAGS) $(FT_INC) -o $@ -c $<
 
 $(NAME): $(OBJ)
 	ar rc $(NAME) $(OBJ)
