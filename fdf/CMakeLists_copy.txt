@@ -1,0 +1,36 @@
+cmake_minimum_required(VERSION 3.14)
+project(fdf C)
+
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -lmlx -framework OpenGL -framework AppKit")
+set(CMAKE_C_FRA)
+
+include_directories(includes)
+include_directories(libft/includes)
+include_directories(libft)
+include_directories(/Users/semenbegunov/semrunner_git/fdf/mlx)
+link_directories(/Users/semenbegunov/semrunner_git/fdf/mlx)
+
+add_executable(fdf
+        includes/fdf.h
+        main.c
+)
+
+target_link_libraries(fdf /Users/semenbegunov/semrunner_git/fdf/libft/libft.a)
+target_link_libraries(fdf "libmlx.a")
+target_link_libraries(fdf "-framework AppKit")
+target_link_libraries(fdf "-framework OpenGL")
+
+
+
+
+#cmake_minimum_required(VERSION 3.14)
+#project(fdf C)
+#
+#set(CMAKE_C_STANDARD 11)
+#
+#include_directories(/libft/includes)
+#
+#add_custom_target(fdf
+#        COMMAND make
+#        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})

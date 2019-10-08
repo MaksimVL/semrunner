@@ -2,7 +2,15 @@
 #include <unistd.h>
 
 #include "./mlx/mlx.h"
-#include "libft.h"
+#include "./libft/includes/libft.h"
+
+
+typedef struct		s_mlx
+{
+	void 			*ptr;
+	void			*win;
+	void			*im;
+}					t_mlx;
 
 int deal_key(int key, void *param)
 {
@@ -12,19 +20,36 @@ int deal_key(int key, void *param)
 	return (0);
 }
 
+void	tmlx_destroy(t_mlx *m)
+{
+	if (m->ptr != NULL)
+		ft_memdel((void**)m->ptr);
+	if (m->win != NULL)
+		ft_memdel((void**)m->win);
+	if (m->im != NULL)
+		ft_memdel((void**)m->im);
+}
+
+int		tmlx_initialize(t_mlx *m, int x, int y, char *title)
+{
+	m->ptr = NULL;
+	m->win = NULL;
+	m->im = NULL;
+	if (!(m->ptr = mlx_init()))
+		tmlx_destroy(m);
+	if (!(m->win = mlx_new_window(m->ptr, x, y, title)))
+		tmlx_destroy(m);
+	if (!(m->im = mlx_new_image(m->ptr, x, y)))
+		tmlx_destroy(m);
+
+}
+
 int main()
 {
-	void *mlx_ptr;
-	void *win_ptr;
-	char *str = "test";
+	t_mlx m;
 
-	printf("tes3434aat");
-	ft_printf("\ntest ft_printf\n");
-	ft_putchar('a');
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 640, 480, str);
-	mlx_key_hook(win_ptr, deal_key, (void *)0);
-	mlx_loop(mlx_ptr);
-	return 0;
+	tmlx_initialize(&m, 1000, 1000, "test");
+	mlx_loop(m.ptr);
+	return (0);
 }
 
