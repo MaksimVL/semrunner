@@ -19,6 +19,7 @@ int main()
 	char *str = "test";
 
 	printf("tes3434aat");
+	ft_printf("\ntest ft_printf\n");
 	ft_putchar('a');
 	mlx_ptr = mlx_init();
 	win_ptr = mlx_new_window(mlx_ptr, 640, 480, str);

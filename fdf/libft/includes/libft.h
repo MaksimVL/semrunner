@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 20:59:45 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/09/26 13:18:25 by semenbegunov     ###   ########.fr       */
+/*   Updated: 2019/10/08 16:29:24 by semenbegunov     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+# include <errno.h>
 
 # define BUFF_SIZE 20
+
+# define ABS(value) (((value) < 0) ? ((value) * (-1)) : (value))
 
 typedef struct		s_list
 {
@@ -112,5 +115,17 @@ t_dict				*ft_dictgetvalue(t_dict *dict, int key);
 void				ft_dictdelbykey(t_dict **dict, int key,
 									void (*del)(void *, size_t));
 int					get_next_line(const int fd, char **line);
+const char			*ft_skip_digits(const char *str);
+char				*ft_zerostr(void);
+void				ft_free(void *data, size_t size);
+void				ft_getsnbr_base(long long int nbr,
+									char *base, char *output);
+void				ft_getunbr_base(unsigned long long int nbr,
+										char *base, char *output);
+int					ft_pow(int n, int pow);
+t_list				*ft_lstfind(t_list *head, void *search_d,
+							int (*f)(void *, void *));
+void				ft_strset(char *str, char c, int len);
+int					ft_printf(const char *format, ...);
 
 #endif
