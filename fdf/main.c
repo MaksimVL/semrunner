@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 18:48:15 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/10/09 20:34:32 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/10/09 22:11:34 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 #include "./mlx/mlx.h"
 #include "./libft/includes/libft.h"
 
+typedef struct		s_point
+{
+	int				x;
+	int				y;
+}					t_point;
 
 typedef struct		s_mlx
 {
@@ -26,20 +31,10 @@ typedef struct		s_mlx
 	int 			bits_pixel;
 	int				size_line;
 	int				endian;
+	int				color;
+	t_point			point1;
+	t_point			point2;
 }					t_mlx;
-
-typedef struct		s_point
-{
-	int				x;
-	int				y;
-}					t_point;
-
-/*int deal_key(int key, void *param)
-{
-	if (param)
-	{}
-	return (0);
-}*/
 
 void	tmlx_destroy(t_mlx *m)
 {
@@ -68,15 +63,19 @@ int		tmlx_initialize(t_mlx *m, int x, int y, char *title)
 	if (m->ptr == NULL)
 		return (0);
 	m->data_mainim = (int*)mlx_get_data_addr(m->main_im, &(m->bits_pixel), &(m->size_line), &(m->endian));
+	m->point1.x = -1;
+	m->point1.y = -1;
+	m->point2.x = -1;
+	m->point2.y = -1;
 	return (1);
 }
 
-void	putpixel_mainimage(t_mlx *m, int x, int y, int color)
+void	putpixel(t_mlx *m, int x, int y, int color)
 {
 	m->data_mainim[y * (m->size_line / sizeof(int)) + x] = color;
 }
 
-void	putline_low_mainimage(t_mlx *m, t_point start, t_point end, int color)
+void	putline_low(t_mlx *m, t_point start, t_point end, int color)
 {
 	t_point	dxy;
 	t_point	xy;
@@ -96,7 +95,7 @@ void	putline_low_mainimage(t_mlx *m, t_point start, t_point end, int color)
 	xy.x = start.x;
 	while (xy.x <= end.x)
 	{
-		putpixel_mainimage(m, xy.x, xy.y, color);
+		putpixel(m, xy.x, xy.y, color);
 		if (D > 0)
 		{
 			xy.y = xy.y + yi;
@@ -107,7 +106,7 @@ void	putline_low_mainimage(t_mlx *m, t_point start, t_point end, int color)
 	}
 }
 
-void	putline_high_mainimage(t_mlx *m, t_point start, t_point end, int color)
+void	putline_high(t_mlx *m, t_point start, t_point end, int color)
 {
 	t_point	dxy;
 	t_point	xy;
@@ -127,7 +126,7 @@ void	putline_high_mainimage(t_mlx *m, t_point start, t_point end, int color)
 	xy.y = start.y;
 	while (xy.y <= end.y)
 	{
-		putpixel_mainimage(m, xy.x, xy.y, color);
+		putpixel(m, xy.x, xy.y, color);
 		if (D > 0)
 		{
 			xy.x = xy.x + xi;
@@ -138,38 +137,64 @@ void	putline_high_mainimage(t_mlx *m, t_point start, t_point end, int color)
 	}
 }
 
-
-void	putline_mainimage(t_mlx *m, t_point start, t_point end, int color)
+void	putline(t_mlx *m, t_point start, t_point end, int color)
 {
 	if (ABS(end.y - start.y) < ABS(end.x - start.x))
 	{
 		if (start.x > end.x)
-			putline_low_mainimage(m, end, start, color);
+			putline_low(m, end, start, color);
 		else
-			putline_low_mainimage(m, start, end, color);
+			putline_low(m, start, end, color);
 	}
 	else
 	{
 		if (start.y > end.y)
-			putline_high_mainimage(m, end, start, color);
+			putline_high(m, end, start, color);
 		else
-			putline_high_mainimage(m, start, end, color);
+			putline_high(m, start, end, color);
 	}
 }
 
-int		mousehook(int button, int x, int y, void *m)
+int		mousehook(int button, int x, int y, void *m_param)
 {
+	t_mlx *m;
+
+	m = (t_mlx*)m_param;
 	ft_printf("button pressed = %d\n", button);
 	ft_printf("x = %d\n", x);
 	ft_printf("y = %d\n", y);
 	if (button == 1)
-		putpixel_mainimage(m, x, y, 0xFFFFFF);
-	else
-		putpixel_mainimage(m, x, y, 0xFF0000);
+		putpixel(m, x, y, 0xFFFFFF);
+	else if (button == 2)
+	{
+		if (m->point1.x == -1)
+		{
+			m->point1.x = x;
+			m->point1.y = y;
+		}
+		else
+		{
+			m->point2.x = x;
+			m->point2.y = y;
+			putline(m, m->point1, m->point2, 0xFFFFFF);
+			m->point1.x = -1;
+		}
+	}
 	mlx_put_image_to_window(((t_mlx*)m)->ptr, ((t_mlx*)m)->win, ((t_mlx*)m)->main_im, 0, 0);
 	return (1);
 }
 
+int		keyhook(int keycode, void *m)
+{
+	if (m != NULL)
+		;
+	ft_printf("key pressed = %d\n", keycode);
+	if (keycode == 53)
+	{
+		exit(0);
+	}
+	return (1);
+}
 int main()
 {
 	t_mlx m;
@@ -181,12 +206,12 @@ int main()
 	ft_printf("size_line = %d\n", m.size_line);
 
 	for (i = 0; i < 2000; i++)
-		putpixel_mainimage(&m, i, 0, 0xFF0000);
+		putpixel(&m, i, 0, 0xFF0000);
 
 	for (i = 0; i < 1000; i++)
-		putpixel_mainimage(&m, i, 1, 0xFFFFFF);
+		putpixel(&m, i, 1, 0xFFFFFF);
 	for (i = 0; i < 1000; i++)
-		putpixel_mainimage(&m, i, 2, 0x00FF00);
+		putpixel(&m, i, 2, 0x00FF00);
 
 	t_point	start;
 	t_point	end;
@@ -197,10 +222,11 @@ int main()
 	end.y = 400;
 	void *param;
 	param = (void*)(&i);
-	putline_mainimage(&m, start, end, 0xFFFFFF);
+	putline(&m, start, end, 0xFFFFFF);
 	mlx_put_image_to_window(m.ptr, m.win, m.main_im, 0, 0);
 
 	mlx_mouse_hook(m.win, mousehook, (void*)&m);
+	mlx_key_hook(m.win, keyhook, (void*)&m);
 	mlx_loop(m.ptr);
 	return (0);
 }
