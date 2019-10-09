@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/09 18:48:15 by odrinkwa          #+#    #+#             */
+/*   Updated: 2019/10/09 20:34:32 by odrinkwa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
 #include <unistd.h>
 
@@ -15,6 +27,12 @@ typedef struct		s_mlx
 	int				size_line;
 	int				endian;
 }					t_mlx;
+
+typedef struct		s_point
+{
+	int				x;
+	int				y;
+}					t_point;
 
 /*int deal_key(int key, void *param)
 {
@@ -57,6 +75,101 @@ void	putpixel_mainimage(t_mlx *m, int x, int y, int color)
 {
 	m->data_mainim[y * (m->size_line / sizeof(int)) + x] = color;
 }
+
+void	putline_low_mainimage(t_mlx *m, t_point start, t_point end, int color)
+{
+	t_point	dxy;
+	t_point	xy;
+	int		yi;
+	int		D;
+
+	dxy.x = end.x - start.x;
+	dxy.y = end.y - start.y;
+	yi = 1;
+	if (dxy.y < 0)
+	{
+		yi = -1;
+		dxy.y = -dxy.y;
+	}
+	D = 2 * dxy.y - dxy.x;
+	xy.y = start.y;
+	xy.x = start.x;
+	while (xy.x <= end.x)
+	{
+		putpixel_mainimage(m, xy.x, xy.y, color);
+		if (D > 0)
+		{
+			xy.y = xy.y + yi;
+			D = D - 2 * dxy.x;
+		}
+		D = D + 2 * dxy.y;
+		xy.x++;
+	}
+}
+
+void	putline_high_mainimage(t_mlx *m, t_point start, t_point end, int color)
+{
+	t_point	dxy;
+	t_point	xy;
+	int		xi;
+	int		D;
+
+	dxy.x = end.x - start.x;
+	dxy.y = end.y - start.y;
+	xi = 1;
+	if (dxy.x < 0)
+	{
+		xi = -1;
+		dxy.x = -dxy.x;
+	}
+	D = 2 * dxy.x - dxy.y;
+	xy.x = start.x;
+	xy.y = start.y;
+	while (xy.y <= end.y)
+	{
+		putpixel_mainimage(m, xy.x, xy.y, color);
+		if (D > 0)
+		{
+			xy.x = xy.x + xi;
+			D = D - 2 * dxy.y;
+		}
+		D = D + 2 * dxy.x;
+		xy.y++;
+	}
+}
+
+
+void	putline_mainimage(t_mlx *m, t_point start, t_point end, int color)
+{
+	if (ABS(end.y - start.y) < ABS(end.x - start.x))
+	{
+		if (start.x > end.x)
+			putline_low_mainimage(m, end, start, color);
+		else
+			putline_low_mainimage(m, start, end, color);
+	}
+	else
+	{
+		if (start.y > end.y)
+			putline_high_mainimage(m, end, start, color);
+		else
+			putline_high_mainimage(m, start, end, color);
+	}
+}
+
+int		mousehook(int button, int x, int y, void *m)
+{
+	ft_printf("button pressed = %d\n", button);
+	ft_printf("x = %d\n", x);
+	ft_printf("y = %d\n", y);
+	if (button == 1)
+		putpixel_mainimage(m, x, y, 0xFFFFFF);
+	else
+		putpixel_mainimage(m, x, y, 0xFF0000);
+	mlx_put_image_to_window(((t_mlx*)m)->ptr, ((t_mlx*)m)->win, ((t_mlx*)m)->main_im, 0, 0);
+	return (1);
+}
+
 int main()
 {
 	t_mlx m;
@@ -74,9 +187,20 @@ int main()
 		putpixel_mainimage(&m, i, 1, 0xFFFFFF);
 	for (i = 0; i < 1000; i++)
 		putpixel_mainimage(&m, i, 2, 0x00FF00);
+
+	t_point	start;
+	t_point	end;
+
+	start.x = 10;
+	start.y = 10;
+	end.x = 400;
+	end.y = 400;
+	void *param;
+	param = (void*)(&i);
+	putline_mainimage(&m, start, end, 0xFFFFFF);
 	mlx_put_image_to_window(m.ptr, m.win, m.main_im, 0, 0);
 
+	mlx_mouse_hook(m.win, mousehook, (void*)&m);
 	mlx_loop(m.ptr);
 	return (0);
 }
-
