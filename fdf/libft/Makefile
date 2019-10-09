@@ -6,7 +6,7 @@
 #    By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 12:13:46 by odrinkwa          #+#    #+#              #
-#    Updated: 2019/10/08 17:07:57 by semenbegunov     ###   ########.fr        #
+#    Updated: 2019/10/09 18:14:31 by odrinkwa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,7 +104,7 @@ $(OBJ_DIR):
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(FULL_HD_NAME)
 	$(CC) $(CFLAGS) $(FT_INC) $(FT_INC_PRF) -o $@ -c $<
 
-$(OBJ_PRF_DIR)%.o: $(PRF_DIR)%.c $(FULL_HD_PRF)
+$(OBJ_PRF_DIR)%.o: $(PRF_DIR)%.c #$(FULL_HD_PRF)
 	$(CC) $(CFLAGS) $(FT_INC) $(FT_INC_PRF) -o $@ -c $<
 
 $(NAME): $(OBJ)

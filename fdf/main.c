@@ -72,7 +72,6 @@ int main()
 
 	for (i = 0; i < 1000; i++)
 		putpixel_mainimage(&m, i, 1, 0xFFFFFF);
-
 	for (i = 0; i < 1000; i++)
 		putpixel_mainimage(&m, i, 2, 0x00FF00);
 	mlx_put_image_to_window(m.ptr, m.win, m.main_im, 0, 0);
