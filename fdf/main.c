@@ -195,10 +195,42 @@ int		keyhook(int keycode, void *m)
 	}
 	return (1);
 }
+
+void iso(int *x, int *y, int z, int sdvig_x, int sdvig_y)
+{
+	int prev_x;
+	int prev_y;
+
+	prev_x = *x;
+	prev_y = *y;
+	*x = (prev_x - prev_y) * 0.866025 + sdvig_x;
+	*y = -z + (prev_x + prev_y) * 0.5 + sdvig_y;
+}
+
+void putline_temp(t_mlx *m, int x0, int y0, int x1, int y1, int color)
+{
+	t_point p1;
+	t_point p2;
+
+	p1.x = x0;
+	p1.y = y0;
+	p2.x = x1;
+	p2.y = y1;
+	putline(m, p1, p2, color);
+}
+
 int main()
 {
 	t_mlx m;
 	int i;
+	int x[5];
+	int y[5];
+
+	x[0] = 200; y[0] = 250;
+	x[1] = 400; y[1] = 250;
+	x[2] = 400; y[2] = 450;
+	x[3] = 200; y[3] = 450;
+	x[4] = x[0]; y[4] = y[0];
 
 	printf("test123\n");
 	tmlx_initialize(&m, 1000, 1000, "test");
@@ -223,6 +255,22 @@ int main()
 	void *param;
 	param = (void*)(&i);
 	putline(&m, start, end, 0xFFFFFF);
+
+	int x1, x2, y1, y2;
+	for (i = 0; i < 4; i++)
+	{
+		putline_temp(&m, x[i], y[i], x[i+1], y[i+1], 0xFF0000);
+	}
+
+	for (i = 0; i < 4; i++)
+	{
+		x1 = x[i]; y1 = y[i];
+		x2 = x[i+1]; y2 = y[i+1];
+		iso(&x1, &y1, 0, x[0], y[0]);
+		iso(&x2, &y2, 0, x[0], y[0]);
+		putline_temp(&m, x1, y1, x2, y2, 0xFFFFFF);
+	}
+
 	mlx_put_image_to_window(m.ptr, m.win, m.main_im, 0, 0);
 
 	mlx_mouse_hook(m.win, mousehook, (void*)&m);
