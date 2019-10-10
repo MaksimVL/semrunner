@@ -12,6 +12,7 @@
 
 #include <stdio.h>
 #include <unistd.h>
+#include <math.h>
 
 #include "./mlx/mlx.h"
 #include "./libft/includes/libft.h"
@@ -66,9 +67,10 @@ void iso(int *x, int *y, int z)
 
 	prev_x = *x;
 	prev_y = *y;
-	*x = (prev_x - prev_y) * 0.866025;
-	*y = -z + (prev_x + prev_y) * 0.5;
+	*x = (prev_x - prev_y) * cos(30.0 * M_PI / 180.0);
+	*y = -z + (prev_x + prev_y) * sin(30.0 * M_PI / 180.0);
 }
+
 
 void putline_temp(t_mlx *m, int x0, int y0, int x1, int y1, int color)
 {
@@ -80,6 +82,7 @@ void putline_temp(t_mlx *m, int x0, int y0, int x1, int y1, int color)
 	p2.x = x1;
 	p2.y = y1;
 	putline(m, p1, p2, color);
+
 }
 
 int main()
