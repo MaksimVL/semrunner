@@ -45,11 +45,11 @@ LIBFT_SRC	= ft_atoi.c ft_bzero.c ft_dictadd.c ft_dictclearzero.c \
 	ft_strmap.c ft_strmapi.c ft_strncat.c ft_strncmp.c ft_strncpy.c \
 	ft_strnequ.c ft_strnew.c ft_strnjoin.c ft_strnstr.c ft_strrchr.c \
 	ft_strset.c ft_strsplit.c ft_strstr.c ft_strsub.c ft_strtrim.c \
-	ft_tolower.c ft_toupper.c ft_zerostr.c get_next_line.c
+	ft_tolower.c ft_toupper.c ft_zerostr.c get_next_line.c ft_nbrlen.c
 
 PRINTF_SRC	= arg_mode.c bn_auxfunc.c bn_fix.c bn_fstr.c bn_init.c \
 	bn_oppow.c bn_opsub.c bn_opsummul.c bn_outp.c bn_round.c change_fd.c \
-	change_outstr.c dbl_input.c double.c extend_dollar.c ft_nbrlen.c \
+	change_outstr.c dbl_input.c double.c extend_dollar.c \
 	ft_printf.c get_item_by_size.c global_bak.c handle_comma_flag.c \
 	handle_spec.c handle_stars.c print_output.c read_spec.c \
 	spectostr_bighex.c spectostr_bin.c spectostr_char.c \

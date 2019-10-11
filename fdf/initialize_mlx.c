@@ -33,5 +33,9 @@ int		tmlx_initialize(t_mlx *m, int x, int y, char *title)
 	m->point1.y = -1;
 	m->point2.x = -1;
 	m->point2.y = -1;
+	m->map = NULL;
+	m->map_points = NULL;
+	m->width = x;
+	m->height = y;
 	return (1);
 }

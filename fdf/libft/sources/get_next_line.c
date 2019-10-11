@@ -68,7 +68,7 @@ static int	readfile(const int fd, char **line, char **str)
 	char	*chr_n;
 	char	*buff;
 
-	if (!(buff = (char*)malloc(sizeof(char) * BUFF_SIZE)))
+	if (!(buff = (char*)malloc(sizeof(char) * (BUFF_SIZE + 1))))
 		return (-1);
 	while ((read_count = read(fd, buff, BUFF_SIZE)))
 	{

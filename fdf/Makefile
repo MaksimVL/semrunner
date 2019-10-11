@@ -18,7 +18,7 @@ INCLIBFT_DIR := ./libft/includes
 OBJ_DIR := ./objects
 LIB_DIR := ./libft
 
-SRC  := main.c drawline.c initialize_mlx.c
+SRC  := main.c drawline.c initialize_mlx.c readfile.c
 HDRS := includes/fdf.h
 OBJ  := $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 OBJECTS = $(SOURCES:.c=.o)

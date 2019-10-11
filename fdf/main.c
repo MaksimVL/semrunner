@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <math.h>
+#include <fcntl.h>
 
 #include "./mlx/mlx.h"
 #include "./libft/includes/libft.h"
@@ -60,18 +61,6 @@ int		keyhook(int keycode, void *m)
 	return (1);
 }
 
-void iso(int *x, int *y, int z)
-{
-	int prev_x;
-	int prev_y;
-
-	prev_x = *x;
-	prev_y = *y;
-	*x = (prev_x - prev_y) * cos(30.0 * M_PI / 180.0);
-	*y = -z + (prev_x + prev_y) * sin(30.0 * M_PI / 180.0);
-}
-
-
 void putline_temp(t_mlx *m, int x0, int y0, int x1, int y1, int color)
 {
 	t_point p1;
@@ -85,86 +74,69 @@ void putline_temp(t_mlx *m, int x0, int y0, int x1, int y1, int color)
 
 }
 
-int main()
+void	print_map(t_mlx *m)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (i < m->map_y)
+	{
+		j = 0;
+		while (j < m->map_x)
+		{
+			ft_printf("%d ", m->map[i * m->map_x + j]);
+			j++;
+		}
+		ft_printf("\n");
+		i++;
+	}
+}
+
+int main(int argc, char **argv)
 {
 	t_mlx m;
-	int i;
-	int x[6];
-	int y[6];
+	int		fd;
 
-	x[0] = 200; y[0] = 250;
-	x[1] = 400; y[1] = 250;
-	x[2] = 400; y[2] = 450;
-	x[3] = 200; y[3] = 450;
-	x[4] = x[0]; y[4] = y[0];
-	x[5] = 300;
-	y[5] = 150;
-
-	printf("test123\n");
 	tmlx_initialize(&m, 1000, 1000, "test");
 
-	ft_printf("size_line = %d\n", m.size_line);
-
-	for (i = 0; i < 2000; i++)
-		putpixel(&m, i, 0, 0xFF0000);
-
-	for (i = 0; i < 1000; i++)
-		putpixel(&m, i, 1, 0xFFFFFF);
-	for (i = 0; i < 1000; i++)
-		putpixel(&m, i, 2, 0x00FF00);
-
-	t_point	start;
-	t_point	end;
-
-	start.x = 10;
-	start.y = 10;
-	end.x = 400;
-	end.y = 400;
-	void *param;
-	param = (void*)(&i);
-	putline(&m, start, end, 0xFFFFFF);
-
-	for (i = 0; i < 4; i++)
+	if (argc != 2)
 	{
-		putline_temp(&m, x[i], y[i], x[i+1], y[i+1], 0xFF0000);
-	}
-	putline_temp(&m, x[0], y[0], x[5], y[5], 0xFF0000);
-	putline_temp(&m, x[5], y[5], x[1], y[1], 0xFF0000);
-
-	t_point center;
-	center.x = 300;
-	center.y = 350;
-
-	for (i = 0; i < 6; i++)
-	{
-		x[i] -= center.x;
-		y[i] -= center.y;
+		ft_printf("usage: fdf map_file\n");
+		exit(0);
 	}
 
-	for (i = 0; i < 6; i++)
+	fd = open(argv[1], O_RDONLY);
+	if (check_file(&m, fd) < 0)
+		{
+			close(fd);
+			return (-1);
+		}
+	close(fd);
+
+	fd = open(argv[1], O_RDONLY);
+
+//выделяем память под карту
+	m.map = (int*)ft_memalloc(sizeof(int) * m.map_x * m.map_y);
+	m.map_points = (t_point*)ft_memalloc(sizeof(t_point) * m.map_x * m.map_y); //TODO учесть очистку памяти
+
+	if (put_map(&m, fd) < 0)
 	{
-		iso(&x[i], &y[i], 0);
+		close(fd);
+		ft_memdel((void**)m.map);
+		ft_memdel((void**)m.map_points);
+		return (-1);
 	}
+	close(fd);
 
-	for (i = 0; i < 6; i++)
-	{
-		x[i] += center.x;
-		y[i] += center.y;
-	}
+	print_map(&m);
 
-	for (i = 0; i < 4; i++)
-	{
-		putline_temp(&m, x[i], y[i], x[i+1], y[i+1], 0xFFFFFF);
-	}
+	make_map_points(&m, 0, 0xFFFFFF);
+	make_map_iso_points(&m);
 
-
-	putline_temp(&m, x[0], y[0], x[5], y[5], 0xFFFFFF);
-	putline_temp(&m, x[5], y[5], x[1], y[1], 0xFFFFFF);
-
-
+	draw_surface(&m);
 
 	mlx_put_image_to_window(m.ptr, m.win, m.main_im, 0, 0);
-
 	mlx_mouse_hook(m.win, mousehook, (void*)&m);
 	mlx_key_hook(m.win, keyhook, (void*)&m);
 	mlx_loop(m.ptr);

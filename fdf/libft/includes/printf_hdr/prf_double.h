@@ -89,7 +89,6 @@ void						ft_ipow_small_bignum(t_bignum *res,
 									unsigned int n, unsigned int pow);
 void						ft_imul_small_bignum(t_bignum *res, unsigned int n);
 void						normalize_bn(t_bignum *res);
-int							ft_nbrlen(long int a);
 void						ft_intpart(int pow, unsigned long int mant,
 										int exp, t_bigdec *bd);
 void						ft_fractpart(int pow, unsigned long int mant,

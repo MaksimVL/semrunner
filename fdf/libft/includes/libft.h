@@ -126,6 +126,7 @@ int					ft_pow(int n, int pow);
 t_list				*ft_lstfind(t_list *head, void *search_d,
 							int (*f)(void *, void *));
 void				ft_strset(char *str, char c, int len);
+int					ft_nbrlen(long int a);
 int					ft_printf(const char *format, ...);
 
 #endif
