@@ -119,15 +119,16 @@ void			draw_surface(t_mlx *m)
 	}
 }
 
-void iso(int *x, int *y, int z)
+
+void iso(t_mlx *m, int *x, int *y, int z)
 {
 	int prev_x;
 	int prev_y;
 
 	prev_x = *x;
 	prev_y = *y;
-	*x = (prev_x - prev_y) * cos(30.0 * M_PI / 180.0);
-	*y = -z + (prev_x + prev_y) * sin(30.0 * M_PI / 180.0);
+	*x = (prev_x - prev_y) * cos(m->angle_projection * M_PI / 180.0);
+	*y = -z + (prev_x + prev_y) * sin(m->angle_projection * M_PI / 180.0);
 }
 
 void iso_point(t_mlx *m, int i, int j)
@@ -139,39 +140,109 @@ void iso_point(t_mlx *m, int i, int j)
 	p = get_point(m, i, j);
 
 	shift_x = m->width / 2;
-	shift_y = m->width / 2;
+	shift_y = m->height / 2;
 
 	p->x -= shift_x;
 	p->y -= shift_y;
-	iso(&(p->x), &(p->y), p->z);
+	iso(m, &(p->x), &(p->y), p->z);
 	p->x += shift_x;
 	p->y += shift_y;
 
 }
 
-void			make_map_points(t_mlx *m, int zoom, int color)
+t_point get_iso_point(t_mlx *m, int i, int j)
 {
-	int shift_x;
-	int shift_y;
-	int i;
-	int j;
+	t_point		p;
+	int			shift_x;
+	int			shift_y;
 
-	shift_x = m->width / (m->map_x + 1 + zoom * 2);
-	shift_y = m->height / (m->map_y + 1 + zoom * 2);
+	p = *get_point(m, i, j);
+
+	shift_x = m->width / 2;
+	shift_y = m->height / 2;
+
+	p.x -= shift_x;
+	p.y -= shift_y;
+	iso(m, &(p.x), &(p.y), p.z);
+	p.x += shift_x;
+	p.y += shift_y;
+	return (p);
+}
+
+void			draw_iso_surface(t_mlx *m)
+{
+	int		i;
+	int		j;
+
 	i = 0;
 	while (i < m->map_y)
 	{
 		j = 0;
 		while (j < m->map_x)
 		{
-			get_point(m, i, j)->x = shift_x * (zoom + 1) + shift_x * j;
-			get_point(m, i, j)->y = shift_y * (zoom + 1) + shift_y * i;
-			get_point(m, i, j)->z = m->map[i * m->map_y + j];
+			if (j + 1 < m->map_x)
+				putline(m, get_iso_point(m, i, j), get_iso_point(m, i, j + 1), get_iso_point(m, i, j).color);
+			if (i + 1 < m->map_y)
+				putline(m, get_iso_point(m, i, j), get_iso_point(m, i + 1, j), get_iso_point(m, i, j).color);
+			j++;
+		}
+		i++;
+	}
+}
+
+void			draw_black_iso_surface(t_mlx *m)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (i < m->map_y)
+	{
+		j = 0;
+		while (j < m->map_x)
+		{
+			if (j + 1 < m->map_x)
+				putline(m, get_iso_point(m, i, j), get_iso_point(m, i, j + 1), 0x0);
+			if (i + 1 < m->map_y)
+				putline(m, get_iso_point(m, i, j), get_iso_point(m, i + 1, j), 0x0);
+			j++;
+		}
+		i++;
+	}
+}
+
+void			make_map_points(t_mlx *m, int color)
+{
+	int shift_x;
+	int shift_y;
+	int i;
+	int j;
+
+	if ((m->map_x + 1 + m->zoom * 2) == 0 || (m->map_y + 1 + m->zoom * 2) == 0)
+		m->zoom +=1;
+
+	shift_x = m->width / (m->map_x + 1 + m->zoom * 2);
+	shift_y = m->height / (m->map_y + 1 + m->zoom * 2);
+	i = 0;
+	while (i < m->map_y)
+	{
+		j = 0;
+		while (j < m->map_x)
+		{
+			get_point(m, i, j)->x = shift_x * (m->zoom + 1) + shift_x * j;
+			get_point(m, i, j)->y = shift_y * (m->zoom + 1) + shift_y * i;
+			get_point(m, i, j)->z = m->map[i * m->map_x + j] * m->h;
 			get_point(m, i, j)->color = color;
 			j++;
 		}
 		i++;
 	}
+	if (m->x_angle != 0)
+		x_rotation(m);
+	if (m->z_angle != 0)
+		z_rotation(m);
+	if (m->y_angle != 0)
+		y_rotation(m);
 }
 
 void			make_map_iso_points(t_mlx *m)
@@ -186,6 +257,96 @@ void			make_map_iso_points(t_mlx *m)
 		while (j < m->map_x)
 		{
 			iso_point(m, i, j);
+			j++;
+		}
+		i++;
+	}
+}
+
+void	z_rotation(t_mlx *m)
+{
+	int i;
+	int j;
+	int shift_x;
+	int shift_y;
+	double angle;
+	t_point prev;
+
+	shift_x = m->width / 2;
+	shift_y = m->height / 2;
+	angle = m->z_angle * M_PI / 180;
+
+	i = 0;
+	while (i < m->map_y)
+	{
+		j = 0;
+		while (j < m->map_x)
+		{
+			prev = *get_point(m, i, j);
+			prev.x -= shift_x;
+			prev.y -= shift_y;
+			get_point(m, i, j)->x = prev.x * cos(angle) - prev.y * sin(angle) + shift_x;
+			get_point(m, i, j)->y = prev.x * sin(angle) + prev.y * cos(angle) + shift_x;
+			j++;
+		}
+		i++;
+	}
+}
+
+void	x_rotation(t_mlx *m)
+{
+	int i;
+	int j;
+	int shift_y;
+	int shift_z;
+	double angle;
+	t_point prev;
+
+	shift_y = m->height / 2;
+	shift_z = 0;
+
+	i = 0;
+	angle = m->x_angle * M_PI / 180;
+	while (i < m->map_y)
+	{
+		j = 0;
+		while (j < m->map_x)
+		{
+			prev = *get_point(m, i, j);
+			prev.y -= shift_y;
+			prev.z -= shift_z;
+			get_point(m, i, j)->y = prev.y * cos(angle) - prev.z * sin(angle) + shift_y;
+			get_point(m, i, j)->z = -prev.y * sin(angle) + prev.z * cos(angle) + shift_z;
+			j++;
+		}
+		i++;
+	}
+}
+
+void	y_rotation(t_mlx *m)
+{
+	int i;
+	int j;
+	int shift_x;
+	int shift_z;
+	double angle;
+	t_point prev;
+
+	shift_x = m->width / 2;
+	shift_z = 0;
+
+	i = 0;
+	angle = m->y_angle * M_PI / 180;
+	while (i < m->map_y)
+	{
+		j = 0;
+		while (j < m->map_x)
+		{
+			prev = *get_point(m, i, j);
+			prev.x -= shift_x;
+			prev.z -= shift_z;
+			get_point(m, i, j)->x = prev.x * cos(angle) + prev.z * sin(angle) + shift_x;
+			get_point(m, i, j)->z = -prev.x * sin(angle) + prev.z * cos(angle) + shift_z;
 			j++;
 		}
 		i++;

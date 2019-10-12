@@ -29,6 +29,13 @@ typedef struct		s_mlx
 	int				color;
 	t_point			point1;
 	t_point			point2;
+	int				zoom;
+	double			h;
+	int				x_angle;
+	int				y_angle;
+	int				z_angle;
+	int				rotate_prec;
+	int				angle_projection;
 }					t_mlx;
 
 void				tmlx_destroy(t_mlx *m);
@@ -40,7 +47,12 @@ int					put_map(t_mlx *m, int fd);
 void				putpoint(t_mlx *m, t_point p);
 t_point				*get_point(t_mlx *m, int i, int j);
 void				draw_surface(t_mlx *m);
-void				make_map_points(t_mlx *m, int zoom, int color);
+void				make_map_points(t_mlx *m, int color);
 void				make_map_iso_points(t_mlx *m);
+void				draw_iso_surface(t_mlx *m);
+void				draw_black_iso_surface(t_mlx *m);
+void				z_rotation(t_mlx *m);
+void				x_rotation(t_mlx *m);
+void				y_rotation(t_mlx *m);
 
 #endif

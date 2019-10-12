@@ -37,5 +37,12 @@ int		tmlx_initialize(t_mlx *m, int x, int y, char *title)
 	m->map_points = NULL;
 	m->width = x;
 	m->height = y;
+	m->zoom = 0;
+	m->h = 1;
+	m->x_angle = 0;
+	m->y_angle = 0;
+	m->z_angle = 0;
+	m->rotate_prec = 15;
+	m->angle_projection = 30;
 	return (1);
 }

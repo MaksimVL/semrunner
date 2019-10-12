@@ -58,6 +58,48 @@ int		keyhook(int keycode, void *m)
 		tmlx_destroy(m);
 		exit(0);
 	}
+	if (keycode == 13)
+		((t_mlx*)m)->zoom -= 1;
+	else if (keycode == 1)
+		((t_mlx*)m)->zoom += 1;
+	else if (keycode == 8)
+		((t_mlx*)m)->h *= 0.6666667;
+	else if (keycode == 14)
+		((t_mlx*)m)->h *= 1.5;
+	else if (keycode == 0)
+		((t_mlx*)m)->z_angle -= ((t_mlx*)m)->rotate_prec;
+	else if (keycode == 2)
+		((t_mlx*)m)->z_angle += ((t_mlx*)m)->rotate_prec;
+	else if (keycode == 15)
+		((t_mlx*)m)->x_angle -= ((t_mlx*)m)->rotate_prec;
+	else if (keycode == 3)
+		((t_mlx*)m)->x_angle += ((t_mlx*)m)->rotate_prec;
+	else if (keycode == 6)
+		((t_mlx*)m)->y_angle -= ((t_mlx*)m)->rotate_prec;
+	else if (keycode == 7)
+		((t_mlx*)m)->y_angle += ((t_mlx*)m)->rotate_prec;
+	draw_black_iso_surface((t_mlx*)m);
+	make_map_points((t_mlx*)m, 0xFFFFFF);
+	mlx_clear_window(((t_mlx*)m)->ptr, ((t_mlx*)m)->win);
+	draw_iso_surface((t_mlx*)m);
+	mlx_put_image_to_window(((t_mlx*)m)->ptr, ((t_mlx*)m)->win, ((t_mlx*)m)->main_im, 1, 0);
+
+/*	if (keycode == 0 || keycode == 2)
+	{
+		draw_black_iso_surface((t_mlx*)m);
+		mlx_clear_window(((t_mlx*)m)->ptr, ((t_mlx*)m)->win);
+		z_rotation((t_mlx*)m, keycode == 0 ? -0.16 : 0.16);
+		draw_iso_surface((t_mlx*)m);
+		mlx_put_image_to_window(((t_mlx*)m)->ptr, ((t_mlx*)m)->win, ((t_mlx*)m)->main_im, 1, 0);
+	}
+	if (keycode == 15 || keycode == 3)
+	{
+		draw_black_iso_surface((t_mlx*)m);
+		mlx_clear_window(((t_mlx*)m)->ptr, ((t_mlx*)m)->win);
+		x_rotation((t_mlx*)m, keycode == 15 ? -0.16 : 0.16);
+		draw_iso_surface((t_mlx*)m);
+		mlx_put_image_to_window(((t_mlx*)m)->ptr, ((t_mlx*)m)->win, ((t_mlx*)m)->main_im, 1, 0);
+	}*/
 	return (1);
 }
 
@@ -131,12 +173,12 @@ int main(int argc, char **argv)
 
 	print_map(&m);
 
-	make_map_points(&m, 0, 0xFFFFFF);
-	make_map_iso_points(&m);
+	make_map_points(&m, 0xFFFFFF);
+	//make_map_iso_points(&m);
 
-	draw_surface(&m);
+	draw_iso_surface(&m);
 
-	mlx_put_image_to_window(m.ptr, m.win, m.main_im, 0, 0);
+	mlx_put_image_to_window(m.ptr, m.win, m.main_im, 1, 0);
 	mlx_mouse_hook(m.win, mousehook, (void*)&m);
 	mlx_key_hook(m.win, keyhook, (void*)&m);
 	mlx_loop(m.ptr);
