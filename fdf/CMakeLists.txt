@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
-project(fdf)
+project(fdf C)
 
-set(CMAKE_CXX_STANDARD 99)
+set(CMAKE_C_STANDARD 11)
 
 add_custom_target(fdf
         COMMAND make
@@ -11,12 +11,11 @@ add_compile_options(-Wall -Wextra -Werror
         )
 
 include_directories(includes)
-include_directories(libft)
 include_directories(libft/includes)
 include_directories(libft/includes/printf_hdr)
 include_directories(mlx)
 
-add_executable(fdf_phony
+add_executable(fdf_test
         includes/fdf.h
         libft/includes/printf_hdr/ft_options.h
         libft/includes/printf_hdr/ft_outbuff.h
@@ -50,7 +49,6 @@ add_executable(fdf_phony
         libft/sources/printf_src/dbl_input.c
         libft/sources/printf_src/double.c
         libft/sources/printf_src/extend_dollar.c
-        libft/sources/printf_src/ft_nbrlen.c
         libft/sources/printf_src/ft_printf.c
         libft/sources/printf_src/get_item_by_size.c
         libft/sources/printf_src/global_bak.c
@@ -106,6 +104,7 @@ add_executable(fdf_phony
         libft/sources/ft_memdel.c
         libft/sources/ft_memmove.c
         libft/sources/ft_memset.c
+        libft/sources/ft_nbrlen.c
         libft/sources/ft_outbuff.c
         libft/sources/ft_outbuff_dst.c
         libft/sources/ft_pow.c
@@ -151,11 +150,12 @@ add_executable(fdf_phony
         libft/sources/ft_toupper.c
         libft/sources/ft_zerostr.c
         libft/sources/get_next_line.c
-        mlx/man1/mlx.1
-        mlx/man1/mlx_loop.1
-        mlx/man1/mlx_new_image.1
-        mlx/man1/mlx_new_window.1
-        mlx/man1/mlx_pixel_put.1
-        mlx/libmlx.a
         mlx/mlx.h
-        main.c)
+        drawline.c
+        initialize_mlx.c
+        main.c
+        readfile.c
+        draw.c
+        color.c
+        rotation.c
+        get_proj_point.c)
