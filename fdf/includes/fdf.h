@@ -50,6 +50,8 @@ typedef struct		s_mlx
 	int				projection_type;
 	int				max_h;
 	int				min_h;
+	int				camera_x;
+	int				camera_y;
 	int				type_color_spectrum;
 }					t_mlx;
 

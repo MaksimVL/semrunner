@@ -62,6 +62,18 @@ void	keyhook2(int keycode, void *m)
 			++(((t_mlx*)m)->type_color_spectrum) % 2;
 }
 
+void	keyhook3(int keycode, void *m)
+{
+	if (keycode == 32)
+		((t_mlx*)m)->camera_y += 40 * ((t_mlx*)m)->zoom;
+	else if (keycode == 38)
+		((t_mlx*)m)->camera_y -= 40 * ((t_mlx*)m)->zoom;
+	else if (keycode == 4)
+		((t_mlx*)m)->camera_x += 40 * ((t_mlx*)m)->zoom;
+	else if (keycode == 40)
+		((t_mlx*)m)->camera_x -= 40 * ((t_mlx*)m)->zoom;
+}
+
 int		keyhook(int keycode, void *m)
 {
 	draw_surface((t_mlx*)m, 0);
@@ -71,6 +83,7 @@ int		keyhook(int keycode, void *m)
 		reset_map((t_mlx*)m);
 	keyhook1(keycode, m);
 	keyhook2(keycode, m);
+	keyhook3(keycode, m);
 	make_map_points((t_mlx*)m, 0xFFFFFF);
 	draw_surface((t_mlx*)m, 1);
 	mlx_put_image_to_window(((t_mlx*)m)->ptr, ((t_mlx*)m)->win,

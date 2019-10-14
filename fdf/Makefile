@@ -12,8 +12,9 @@
 
 NAME = fdf
 
-SRC_DIR := ./sources/
+SRC_DIR := ./sources
 INC_DIR := ./includes
+INCMLX_DIR := ./mlx
 INCLIBFT_DIR := ./libft/includes
 OBJ_DIR := ./objects
 LIB_DIR := ./libft
@@ -26,7 +27,7 @@ OBJECTS = $(SOURCES:.c=.o)
 
 CC := gcc
 CFLAGS := -Wall -Wextra -Werror -g3
-MLXPARAMS := -I /mlx -L ./mlx -lmlx -framework OpenGL -framework AppKit
+MLXPARAMS := -L ./mlx -lmlx -framework OpenGL -framework AppKit
 
 L_FT := libft
 
@@ -59,8 +60,8 @@ $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
 $(OBJ_DIR)/%.o:$(SRC_DIR)/%.c $(HDRS)
-	$(CC) $(CFLAGS) $(LIB_INC) -I $(INC_DIR) -I $(INCLIBFT_DIR) -o $@ -c $<
+	$(CC) $(CFLAGS) $(LIB_INC) -I $(INC_DIR) -I $(INCLIBFT_DIR) -I $(INCMLX_DIR) -o $@ -c $<
 
 $(NAME): $(OBJ) $(HEADER_LIB) $(HDRS) $(FULL_ALL_LIBFT)
 	$(MAKE) -C $(L_FT)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) -I $(INCLIBFT_DIR) -L libft -lft $(MLXPARAMS)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) -I $(INCLIBFT_DIR) -I $(INCMLX_DIR) -L libft -lft $(MLXPARAMS)

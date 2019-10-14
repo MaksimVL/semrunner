@@ -23,48 +23,65 @@ static void		strcatnbr(char *str, int nbr)
 	ft_memdel((void**)&tmp_str);
 }
 
-static void		curr_cond_legend(t_mlx *m, int color)
+static void		curr_angles_legend(t_mlx *m, int color)
 {
 	char	str[100];
 
 	str[0] = '\0';
-	if (m->projection_type == 0)
-		ft_strcat(str, "curr_cond: proj: ISO, ");
-	else if (m->projection_type == 1)
-		ft_strcat(str, "curr_cond: proj: z, ");
-	else if (m->projection_type == 2)
-		ft_strcat(str, "curr_cond: proj: x, ");
-	else if (m->projection_type == 3)
-		ft_strcat(str, "curr_cond: proj: y, ");
-	if (m->angle_projection_type == 0)
-		ft_strcat(str, "angle of proj = 26.57, ");
-	else if (m->angle_projection_type == 1)
-		ft_strcat(str, "angle of proj = 30.00, ");
-	else if (m->angle_projection_type == 2)
-		ft_strcat(str, "angle of proj = 45.00, ");
-	ft_strcat(str, "x_ang = ");
+	ft_strcat(str, "x_angle = ");
 	strcatnbr(str, m->x_angle);
-	ft_strcat(str, ", y_ang = ");
+	mlx_string_put(m->ptr, m->win, 10, 410, color, str);
+	str[0] = '\0';
+	ft_strcat(str, "y_angle = ");
 	strcatnbr(str, m->y_angle);
-	ft_strcat(str, ", z_ang = ");
+	mlx_string_put(m->ptr, m->win, 10, 430, color, str);
+	str[0] = '\0';
+	ft_strcat(str, "z_angle = ");
 	strcatnbr(str, m->z_angle);
-	mlx_string_put(m->ptr, m->win, 10, 10, color, str);
+	mlx_string_put(m->ptr, m->win, 10, 450, color, str);
+}
+
+static void		curr_cond_legend(t_mlx *m, int color)
+{
+	mlx_string_put(m->ptr, m->win, 10, 350, 0xFFFFFF, "CURRENT CONDITIONS:");
+	if (m->projection_type == 0)
+		mlx_string_put(m->ptr, m->win, 10, 370, color, "projection: ISO");
+	else if (m->projection_type == 1)
+		mlx_string_put(m->ptr, m->win, 10, 370, color, "projection: z");
+	else if (m->projection_type == 2)
+		mlx_string_put(m->ptr, m->win, 10, 370, color, "projection: x");
+	else if (m->projection_type == 3)
+		mlx_string_put(m->ptr, m->win, 10, 370, color, "projection: y");
+	if (m->angle_projection_type == 0)
+		mlx_string_put(m->ptr, m->win, 10, 390, color, "angle proj = 26.57");
+	else if (m->angle_projection_type == 1)
+		mlx_string_put(m->ptr, m->win, 10, 390, color, "angle proj = 30.00");
+	else if (m->angle_projection_type == 2)
+		mlx_string_put(m->ptr, m->win, 10, 390, color, "angle proj = 45.00");
 }
 
 void			main_legend(t_mlx *m)
 {
 	int color;
 
-	color = 0x5f5e70;
-	curr_cond_legend(m, color);
-	mlx_string_put(m->ptr, m->win, 10, 30, color,
-			"projection: 1: ISO, 2: z, 3: x, 4: y, 5: change ISO angle");
-	mlx_string_put(m->ptr, m->win, 10, 47, color, "up, down: +-zoom");
-	mlx_string_put(m->ptr, m->win, 10, 64, color, "r, f: +-height");
-	mlx_string_put(m->ptr, m->win, 10, 81, color, "w, s: x_rotation");
-	mlx_string_put(m->ptr, m->win, 10, 98, color, "a, d: y_rotation");
-	mlx_string_put(m->ptr, m->win, 10, 115, color, "left, right: z_rotation");
-	mlx_string_put(m->ptr, m->win, 10, 132, color, "x: reset map");
-	mlx_string_put(m->ptr, m->win, 10, 149, color, "z: change color spectrum");
-	mlx_string_put(m->ptr, m->win, 10, 166, color, "q, esc: exit");
+	color = 0x5f9e90;
+	curr_cond_legend(m, 0x9f9e90);
+	curr_angles_legend(m, 0x9f9e90);
+	mlx_string_put(m->ptr, m->win, 10, 10, 0xFFFFFF,
+			"KEY BINDINGS:");
+	mlx_string_put(m->ptr, m->win, 10, 30, color,  "+-zoom     : up,  down");
+	mlx_string_put(m->ptr, m->win, 10, 50, color,  "z_rotation : left, right");
+	mlx_string_put(m->ptr, m->win, 10, 70, color,  "+-height   : r, f");
+	mlx_string_put(m->ptr, m->win, 10, 90, color, "x_rotation : w, s");
+	mlx_string_put(m->ptr, m->win, 10, 110, color, "y_rotation : a, d");
+	mlx_string_put(m->ptr, m->win, 10, 130, color, "cam move   : u, j, h, k");
+	mlx_string_put(m->ptr, m->win, 10, 150, color, "reset map  : x");
+	mlx_string_put(m->ptr, m->win, 10, 170, color, "color      : z");
+	mlx_string_put(m->ptr, m->win, 10, 190, color, "exit       : q, esc");
+	mlx_string_put(m->ptr, m->win, 10, 220, color, "type projection:");
+	mlx_string_put(m->ptr, m->win, 10, 240, color, "ISO        : 1");
+	mlx_string_put(m->ptr, m->win, 10, 260, color, "parallel z : 2");
+	mlx_string_put(m->ptr, m->win, 10, 280, color, "parallel x : 3");
+	mlx_string_put(m->ptr, m->win, 10, 300, color, "parallel y : 4");
+	mlx_string_put(m->ptr, m->win, 10, 320, color, "ISO angle  : 5");
 }

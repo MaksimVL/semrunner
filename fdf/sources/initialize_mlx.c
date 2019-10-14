@@ -31,13 +31,15 @@ void	tmlx_destroy(t_mlx *m, int value_exit)
 
 void	reset_map(t_mlx *m)
 {
-	m->zoom = 1;
+	m->zoom = 0.6666667;
 	m->h = 1;
 	m->x_angle = 0;
 	m->y_angle = 0;
 	m->z_angle = 0;
 	m->projection_type = 0;
 	m->type_color_spectrum = 1;
+	m->camera_x = 0;
+	m->camera_y = 0;
 }
 
 void	tmlx_initialize(t_mlx *m, int x, int y)
