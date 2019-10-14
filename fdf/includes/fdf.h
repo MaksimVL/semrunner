@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/14 13:19:24 by odrinkwa          #+#    #+#             */
+/*   Updated: 2019/10/14 17:12:22 by odrinkwa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FDF_H
 # define FDF_H
 
@@ -15,13 +27,13 @@ typedef struct		s_point
 
 typedef struct		s_mlx
 {
-	void 			*ptr;
+	void			*ptr;
 	void			*win;
 	void			*main_im;
 	int				*data_mainim;
 	int				width;
 	int				height;
-	int 			bits_pixel;
+	int				bits_pixel;
 	int				size_line;
 	int				endian;
 	int				*map;
@@ -35,14 +47,15 @@ typedef struct		s_mlx
 	int				z_angle;
 	int				rotate_prec;
 	int				angle_projection_type;
-	int 			projection_type;
-	int 			max_h;
-	int 			min_h;
+	int				projection_type;
+	int				max_h;
+	int				min_h;
 	int				type_color_spectrum;
 }					t_mlx;
 
 void				tmlx_destroy(t_mlx *m, int value_exit);
-void				tmlx_initialize(t_mlx *m, int x, int y, char *title);
+void				tmlx_initialize(t_mlx *m, int x, int y);
+void				tmlx_create_mlx(t_mlx *m, char *title);
 void				reset_map(t_mlx *m);
 void				putpixel(t_mlx *m, int x, int y, int color);
 void				putline(t_mlx *m, t_point start, t_point end, int color);
@@ -54,12 +67,12 @@ void				z_rotation(t_mlx *m);
 void				x_rotation(t_mlx *m);
 void				y_rotation(t_mlx *m);
 void				draw_surface(t_mlx *m, int not_black);
-int 				color_gradient(t_point start, t_point end, double perc);
+int					color_gradient(t_point start, t_point end, double perc);
 void				correct_color(t_mlx *m);
 double				perc(int start, int end, int curr);
 void				iso(t_mlx *m, int *x, int *y, int z);
 t_point				get_proj_point(t_mlx *m, int i, int j);
-void 				main_legend(t_mlx *m);
+void				main_legend(t_mlx *m);
 int					keyhook(int keycode, void *m);
 
 #endif

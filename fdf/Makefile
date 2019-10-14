@@ -6,26 +6,27 @@
 #    By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 12:13:46 by odrinkwa          #+#    #+#              #
-#    Updated: 2019/10/12 17:07:06 by odrinkwa         ###   ########.fr        #
+#    Updated: 2019/10/14 15:17:25 by odrinkwa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
-SRC_DIR := ./
+SRC_DIR := ./sources/
 INC_DIR := ./includes
 INCLIBFT_DIR := ./libft/includes
 OBJ_DIR := ./objects
 LIB_DIR := ./libft
 
 SRC  := main.c drawline.c initialize_mlx.c readfile.c draw.c color.c rotation.c \
-	get_proj_point.c legend.c keyhook.c
+	get_proj_point.c legend.c keyhook.c draw_surface.c
 HDRS := includes/fdf.h
 OBJ  := $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 OBJECTS = $(SOURCES:.c=.o)
 
 CC := gcc
-CFLAGS := -Wall -Wextra -Werror -g3
+#CFLAGS := -Wall -Wextra -Werror -g3
+CFLAGS := -g3
 MLXPARAMS := -I /mlx -L ./mlx -lmlx -framework OpenGL -framework AppKit
 
 L_FT := libft

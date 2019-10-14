@@ -1,6 +1,16 @@
-#include "./mlx/mlx.h"
-#include "./libft/includes/libft.h"
-#include "./includes/fdf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_proj_point.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/14 12:46:34 by odrinkwa          #+#    #+#             */
+/*   Updated: 2019/10/14 12:46:35 by odrinkwa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "fdf.h"
 
 static t_point	get_iso_point(t_mlx *m, int i, int j)
 {
@@ -9,10 +19,8 @@ static t_point	get_iso_point(t_mlx *m, int i, int j)
 	int			shift_y;
 
 	p = *get_point(m, i, j);
-
 	shift_x = m->width / 2;
 	shift_y = m->height / 2;
-
 	p.x -= shift_x;
 	p.y -= shift_y;
 	iso(m, &(p.x), &(p.y), p.z);
@@ -36,9 +44,7 @@ static t_point	get_xproj_point(t_mlx *m, int i, int j)
 	int			prev;
 
 	p = *get_point(m, i, j);
-
 	shift_z = m->width / 2;
-
 	prev = p.x;
 	p.x = p.z + shift_z;
 	p.z = -prev;
@@ -52,9 +58,7 @@ static t_point	get_yproj_point(t_mlx *m, int i, int j)
 	int			prev;
 
 	p = *get_point(m, i, j);
-
 	shift_z = m->height / 2;
-
 	prev = p.y;
 	p.y = -p.z + shift_z;
 	p.z = -prev;

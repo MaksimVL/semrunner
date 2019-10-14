@@ -15,7 +15,7 @@ include_directories(libft/includes)
 include_directories(libft/includes/printf_hdr)
 include_directories(mlx)
 
-add_executable(fdf_test
+add_executable(fdf_
         includes/fdf.h
         libft/includes/printf_hdr/ft_options.h
         libft/includes/printf_hdr/ft_outbuff.h
@@ -151,11 +151,13 @@ add_executable(fdf_test
         libft/sources/ft_zerostr.c
         libft/sources/get_next_line.c
         mlx/mlx.h
-        drawline.c
-        initialize_mlx.c
-        main.c
-        readfile.c
-        draw.c
-        color.c
-        rotation.c
-        get_proj_point.c)
+        sources/color.c
+        sources/draw.c
+        sources/drawline.c
+        sources/get_proj_point.c
+        sources/initialize_mlx.c
+        sources/keyhook.c
+        sources/legend.c
+        sources/main.c
+        sources/readfile.c
+        sources/rotation.c)

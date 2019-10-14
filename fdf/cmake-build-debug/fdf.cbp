@@ -37,8 +37,8 @@
 					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/semrunner_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="fdf_test">
-				<Option output="/Users/odrinkwa/semrunner_git/fdf/cmake-build-debug/fdf_test" prefix_auto="0" extension_auto="0"/>
+			<Target title="fdf_">
+				<Option output="/Users/odrinkwa/semrunner_git/fdf/cmake-build-debug/fdf_" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/Users/odrinkwa/semrunner_git/fdf/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -56,14 +56,14 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/semrunner_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 fdf_test"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/semrunner_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 fdf_"/>
 					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/semrunner_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/semrunner_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/semrunner_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="fdf_test/fast">
-				<Option output="/Users/odrinkwa/semrunner_git/fdf/cmake-build-debug/fdf_test" prefix_auto="0" extension_auto="0"/>
+			<Target title="fdf_/fast">
+				<Option output="/Users/odrinkwa/semrunner_git/fdf/cmake-build-debug/fdf_" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/Users/odrinkwa/semrunner_git/fdf/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -81,7 +81,7 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/semrunner_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 fdf_test/fast"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/semrunner_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 fdf_/fast"/>
 					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/semrunner_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/semrunner_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/odrinkwa/semrunner_git/fdf/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -98,434 +98,440 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/color.c">
-			<Option target="fdf_test"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/draw.c">
-			<Option target="fdf_test"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/drawline.c">
-			<Option target="fdf_test"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/get_proj_point.c">
-			<Option target="fdf_test"/>
-		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/includes/fdf.h">
-			<Option target="fdf_test"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/initialize_mlx.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/includes/libft.h">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/includes/printf_hdr/ft_options.h">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/includes/printf_hdr/ft_outbuff.h">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/includes/printf_hdr/ft_outbuff_dst.h">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/includes/printf_hdr/ft_printf.h">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/includes/printf_hdr/prf_arg_mode.h">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/includes/printf_hdr/prf_double.h">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/includes/printf_hdr/prf_extend_dollar.h">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/includes/printf_hdr/prf_get_item_by_size.h">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/includes/printf_hdr/prf_global_bak.h">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/includes/printf_hdr/prf_handle_comma_flag.h">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/includes/printf_hdr/prf_handle_spec.h">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/includes/printf_hdr/prf_handle_stars.h">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/includes/printf_hdr/prf_print_output.h">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/includes/printf_hdr/prf_printf_spec.h">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/includes/printf_hdr/prf_read_spec.h">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/includes/printf_hdr/prf_spectostr_funcs.h">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_atoi.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_bzero.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_dictadd.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_dictclearzero.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_dictdelbykey.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_dictdelelement.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_dictgetoraddvalue.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_dictgetvalue.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_dictnew.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_free.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_getnbr_base.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_isalnum.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_isalpha.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_isascii.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_isdigit.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_isprint.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_itoa.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_lstadd.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_lstaddback.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_lstdel.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_lstdeli.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_lstdelone.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_lstfind.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_lsti.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_lstiter.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_lstlen.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_lstmap.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_lstnew.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_memalloc.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_memccpy.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_memchr.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_memcmp.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_memcpy.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_memdel.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_memmove.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_memset.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_nbrlen.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_outbuff.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_outbuff_dst.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_pow.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_printstrsplit.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_putchar.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_putchar_fd.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_putendl.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_putendl_fd.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_putnbr.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_putnbr_fd.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_putstr.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_putstr_fd.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_skip_digits.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_strcat.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_strchr.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_strclr.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_strcmp.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_strcpy.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_strdel.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_strdup.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_strequ.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_striter.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_striteri.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_strjoin.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_strlcat.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_strlen.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_strmap.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_strmapi.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_strncat.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_strncmp.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_strncpy.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_strnequ.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_strnew.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_strnjoin.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_strnstr.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_strrchr.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_strset.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_strsplit.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_strstr.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_strsub.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_strtrim.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_tolower.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_toupper.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/ft_zerostr.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/get_next_line.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/printf_src/arg_mode.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/printf_src/bn_auxfunc.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/printf_src/bn_fix.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/printf_src/bn_fstr.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/printf_src/bn_init.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/printf_src/bn_oppow.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/printf_src/bn_opsub.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/printf_src/bn_opsummul.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/printf_src/bn_outp.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/printf_src/bn_round.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/printf_src/change_fd.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/printf_src/change_outstr.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/printf_src/dbl_input.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/printf_src/double.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/printf_src/extend_dollar.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/printf_src/ft_printf.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/printf_src/get_item_by_size.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/printf_src/global_bak.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/printf_src/handle_comma_flag.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/printf_src/handle_spec.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/printf_src/handle_stars.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/printf_src/print_output.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/printf_src/read_spec.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/printf_src/spectostr_bighex.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/printf_src/spectostr_bin.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/printf_src/spectostr_char.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/printf_src/spectostr_float.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/printf_src/spectostr_lowhex.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/printf_src/spectostr_oct.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/printf_src/spectostr_percent.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/printf_src/spectostr_ptr.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/printf_src/spectostr_sdec.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/printf_src/spectostr_string.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/libft/sources/printf_src/spectostr_udec.c">
-			<Option target="fdf_test"/>
-		</Unit>
-		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/main.c">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/mlx/mlx.h">
-			<Option target="fdf_test"/>
+			<Option target="fdf_"/>
 		</Unit>
-		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/readfile.c">
-			<Option target="fdf_test"/>
+		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/sources/color.c">
+			<Option target="fdf_"/>
 		</Unit>
-		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/rotation.c">
-			<Option target="fdf_test"/>
+		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/sources/draw.c">
+			<Option target="fdf_"/>
+		</Unit>
+		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/sources/drawline.c">
+			<Option target="fdf_"/>
+		</Unit>
+		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/sources/get_proj_point.c">
+			<Option target="fdf_"/>
+		</Unit>
+		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/sources/initialize_mlx.c">
+			<Option target="fdf_"/>
+		</Unit>
+		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/sources/keyhook.c">
+			<Option target="fdf_"/>
+		</Unit>
+		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/sources/legend.c">
+			<Option target="fdf_"/>
+		</Unit>
+		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/sources/main.c">
+			<Option target="fdf_"/>
+		</Unit>
+		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/sources/readfile.c">
+			<Option target="fdf_"/>
+		</Unit>
+		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/sources/rotation.c">
+			<Option target="fdf_"/>
 		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>

@@ -1,16 +1,26 @@
-#include "./mlx/mlx.h"
-#include "./libft/includes/libft.h"
-#include "./includes/fdf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   drawline.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/14 13:12:43 by odrinkwa          #+#    #+#             */
+/*   Updated: 2019/10/14 13:13:20 by odrinkwa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "fdf.h"
 
 t_point			*get_point(t_mlx *m, int i, int j)
 {
-	return &(m->map_points[i * m->map_x + j]);
+	return (&(m->map_points[i * m->map_x + j]));
 }
 
 void			iso(t_mlx *m, int *x, int *y, int z)
 {
-	int prev_x;
-	int prev_y;
+	int		prev_x;
+	int		prev_y;
 	double	angle_projection;
 
 	if (m->angle_projection_type == 0)
@@ -62,19 +72,19 @@ static void		correcting_map(t_mlx *m)
 
 void			make_map_points(t_mlx *m, int color)
 {
-	double shift_x;
-	double shift_y;
-	double step;
-	int i;
-	int j;
+	double	shift_x;
+	double	shift_y;
+	double	step;
+	int		i;
+	int		j;
 
 	step = m->width / (m->map_x + 1) < m->height / (m->map_y + 1) ?
 			m->width / (m->map_x + 1) : m->height / (m->map_y + 1);
 	step *= m->zoom;
 	shift_x = (m->width - (m->map_x * step)) / 2;
 	shift_y = (m->height - (m->map_y * step)) / 2;
-	i = 0;
-	while (i < m->map_y)
+	i = -1;
+	while (++i < m->map_y)
 	{
 		j = 0;
 		while (j < m->map_x)
@@ -85,7 +95,6 @@ void			make_map_points(t_mlx *m, int color)
 			get_point(m, i, j)->color = color;
 			j++;
 		}
-		i++;
 	}
 	correcting_map(m);
 }
