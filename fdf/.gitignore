@@ -260,3 +260,4 @@ Network Trash Folder
 Temporary Items
 .apdisk
 /cmake-build-debug/
+!/.gitignore

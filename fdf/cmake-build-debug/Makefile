@@ -3322,6 +3322,33 @@ sources/draw.c.s:
 	$(MAKE) -f CMakeFiles/fdf_.dir/build.make CMakeFiles/fdf_.dir/sources/draw.c.s
 .PHONY : sources/draw.c.s
 
+sources/draw_surface.o: sources/draw_surface.c.o
+
+.PHONY : sources/draw_surface.o
+
+# target to build an object file
+sources/draw_surface.c.o:
+	$(MAKE) -f CMakeFiles/fdf_.dir/build.make CMakeFiles/fdf_.dir/sources/draw_surface.c.o
+.PHONY : sources/draw_surface.c.o
+
+sources/draw_surface.i: sources/draw_surface.c.i
+
+.PHONY : sources/draw_surface.i
+
+# target to preprocess a source file
+sources/draw_surface.c.i:
+	$(MAKE) -f CMakeFiles/fdf_.dir/build.make CMakeFiles/fdf_.dir/sources/draw_surface.c.i
+.PHONY : sources/draw_surface.c.i
+
+sources/draw_surface.s: sources/draw_surface.c.s
+
+.PHONY : sources/draw_surface.s
+
+# target to generate assembly for a file
+sources/draw_surface.c.s:
+	$(MAKE) -f CMakeFiles/fdf_.dir/build.make CMakeFiles/fdf_.dir/sources/draw_surface.c.s
+.PHONY : sources/draw_surface.c.s
+
 sources/drawline.o: sources/drawline.c.o
 
 .PHONY : sources/drawline.o
@@ -3902,6 +3929,9 @@ help:
 	@echo "... sources/draw.o"
 	@echo "... sources/draw.i"
 	@echo "... sources/draw.s"
+	@echo "... sources/draw_surface.o"
+	@echo "... sources/draw_surface.i"
+	@echo "... sources/draw_surface.s"
 	@echo "... sources/drawline.o"
 	@echo "... sources/drawline.i"
 	@echo "... sources/drawline.s"

@@ -3,6 +3,7 @@ project(fdf C)
 
 set(CMAKE_C_STANDARD 11)
 
+
 add_custom_target(fdf
         COMMAND make
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
@@ -153,6 +154,7 @@ add_executable(fdf_
         mlx/mlx.h
         sources/color.c
         sources/draw.c
+        sources/draw_surface.c
         sources/drawline.c
         sources/get_proj_point.c
         sources/initialize_mlx.c

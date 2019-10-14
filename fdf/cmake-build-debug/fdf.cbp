@@ -509,6 +509,9 @@
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/sources/draw.c">
 			<Option target="fdf_"/>
 		</Unit>
+		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/sources/draw_surface.c">
+			<Option target="fdf_"/>
+		</Unit>
 		<Unit filename="/Users/odrinkwa/semrunner_git/fdf/sources/drawline.c">
 			<Option target="fdf_"/>
 		</Unit>

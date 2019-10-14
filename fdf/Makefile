@@ -6,7 +6,7 @@
 #    By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 12:13:46 by odrinkwa          #+#    #+#              #
-#    Updated: 2019/10/14 15:17:25 by odrinkwa         ###   ########.fr        #
+#    Updated: 2019/10/14 18:36:28 by odrinkwa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,13 +25,14 @@ OBJ  := $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 OBJECTS = $(SOURCES:.c=.o)
 
 CC := gcc
-#CFLAGS := -Wall -Wextra -Werror -g3
-CFLAGS := -g3
+CFLAGS := -Wall -Wextra -Werror -g3
 MLXPARAMS := -I /mlx -L ./mlx -lmlx -framework OpenGL -framework AppKit
 
 L_FT := libft
 
-#include $(L_FT)/libft_base.mk
+include $(L_FT)/libft_base.mk
+TMP = $(subst ./, /, $(ALL_LIBFT))
+FULL_ALL_LIBFT = $(addprefix $(L_FT),$(TMP))
 
 SRC_LIB = $(addprefix $(L_FT)/,$(LIBFT_SRC))
 
@@ -40,6 +41,9 @@ HEADER_LIB = $(INCLIBFT_DIR)/libft.h
 .PHONY: all clean fclean re
 
 all: $(OBJ_DIR) $(NAME)
+
+test:
+	echo $(FULL_ALL_LIBFT)
 
 clean:
 	rm -rf $(OBJ_DIR)
@@ -57,6 +61,6 @@ $(OBJ_DIR):
 $(OBJ_DIR)/%.o:$(SRC_DIR)/%.c $(HDRS)
 	$(CC) $(CFLAGS) $(LIB_INC) -I $(INC_DIR) -I $(INCLIBFT_DIR) -o $@ -c $<
 
-$(NAME): $(OBJ) $(HEADER_LIB) $(HDRS)
+$(NAME): $(OBJ) $(HEADER_LIB) $(HDRS) $(FULL_ALL_LIBFT)
 	$(MAKE) -C $(L_FT)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) -I $(INCLIBFT_DIR) -L libft -lft $(MLXPARAMS)
