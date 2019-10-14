@@ -11,95 +11,81 @@ void			iso(t_mlx *m, int *x, int *y, int z)
 {
 	int prev_x;
 	int prev_y;
+	double	angle_projection;
 
+	if (m->angle_projection_type == 0)
+		angle_projection = 26.57;
+	else if (m->angle_projection_type == 1)
+		angle_projection = 30;
+	else
+		angle_projection = 45;
 	prev_x = *x;
 	prev_y = *y;
-	*x = (prev_x - prev_y) * cos(m->angle_projection * M_PI / 180.0);
-	*y = -z + (prev_x + prev_y) * sin(m->angle_projection * M_PI / 180.0);
+	*x = (prev_x - prev_y) * cos(angle_projection * M_PI / 180.0);
+	*y = -z + (prev_x + prev_y) * sin(angle_projection * M_PI / 180.0);
 }
 
-void 			calculate_max_min_h(t_mlx *m)
+static void		calculate_max_min_h(t_mlx *m)
 {
 	int i;
 	int j;
-	int max_h;
-	int min_h;
 
-	min_h = get_point(m, 0, 0)->z;
-	max_h = get_point(m, 0, 0)->z;
+	m->min_h = get_point(m, 0, 0)->z;
+	m->max_h = get_point(m, 0, 0)->z;
 	i = 0;
 	while (i < m->map_y)
 	{
 		j = 0;
 		while (j < m->map_x)
 		{
-			if (get_point(m, i, j)->z > max_h)
-				max_h = get_point(m, i, j)->z;
-			if (get_point(m, i, j)->z < min_h)
-				min_h = get_point(m, i, j)->z;
+			if (get_point(m, i, j)->z > m->max_h)
+				m->max_h = get_point(m, i, j)->z;
+			if (get_point(m, i, j)->z < m->min_h)
+				m->min_h = get_point(m, i, j)->z;
 			j++;
 		}
 		i++;
 	}
-	m->max_h = max_h;
-	m->min_h = min_h;
 }
 
-void			make_map_points(t_mlx *m, int color)
+static void		correcting_map(t_mlx *m)
 {
-	int shift_x;
-	int shift_y;
-	int i;
-	int j;
-
-	if ((m->map_x + 1 + m->zoom * 2) <= 0 || (m->map_y + 1 + m->zoom * 2) <= 0)
-		m->zoom +=1;
-
-	shift_x = m->width / (m->map_x + 1 + m->zoom * 2);
-	shift_y = m->height / (m->map_y + 1 + m->zoom * 2);
-	i = 0;
-	while (i < m->map_y)
-	{
-		j = 0;
-		while (j < m->map_x)
-		{
-			get_point(m, i, j)->x = shift_x * (m->zoom + 1) + shift_x * j;
-			get_point(m, i, j)->y = shift_y * (m->zoom + 1) + shift_y * i;
-			get_point(m, i, j)->z = m->map[i * m->map_x + j] * m->h;
-			get_point(m, i, j)->color = color;
-			j++;
-		}
-		i++;
-	}
 	calculate_max_min_h(m);
 	correct_color(m);
-
 	if (m->x_angle != 0)
 		x_rotation(m);
 	if (m->z_angle != 0)
 		z_rotation(m);
 	if (m->y_angle != 0)
 		y_rotation(m);
-
 }
 
-void			draw_surface(t_mlx *m, int not_black)
+void			make_map_points(t_mlx *m, int color)
 {
-	int		i;
-	int		j;
+	double shift_x;
+	double shift_y;
+	double step;
+	int i;
+	int j;
 
+	step = m->width / (m->map_x + 1) < m->height / (m->map_y + 1) ?
+			m->width / (m->map_x + 1) : m->height / (m->map_y + 1);
+	step *= m->zoom;
+	shift_x = (m->width - (m->map_x * step)) / 2;
+	shift_y = (m->height - (m->map_y * step)) / 2;
 	i = 0;
 	while (i < m->map_y)
 	{
 		j = 0;
 		while (j < m->map_x)
 		{
-			if (j + 1 < m->map_x)
-				putline(m, get_proj_point(m, i, j), get_proj_point(m, i, j + 1), not_black);
-			if (i + 1 < m->map_y)
-				putline(m, get_proj_point(m, i, j), get_proj_point(m, i + 1, j), not_black);
+			get_point(m, i, j)->x = shift_x + step * j;
+			get_point(m, i, j)->y = shift_y + step * i;
+			get_point(m, i, j)->z = m->map[i * m->map_x + j] * m->h;
+			get_point(m, i, j)->color = color;
 			j++;
 		}
 		i++;
 	}
+	correcting_map(m);
 }

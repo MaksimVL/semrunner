@@ -4,7 +4,7 @@
 # include <math.h>
 
 # define FDF_ANGLE_ROTATE_PRECISION 15
-# define FDF_ANGLE_PROJECTION 30
+
 typedef struct		s_point
 {
 	int				x;
@@ -28,20 +28,22 @@ typedef struct		s_mlx
 	int				map_x;
 	int				map_y;
 	t_point			*map_points;
-	int				zoom;
+	double			zoom;
 	double			h;
 	int				x_angle;
 	int				y_angle;
 	int				z_angle;
 	int				rotate_prec;
-	int				angle_projection;
+	int				angle_projection_type;
 	int 			projection_type;
 	int 			max_h;
 	int 			min_h;
+	int				type_color_spectrum;
 }					t_mlx;
 
 void				tmlx_destroy(t_mlx *m, int value_exit);
-int					tmlx_initialize(t_mlx *m, int x, int y, char *title);
+void				tmlx_initialize(t_mlx *m, int x, int y, char *title);
+void				reset_map(t_mlx *m);
 void				putpixel(t_mlx *m, int x, int y, int color);
 void				putline(t_mlx *m, t_point start, t_point end, int color);
 int					check_file(t_mlx *m, int fd);
@@ -57,5 +59,7 @@ void				correct_color(t_mlx *m);
 double				perc(int start, int end, int curr);
 void				iso(t_mlx *m, int *x, int *y, int z);
 t_point				get_proj_point(t_mlx *m, int i, int j);
+void 				main_legend(t_mlx *m);
+int					keyhook(int keycode, void *m);
 
 #endif

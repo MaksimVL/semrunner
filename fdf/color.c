@@ -29,6 +29,30 @@ int 			color_gradient(t_point start, t_point end, double perc)
 	return ((red << 16) | (green << 8) | blue);
 }
 
+static int		calc_color_spectrum(t_mlx *m, int percent)
+{
+	if (m->type_color_spectrum == 0)
+	{
+		if (0 <= percent && percent <= 70)
+			return (0xFFFFFF);
+		else
+			return (0xFC93F9);
+	}
+	if (m->type_color_spectrum == 1)
+	{
+		if (0 <= percent && percent <= 15)
+			return (0x006000); //green
+		else if (15 < percent && percent <= 40)
+			return (0x5a5a00);
+		else if (40 < percent && percent <= 60)
+			return (0x733c00);
+		else if (60 < percent && percent <= 85)
+			return (0x915f50);
+		else
+			return (0xFFFFFF);
+	}
+	return (0xFFFFFF);
+}
 void			correct_color(t_mlx *m)
 {
 	int i;
@@ -43,16 +67,7 @@ void			correct_color(t_mlx *m)
 		while (j < m->map_x)
 		{
 			percent = (int)(100.0 * perc(m->min_h, m->max_h, get_point(m, i, j)->z));
-			if (0 <= percent && percent <= 15)
-				color = 0x006000; //green
-			else if (15 < percent && percent <= 40)
-				color = 0x5a5a00;
-			else if (40 < percent && percent <= 60)
-				color = 0x733c00;
-			else if (60 < percent && percent <= 85)
-				color = 0x915f50;
-			else
-				color = 0xFFFFFF;
+			color = calc_color_spectrum(m, percent);
 			get_point(m, i, j)->color = color;
 			j++;
 		}

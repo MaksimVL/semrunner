@@ -17,7 +17,18 @@ void	tmlx_destroy(t_mlx *m, int value_exit)
 	exit(value_exit);
 }
 
-int		tmlx_initialize(t_mlx *m, int x, int y, char *title)
+void	reset_map(t_mlx *m)
+{
+	m->zoom = 1;
+	m->h = 1;
+	m->x_angle = 0;
+	m->y_angle = 0;
+	m->z_angle = 0;
+	m->projection_type = 0;
+	m->type_color_spectrum = 1;
+}
+
+void	tmlx_initialize(t_mlx *m, int x, int y, char *title)
 {
 	m->bits_pixel = sizeof(int) * 8;
 	m->size_line = x * (int)sizeof(int);
@@ -29,13 +40,9 @@ int		tmlx_initialize(t_mlx *m, int x, int y, char *title)
 	m->map_points = NULL;
 	m->width = x;
 	m->height = y;
-	m->zoom = 2;
-	m->h = 1;
-	m->x_angle = 0;
-	m->y_angle = 0;
-	m->z_angle = 0;
+	reset_map(m);
 	m->rotate_prec = FDF_ANGLE_ROTATE_PRECISION;
-	m->angle_projection = FDF_ANGLE_PROJECTION;
+	m->angle_projection_type = 0;
 	m->projection_type = 0;
 	if (!(m->ptr = mlx_init()))
 		tmlx_destroy(m, -1);
@@ -44,5 +51,4 @@ int		tmlx_initialize(t_mlx *m, int x, int y, char *title)
 	else if (!(m->main_im = mlx_new_image(m->ptr, x, y)))
 		tmlx_destroy(m, -1);
 	m->data_mainim = (int*)mlx_get_data_addr(m->main_im, &(m->bits_pixel), &(m->size_line), &(m->endian));
-	return (1);
 }

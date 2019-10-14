@@ -93,3 +93,25 @@ void			putline(t_mlx *m, t_point start, t_point end, int color)
 			putline_high(m, start, end, color);
 	}
 }
+
+void			draw_surface(t_mlx *m, int not_black)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (i < m->map_y)
+	{
+		j = 0;
+		while (j < m->map_x)
+		{
+			if (j + 1 < m->map_x)
+				putline(m, get_proj_point(m, i, j), get_proj_point(m, i, j + 1), not_black);
+			if (i + 1 < m->map_y)
+				putline(m, get_proj_point(m, i, j), get_proj_point(m, i + 1, j), not_black);
+			j++;
+		}
+		i++;
+	}
+}
+
