@@ -33,13 +33,9 @@ void			draw_surface(t_mlx *m, int not_black)
 		while (j < m->map_x)
 		{
 			if (j + 1 < m->map_x)
-				// putline(m, get_proj_point(m, i, j),
-				// 		get_proj_point(m, i, j + 1), not_black);
 				putline(m, get_point_to_draw(m, i, j),
 						get_point_to_draw(m, i, j + 1), not_black);
 			if (i + 1 < m->map_y)
-				// putline(m, get_proj_point(m, i, j),
-				// 		get_proj_point(m, i + 1, j), not_black);
 				putline(m, get_point_to_draw(m, i, j),
 						get_point_to_draw(m, i + 1, j), not_black);
 			j++;

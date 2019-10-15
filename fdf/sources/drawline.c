@@ -40,18 +40,18 @@ static void		calculate_max_min_h(t_mlx *m)
 	int i;
 	int j;
 
-	m->min_h = get_point(m, 0, 0)->z;
-	m->max_h = get_point(m, 0, 0)->z;
+	m->min_h = m->map[0];
+	m->max_h = m->map[0];
 	i = 0;
 	while (i < m->map_y)
 	{
 		j = 0;
 		while (j < m->map_x)
 		{
-			if (get_point(m, i, j)->z > m->max_h)
-				m->max_h = get_point(m, i, j)->z;
-			if (get_point(m, i, j)->z < m->min_h)
-				m->min_h = get_point(m, i, j)->z;
+			if (m->map[i * m->map_x + j] > m->max_h)
+				m->max_h = m->map[i * m->map_x + j];
+			if (m->map[i * m->map_x + j] < m->min_h)
+				m->min_h = m->map[i * m->map_x + j];
 			j++;
 		}
 		i++;

@@ -69,12 +69,12 @@ void			main_legend(t_mlx *m)
 	curr_angles_legend(m, 0x9f9e90);
 	mlx_string_put(m->ptr, m->win, 10, 10, 0xFFFFFF,
 			"KEY BINDINGS:");
-	mlx_string_put(m->ptr, m->win, 10, 30, color,  "+-zoom     : up,  down");
-	mlx_string_put(m->ptr, m->win, 10, 50, color,  "z_rotation : left, right");
-	mlx_string_put(m->ptr, m->win, 10, 70, color,  "+-height   : r, f");
-	mlx_string_put(m->ptr, m->win, 10, 90, color, "x_rotation : w, s");
-	mlx_string_put(m->ptr, m->win, 10, 110, color, "y_rotation : a, d");
-	mlx_string_put(m->ptr, m->win, 10, 130, color, "cam move   : u, j, h, k");
+	mlx_string_put(m->ptr, m->win, 10, 30, color, "+-zoom     : up,  down");
+	mlx_string_put(m->ptr, m->win, 10, 50, color, "z_rotation : left, right");
+	mlx_string_put(m->ptr, m->win, 10, 70, color, "x_rotation : w, s");
+	mlx_string_put(m->ptr, m->win, 10, 90, color, "y_rotation : a, d");
+	mlx_string_put(m->ptr, m->win, 10, 110, color, "cam move   : u, j, h, k");
+	mlx_string_put(m->ptr, m->win, 10, 130, color, "+-height   : r, f");
 	mlx_string_put(m->ptr, m->win, 10, 150, color, "reset map  : x");
 	mlx_string_put(m->ptr, m->win, 10, 170, color, "color      : z");
 	mlx_string_put(m->ptr, m->win, 10, 190, color, "exit       : q, esc");

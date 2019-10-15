@@ -28,6 +28,7 @@ OBJECTS = $(SOURCES:.c=.o)
 CC := gcc
 CFLAGS := -Wall -Wextra -Werror -g3
 MLXPARAMS := -L ./mlx -lmlx -framework OpenGL -framework AppKit
+LIBFT_NODEBUG :=
 
 L_FT := libft
 
@@ -44,7 +45,7 @@ HEADER_LIB = $(INCLIBFT_DIR)/libft.h
 all: $(OBJ_DIR) $(NAME)
 
 test:
-	echo $(FULL_ALL_LIBFT)
+	@echo $(FULL_ALL_LIBFT)
 
 clean:
 	rm -rf $(OBJ_DIR)
@@ -63,5 +64,11 @@ $(OBJ_DIR)/%.o:$(SRC_DIR)/%.c $(HDRS)
 	$(CC) $(CFLAGS) $(LIB_INC) -I $(INC_DIR) -I $(INCLIBFT_DIR) -I $(INCMLX_DIR) -o $@ -c $<
 
 $(NAME): $(OBJ) $(HEADER_LIB) $(HDRS) $(FULL_ALL_LIBFT)
-	$(MAKE) -C $(L_FT)
+	$(MAKE) -C $(L_FT) $(LIBFT_NODEBUG)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) -I $(INCLIBFT_DIR) -I $(INCMLX_DIR) -L libft -lft $(MLXPARAMS)
+
+nodebug: CFLAGS = -Wall -Wextra -Werror -O3
+
+nodebug: LIBFT_NODEBUG = nodebug
+
+nodebug: fclean all

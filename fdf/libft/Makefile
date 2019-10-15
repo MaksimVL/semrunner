@@ -29,6 +29,7 @@ OBJ			= $(addprefix $(LIBFT_OBJ_DIR), $(LIBFT_OBJ))
 OBJ 		+= $(addprefix $(PRF_OBJ_DIR), $(PRINTF_OBJ))
 
 CFLAGS 		= -Wall -Wextra -Werror -g3
+
 CC			= gcc
 
 .PHONY: all clean fclean re
@@ -60,3 +61,6 @@ $(NAME): $(OBJ)
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
 
+nodebug: CFLAGS := -Wall -Wextra -Werror -O3
+
+nodebug: fclean all

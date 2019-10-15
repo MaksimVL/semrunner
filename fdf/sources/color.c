@@ -81,7 +81,7 @@ void			correct_color(t_mlx *m)
 		while (j < m->map_x)
 		{
 			percent = (int)(100.0 * perc(m->min_h, m->max_h,
-					get_point(m, i, j)->z));
+					m->map[i * m->map_x + j]));
 			color = calc_color_spectrum(m, percent);
 			get_point(m, i, j)->color = color;
 			j++;
