@@ -6,7 +6,7 @@
 #    By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 12:13:46 by odrinkwa          #+#    #+#              #
-#    Updated: 2019/10/16 18:23:02 by odrinkwa         ###   ########.fr        #
+#    Updated: 2019/10/16 20:08:10 by odrinkwa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,13 +19,13 @@ INCLIBFT_DIR := ./libft/includes
 OBJ_DIR := ./objects
 LIB_DIR := ./libft
 
-SRC  := main.c
-HDRS := includes/push_swap.h
+SRC  := main.c dlist.c
+HDRS := includes/push_swap.h includes/dlist.h
 OBJ  := $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 OBJECTS = $(SOURCES:.c=.o)
 
 CC := gcc
-CFLAGS := -Wall -Wextra -Werror -g3
+CFLAGS := -g3 #-Wall -Wextra -Werror
 #MLXPARAMS := -L ./mlx -lmlx -framework OpenGL -framework AppKit
 LIBFT_NODEBUG :=
 
