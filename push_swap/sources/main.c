@@ -178,6 +178,14 @@ void			pb(t_stack *a, t_stack *b)
 	ft_printf("pb\n");
 }
 
+void			dlist_print(t_dlist lst)
+{
+	ft_printf("%d", *(int*)(lst.content));
+}
+int				dlist_int(t_dlist lst)
+{
+	return (*(int*)lst.content);
+}
 
 int				main(int argc, char **argv)
 {
