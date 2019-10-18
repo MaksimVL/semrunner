@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 13:11:45 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/10/14 17:12:00 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/10/18 16:50:17 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,5 @@ void	tmlx_create_mlx(t_mlx *m, char *title)
 	else if (!(m->main_im = mlx_new_image(m->ptr, m->width, m->height)))
 		tmlx_destroy(m, -1);
 	m->data_mainim = (int*)mlx_get_data_addr(m->main_im,
-											 &(m->bits_pixel), &(m->size_line), &(m->endian));
+							&(m->bits_pixel), &(m->size_line), &(m->endian));
 }

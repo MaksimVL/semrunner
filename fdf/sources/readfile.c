@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 12:41:58 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/10/14 15:45:33 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/10/18 17:11:33 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ static int		check_fdf_line(char *line)
 	char	*pos;
 
 	pos = line;
-	if (*line == ' ')
-		return (-1);
 	while (*line != '\0')
 	{
 		if (!((ft_isdigit(*line) || *line == ' ' || *line == '-')))
@@ -37,12 +35,17 @@ static int		check_fdf_line(char *line)
 		line++;
 	}
 	line = pos;
-	count_nums = 0;
+	if (*line == ' ')
+		count_nums = -1;
+	else
+		count_nums = 0;
 	while (*line != '\0')
 	{
 		line = nextnum(line);
 		count_nums++;
 	}
+	if (count_nums < 0)
+		return (-1);
 	return (count_nums);
 }
 

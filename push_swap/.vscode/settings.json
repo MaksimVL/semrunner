@@ -6,6 +6,7 @@
     "files.trimTrailingWhitespace": true,
     "files.insertFinalNewline": true,
     "files.associations": {
-        "math.h": "c"
+        "math.h": "c",
+        "libft.h": "c"
     }
 }
