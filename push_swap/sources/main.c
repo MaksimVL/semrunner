@@ -20,8 +20,8 @@
 typedef struct	s_stack
 {
 	int			len;
-	t_dlist		*data;
-	t_dlist		*last_el;
+	t_dlist		*top;
+	t_dlist		*bottom;
 }				t_stack;
 
 
@@ -33,8 +33,8 @@ void	del_int(void *content, size_t size)
 void			stack_initialize(t_stack *stack)
 {
 	stack->len = 0;
-	stack->data = NULL;
-	stack->last_el = NULL;
+	stack->top = NULL;
+	stack->bottom = NULL;
 }
 
 void			*stack_add(t_stack *stack, int a)
@@ -44,16 +44,16 @@ void			*stack_add(t_stack *stack, int a)
 	temp = ft_dlstnew(&a, sizeof(a));
 	if (temp == NULL)
 		return (NULL);
-	if (stack->data == NULL)
+	if (stack->top == NULL)
 	{
 		stack->len = 1;
-		stack->data = temp;
-		stack->last_el = temp;
+		stack->top = temp;
+		stack->bottom = temp;
 	}
 	else
 	{
-		ft_dlst_addback(&(stack->last_el), temp);
-		stack->last_el = temp;
+		ft_dlst_addback(&(stack->bottom), temp);
+		stack->bottom = temp;
 		stack->len += 1;
 	}
 	return stack;
@@ -61,85 +61,157 @@ void			*stack_add(t_stack *stack, int a)
 
 void			stack_del(t_stack *stack)
 {
-	ft_dlstdel(&(stack->data), del_int);
+	if (stack->len != 0)
+	ft_dlstdel(&(stack->top), del_int);
 	stack->len = 0;
-	stack->last_el = NULL;
+	stack->bottom = NULL;
 }
 
 void			stack_print(t_stack *stack)
 {
 	t_dlist		*tmp;
+	int			count_elements;
 
+	ft_printf("--- start info stack ---\n");
 	tmp = NULL;
-	if (stack->data == NULL)
+	if (stack->top == NULL)
+	{
+		ft_printf("len = %d, top = %p, bottom = %p\n", stack->len, stack->top, stack->bottom);
+		ft_printf("---  end info stack  ---\n");
 		return ;
-	tmp = stack->data;
+	}
+	count_elements = 0;
+	tmp = stack->top;
+	ft_printf("len = %d, top = %d, bottom = %d\n", stack->len,
+												*(int*)(stack->top->content),
+												*(int*)(stack->bottom->content));
 	while (tmp)
 	{
 		ft_printf("%d\n", *(int*)(tmp->content));
 		tmp = tmp->next;
+		count_elements++;
+		if (count_elements > stack->len)
+		{
+			ft_printf("!! something wrong !!");
+			break;
+		}
 	}
+	ft_printf("---  end info stack  ---\n");
 }
 
 void			stack_swap(t_stack *stack)
 {
-	t_dlist	*curr;
-	t_dlist *prev;
-	t_dlist *prevprev;
+	t_dlist	*top;
+	t_dlist *next;
+	t_dlist *nnext;
 
 	if (stack->len == 0 || stack->len == 1)
 		return ;
-	curr = stack->last_el;
-	prev = stack->last_el->prev;
-	prevprev = prev->prev;
-	curr->prev = prevprev;
-	curr->next = prev;
-	prev->prev = curr;
-	prev->next = NULL;
-	if (prevprev != NULL)
-		prevprev->next = curr;
-	stack->last_el = prev;
+	top = stack->top;
+	next = stack->top->next;
+	nnext = next->next;
+	next->prev = NULL;
+	next->next = top;
+	top->prev = next;
+	top->next = nnext;
+	if (nnext != NULL)
+		nnext->prev = top;
+	stack->top = next;
+	if (stack->len == 2)
+		stack->bottom = top;
 }
 
 void			stack_push(t_stack *a, t_stack *b)
 {
-	t_dlist *prev_b;
-	t_dlist *curr_b;
+	t_dlist *topa;
+	t_dlist *topb;
+	t_dlist *nextb;
 
 	if (b->len == 0)
 		return ;
-	prev_b = b->last_el->prev;
-	curr_b = b->last_el;
-	prev_b->next = NULL;
-	b->last_el = prev_b;
-	a->last_el->next = curr_b;
-	curr_b->prev = a->last_el;
-	a->last_el = curr_b;
-	b->len--;
+	topa = a->top;
+	topb = b->top;
+	nextb = topb->next;
+	topb->next = topa;
+	if (a->len != 0)
+		topa->prev = topb;
+	else
+		a->bottom = topb;
 	a->len++;
+	a->top = topb;
+	if (b->len == 1)
+	{
+		b->top = NULL;
+		b->bottom = NULL;
+	}
+	else
+	{
+		nextb->prev = NULL;
+		b->top = nextb;
+	}
+	b->len--;
 }
 
 void			stack_rotate(t_stack *stack)
 {
-	t_dlist *first_el;
-	t_dlist *last_el;
-	t_dlist	*second_el;
-	t_dlist *lastprev;
+	t_dlist *top;
+	t_dlist *bottom;
+	t_dlist	*next;
 
 	if (stack->len <= 1)
 		return ;
-	first_el = stack->data;
-	second_el = first_el->next;
-	last_el = stack->last_el;
-	lastprev = last_el->prev;
-	first_el->next = NULL;
-	first_el->prev = lastprev;
-	second_el->prev = last_el;
-	last_el->next = second_el;
-	last_el->prev = NULL;
-	lastprev->next = first_el;
-	stack->data = last_el;
-	stack->last_el = first_el;
+	top = stack->top;
+	bottom = stack->bottom;
+	if (stack->len == 2)
+	{
+		top->next = NULL;
+		bottom->prev = NULL;
+		top->prev = bottom;
+		bottom->next = top;
+		stack->top = bottom;
+		stack->bottom = top;
+	}
+	else
+	{
+		next = top->next;
+		next->prev = NULL;
+		bottom->next = top;
+		top->prev = bottom;
+		top->next = NULL;
+		stack->top = next;
+		stack->bottom = top;
+	}
+}
+
+void			stack_rrotate(t_stack *stack)
+{
+	t_dlist *top;
+	t_dlist *bottom;
+	t_dlist	*prev;
+
+	if (stack->len <= 1)
+		return ;
+	top = stack->top;
+	bottom = stack->bottom;
+	if (stack->len == 2)
+	{
+		top->next = NULL;
+		bottom->prev = NULL;
+		top->prev = bottom;
+		bottom->next = top;
+		stack->top = bottom;
+		stack->bottom = top;
+	}
+	else
+	{
+		prev = bottom->prev;
+		bottom->prev = NULL;
+		bottom->next = top;
+		top->prev = bottom;
+		prev->next = NULL;
+		stack->top = bottom;
+		stack->bottom = prev;
+	}
 }
 
 
@@ -187,6 +259,22 @@ int				dlist_int(t_dlist lst)
 	return (*(int*)lst.content);
 }
 
+void			ra(t_stack *a, t_stack *b)
+{
+	if (b == NULL && b != NULL)
+		return ;
+	stack_rotate(a);
+	ft_printf("ra\n");
+}
+
+void			rra(t_stack *a, t_stack *b)
+{
+	if (b == NULL && b != NULL)
+		return ;
+	stack_rrotate(a);
+	ft_printf("ra\n");
+}
+
 int				main(int argc, char **argv)
 {
 	int			fd;
@@ -206,34 +294,12 @@ int				main(int argc, char **argv)
 	int		d = 4;
 	int		e = 5;
 
-	lst = NULL;
-	ft_printf("test\n");
-	tmplist = ft_dlstnew((void*)&a, sizeof(a));
-	ft_dlst_addback(&lst, tmplist);
-
-	ft_printf("%d\n", *(int*)(lst->content));
-	tmplist = ft_dlstnew((void*)&b, sizeof(b));
-	ft_dlst_addback(&lst, tmplist);
-
-	tmplist = ft_dlstnew((void*)&c, sizeof(c));
-	ft_dlst_addback(&lst, tmplist);
-
-	lst_counter = lst;
-	while (lst_counter)
-	{
-		ft_printf("%d\n", *(int*)(lst_counter->content));
-		lst_counter = lst_counter->next;
-	}
-
-	ft_dlstdel(&lst, &del_int);
-
 	line = NULL;
 	stack_initialize(&stack_a);
+	stack_initialize(&stack_b);
 
 /*	if (argc != 2)
 		exit(0);*/
-	ft_printf("test\n");
-
 //	fd = open(argv[1], O_RDONLY);
 	fd = open("stack1", O_RDONLY);
 	while ((res = get_next_line(fd, &line)) == 1)
@@ -244,18 +310,130 @@ int				main(int argc, char **argv)
 	}
 	close(fd);
 	ft_memdel((void**)&line);
+
+	if (res == -1)
+		return (-1); // TODO учесть здесь очистку стека
+
+	ft_printf("load from file stack_a:\n");
+	stack_print(&stack_a);
+
+	ft_printf("do sa, stack_a:\n");
+	sa(&stack_a, &stack_b);
+	stack_print(&stack_a);
+
+	ft_printf("do sa again, stack_a:\n");
+	sa(&stack_a, &stack_b);
+	stack_print(&stack_a);
+
+	ft_printf("do pb\n");
+	pb(&stack_a, &stack_b);
 	ft_printf("stack_a:\n");
 	stack_print(&stack_a);
-	sa(&stack_a, &stack_b);
-	ft_printf("sa, stack_a:\n");
+	ft_printf("stack_b:\n");
+	stack_print(&stack_b);
+
+	ft_printf("do pb again\n");
+	pb(&stack_a, &stack_b);
+	ft_printf("stack_a:\n");
+	stack_print(&stack_a);
+	ft_printf("stack_b:\n");
+	stack_print(&stack_b);
+
+	ft_printf("do pb again\n");
+	pb(&stack_a, &stack_b);
+	ft_printf("stack_a:\n");
+	stack_print(&stack_a);
+	ft_printf("stack_b:\n");
+	stack_print(&stack_b);
+
+	ft_printf("do pb again\n");
+	pb(&stack_a, &stack_b);
+	ft_printf("stack_a:\n");
+	stack_print(&stack_a);
+	ft_printf("stack_b:\n");
+	stack_print(&stack_b);
+
+	ft_printf("do pb again\n");
+	pb(&stack_a, &stack_b);
+	ft_printf("stack_a:\n");
+	stack_print(&stack_a);
+	ft_printf("stack_b:\n");
+	stack_print(&stack_b);
+
+	ft_printf("do pa\n");
+	pa(&stack_a, &stack_b);
+	ft_printf("stack_a:\n");
+	stack_print(&stack_a);
+	ft_printf("stack_b:\n");
+	stack_print(&stack_b);
+	ft_printf("do pa again\n");
+	pa(&stack_a, &stack_b);
+	ft_printf("stack_a:\n");
+	stack_print(&stack_a);
+	ft_printf("stack_b:\n");
+	stack_print(&stack_b);
+
+	ft_printf("do sb, stack_b:\n");
+	sb(&stack_a, &stack_b);
+	stack_print(&stack_b);
+
+	ft_printf("do pa again\n");
+	pa(&stack_a, &stack_b);
+	ft_printf("stack_a:\n");
+	stack_print(&stack_a);
+	ft_printf("stack_b:\n");
+	stack_print(&stack_b);
+
+	ft_printf("do sb, stack_b:\n");
+	sb(&stack_a, &stack_b);
+	stack_print(&stack_b);
+
+	ft_printf("do ra, stack_a:\n");
+	ra(&stack_a, &stack_b);
 	stack_print(&stack_a);
 
-	stack_rotate(&stack_a);
-	ft_printf("ra, stack_a:\n");
+	ft_printf("do ra, stack_a:\n");
+	ra(&stack_a, &stack_b);
 	stack_print(&stack_a);
 
+	ft_printf("do ra, stack_a:\n");
+	ra(&stack_a, &stack_b);
+	stack_print(&stack_a);
+
+	ft_printf("do pb\n");
+	pb(&stack_a, &stack_b);
+	ft_printf("stack_a:\n");
+	stack_print(&stack_a);
+	ft_printf("stack_b:\n");
+	stack_print(&stack_b);
+
+	ft_printf("do ra, stack_a:\n");
+	ra(&stack_a, &stack_b);
+	stack_print(&stack_a);
+
+	ft_printf("do pa\n");
+	pa(&stack_a, &stack_b);
+	ft_printf("stack_a:\n");
+	stack_print(&stack_a);
+	ft_printf("stack_b:\n");
+	stack_print(&stack_b);
+
+	ft_printf("do rra, stack_a:\n");
+	rra(&stack_a, &stack_b);
+	stack_print(&stack_a);
+
+	ft_printf("do pa\n");
+	pa(&stack_a, &stack_b);
+	ft_printf("stack_a:\n");
+	stack_print(&stack_a);
+	ft_printf("stack_b:\n");
+	stack_print(&stack_b);
+
+	ft_printf("do rra, stack_a:\n");
+	rra(&stack_a, &stack_b);
+	stack_print(&stack_a);
 
 	stack_del(&stack_a);
-	if (res == -1)
-		return (-1);
+	stack_del(&stack_b);
+
 }
