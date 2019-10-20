@@ -35,11 +35,12 @@ void			find_max_stack(t_stack *b)
 	if (b->len == 0)
 	{
 		b->pos_max = -1;
-		return (0);
+		return ;
 	}
 	curr_lst = b->top;
 	pos = 0;
 	b->max_stack = int_content(curr_lst);
+	b->pos_max = 0;
 	while (curr_lst != NULL)
 	{
 		if (b->max_stack < int_content(curr_lst))
@@ -52,7 +53,7 @@ void			find_max_stack(t_stack *b)
 	}
 }
 
-int				find_min_stack(t_stack *b)
+void			find_min_stack(t_stack *b)
 {
 	int		pos;
 	t_dlist	*curr_lst;
@@ -60,11 +61,12 @@ int				find_min_stack(t_stack *b)
 	if (b->len == 0)
 	{
 		b->pos_min = -1;
-		return (0);
+		return ;
 	}
 	curr_lst = b->top;
 	pos = 0;
 	b->min_stack = int_content(curr_lst);
+	b->pos_min = 0;
 	while (curr_lst != NULL)
 	{
 		if (b->min_stack > int_content(curr_lst))
@@ -86,7 +88,7 @@ void			find_between_desc_values(t_stack *b, int value)
 	curr = b->top;
 	pos = 0;
 	b->pos_low_value = 0;
-	b->low_value = b->top;
+	b->low_value = int_content(b->top);
 	while (curr->next != NULL)
 	{
 		pos++;
@@ -96,33 +98,63 @@ void			find_between_desc_values(t_stack *b, int value)
 				b->low_value = int_content(curr->next);
 				return ;
 			}
+		curr = curr->next;
 	}
 
 }
 
-void			rotate_to_top_value(t_stack *b, int pos_value)
+void			rotate_ab_to_top_value(t_stack *stack, int pos_value, char n_stack)
 {
-	if (pos_value  < (int)(b->len / 2))
+	if (pos_value  < (int)(stack->len / 2))
 		while (pos_value-- > 0)
-			rb(NULL, b);
+			n_stack == 'a' ? ra(stack, NULL) : rb(NULL, stack);
 	else
-		while (pos_value++ < b->len)
-			rrb(NULL, b);
+		while (pos_value++ < stack->len)
+			n_stack == 'a' ? rra(stack, NULL) : rrb(NULL, stack);
 }
 
-void			rotate_b(t_stack *b, int value)
+void			ra_to_top_value(t_stack *a, int pos_value)
+{
+	rotate_ab_to_top_value(a, pos_value, 'a');
+}
+
+void			rb_to_top_value(t_stack *b, int pos_value)
+{
+	rotate_ab_to_top_value(b, pos_value, 'b');
+}
+
+
+
+
+void			rotate_b_desc_for_insert_value(t_stack *b, int value)
 {
 	if (b->len == 0 || b->len == 1)
 		return ;
 	find_max_stack(b);
 	find_min_stack(b);
 	if (value > b->max_stack || value < b->min_stack)
-		rotate_to_top_value(b, b->pos_max);
+		rb_to_top_value(b, b->pos_max);
 	else
 	{
-		find_between_values(b, value);
-		rotate_to_top_value(b, b->pos_low_value);
+		find_between_desc_values(b, value);
+		rb_to_top_value(b, b->pos_low_value);
 	}
+}
+
+void			pa_all(t_stack *a, t_stack *b)
+{
+	while (b->len > 0)
+		pa(a, b);
+}
+
+void			print_stacks(t_stack *a, t_stack *b)
+{
+		ft_printf("-------------- start print stacks ----------\n");
+		ft_printf("'''stack a:\n");
+		stack_print(a);
+		ft_printf("'''stack b:\n");
+		stack_print(b);
+		ft_printf("--------------  end print stacks  ----------\n");
 }
 
 int				main(int argc, char **argv)
@@ -168,26 +200,40 @@ int				main(int argc, char **argv)
 
 	// реализуем для начала алгоритм для стека >= 3 элемента.
 
-	while (a.len > 0)
+	print_stacks(&a, &b);
+
+	if (a.len < 2)
+		;
+	else if (a.len == 2)
 	{
-		if (b.len == 0)
-		{
-			pb(&a, &b);
-			continue;
-		}
-		if (b.len == 1)
-			pb(&a, &b);
-			if (peek_top(b) < peek_bottom(b))
-				sb(&a, &b);
-			continue;
-		rotate_b(&b, peek_top(a));
-		pb(&a, &b);
-
+		if (peek_top(a) > peek_bottom(a))
+			sa(&a, &b);
 	}
-
-
+	else
+	{
+		while (a.len > 0)
+		{
+			if (b.len == 0)
+			{
+				pb(&a, &b);
+				continue;
+			}
+			if (b.len == 1)
+			{
+				pb(&a, &b);
+				if (peek_top(b) < peek_bottom(b))
+					sb(&a, &b);
+				continue;
+			}
+			rotate_b_desc_for_insert_value(&b, peek_top(a));
+			pb(&a, &b);
+		}
+		find_max_stack(&b);
+		rb_to_top_value(&b, b.pos_max);
+		pa_all(&a, &b);
+	}
+	ft_printf("sorted stack:\n");
+	print_stacks(&a, &b);
 	stack_del(&a);
 	stack_del(&b);
-
-
 }
