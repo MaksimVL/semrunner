@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 18:48:15 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/10/18 22:36:25 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/10/20 21:12:58 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,125 +27,7 @@ int				dlist_int(t_dlist lst)
 	return (*(int*)lst.content);
 }
 
-void			find_max_stack(t_stack *b)
-{
-	int		pos;
-	t_dlist	*curr_lst;
 
-	if (b->len == 0)
-	{
-		b->pos_max = -1;
-		return ;
-	}
-	curr_lst = b->top;
-	pos = 0;
-	b->max_stack = int_content(curr_lst);
-	b->pos_max = 0;
-	while (curr_lst != NULL)
-	{
-		if (b->max_stack < int_content(curr_lst))
-		{
-			b->max_stack = int_content(curr_lst);
-			b->pos_max = pos;
-		}
-		curr_lst = curr_lst->next;
-		pos++;
-	}
-}
-
-void			find_min_stack(t_stack *b)
-{
-	int		pos;
-	t_dlist	*curr_lst;
-
-	if (b->len == 0)
-	{
-		b->pos_min = -1;
-		return ;
-	}
-	curr_lst = b->top;
-	pos = 0;
-	b->min_stack = int_content(curr_lst);
-	b->pos_min = 0;
-	while (curr_lst != NULL)
-	{
-		if (b->min_stack > int_content(curr_lst))
-		{
-			b->min_stack = int_content(curr_lst);
-			b->pos_min = pos;
-		}
-		curr_lst = curr_lst->next;
-		pos++;
-	}
-}
-
-void			find_between_desc_values(t_stack *b, int value)
-{
-	int			pos;
-	t_dlist		*curr;
-	t_dlist		*next;
-
-	curr = b->top;
-	pos = 0;
-	b->pos_low_value = 0;
-	b->low_value = int_content(b->top);
-	while (curr->next != NULL)
-	{
-		pos++;
-		if (int_content(curr) >= value && value >= int_content(curr->next))
-			{
-				b->pos_low_value = pos;
-				b->low_value = int_content(curr->next);
-				return ;
-			}
-		curr = curr->next;
-	}
-
-}
-
-void			rotate_ab_to_top_value(t_stack *stack, int pos_value, char n_stack)
-{
-	if (pos_value  < (int)(stack->len / 2))
-		while (pos_value-- > 0)
-			n_stack == 'a' ? ra(stack, NULL) : rb(NULL, stack);
-	else
-		while (pos_value++ < stack->len)
-			n_stack == 'a' ? rra(stack, NULL) : rrb(NULL, stack);
-}
-
-void			ra_to_top_value(t_stack *a, int pos_value)
-{
-	rotate_ab_to_top_value(a, pos_value, 'a');
-}
-
-void			rb_to_top_value(t_stack *b, int pos_value)
-{
-	rotate_ab_to_top_value(b, pos_value, 'b');
-}
-
-
-
-
-void			rotate_b_desc_for_insert_value(t_stack *b, int value)
-{
-	if (b->len == 0 || b->len == 1)
-		return ;
-	find_max_stack(b);
-	find_min_stack(b);
-	if (value > b->max_stack || value < b->min_stack)
-		rb_to_top_value(b, b->pos_max);
-	else
-	{
-		find_between_desc_values(b, value);
-		rb_to_top_value(b, b->pos_low_value);
-	}
-}
-
-void			pa_all(t_stack *a, t_stack *b)
-{
-	while (b->len > 0)
-		pa(a, b);
-}
 
 void			print_stacks(t_stack *a, t_stack *b)
 {
@@ -157,6 +39,86 @@ void			print_stacks(t_stack *a, t_stack *b)
 		ft_printf("--------------  end print stacks  ----------\n");
 }
 
+void			free_strsplit(char **strings)
+{
+	int		i;
+
+	if (strings == NULL)
+		return ;
+	i = 0;
+	while (strings[i] != 0)
+	{
+		ft_memdel((void**)&(strings[i]));
+		i++;
+	}
+	ft_memdel((void**)&(strings[i]));
+	ft_memdel((void**)strings);
+}
+
+int				ft_isint(char *str)
+{
+	int i;
+	int count_numbers;
+
+	if (str == NULL || str[0] == '\0')
+		return (0);
+	else if (ft_isdigit(str[0]))
+		count_numbers = 1;
+	else if (str[0] == '-' || str[0] == '+')
+		count_numbers = 0;
+	else
+		return (0);
+	i = 1;
+	while (str[i] != '\0')
+	{
+		if (ft_isdigit(str[i]) == 0)
+			return (0);
+		count_numbers++;
+		i++;
+	}
+	return ((count_numbers == 0) ? 0 : 1);
+}
+
+int				find_repeat_elements(t_stack *stack)
+{
+	t_dlist		*curr;
+	t_dlist		*i_lst;
+	int			curr_value;
+
+	if (stack->len == 0)
+		return (1);
+	curr = stack->top;
+	curr_value = int_content(curr);
+	while (curr != NULL)
+	{
+		i_lst = curr->next;
+		while (i_lst != NULL)
+		{
+			if (curr_value == int_content(i_lst))
+				return (1);
+			i_lst = i_lst->next;
+		}
+		curr = curr->next;
+	}
+	return (0);
+}
+
+int				check_sorted_stack(t_stack *stack)
+{
+	t_dlist	*curr;
+
+	curr = stack->top;
+	while (curr != NULL)
+	{
+		if (curr->next == NULL)
+			return (1);
+		if (int_content(curr) > int_content(curr->next))
+			return (0);
+		curr = curr->next;
+	}
+	return (1);
+}
+
 int				main(int argc, char **argv)
 {
 	int			fd;
@@ -165,31 +127,62 @@ int				main(int argc, char **argv)
 	int			i_tmp;
 	char		*line;
 	int			res;
+	char		**str_numbers;
 
 	t_dlist	*lst;
 	t_dlist	*tmplist;
 	t_dlist	*lst_counter;
 
 	int i;
+	int j;
 	line = NULL;
 	stack_initialize(&a);
 	stack_initialize(&b);
 
-/*	if (argc != 2)
-		exit(0);*/
-//	fd = open(argv[1], O_RDONLY);
-	fd = open("stack1", O_RDONLY);
-	while ((res = get_next_line(fd, &line)) == 1)
-	{
-		i = ft_atoi(line);
-		stack_push(&a, i);
-		ft_memdel((void**)&line);
-	}
-	close(fd);
-	ft_memdel((void**)&line);
+	if (argc < 2)
+		{
+			ft_printf("error: no stack\n");
+			stack_del(&a);
+			stack_del(&b);
+			return (-1);
+		}
+	i = 1;
 
-	if (res == -1)
-		return (-1); // TODO учесть здесь очистку стека
+	while (i < argc)
+	{
+		str_numbers = ft_strsplit(argv[i], ' '); // TODO проверка на NULL
+		j = 0;
+		while (str_numbers[j] != 0)
+		{
+			if (ft_isint(str_numbers[j]) == 0)
+			{
+				ft_printf("error: found not number elements\n");
+				free_strsplit(str_numbers);
+				stack_del(&a);
+				return (-1); // TODO сделать соответствующую очистку памяти
+			}
+
+			stack_push(&a, ft_atoi(str_numbers[j]));
+			j++;
+		}
+		free_strsplit(str_numbers);
+		i++;
+	}
+
+
+	if (a.len == 0)
+	{
+		ft_printf("error: empty stack\n");
+		return (-1); // TODO сделать проверку очистки данных
+	}
+
+	if (find_repeat_elements(&a) == 1)
+	{
+		ft_printf("error: found repeating elements\n");
+		stack_del(&a);
+		return (-1);  // сделать проверки на очистки данных и т.п.
+	}
+
 
 	// пробуем алгоритм: делаем сортировку от большего к меньшему в стеке b
 
@@ -200,8 +193,9 @@ int				main(int argc, char **argv)
 
 	// реализуем для начала алгоритм для стека >= 3 элемента.
 
-	print_stacks(&a, &b);
+//	print_stacks(&a, &b);
 
+	//sorting stack
 	if (a.len < 2)
 		;
 	else if (a.len == 2)
@@ -232,8 +226,8 @@ int				main(int argc, char **argv)
 		rb_to_top_value(&b, b.pos_max);
 		pa_all(&a, &b);
 	}
-	ft_printf("sorted stack:\n");
-	print_stacks(&a, &b);
+//	ft_printf("sorted stack:\n");
+//	print_stacks(&a, &b);
 	stack_del(&a);
 	stack_del(&b);
 }

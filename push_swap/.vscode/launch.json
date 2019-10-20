@@ -5,12 +5,22 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch",
-            "type": "lldb",
+            "name": "(lldb) Launch",
+            "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/push_swap",
-            "args": [],
-            "cwd": "${workspaceFolder}"
+            "args": ["10 5 3"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb"
+            // "name": "Launch",
+            // "type": "lldb",
+            // "request": "launch",
+            // "program": "${workspaceFolder}/push_swap",
+            // "args": ["10 5 3"],
+            // "cwd": "${workspaceFolder}"
         }
     ]
 }

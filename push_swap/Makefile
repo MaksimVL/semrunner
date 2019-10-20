@@ -6,7 +6,7 @@
 #    By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 12:13:46 by odrinkwa          #+#    #+#              #
-#    Updated: 2019/10/18 19:58:11 by odrinkwa         ###   ########.fr        #
+#    Updated: 2019/10/20 19:44:49 by odrinkwa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ INCLIBFT_DIR := ./libft/includes
 OBJ_DIR := ./objects
 LIB_DIR := ./libft
 
-SRC  := main.c dlist.c stack.c stack_operations.c
+SRC  := main.c dlist.c stack.c stack_operations.c sort_operations.c
 HDRS := includes/push_swap.h includes/dlist.h
 OBJ  := $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 OBJECTS = $(SOURCES:.c=.o)

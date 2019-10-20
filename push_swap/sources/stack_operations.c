@@ -19,7 +19,7 @@ void			write_operation(char *str)
 {
 	static int count;
 	count++;
-	ft_printf("%s - %d\n", str, count);
+	ft_printf("%s\n", str);
 }
 void			sa(t_stack *a, t_stack *b)
 {
