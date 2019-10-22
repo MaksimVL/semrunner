@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 18:48:15 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/10/22 21:02:02 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/10/22 23:50:29 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void			print_stacks(t_stack *a, t_stack *b)
 		stack_print(b);
 		ft_printf("--------------  end print stacks  ----------\n");
 }
+
 
 void			free_strsplit(char **strings)
 {
@@ -122,7 +123,7 @@ int				check_sorted_stack(t_stack *stack)
 void			sort_a_three_elements(t_stack *a, t_stack *b)
 {
 	find_max_stack(a);
-	ra_to_bottom_value(a, a->pos_max);
+	ra_to_bottom_value(a, b, a->pos_max);
 	if (peek_top(*a) > peek_second(*a))
 				sa(a, b);
 }
@@ -143,11 +144,11 @@ void			sort_le_five_elements(t_stack *a, t_stack *b)
 	sort_a_three_elements(a, b);
 	while (b->len > 0)
 	{
-		rotate_a_asc_for_insert_value(a, peek_top(*b));
+		rotate_a_asc_for_insert_value(a, b, peek_top(*b));
 		pa(a, b);
 	}
 	find_max_stack(a);
-	ra_to_bottom_value(a, a->pos_max);
+	ra_to_bottom_value(a, b, a->pos_max);
 }
 
 typedef struct		s_min
@@ -237,7 +238,7 @@ void			first_group_stacks(t_stack *a, t_stack *b)
 	asc = search_longest_asc(a);
 	if (asc.count == len_a)
 		return ;
-	if (asc.count > 2)
+	if (asc.count > 3)
 	{
 		while (asc.pos > 0)
 		{
@@ -304,8 +305,8 @@ void			main_sort_algorithm(t_stack *a, t_stack *b)
 		}
 		if (min_operations.type_rotation == 3 || min_operations.type_rotation == 4)
 		{
-			ra_to_top_value(a, min_operations.pos_a);
-			rb_to_top_value(b, min_operations.pos_b);
+			ra_to_top_value(a, b, min_operations.pos_a);
+			rb_to_top_value(a, b, min_operations.pos_b);
 		}
 		else if (min_operations.type_rotation == 1)
 		{
@@ -315,8 +316,8 @@ void			main_sort_algorithm(t_stack *a, t_stack *b)
 				min_operations.pos_a--;
 				min_operations.pos_b--;
 			}
-			ra_to_top_value(a, min_operations.pos_a);
-			rb_to_top_value(b, min_operations.pos_b);
+			ra_to_top_value(a, b, min_operations.pos_a);
+			rb_to_top_value(a, b, min_operations.pos_b);
 		}
 		else
 		{
@@ -326,15 +327,64 @@ void			main_sort_algorithm(t_stack *a, t_stack *b)
 				min_operations.pos_a++;
 				min_operations.pos_b++;
 			}
-			ra_to_top_value(a, min_operations.pos_a);
-			rb_to_top_value(b, min_operations.pos_b);
+			ra_to_top_value(a, b, min_operations.pos_a);
+			rb_to_top_value(a, b, min_operations.pos_b);
 		}
 
 
 		pa(a, b);
 	}
 	find_max_stack(a);
-	ra_to_bottom_value(a, a->pos_max);
+	ra_to_bottom_value(a, b, a->pos_max);
+}
+
+void	stack_fill_and_sort_array_int(t_stack *a)
+{
+	t_dlist		*curr;
+	int			i;
+	int			j;
+	int			tmp_int;
+
+	i = 0;
+	curr = a->top;
+	while (curr != NULL)
+	{
+		a->array_int[i] = int_content(curr);
+		i++;
+		curr = curr->next;
+	}
+	i = 0;
+	while (i < a->len_all - 1)
+	{
+		j = i + 1;
+		while (j < a->len_all)
+		{
+			if (a->array_int[j] < a->array_int[i])
+			{
+				tmp_int = a->array_int[j];
+				a->array_int[j] = a->array_int[i];
+				a->array_int[i] = tmp_int;
+			}
+
+			j++;
+		}
+		i++;
+	}
+}
+
+void	stack_set_max_len_el(t_stack *a)
+{
+	int		i;
+	int		len_nbr;
+
+	i = 0;
+	while (i < a->len_all)
+	{
+		len_nbr = ft_nbrlen(a->array_int[i]);
+		if (a->max_len_elem < len_nbr)
+			a->max_len_elem = len_nbr;
+		i++;
+	}
 }
 
 int				main(int argc, char **argv)
@@ -401,6 +451,13 @@ int				main(int argc, char **argv)
 		return (-1);  // сделать проверки на очистки данных и т.п.
 	}
 
+	a.len_all = a.len;
+	a.array_int = (int*)ft_memalloc(sizeof(int) * a.len_all); //TODO проверка на выделение памяти, очистка если ошибка
+
+	stack_fill_and_sort_array_int(&a);
+	stack_set_max_len_el(&a);
+
+
 	//sorting stack
 	if (a.len < 2)
 		;
@@ -413,6 +470,9 @@ int				main(int argc, char **argv)
 		sort_a_three_elements(&a, &b);
 	else
 		main_sort_algorithm(&a, &b);
+
+	pretty_print_stack(&a, &b);
+	ft_printf("count of elements: %d, count of operations: %d\n", a.len_all, a.count_operations);
 	// ft_printf("sorted stack:\n");
 	// print_stacks(&a, &b);
 

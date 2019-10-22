@@ -136,73 +136,73 @@ void			find_between_asc_values_with_limits(t_stack *a, int value)
 	}
 }
 
-void			rotate_ab_to_top_value(t_stack *stack, int pos_value, char n_stack)
+void			rotate_ab_to_top_value(t_stack *stack, t_stack *o_stack, int pos_value, char n_stack)
 {
 	if (pos_value  < (int)(stack->len / 2 + 1))
 		while (pos_value-- > 0)
-			n_stack == 'a' ? ra(stack, NULL) : rb(NULL, stack);
+			n_stack == 'a' ? ra(stack, o_stack) : rb(o_stack, stack);
 	else
 		while (pos_value++ < stack->len)
-			n_stack == 'a' ? rra(stack, NULL) : rrb(NULL, stack);
+			n_stack == 'a' ? rra(stack, o_stack) : rrb(o_stack, stack);
 }
 
-void			ra_to_top_value(t_stack *a, int pos_value)
+void			ra_to_top_value(t_stack *a, t_stack *b, int pos_value)
 {
-	rotate_ab_to_top_value(a, pos_value, 'a');
+	rotate_ab_to_top_value(a, b, pos_value, 'a');
 }
 
-void			rb_to_top_value(t_stack *b, int pos_value)
+void			rb_to_top_value(t_stack *a, t_stack *b, int pos_value)
 {
-	rotate_ab_to_top_value(b, pos_value, 'b');
+	rotate_ab_to_top_value(b, a, pos_value, 'b');
 }
 
-void			rotate_ab_to_bottom_value(t_stack *stack, int pos_value, char n_stack)
+void			rotate_ab_to_bottom_value(t_stack *stack, t_stack *o_stack, int pos_value, char n_stack)
 {
 	if (pos_value  < (int)(stack->len / 2))
 		while (pos_value-- >= 0)
-			n_stack == 'a' ? ra(stack, NULL) : rb(NULL, stack);
+			n_stack == 'a' ? ra(stack, o_stack) : rb(o_stack, stack);
 	else
 		while (pos_value++ < stack->len - 1)
-			n_stack == 'a' ? rra(stack, NULL) : rrb(NULL, stack);
+			n_stack == 'a' ? rra(stack, o_stack) : rrb(o_stack, stack);
 }
 
-void			ra_to_bottom_value(t_stack *a, int pos_value)
+void			ra_to_bottom_value(t_stack *a, t_stack *b, int pos_value)
 {
-	rotate_ab_to_bottom_value(a, pos_value, 'a');
+	rotate_ab_to_bottom_value(a, b, pos_value, 'a');
 }
 
-void			rb_to_bottom_value(t_stack *b, int pos_value)
+void			rb_to_bottom_value(t_stack *a, t_stack *b, int pos_value)
 {
-	rotate_ab_to_bottom_value(b, pos_value, 'b');
+	rotate_ab_to_bottom_value(b, a, pos_value, 'b');
 }
 
-void			rotate_b_desc_for_insert_value(t_stack *b, int value)
+void			rotate_b_desc_for_insert_value(t_stack *a, t_stack *b, int value)
 {
 	if (b->len == 0 || b->len == 1)
 		return ;
 	find_max_stack(b);
 	find_min_stack(b);
 	if (value > b->max_stack || value < b->min_stack)
-		rb_to_top_value(b, b->pos_max);
+		rb_to_top_value(a, b, b->pos_max);
 	else
 	{
 		find_between_desc_values(b, value);
-		rb_to_top_value(b, b->pos_low_value);
+		rb_to_top_value(a, b, b->pos_low_value);
 	}
 }
 
-void			rotate_a_asc_for_insert_value(t_stack *a, int value)
+void			rotate_a_asc_for_insert_value(t_stack *a, t_stack *b, int value)
 {
 	if (a->len == 0 || a->len == 1)
 		return ;
 	find_max_stack(a);
 	find_min_stack(a);
 	if (value > a->max_stack || value < a->min_stack)
-		ra_to_top_value(a, a->pos_min);
+		ra_to_top_value(a, b, a->pos_min);
 	else
 	{
 		find_between_asc_values(a, value);
-		ra_to_top_value(a, a->pos_low_value);
+		ra_to_top_value(a, b, a->pos_low_value);
 	}
 }
 

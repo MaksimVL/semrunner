@@ -34,6 +34,10 @@ void			stack_initialize(t_stack *stack)
 	stack->bottom = NULL;
 	stack->pos_min = -1;
 	stack->pos_max = -1;
+	stack->array_int = NULL;
+	stack->coef_star_size = 1;
+	stack->max_len_elem = 0;
+	stack->count_operations = 0;
 }
 
 void			*stack_push(t_stack *stack, int a)
@@ -63,9 +67,12 @@ void			*stack_push(t_stack *stack, int a)
 void			stack_del(t_stack *stack)
 {
 	if (stack->len != 0)
-	ft_dlstdel(&(stack->top), del_int);
+		ft_dlstdel(&(stack->top), del_int);
+	if (stack->array_int != NULL)
+		ft_memdel((void**)&(stack->array_int));
 	stack->len = 0;
 	stack->bottom = NULL;
+
 }
 
 void			stack_print(t_stack *stack)
