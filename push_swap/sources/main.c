@@ -119,6 +119,28 @@ int				check_sorted_stack(t_stack *stack)
 	return (1);
 }
 
+void			sort_a_three_elements(t_stack *a, t_stack *b)
+{
+	find_max_stack(a);
+	ra_to_bottom_value(a, a->pos_max);
+	if (peek_top(*a) > peek_second(*a))
+				sa(a, b);
+}
+
+void			sort_le_five_elements(t_stack *a, t_stack *b)
+{
+	while (a->len > 3)
+		pb(a, b);
+	sort_a_three_elements(a, b);
+	while (b->len > 0)
+	{
+		rotate_a_asc_for_insert_value(a, peek_top(*b));
+		pa(a, b);
+	}
+	find_max_stack(a);
+	ra_to_bottom_value(a, a->pos_max);
+}
+
 int				main(int argc, char **argv)
 {
 	int			fd;
@@ -183,7 +205,6 @@ int				main(int argc, char **argv)
 		return (-1);  // сделать проверки на очистки данных и т.п.
 	}
 
-
 	// пробуем алгоритм: делаем сортировку от большего к меньшему в стеке b
 
 	// если стек пустой или 1 элемент - то ничего не делаем
@@ -202,6 +223,14 @@ int				main(int argc, char **argv)
 	{
 		if (peek_top(a) > peek_bottom(a))
 			sa(&a, &b);
+	}
+	else if (a.len == 3)
+	{
+		sort_a_three_elements(&a, &b);
+	}
+	else if (a.len < 600)
+	{
+		sort_le_five_elements(&a, &b);
 	}
 	else
 	{
@@ -226,8 +255,9 @@ int				main(int argc, char **argv)
 		rb_to_top_value(&b, b.pos_max);
 		pa_all(&a, &b);
 	}
-//	ft_printf("sorted stack:\n");
-//	print_stacks(&a, &b);
+	// ft_printf("sorted stack:\n");
+	// print_stacks(&a, &b);
+
 	stack_del(&a);
 	stack_del(&b);
 }

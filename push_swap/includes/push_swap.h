@@ -34,10 +34,12 @@ int				peek_second(t_stack stack);
 void			find_max_stack(t_stack *b);
 void			find_min_stack(t_stack *b);
 void			find_between_desc_values(t_stack *b, int value);
-void			rotate_ab_to_top_value(t_stack *stack, int pos_value, char n_stack);
 void			ra_to_top_value(t_stack *a, int pos_value);
 void			rb_to_top_value(t_stack *b, int pos_value);
+void			ra_to_bottom_value(t_stack *a, int pos_value);
+void			rb_to_bottom_value(t_stack *b, int pos_value);
 void			rotate_b_desc_for_insert_value(t_stack *b, int value);
+void			rotate_a_asc_for_insert_value(t_stack *a, int value);
 void			pa_all(t_stack *a, t_stack *b);
 
 void			sa(t_stack *a, t_stack *b);
