@@ -100,6 +100,42 @@ void			find_between_asc_values(t_stack *a, int value)
 	}
 }
 
+void			find_between_asc_values_with_limits(t_stack *a, int value)
+{
+	int			pos;
+	t_dlist		*curr;
+	t_dlist		*next;
+
+	if (a->len == 0 || a->len == 1)
+	{
+		a->pos_low_value = 0;
+		return ;
+	}
+	find_max_stack(a);
+	find_min_stack(a);
+	if (value > a->max_stack || value < a->min_stack)
+	{
+		a->pos_low_value = a->pos_min;
+		a->low_value = a->min_stack;
+		return ;
+	}
+	curr = a->top;
+	pos = 0;
+	a->pos_low_value = 0;
+	a->low_value = int_content(a->top);
+	while (curr->next != NULL)
+	{
+		pos++;
+		if (int_content(curr) <= value && value <= int_content(curr->next))
+			{
+				a->pos_low_value = pos;
+				a->low_value = int_content(curr->next);
+				return ;
+			}
+		curr = curr->next;
+	}
+}
+
 void			rotate_ab_to_top_value(t_stack *stack, int pos_value, char n_stack)
 {
 	if (pos_value  < (int)(stack->len / 2 + 1))

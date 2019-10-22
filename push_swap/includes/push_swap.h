@@ -3,6 +3,8 @@
 
 # include <math.h>
 
+# define MAX(a, b) (((a) > (b)) ? (a) : (b))
+
 typedef struct	s_stack
 {
 	int			len;
@@ -34,6 +36,8 @@ int				peek_second(t_stack stack);
 void			find_max_stack(t_stack *b);
 void			find_min_stack(t_stack *b);
 void			find_between_desc_values(t_stack *b, int value);
+void			find_between_asc_values(t_stack *a, int value);
+void			find_between_asc_values_with_limits(t_stack *a, int value);
 void			ra_to_top_value(t_stack *a, int pos_value);
 void			rb_to_top_value(t_stack *b, int pos_value);
 void			ra_to_bottom_value(t_stack *a, int pos_value);
@@ -49,9 +53,9 @@ void			pa(t_stack *a, t_stack *b);
 void			pb(t_stack *a, t_stack *b);
 void			ra(t_stack *a, t_stack *b);
 void			rb(t_stack *a, t_stack *b);
-void			rb(t_stack *a, t_stack *b);
+void			rr(t_stack *a, t_stack *b);
 void			rra(t_stack *a, t_stack *b);
 void			rrb(t_stack *a, t_stack *b);
-void			rrb(t_stack *a, t_stack *b);
+void			rrr(t_stack *a, t_stack *b);
 
 #endif

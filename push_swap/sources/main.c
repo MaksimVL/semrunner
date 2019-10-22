@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 18:48:15 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/10/20 21:12:58 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/10/22 21:02:02 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,15 @@ void			sort_a_three_elements(t_stack *a, t_stack *b)
 				sa(a, b);
 }
 
+void			left_a_three_elements(t_stack *a, t_stack *b)
+{
+	while (a->len > 3)
+	pb(a, b);
+}
+
+
+
+
 void			sort_le_five_elements(t_stack *a, t_stack *b)
 {
 	while (a->len > 3)
@@ -135,6 +144,193 @@ void			sort_le_five_elements(t_stack *a, t_stack *b)
 	while (b->len > 0)
 	{
 		rotate_a_asc_for_insert_value(a, peek_top(*b));
+		pa(a, b);
+	}
+	find_max_stack(a);
+	ra_to_bottom_value(a, a->pos_max);
+}
+
+typedef struct		s_min
+{
+	int min;
+	int type_rotation;
+	int pos_a;
+	int pos_b;
+}					t_min;
+t_min		find_minimum_operations_stack(int pos_b, int rrb_pos_b, int pos_a, int rra_pos_a)
+{
+	int min;
+	int type_rotation;
+	t_min res;
+
+// type rotation: rr - 1; rrr - 2; rb, rra - 3; ra, rrb - 4
+
+	type_rotation = 1;
+	min = MAX(pos_b, pos_a);
+
+	if (MAX(rrb_pos_b, rra_pos_a) < min)
+	{
+		min = MAX(rrb_pos_b, rra_pos_a);
+		type_rotation = 2;
+	}
+
+	if (pos_b + rra_pos_a < min)
+	{
+		min = pos_b + rra_pos_a;
+		type_rotation = 3;
+	}
+	if (pos_a + rrb_pos_b < min)
+	{
+		min = pos_a + rrb_pos_b;
+		type_rotation = 4;
+	}
+	res.min = min;
+	res.type_rotation = type_rotation;
+	return (res);
+}
+
+typedef struct	s_longest_asc
+{
+	int			pos;
+	int			count;
+}				t_longest_asc;
+
+t_longest_asc	search_longest_asc(t_stack *a)
+{
+	t_dlist		*curr;
+	t_dlist		*curr_curr;
+	t_dlist		*next;
+	t_longest_asc	curr_asc;
+	t_longest_asc	max;
+
+	curr = a->top;
+	curr_asc.pos = 0;
+	max.pos = -1;
+	max.count = -1;
+	while (curr != NULL)
+	{
+		curr_asc.count = 1;
+		curr_curr = curr;
+		while (curr_curr != NULL && curr_curr->next != NULL && int_content(curr_curr) < int_content(curr_curr->next))
+		{
+			curr_curr = curr_curr->next;
+			curr_asc.count++;
+		}
+
+		if (curr_asc.count > max.count)
+		{
+			max.count = curr_asc.count;
+			max.pos = curr_asc.pos;
+		}
+		curr = curr->next;
+		curr_asc.pos++;
+	}
+	return (max);
+}
+
+void			first_group_stacks(t_stack *a, t_stack *b)
+{
+	t_longest_asc	asc;
+	int				len_a;
+
+	len_a = a->len;
+	asc = search_longest_asc(a);
+	if (asc.count == len_a)
+		return ;
+	if (asc.count > 2)
+	{
+		while (asc.pos > 0)
+		{
+			pb(a, b);
+			asc.pos--;
+			len_a--;
+		}
+		if (asc.count == len_a)
+			return ;
+		while(asc.count > 0)
+		{
+			ra(a, b);
+			asc.count--;
+			len_a--;
+		}
+		while(len_a > 0)
+		{
+			pb(a, b);
+			len_a--;
+		}
+	}
+	else
+	{
+		left_a_three_elements(a, b);
+		sort_a_three_elements(a, b);
+	}
+
+}
+
+void			main_sort_algorithm(t_stack *a, t_stack *b)
+{
+	t_dlist		*curr_b;
+	int			pos_b;
+	t_min		min_operations;
+	t_min		min_tmp;
+
+	// left_a_three_elements(a, b);
+	// sort_a_three_elements(a, b);
+
+	first_group_stacks(a, b);
+	while (b->len > 0)
+	{
+		curr_b = b->top;
+		pos_b = 0;
+		min_operations.pos_a = -1;
+		while (curr_b != NULL)
+		{
+			find_between_asc_values_with_limits(a, int_content(curr_b));
+			min_tmp = find_minimum_operations_stack(pos_b, b->len - pos_b, a->pos_low_value, a->len - a->pos_low_value);
+			if (min_operations.pos_a == -1)
+			{
+				min_operations = min_tmp;
+				min_operations.pos_a = a->pos_low_value;
+				min_operations.pos_b = pos_b;
+			}
+			else if (min_tmp.min < min_operations.min)
+			{
+				min_operations = min_tmp;
+				min_operations.pos_a = a->pos_low_value;
+				min_operations.pos_b = pos_b;
+			}
+			curr_b = curr_b->next;
+			pos_b++;
+		}
+		if (min_operations.type_rotation == 3 || min_operations.type_rotation == 4)
+		{
+			ra_to_top_value(a, min_operations.pos_a);
+			rb_to_top_value(b, min_operations.pos_b);
+		}
+		else if (min_operations.type_rotation == 1)
+		{
+			while(min_operations.pos_a > 0 && min_operations.pos_b > 0)
+			{
+				rr(a, b);
+				min_operations.pos_a--;
+				min_operations.pos_b--;
+			}
+			ra_to_top_value(a, min_operations.pos_a);
+			rb_to_top_value(b, min_operations.pos_b);
+		}
+		else
+		{
+			while(min_operations.pos_a < a->len && min_operations.pos_b < b->len)
+			{
+				rrr(a, b);
+				min_operations.pos_a++;
+				min_operations.pos_b++;
+			}
+			ra_to_top_value(a, min_operations.pos_a);
+			rb_to_top_value(b, min_operations.pos_b);
+		}
+
+
 		pa(a, b);
 	}
 	find_max_stack(a);
@@ -205,17 +401,6 @@ int				main(int argc, char **argv)
 		return (-1);  // сделать проверки на очистки данных и т.п.
 	}
 
-	// пробуем алгоритм: делаем сортировку от большего к меньшему в стеке b
-
-	// если стек пустой или 1 элемент - то ничего не делаем
-	// если стек из двух элементов - то если не упорядочен - переставляем эти элементы.
-	// если стек больше двух элементов и не упорядочен:
-	// перекидываем из стека а в стек б элементы, упорядочивая их по убыванию.
-
-	// реализуем для начала алгоритм для стека >= 3 элемента.
-
-//	print_stacks(&a, &b);
-
 	//sorting stack
 	if (a.len < 2)
 		;
@@ -225,36 +410,9 @@ int				main(int argc, char **argv)
 			sa(&a, &b);
 	}
 	else if (a.len == 3)
-	{
 		sort_a_three_elements(&a, &b);
-	}
-	else if (a.len < 600)
-	{
-		sort_le_five_elements(&a, &b);
-	}
 	else
-	{
-		while (a.len > 0)
-		{
-			if (b.len == 0)
-			{
-				pb(&a, &b);
-				continue;
-			}
-			if (b.len == 1)
-			{
-				pb(&a, &b);
-				if (peek_top(b) < peek_bottom(b))
-					sb(&a, &b);
-				continue;
-			}
-			rotate_b_desc_for_insert_value(&b, peek_top(a));
-			pb(&a, &b);
-		}
-		find_max_stack(&b);
-		rb_to_top_value(&b, b.pos_max);
-		pa_all(&a, &b);
-	}
+		main_sort_algorithm(&a, &b);
 	// ft_printf("sorted stack:\n");
 	// print_stacks(&a, &b);
 
