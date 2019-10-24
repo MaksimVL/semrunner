@@ -1,11 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/24 19:33:10 by odrinkwa          #+#    #+#             */
+/*   Updated: 2019/10/25 00:05:21 by odrinkwa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
 # include <math.h>
 # include "terminal_draw.h"
 # include "dlist.h"
-
-# define MAX(a, b) (((a) > (b)) ? (a) : (b))
 
 typedef struct	s_stack
 {
@@ -23,7 +33,22 @@ typedef struct	s_stack
 	int			coef_star_size;
 	int			max_len_elem;
 	int			count_operations;
+	int			flag;
 }				t_stack;
+
+typedef struct		s_min
+{
+	int min;
+	int type_rotation;
+	int pos_a;
+	int pos_b;
+}					t_min;
+
+typedef struct	s_longest_asc
+{
+	int			pos;
+	int			count;
+}				t_longest_asc;
 
 int				int_content(t_dlist *list);
 
@@ -40,6 +65,8 @@ int				peek_top(t_stack stack);
 int				peek_bottom(t_stack stack);
 int				peek_second(t_stack stack);
 
+void			del_int(void *content, size_t size);
+
 void			find_max_stack(t_stack *b);
 void			find_min_stack(t_stack *b);
 void			find_between_desc_values(t_stack *b, int value);
@@ -49,12 +76,25 @@ void			ra_to_top_value(t_stack *a, t_stack *b, int pos_value);
 void			rb_to_top_value(t_stack *a, t_stack *b, int pos_value);
 void			ra_to_bottom_value(t_stack *a, t_stack *b, int pos_value);
 void			rb_to_bottom_value(t_stack *a, t_stack *b, int pos_value);
-void			rotate_b_desc_for_insert_value(t_stack *a, t_stack *b, int value);
-void			rotate_a_asc_for_insert_value(t_stack *a, t_stack *b, int value);
+void			rotate_b_desc_for_insert_value(t_stack *a, t_stack *b,
+								int value);
+void			rotate_a_asc_for_insert_value(t_stack *a, t_stack *b,
+								int value);
 void			pa_all(t_stack *a, t_stack *b);
 
 void			pretty_print_stack(t_stack *a, t_stack *b);
 void			print_stacks(t_stack *a, t_stack *b);
+
+void			stack_fill_and_sort_array_int(t_stack *a);
+void			stack_set_max_len_el(t_stack *a);
+void			sort_a_three_elements(t_stack *a, t_stack *b);
+void			left_a_three_elements(t_stack *a, t_stack *b);
+void			sort_le_five_elements(t_stack *a, t_stack *b);
+void			main_sort_algorithm(t_stack *a, t_stack *b);
+void			stack_sort(t_stack *a, t_stack *b);
+
+void			first_group_stacks(t_stack *a, t_stack *b);
+int				find_repeat_elements(t_stack *stack);
 
 void			sa(t_stack *a, t_stack *b);
 void			sb(t_stack *a, t_stack *b);
@@ -67,5 +107,6 @@ void			rr(t_stack *a, t_stack *b);
 void			rra(t_stack *a, t_stack *b);
 void			rrb(t_stack *a, t_stack *b);
 void			rrr(t_stack *a, t_stack *b);
+void			write_operation(char *str, t_stack *a, t_stack *b);
 
 #endif

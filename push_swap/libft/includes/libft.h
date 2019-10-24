@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 20:59:45 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/10/14 18:50:19 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/10/24 20:38:08 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define BUFF_SIZE 20
 
 # define ABS(value) (((value) < 0) ? ((value) * (-1)) : (value))
+# define MAX(a, b) (((a) > (b)) ? (a) : (b))
 
 typedef struct		s_list
 {

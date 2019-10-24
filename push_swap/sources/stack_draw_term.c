@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_draw_term.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/24 19:56:33 by odrinkwa          #+#    #+#             */
+/*   Updated: 2019/10/25 00:25:14 by odrinkwa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static void		print_stars(int count)
@@ -20,7 +32,8 @@ static int		get_size_stack_elem(t_stack *a, t_dlist *curr_el)
 	return (0);
 }
 
-static void		pretty_print_aux(t_stack *a, t_dlist *curr_a, t_dlist *curr_b, int width)
+static void		pretty_print_aux(t_stack *a, t_dlist *curr_a,
+								t_dlist *curr_b, int width)
 {
 	int i;
 
@@ -34,7 +47,7 @@ static void		pretty_print_aux(t_stack *a, t_dlist *curr_a, t_dlist *curr_b, int 
 			print_stars(get_size_stack_elem(a, curr_a));
 			curr_a = curr_a->next;
 		}
-		GOTOXY(width, i);
+		GOTOINLINE(width);
 		SETCOLOR(F_GREEN);
 		if (curr_b != NULL)
 		{
@@ -49,12 +62,10 @@ static void		pretty_print_aux(t_stack *a, t_dlist *curr_a, t_dlist *curr_b, int 
 
 void			pretty_print_stack(t_stack *a, t_stack *b)
 {
-	int width;
-	t_dlist *curr_a;
-	t_dlist *curr_b;
+	int			width;
+	t_dlist		*curr_a;
+	t_dlist		*curr_b;
 
-	HOME();
-	CLRSCR();
 	curr_a = (a != NULL) ? a->top : NULL;
 	curr_b = (b != NULL) ? b->top : NULL;
 	width = a->len_all + 15;
@@ -62,12 +73,5 @@ void			pretty_print_stack(t_stack *a, t_stack *b)
 	RESET_COLOR();
 }
 
-void			print_stacks(t_stack *a, t_stack *b)
-{
-		ft_printf("-------------- start print stacks ----------\n");
-		ft_printf("'''stack a:\n");
-		stack_print(a);
-		ft_printf("'''stack b:\n");
-		stack_print(b);
-		ft_printf("--------------  end print stacks  ----------\n");
-}
+
+

@@ -1,49 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_operations.c                                 :+:      :+:    :+:   */
+/*   stack_operations2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/24 19:32:00 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/10/25 00:26:40 by odrinkwa         ###   ########.fr       */
+/*   Created: 2019/10/24 19:35:33 by odrinkwa          #+#    #+#             */
+/*   Updated: 2019/10/24 19:43:38 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-void			write_operation(char *str, t_stack *a, t_stack *b)
+void			ss(t_stack *a, t_stack *b)
 {
-	a->count_operations++;
-	if (a->flag == 1)
-	{
-		ft_printf("operation: %s, count_operation: %d\n", str, a->count_operations);
-		pretty_print_stack(a, b);
-	}
-	else if (a->flag == 2)
-	{
-		HOME();
-		CLRSCR();
-		pretty_print_stack(a, b);
-		usleep(200000);
-	}
-	else
-		ft_printf("%s\n", str);
+	stack_swap(a);
+	stack_swap(b);
+	write_operation("ss", a, b);
 }
 
-void			sa(t_stack *a, t_stack *b)
+void			pa(t_stack *a, t_stack *b)
+{
+	stack_push_ab(a, b);
+	write_operation("pa", a, b);
+}
+
+void			rra(t_stack *a, t_stack *b)
 {
 	if (b == NULL && b != NULL)
 		return ;
-	stack_swap(a);
-	write_operation("sa", a, b);
+	stack_rrotate(a);
+	write_operation("rra", a, b);
 }
 
-void			sb(t_stack *a, t_stack *b)
+void			rrb(t_stack *a, t_stack *b)
 {
 	if (a == NULL && a != NULL)
 		return ;
-	stack_swap(b);
-	write_operation("sb", a, b);
+	stack_rrotate(b);
+	write_operation("rrb", a, b);
+}
+
+void			rrr(t_stack *a, t_stack *b)
+{
+	stack_rrotate(a);
+	stack_rrotate(b);
+	write_operation("rrr", a, b);
 }
