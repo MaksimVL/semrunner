@@ -19,8 +19,9 @@ INCLIBFT_DIR := ./libft/includes
 OBJ_DIR := ./objects
 LIB_DIR := ./libft
 
-SRC  := main.c dlist.c stack.c stack_operations.c sort_operations.c
-HDRS := includes/push_swap.h includes/dlist.h
+SRC  := main.c stack.c stack_operations.c sort_operations.c \
+	stack_draw_term.c
+HDRS := includes/push_swap.h includes/terminal_draw.h
 OBJ  := $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 OBJECTS = $(SOURCES:.c=.o)
 

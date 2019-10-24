@@ -17,68 +17,7 @@
 
 #include <float.h>
 
-void			dlist_print(t_dlist lst)
-{
-	ft_printf("%d", *(int*)(lst.content));
-}
 
-int				dlist_int(t_dlist lst)
-{
-	return (*(int*)lst.content);
-}
-
-
-
-void			print_stacks(t_stack *a, t_stack *b)
-{
-		ft_printf("-------------- start print stacks ----------\n");
-		ft_printf("'''stack a:\n");
-		stack_print(a);
-		ft_printf("'''stack b:\n");
-		stack_print(b);
-		ft_printf("--------------  end print stacks  ----------\n");
-}
-
-
-void			free_strsplit(char **strings)
-{
-	int		i;
-
-	if (strings == NULL)
-		return ;
-	i = 0;
-	while (strings[i] != 0)
-	{
-		ft_memdel((void**)&(strings[i]));
-		i++;
-	}
-	ft_memdel((void**)&(strings[i]));
-	ft_memdel((void**)strings);
-}
-
-int				ft_isint(char *str)
-{
-	int i;
-	int count_numbers;
-
-	if (str == NULL || str[0] == '\0')
-		return (0);
-	else if (ft_isdigit(str[0]))
-		count_numbers = 1;
-	else if (str[0] == '-' || str[0] == '+')
-		count_numbers = 0;
-	else
-		return (0);
-	i = 1;
-	while (str[i] != '\0')
-	{
-		if (ft_isdigit(str[i]) == 0)
-			return (0);
-		count_numbers++;
-		i++;
-	}
-	return ((count_numbers == 0) ? 0 : 1);
-}
 
 int				find_repeat_elements(t_stack *stack)
 {
@@ -134,9 +73,6 @@ void			left_a_three_elements(t_stack *a, t_stack *b)
 	pb(a, b);
 }
 
-
-
-
 void			sort_le_five_elements(t_stack *a, t_stack *b)
 {
 	while (a->len > 3)
@@ -163,8 +99,6 @@ t_min		find_minimum_operations_stack(int pos_b, int rrb_pos_b, int pos_a, int rr
 	int min;
 	int type_rotation;
 	t_min res;
-
-// type rotation: rr - 1; rrr - 2; rb, rra - 3; ra, rrb - 4
 
 	type_rotation = 1;
 	min = MAX(pos_b, pos_a);
@@ -274,9 +208,6 @@ void			main_sort_algorithm(t_stack *a, t_stack *b)
 	int			pos_b;
 	t_min		min_operations;
 	t_min		min_tmp;
-
-	// left_a_three_elements(a, b);
-	// sort_a_three_elements(a, b);
 
 	first_group_stacks(a, b);
 	while (b->len > 0)
@@ -425,7 +356,7 @@ int				main(int argc, char **argv)
 			if (ft_isint(str_numbers[j]) == 0)
 			{
 				ft_printf("error: found not number elements\n");
-				free_strsplit(str_numbers);
+				ft_del_strsplit(str_numbers);
 				stack_del(&a);
 				return (-1); // TODO сделать соответствующую очистку памяти
 			}
@@ -433,7 +364,7 @@ int				main(int argc, char **argv)
 			stack_push(&a, ft_atoi(str_numbers[j]));
 			j++;
 		}
-		free_strsplit(str_numbers);
+		ft_del_strsplit(str_numbers);
 		i++;
 	}
 

@@ -2,17 +2,10 @@
 # define PUSH_SWAP_H
 
 # include <math.h>
+# include "terminal_draw.h"
+# include "dlist.h"
 
 # define MAX(a, b) (((a) > (b)) ? (a) : (b))
-
-# define HOME() ft_printf("\033[H");
-# define CLRSCR() ft_printf("\033[2J");
-# define SETCOLOR(color) ft_printf("\033[%dm", color);
-# define GOTOXY(x,y) ft_printf("\033[%d;%dH", y, x);
-# define RESET_COLOR() ft_printf("\033[0m");
-
-# define F_RED 31
-# define F_GREEN 32
 
 typedef struct	s_stack
 {
@@ -61,6 +54,7 @@ void			rotate_a_asc_for_insert_value(t_stack *a, t_stack *b, int value);
 void			pa_all(t_stack *a, t_stack *b);
 
 void			pretty_print_stack(t_stack *a, t_stack *b);
+void			print_stacks(t_stack *a, t_stack *b);
 
 void			sa(t_stack *a, t_stack *b);
 void			sb(t_stack *a, t_stack *b);
