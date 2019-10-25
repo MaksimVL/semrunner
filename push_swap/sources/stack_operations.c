@@ -28,7 +28,7 @@ void			write_operation(char *str, t_stack *a, t_stack *b)
 		pretty_print_stack(a, b);
 		usleep(200000);
 	}
-	else
+	else if (a->flag_checker == 0)
 		ft_printf("%s\n", str);
 }
 

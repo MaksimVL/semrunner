@@ -1,17 +1,18 @@
 #include "libft.h"
 
-void			ft_del_strsplit(char **strings)
+void			ft_del_strsplit(char ***strings)
 {
 	int		i;
 
-	if (strings == NULL)
+	if (strings == NULL || *strings == NULL)
 		return ;
 	i = 0;
-	while (strings[i] != 0)
+	while ((*strings)[i] != 0)
 	{
-		ft_memdel((void**)&(strings[i]));
+		ft_memdel((void**)&((*strings)[i]));
 		i++;
 	}
-	ft_memdel((void**)&(strings[i]));
-	ft_memdel((void**)strings);
+	ft_memdel((void**)&((*strings)[i]));
+	free(*strings);
+	*strings = NULL;
 }

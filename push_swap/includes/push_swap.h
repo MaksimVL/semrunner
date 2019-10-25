@@ -34,6 +34,7 @@ typedef struct	s_stack
 	int			max_len_elem;
 	int			count_operations;
 	int			flag;
+	int			flag_checker;
 }				t_stack;
 
 typedef struct		s_min
@@ -66,6 +67,23 @@ int				peek_bottom(t_stack stack);
 int				peek_second(t_stack stack);
 
 void			del_int(void *content, size_t size);
+
+int				read_arguments(t_stack *a, t_dlist **prog, char *arg_str, char ***str_numbers);
+int				read_stack_from_file(char *filename, t_stack *a,
+						char ***str_numbers);
+int				read_prog_from_file(char *filename, t_dlist **prog);
+int				load_stack(t_stack *a, char *line_stack, char ***str_numbers);
+int				check(t_stack *a);
+void			sort(t_stack *a, t_stack *b);
+int				check_sort_stack(t_stack *a);
+void			use_program_to_stack(t_stack *a, t_stack *b, t_dlist *prog);
+
+int				error_clear_vars(t_stack *a, t_stack *b,
+						char ***str_numbers, t_dlist **prog);
+int				normal_clear_vars(t_stack *a, t_stack *b,
+						char ***str_numbers, t_dlist **prog);
+
+int				load_program(t_dlist **prog, int fd);
 
 void			find_max_stack(t_stack *b);
 void			find_min_stack(t_stack *b);

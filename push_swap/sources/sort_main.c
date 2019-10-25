@@ -115,3 +115,4 @@ void			stack_sort(t_stack *a, t_stack *b)
 	else
 		main_sort_algorithm(a, b);
 }
+

@@ -130,7 +130,7 @@ t_list				*ft_lstfind(t_list *head, void *search_d,
 void				ft_strset(char *str, char c, int len);
 int					ft_nbrlen(long int a);
 int					ft_printf(const char *format, ...);
-void				ft_del_strsplit(char **strings);
+void				ft_del_strsplit(char ***strings);
 int					ft_isint(char *str);
 
 #endif
