@@ -6,7 +6,7 @@
 #    By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 12:13:46 by odrinkwa          #+#    #+#              #
-#    Updated: 2019/10/24 21:56:05 by odrinkwa         ###   ########.fr        #
+#    Updated: 2019/10/26 14:40:14 by odrinkwa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRC_COMMON := stack.c stack_operations.c sort_operations.c \
 	stack_initialize.c stack_rotate.c stack_basic_operations.c \
 	stack_print_basic.c stack_rotate_to_top.c \
 	stack_rotate_to_bottom.c stack_rotate_for_insert.c \
-	stack_array_int.c stack_basic_operations1.c \
+	stack_array_int.c \
 	sort_operations1.c sort_main.c sort_first_group.c \
 	stack_check.c mem_clear.c load_check.c sort.c \
 	work_with_file.c load_program.c use_program_to_stack.c

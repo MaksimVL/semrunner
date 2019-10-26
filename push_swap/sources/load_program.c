@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   load_program.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/26 14:37:10 by odrinkwa          #+#    #+#             */
+/*   Updated: 2019/10/26 14:37:22 by odrinkwa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 #include "push_swap.h"
 
@@ -25,10 +37,10 @@ int				load_program(t_dlist **prog, int fd)
 			ft_strequ(line, "rb") || ft_strequ(line, "rr") ||
 			ft_strequ(line, "rra") || ft_strequ(line, "rrb") ||
 			ft_strequ(line, "rrr")) || (!(add_command_in_prog(prog, line))))
-			{
-					res = -1;
-					break ;
-			}
+		{
+			res = -1;
+			break ;
+		}
 		ft_memdel((void**)&line);
 	}
 	ft_memdel((void**)&line);

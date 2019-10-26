@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 19:33:10 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/10/25 00:05:21 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/10/26 14:42:55 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ typedef struct	s_stack
 	int			flag_checker;
 }				t_stack;
 
-typedef struct		s_min
+typedef struct	s_min
 {
 	int min;
 	int type_rotation;
 	int pos_a;
 	int pos_b;
-}					t_min;
+}				t_min;
 
 typedef struct	s_longest_asc
 {
@@ -68,7 +68,8 @@ int				peek_second(t_stack stack);
 
 void			del_int(void *content, size_t size);
 
-int				read_arguments(t_stack *a, t_dlist **prog, char *arg_str, char ***str_numbers);
+int				read_arguments(t_stack *a, t_dlist **prog, char *arg_str,
+								char ***str_numbers);
 int				read_stack_from_file(char *filename, t_stack *a,
 						char ***str_numbers);
 int				read_prog_from_file(char *filename, t_dlist **prog);

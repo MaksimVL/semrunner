@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 21:23:33 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/10/24 22:13:33 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/10/26 14:55:24 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ t_min			find_minimum_operations_stack(int pos_b, int rrb_pos_b,
 		min = MAX(rrb_pos_b, rra_pos_a);
 		type_rotation = 2;
 	}
-
 	if (pos_b + rra_pos_a < min)
 	{
 		min = pos_b + rra_pos_a;
@@ -115,4 +114,3 @@ void			stack_sort(t_stack *a, t_stack *b)
 	else
 		main_sort_algorithm(a, b);
 }
-

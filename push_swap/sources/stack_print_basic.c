@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 19:58:37 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/10/24 19:58:39 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/10/26 14:41:02 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static void		stack_print_aux(t_stack *stack)
 	tmp = NULL;
 	if (stack->top == NULL)
 	{
-		ft_printf("len = %d, top = %p, bottom = %p\n", stack->len, stack->top, stack->bottom);
+		ft_printf("len = %d, top = %p, bottom = %p\n", stack->len,
+				stack->top, stack->bottom);
 		ft_printf("---  end info stack  ---\n");
 		return ;
 	}

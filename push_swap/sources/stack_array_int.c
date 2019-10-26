@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 20:40:39 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/10/24 20:49:30 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/10/26 14:55:41 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static void		sort_array_int(t_stack *a)
 				a->array_int[j] = a->array_int[i];
 				a->array_int[i] = tmp_int;
 			}
-
 			j++;
 		}
 		i++;

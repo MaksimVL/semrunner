@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 19:56:33 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/10/25 00:25:14 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/10/26 14:40:32 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void		print_stars(int count)
 {
-	while(count-- > 0)
+	while (count-- > 0)
 		ft_printf("*");
 }
 
@@ -72,6 +72,3 @@ void			pretty_print_stack(t_stack *a, t_stack *b)
 	pretty_print_aux(a, curr_a, curr_b, width);
 	RESET_COLOR();
 }
-
-
-

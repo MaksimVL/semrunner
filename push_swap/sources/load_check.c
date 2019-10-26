@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   load_check.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/26 14:36:29 by odrinkwa          #+#    #+#             */
+/*   Updated: 2019/10/26 14:37:04 by odrinkwa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 #include "push_swap.h"
 
@@ -20,14 +32,16 @@ int				load_stack(t_stack *a, char *line_stack, char ***str_numbers)
 	return (1);
 }
 
-int				read_arguments(t_stack *a, t_dlist **prog, char *arg_str, char ***str_numbers)
+int				read_arguments(t_stack *a, t_dlist **prog,
+							char *arg_str, char ***str_numbers)
 {
 	if (ft_strlen(arg_str) > 2 && (arg_str[0] == '-' && arg_str[1] == 'f'))
 	{
 		if (read_stack_from_file(&(arg_str[2]), a, str_numbers) == 0)
 			return (0);
 	}
-	else if (a->flag_checker == 1 && ft_strlen(arg_str) > 2 && (arg_str[0] == '-' && arg_str[1] == 'p'))
+	else if (a->flag_checker == 1 && ft_strlen(arg_str) > 2 &&
+				(arg_str[0] == '-' && arg_str[1] == 'p'))
 	{
 		if (read_prog_from_file(&(arg_str[2]), prog) == 0)
 			return (0);

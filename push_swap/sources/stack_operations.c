@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 19:32:00 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/10/25 00:26:40 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/10/26 14:40:46 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void			write_operation(char *str, t_stack *a, t_stack *b)
 	a->count_operations++;
 	if (a->flag == 1)
 	{
-		ft_printf("operation: %s, count_operation: %d\n", str, a->count_operations);
+		ft_printf("operation: %s, count_operation: %d\n", str,
+			a->count_operations);
 		pretty_print_stack(a, b);
 	}
 	else if (a->flag == 2)
