@@ -84,7 +84,7 @@ void					first_group_stacks(t_stack *a, t_stack *b)
 	asc = search_longest_asc(a);
 	if (asc.count == len_a)
 		return ;
-	if (asc.count > 3)
+	if (asc.count > 5)
 		group_stack_while_aux(a, b, asc, len_a);
 	else
 	{
