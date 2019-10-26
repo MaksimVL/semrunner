@@ -18,8 +18,8 @@
             "name": "Launch",
             "type": "lldb",
             "request": "launch",
-            "program": "${workspaceFolder}/push_swap",
-            "args": ["1"],
+            "program": "${workspaceFolder}/checker",
+            "args": ["205", "5", "1", "-pprog1"],
             "cwd": "${workspaceFolder}"
         }
     ]
