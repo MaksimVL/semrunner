@@ -93,5 +93,6 @@ void						ft_intpart(int pow, unsigned long int mant,
 										int exp, t_bigdec *bd);
 void						ft_fractpart(int pow, unsigned long int mant,
 										t_bigdec *bd);
+int							is_last_five(t_bignum res, int start_check);
 
 #endif

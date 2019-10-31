@@ -14,7 +14,7 @@ LIBFT_SRC_DIR	= ./sources/
 LIBFT_INC_DIR	= ./includes/
 LIBFT_OBJ_DIR	= ./objects/
 
-LIBFT_HDR		= libft.h dlist.h
+LIBFT_HDR		= libft.h terminal_draw.h
 
 LIBFT_SRC		= ft_atoi.c ft_bzero.c ft_dictadd.c ft_dictclearzero.c \
 	ft_dictdelbykey.c ft_dictdelelement.c ft_dictgetoraddvalue.c \
@@ -33,7 +33,7 @@ LIBFT_SRC		= ft_atoi.c ft_bzero.c ft_dictadd.c ft_dictclearzero.c \
 	ft_strnequ.c ft_strnew.c ft_strnjoin.c ft_strnstr.c ft_strrchr.c \
 	ft_strset.c ft_strsplit.c ft_strstr.c ft_strsub.c ft_strtrim.c \
 	ft_tolower.c ft_toupper.c ft_zerostr.c get_next_line.c ft_nbrlen.c \
-	ft_isint.c ft_del_strsplit.c ft_dlist.c
+	ft_isint.c ft_del_strsplit.c ft_dlist.c ft_queue.c
 
 LIBFT_OBJ		= $(LIBFT_SRC:.c=.o)
 
@@ -55,7 +55,7 @@ PRINTF_SRC	= arg_mode.c bn_auxfunc.c bn_fix.c bn_fstr.c bn_init.c \
 	spectostr_bighex.c spectostr_bin.c spectostr_char.c \
 	spectostr_float.c spectostr_lowhex.c spectostr_oct.c \
 	spectostr_percent.c spectostr_ptr.c spectostr_sdec.c \
-	spectostr_string.c spectostr_udec.c
+	spectostr_string.c spectostr_udec.c bn_auxfunc1.c
 
 PRINTF_OBJ	= $(PRINTF_SRC:.c=.o)
 

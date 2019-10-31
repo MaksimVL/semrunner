@@ -10,7 +10,8 @@
         "libft.h": "c",
         "chrono": "c",
         "unordered_map": "c",
-        "bitset": "c"
+        "bitset": "c",
+        "dlist.h": "c"
     },
     "python.testing.pytestArgs": [
         "."

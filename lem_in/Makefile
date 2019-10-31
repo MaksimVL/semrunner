@@ -19,9 +19,9 @@ INCLIBFT_DIR := ./libft/includes
 OBJ_DIR := ./objects
 LIB_DIR := ./libft
 
-SRC  := main.c
+SRC  := main.c initialize.c load_map.c print_room_links_props.c
 
-HDRS := #includes/push_swap.h includes/terminal_draw.h
+HDRS := includes/lemin.h
 OBJ  := $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 OBJECTS = $(SOURCES:.c=.o)
 

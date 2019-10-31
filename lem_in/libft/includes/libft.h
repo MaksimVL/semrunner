@@ -17,13 +17,15 @@
 # include <string.h>
 # include <unistd.h>
 # include <errno.h>
-# include "dlist.h"
 # include "terminal_draw.h"
 
 # define BUFF_SIZE 20
 
+# define NO_DEFINE -2147483648
+
 # define ABS(value) (((value) < 0) ? ((value) * (-1)) : (value))
 # define MAX(a, b) (((a) > (b)) ? (a) : (b))
+# define MIN(a, b) (((a) < (b)) ? (a) : (b))
 
 typedef struct		s_list
 {
@@ -40,6 +42,21 @@ typedef struct		s_dict
 	struct s_dict	*next;
 	struct s_dict	*prev;
 }					t_dict;
+
+typedef struct		s_dlist
+{
+	void			*content;
+	size_t			content_size;
+	struct s_dlist	*next;
+	struct s_dlist	*prev;
+}					t_dlist;
+
+typedef struct	s_queue
+{
+	int			len;
+	t_dlist		*top;
+	t_dlist		*bottom;
+}				t_queue;
 
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_bzero(void *s, size_t n);
@@ -133,5 +150,37 @@ int					ft_nbrlen(long int a);
 int					ft_printf(const char *format, ...);
 void				ft_del_strsplit(char ***strings);
 int					ft_isint(char *str);
+
+/*
+** dlist
+*/
+
+t_dlist				*ft_dlstnew(void const *content, size_t content_size);
+void				ft_dlstadd(t_dlist **alst, t_dlist *new);
+void				ft_dlst_addback(t_dlist **alst, t_dlist *new);
+void				ft_dlstdel(t_dlist **alst, void (*del)(void *, size_t));
+void				*ft_dlst_addcontent_back(t_dlist **list, void *content,
+											size_t content_size);
+int					ft_dlst_len(t_dlist *lst);
+
+/*
+** int content
+*/
+
+void			del_intcontent(void *content, size_t size);
+int				int_content(t_dlist *list);
+
+/*
+** queue
+** qi - queue with integer values
+*/
+
+void			queue_init(t_queue *queue);
+void			qi_del(t_queue *queue);
+void			*qi_push(t_queue *queue, int value);
+int				qi_pop(t_queue *queue);
+int				qi_front(t_queue *queue);
+int				qi_back(t_queue *queue);
+int				qi_empty(t_queue *queue);
 
 #endif

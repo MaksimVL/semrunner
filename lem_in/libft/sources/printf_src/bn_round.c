@@ -67,13 +67,22 @@ void			normalize_bn(t_bignum *res)
 
 void			round_bn(t_bignum *res, int prec)
 {
-	t_bignum ten;
+	t_bignum	ten;
 
 	if (res->exp - prec < 0)
 		return ;
 	else
 	{
-		if (ft_get_inpos_bignum(*res, res->exp - prec) >= 5)
+		if (ft_get_inpos_bignum(*res, res->exp - prec) == 5)
+		{
+			if (is_last_five(*res, res->exp - prec) == 0 ||
+				ft_get_inpos_bignum(*res, res->exp - prec + 1) % 2 == 1)
+			{
+				ft_put_one_inpos_bignum(&ten, res->maxsize, res->exp - prec + 1);
+				ft_isumabs_bignum(res, ten);
+			}
+		}
+		else if (ft_get_inpos_bignum(*res, res->exp - prec) > 5)
 		{
 			ft_put_one_inpos_bignum(&ten, res->maxsize, res->exp - prec + 1);
 			ft_isumabs_bignum(res, ten);

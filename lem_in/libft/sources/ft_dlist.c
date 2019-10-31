@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "dlist.h"
 #include "libft.h"
 
 t_dlist		*ft_dlstnew(void const *content, size_t content_size)
@@ -81,4 +80,30 @@ void		ft_dlstdel(t_dlist **alst, void (*del)(void *, size_t))
 		curr = next;
 	}
 	*alst = NULL;
+}
+
+void		*ft_dlst_addcontent_back(t_dlist **list, void *content, size_t content_size)
+{
+	t_dlist		*temp;
+
+	temp = ft_dlstnew(content, content_size);
+	if (temp == NULL)
+		return (NULL);
+	ft_dlst_addback(list, temp);
+	return (list);
+}
+
+int			ft_dlst_len(t_dlist *lst)
+{
+	int		i;
+	t_dlist	*curr;
+
+	i = 0;
+	curr = lst;
+	while (curr != NULL)
+	{
+		curr = curr->next;
+		i++;
+	}
+	return (i);
 }
