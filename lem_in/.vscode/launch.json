@@ -5,29 +5,33 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "(cppdbg) launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/lem_in",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb"
+        },
+        {
             "name": "Launch",
             "type": "lldb",
             "request": "launch",
             "program": "${workspaceFolder}/lem_in",
             "args": [],
-            "cwd": "${workspaceFolder}",
-            // "stopAtEntry": false,
-            // "environment": [],
-            // "externalConsole": false,
-            // "MIMode": "lldb"
-        },
-        {
-            "name": "(lldb) Launch",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "${workspaceFolder}/lem_in",
-            "args": [],
-            "cwd": "${workspaceFolder}",
-            // "stopAtEntry": false,
-            // "environment": [],
-            // "externalConsole": false,
-            // "MIMode": "lldb"
+            "cwd": "${workspaceFolder}"
         }
+        // {
+        //     "name": "(gdb) Launch",
+        //     "type": "gdb",
+        //     "request": "launch",
+        //     "program": "${workspaceFolder}/lem_in",
+        //     "args": [],
+        //     "cwd": "${workspaceFolder}"
+        // }
     ]
 }
 

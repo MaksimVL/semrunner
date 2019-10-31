@@ -115,3 +115,49 @@ void			edges_assign(t_lemin *lemin)
 		curr = curr->next;
 	}
 }
+
+void			lemin_init_arrays(t_lemin *lemin)
+{
+	int i;
+	int from;
+	int to;
+	t_dlist		*curr;
+
+	lemin->adj = (int**)ft_memalloc(sizeof(int*) * lemin->count_rooms);
+	lemin->cost = (int**)ft_memalloc(sizeof(int*) * lemin->count_rooms);
+	lemin->capacity = (int**)ft_memalloc(sizeof(int*) * lemin->count_rooms);
+	lemin->flow = (int**)ft_memalloc(sizeof(int*) * lemin->count_rooms);
+	i = 0;
+	while (i < lemin->count_rooms)
+	{
+		(lemin->adj)[i] = (int*)ft_memalloc(sizeof(int) * lemin->count_rooms);
+		(lemin->cost)[i] = (int*)ft_memalloc(sizeof(int) * lemin->count_rooms);
+		(lemin->capacity)[i] = (int*)ft_memalloc(sizeof(int) * lemin->count_rooms);
+		(lemin->flow)[i] = (int*)ft_memalloc(sizeof(int) * lemin->count_rooms);
+		i++;
+	}
+	lemin->push = (int*)ft_memalloc(sizeof(int) * lemin->count_rooms);
+	lemin->mark = (int*)ft_memalloc(sizeof(int) * lemin->count_rooms);
+	lemin->pred = (int*)ft_memalloc(sizeof(int) * lemin->count_rooms);
+	lemin->dist = (int*)ft_memalloc(sizeof(int) * lemin->count_rooms);
+
+	lemin->max_flow = 0;
+	lemin->min_cost = 0;
+}
+
+void			lemin_fill_matrix(t_lemin *lem)
+{
+	int i;
+	t_edge e;
+
+	i = 0;
+	while (i < lem->count_edges)
+	{
+		e = lem->edges[i];
+		lem->capacity[e.from][e.to] = e.capacity;
+		lem->capacity[e.to][e.from] = e.capacity;
+		lem->cost[e.from][e.to] = e.cost;
+		lem->cost[e.to][e.from] = e.cost;
+		i++;
+	}
+}

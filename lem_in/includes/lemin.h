@@ -1,4 +1,9 @@
-#include "libft.h"
+#ifndef LEMIN_H
+# define LEMIN_H
+
+# include "libft.h"
+
+# define INF 1e9
 
 typedef struct			s_room
 {
@@ -26,19 +31,25 @@ typedef struct			s_edge
 
 typedef struct			s_lemin
 {
-	int					**c;
 	t_dlist				*list_rooms;
 	t_dlist				*room_ways;
-	int					count_rooms; // N
+	int					count_rooms; // N - кол-во вершин
 	int					number_of_ants; // K
-	int					count_edges;
+	int					count_edges; // M - кол-во ребер
 	t_edge				*edges;
 
 	int					**adj;
-	int					**cost;
-	int					**capacity;
-	int					s;
-	int					t;
+	int					**cost; //P - матр стоимости (расстояний)
+	int					**capacity; // C - матр пропускных способностей
+	int					**flow; // F - матр текущего потока в графе
+	int					*push; // поток в верш. из нач. точки
+	int					*mark; //отметки вершин где побывали
+	int					*pred; // предок вершины (откуда пришли)
+	int					*dist; // расст до верш. из нач. точки
+	int					max_flow;
+	int					min_cost;
+	int					s; // нач. точка
+	int					t; // конечная точка
 }						t_lemin;
 
 /*
@@ -58,6 +69,8 @@ int					load_data(t_lemin *lemin);
 void				set_rooms_number(t_lemin *lemin);
 int					room_number(t_lemin *lemin, char *room_name);
 void				edges_assign(t_lemin *lemin);
+void				lemin_init_arrays(t_lemin *lemin);
+void				lemin_fill_matrix(t_lemin *lem);
 
 /*
 ** print properties
@@ -68,3 +81,16 @@ void				print_all_rooms_property(t_dlist *lst);
 void				print_links(t_dlist *lst);
 void				print_all_links(t_dlist *lst);
 void				print_all_edges(t_lemin *lemin);
+
+void				vector_int_assign(int *vector, int len, int value);
+void				vector_int_print(int *vector, int len);
+
+/*
+** second try algorithm
+*/
+
+void				min_cost_f(t_lemin *lem);
+void				lemin_print_res(t_lemin *lem);
+
+#endif
+

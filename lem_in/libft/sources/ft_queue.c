@@ -25,7 +25,7 @@ void			queue_init(t_queue *queue)
 void			qi_del(t_queue *queue)
 {
 	if (queue->len != 0)
-		ft_dlstdel(&(queue->top), del_intcontent);
+		ft_dlstdel(&(queue->top), NULL);
 	queue->bottom = NULL;
 	queue->len = 0;
 }
@@ -74,7 +74,7 @@ int				qi_pop(t_queue *queue)
 			queue->bottom->next = NULL;
 		}
 		queue->len--;
-		ft_dlstdel(&tmp_lst, del_intcontent);
+		ft_dlstdel(&tmp_lst, NULL);
 		return (ret);
 	}
 }

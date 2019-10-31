@@ -75,7 +75,10 @@ void		ft_dlstdel(t_dlist **alst, void (*del)(void *, size_t))
 	while (curr)
 	{
 		next = curr->next;
-		del(curr->content, curr->content_size);
+		if (*del != NULL)
+			del(curr->content, curr->content_size);
+		if (curr->content_size != 0)
+		 	ft_memdel((void**)&(curr->content));
 		ft_memdel((void**)&curr);
 		curr = next;
 	}

@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="lem_in"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/semenbegunov/semrunner_git/lem_in/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="lem_in_tmp">
+				<Option output="/Users/semenbegunov/semrunner_git/lem_in/cmake-build-debug/lem_in_tmp" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/semenbegunov/semrunner_git/lem_in/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/semenbegunov/semrunner_git/lem_in/includes"/>
+					<Add directory="/Users/semenbegunov/semrunner_git/lem_in/libft/includes"/>
+					<Add directory="/Users/semenbegunov/semrunner_git/lem_in/libft/includes/printf_hdr"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 lem_in_tmp"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="lem_in_tmp/fast">
+				<Option output="/Users/semenbegunov/semrunner_git/lem_in/cmake-build-debug/lem_in_tmp" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/semenbegunov/semrunner_git/lem_in/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/semenbegunov/semrunner_git/lem_in/includes"/>
+					<Add directory="/Users/semenbegunov/semrunner_git/lem_in/libft/includes"/>
+					<Add directory="/Users/semenbegunov/semrunner_git/lem_in/libft/includes/printf_hdr"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 lem_in_tmp/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/semenbegunov/semrunner_git/lem_in/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/semenbegunov/semrunner_git/lem_in/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="lem_in">
+				<Option working_dir="/Users/semenbegunov/semrunner_git/lem_in/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 lem_in"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/semenbegunov/semrunner_git/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/includes/lemin.h">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/includes/libft.h">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/includes/printf_hdr/ft_options.h">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/includes/printf_hdr/ft_outbuff.h">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/includes/printf_hdr/ft_outbuff_dst.h">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/includes/printf_hdr/ft_printf.h">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/includes/printf_hdr/prf_arg_mode.h">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/includes/printf_hdr/prf_double.h">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/includes/printf_hdr/prf_extend_dollar.h">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/includes/printf_hdr/prf_get_item_by_size.h">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/includes/printf_hdr/prf_global_bak.h">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/includes/printf_hdr/prf_handle_comma_flag.h">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/includes/printf_hdr/prf_handle_spec.h">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/includes/printf_hdr/prf_handle_stars.h">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/includes/printf_hdr/prf_print_output.h">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/includes/printf_hdr/prf_printf_spec.h">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/includes/printf_hdr/prf_read_spec.h">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/includes/printf_hdr/prf_spectostr_funcs.h">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/includes/terminal_draw.h">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_atoi.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_bzero.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_del_strsplit.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_dictadd.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_dictclearzero.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_dictdelbykey.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_dictdelelement.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_dictgetoraddvalue.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_dictgetvalue.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_dictnew.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_dlist.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_free.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_getnbr_base.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_isalnum.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_isalpha.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_isascii.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_isdigit.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_isint.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_isprint.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_itoa.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_lstadd.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_lstaddback.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_lstdel.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_lstdeli.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_lstdelone.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_lstfind.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_lsti.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_lstiter.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_lstlen.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_lstmap.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_lstnew.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_memalloc.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_memccpy.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_memchr.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_memcmp.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_memcpy.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_memdel.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_memmove.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_memset.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_nbrlen.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_outbuff.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_outbuff_dst.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_pow.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_printstrsplit.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_putchar.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_putchar_fd.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_putendl.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_putendl_fd.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_putnbr.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_putnbr_fd.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_putstr.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_putstr_fd.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_queue.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_skip_digits.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_strcat.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_strchr.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_strclr.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_strcmp.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_strcpy.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_strdel.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_strdup.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_strequ.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_striter.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_striteri.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_strjoin.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_strlcat.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_strlen.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_strmap.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_strmapi.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_strncat.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_strncmp.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_strncpy.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_strnequ.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_strnew.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_strnjoin.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_strnstr.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_strrchr.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_strset.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_strsplit.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_strstr.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_strsub.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_strtrim.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_tolower.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_toupper.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/ft_zerostr.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/get_next_line.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/printf_src/arg_mode.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/printf_src/bn_auxfunc.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/printf_src/bn_auxfunc1.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/printf_src/bn_fix.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/printf_src/bn_fstr.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/printf_src/bn_init.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/printf_src/bn_oppow.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/printf_src/bn_opsub.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/printf_src/bn_opsummul.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/printf_src/bn_outp.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/printf_src/bn_round.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/printf_src/change_fd.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/printf_src/change_outstr.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/printf_src/dbl_input.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/printf_src/double.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/printf_src/extend_dollar.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/printf_src/ft_printf.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/printf_src/get_item_by_size.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/printf_src/global_bak.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/printf_src/handle_comma_flag.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/printf_src/handle_spec.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/printf_src/handle_stars.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/printf_src/print_output.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/printf_src/read_spec.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/printf_src/spectostr_bighex.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/printf_src/spectostr_bin.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/printf_src/spectostr_char.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/printf_src/spectostr_float.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/printf_src/spectostr_lowhex.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/printf_src/spectostr_oct.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/printf_src/spectostr_percent.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/printf_src/spectostr_ptr.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/printf_src/spectostr_sdec.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/printf_src/spectostr_string.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/libft/sources/printf_src/spectostr_udec.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/sources/initialize.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/sources/load_map.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/sources/main.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/sources/print_room_links_props.c">
+			<Option target="lem_in_tmp"/>
+		</Unit>
+		<Unit filename="/Users/semenbegunov/semrunner_git/lem_in/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
