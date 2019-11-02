@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 12:34:23 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/10/14 12:38:21 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/02 15:39:02 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@ void			x_rotation(t_mlx *m)
 	{
 		prev = m->map_points[i];
 		prev.y -= m->height / 2;
-		m->map_points[i].y = prev.y * cos(angle) - prev.z * sin(angle) + m->height / 2;
-		m->map_points[i].z = -prev.y * sin(angle) +	prev.z * cos(angle);
+		m->map_points[i].y = prev.y * cos(angle) - prev.z * sin(angle) +
+							m->height / 2;
+		m->map_points[i].z = -prev.y * sin(angle) + prev.z * cos(angle);
 		i++;
 	}
 }
@@ -53,7 +54,8 @@ void			y_rotation(t_mlx *m)
 	{
 		prev = m->map_points[i];
 		prev.x -= shift_x;
-		m->map_points[i].x = prev.x * cos(angle) + prev.z * sin(angle) + shift_x;
+		m->map_points[i].x = prev.x * cos(angle) + prev.z * sin(angle) +
+					shift_x;
 		m->map_points[i].z = -prev.x * sin(angle) + prev.z * cos(angle);
 		i++;
 	}
@@ -73,8 +75,10 @@ void			z_rotation(t_mlx *m)
 		prev = m->map_points[i];
 		prev.x -= m->width / 2;
 		prev.y -= m->height / 2;
-		m->map_points[i].x = prev.x * cos(angle) - prev.y * sin(angle) + m->width / 2;
-		m->map_points[i].y = prev.x * sin(angle) + prev.y * cos(angle) + m->height / 2;
+		m->map_points[i].x = prev.x * cos(angle) - prev.y * sin(angle) +
+					m->width / 2;
+		m->map_points[i].y = prev.x * sin(angle) + prev.y * cos(angle) +
+					m->height / 2;
 		i++;
 	}
 }

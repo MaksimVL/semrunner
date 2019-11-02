@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bn_auxfunc1.c                                      :+:      :+:    :+:   */
+/*   draw_point.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/02 15:00:02 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/11/02 15:00:04 by odrinkwa         ###   ########.fr       */
+/*   Created: 2019/11/02 15:24:32 by odrinkwa          #+#    #+#             */
+/*   Updated: 2019/11/02 15:24:33 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
-#include <prf_double.h>
+#include "fdf.h"
 
-int				is_last_five(t_bignum res, int start_check)
+void			putpoint(t_mlx *m, int i)
 {
-	int		i;
+	t_point tmp;
 
-	i = 0;
-	while (--start_check > 0)
-	{
-		if (ft_get_inpos_bignum(res, start_check) != 0)
-			return (0);
-	}
-	return (1);
+	tmp = get_point_to_draw(m, i);
+	putpixel(m, tmp.x, tmp.y, tmp.color);
+}
+
+t_point			get_point_to_draw(t_mlx *m, int i)
+{
+	t_point		res;
+
+	res = get_proj_point_to_draw(m, i);
+	res.x += m->camera_x;
+	res.y += m->camera_y;
+	return (res);
 }

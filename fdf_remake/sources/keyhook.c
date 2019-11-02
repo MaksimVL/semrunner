@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 12:40:57 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/10/14 14:12:29 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/02 15:35:58 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,7 @@ void	keyhook2(int keycode, t_mlx *m)
 		m->angle_projection_type =
 			++(m->angle_projection_type) % 3;
 	else if (keycode == 6)
-		m->type_color_spectrum =
-			++(m->type_color_spectrum) % 2;
+		m->type_color_spectrum = ++(m->type_color_spectrum) % 2;
 }
 
 void	keyhook3(int keycode, t_mlx *m)
@@ -90,7 +89,7 @@ int		keyhook(int keycode, void *m)
 	keyhook1(keycode, (t_mlx*)m);
 	keyhook2(keycode, (t_mlx*)m);
 	keyhook3(keycode, (t_mlx*)m);
-	make_map_points((t_mlx*)m, 0xFFFFFF);
+	make_map_points((t_mlx*)m);
 	draw_surface((t_mlx*)m, 1);
 	mlx_put_image_to_window(((t_mlx*)m)->ptr, ((t_mlx*)m)->win,
 							((t_mlx*)m)->main_im, 1, 0);

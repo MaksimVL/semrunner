@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 13:15:24 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/10/14 13:18:44 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/02 15:29:35 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ int				calc_color_spectrum(int type_color_spectrum, int percent)
 void			correct_color(t_mlx *m)
 {
 	int i;
-//	int j;
 	int percent;
 	int color;
 

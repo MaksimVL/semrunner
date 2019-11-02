@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   readfile1.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/02 16:36:02 by odrinkwa          #+#    #+#             */
+/*   Updated: 2019/11/02 16:36:02 by odrinkwa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 #include "fdf.h"
 
@@ -69,9 +81,9 @@ int				put_map(t_mlx *m, int fd)
 	int		i;
 	int		j;
 
-	i = 0;
+	i = -1;
 	line = NULL;
-	while ((res = get_next_line(fd, &line)) == 1)
+	while ((res = get_next_line(fd, &line)) == 1 && ++i >= 0)
 	{
 		pos = line;
 		j = -1;
@@ -81,10 +93,8 @@ int				put_map(t_mlx *m, int fd)
 			pos = nextnum(pos);
 		}
 		ft_memdel((void**)&line);
-		i++;
 	}
-	if (line != NULL)
-		ft_memdel((void**)&line);
+	ft_memdel((void**)&line);
 	if (res == -1)
 		return (-1);
 	calculate_max_min_h_in_map(m);

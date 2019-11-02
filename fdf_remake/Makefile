@@ -6,7 +6,7 @@
 #    By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 12:13:46 by odrinkwa          #+#    #+#              #
-#    Updated: 2019/10/14 18:36:28 by odrinkwa         ###   ########.fr        #
+#    Updated: 2019/11/02 16:08:31 by odrinkwa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,10 +19,10 @@ INCLIBFT_DIR := ./libft/includes
 OBJ_DIR := ./objects
 LIB_DIR := ./libft
 
-SRC  := main.c make_map_points.c initialize_mlx.c readfile0.c readfile1.c \
-	readfile2.c draw.c color.c rotation.c \
-	get_proj_point.c legend.c keyhook.c draw_surface.c draw_point.c \
-	iso_transform.c
+SRC  := main.c make_map_points.c fdf_initialize_mlx.c readfile0.c readfile1.c \
+	readfile2.c fdf_draw.c fdf_color.c fdf_rotation.c \
+	fdf_get_proj_point.c legend.c keyhook.c draw_surface.c fdf_draw_point.c \
+	fdf_iso_transform.c
 HDRS := includes/fdf.h
 OBJ  := $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 OBJECTS = $(SOURCES:.c=.o)

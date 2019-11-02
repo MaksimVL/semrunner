@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 13:19:24 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/10/14 17:12:22 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/02 15:43:38 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,11 +90,12 @@ void				main_legend(t_mlx *m);
 int					keyhook(int keycode, void *m);
 
 /*
-** making map_points from map. it's doing on every iteration, in map_points putting base points, than that points changing
+** making map_points from map. it's doing on every iteration, in map_points
+** putting base points, than that points changing
 ** file make_map_points.c
 */
 
-void				make_map_points(t_mlx *m, int color);
+void				make_map_points(t_mlx *m);
 
 void				draw_surface(t_mlx *m, int not_black);
 
