@@ -20,7 +20,7 @@ OBJ_DIR := ./objects
 LIB_DIR := ./libft
 
 SRC  := main.c initialize.c load_map.c print_room_links_props.c try_alg1.c \
-	alg2.c
+	alg2.c auxf.c
 
 HDRS := includes/lemin.h
 OBJ  := $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))

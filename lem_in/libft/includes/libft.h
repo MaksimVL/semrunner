@@ -167,8 +167,8 @@ int					ft_dlst_len(t_dlist *lst);
 ** int content
 */
 
-void			del_intcontent(void *content, size_t size);
-int				int_content(t_dlist *list);
+void				del_intcontent(void *content, size_t size);
+int					int_content(t_dlist *list);
 
 /*
 ** queue

@@ -92,5 +92,11 @@ void				vector_int_print(int *vector, int len);
 void				min_cost_f(t_lemin *lem);
 void				lemin_print_res(t_lemin *lem);
 
+/*
+** aux functions
+*/
+
+void				print_intmatrix(int **matrix, int num_of_lines, int num_of_cols);
+
 #endif
 

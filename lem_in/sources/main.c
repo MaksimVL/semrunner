@@ -37,6 +37,8 @@ int				main(int argc, char **argv)
 	min_cost_f(&lemin);
 	lemin_print_res(&lemin);
 
+	print_intmatrix(lemin.flow, lemin.count_rooms, lemin.count_rooms);
+
 
 
 	lemin_destroy(&lemin); // TODO хуйня какая то, надо разобраться с очисткой листов. ну да похуй, это можно позже сделать

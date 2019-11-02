@@ -11,7 +11,8 @@
         "chrono": "c",
         "unordered_map": "c",
         "bitset": "c",
-        "dlist.h": "c"
+        "dlist.h": "c",
+        "fdf.h": "c"
     },
     "python.testing.pytestArgs": [
         "."
