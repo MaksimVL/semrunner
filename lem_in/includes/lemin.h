@@ -37,6 +37,7 @@ typedef struct			s_lemin
 	int					number_of_ants; // K
 	int					count_edges; // M - кол-во ребер
 	t_edge				*edges;
+	t_room				**rooms;
 
 	int					**adj;
 	int					**cost; //P - матр стоимости (расстояний)
@@ -71,6 +72,7 @@ int					room_number(t_lemin *lemin, char *room_name);
 void				edges_assign(t_lemin *lemin);
 void				lemin_init_arrays(t_lemin *lemin);
 void				lemin_fill_matrix(t_lemin *lem);
+void				lemin_fill_rooms(t_lemin *lem);
 
 /*
 ** print properties

@@ -57,6 +57,7 @@ void	tmlx_initialize(t_mlx *m, int x, int y)
 	m->height = y;
 	m->map_x = 0;
 	m->map_y = 0;
+	m->quantity_points = 0;
 	reset_map(m);
 	m->rotate_prec = FDF_ANGLE_ROTATE_PRECISION;
 	m->angle_projection_type = 0;

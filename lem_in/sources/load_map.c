@@ -9,7 +9,10 @@ t_room			set_room_property(char **strings, int next_flag)
 	room_temp.name = ft_strdup(strings[0]);
 	room_temp.x = ft_atoi(strings[1]);
 	room_temp.y = ft_atoi(strings[2]);
-	room_temp.z = 0;
+	if (strings[3] != NULL)
+		room_temp.z = ft_atoi(strings[3]);
+	else
+		room_temp.z = 0;
 	room_temp.start_end_flag = next_flag;
 	return (room_temp);
 }
@@ -159,5 +162,21 @@ void			lemin_fill_matrix(t_lemin *lem)
 		lem->cost[e.from][e.to] = e.cost;
 		lem->cost[e.to][e.from] = e.cost;
 		i++;
+	}
+}
+
+void			lemin_fill_rooms(t_lemin *lem)
+{
+	int		i;
+	t_dlist *curr;
+
+	lem->rooms = (t_room**)ft_memalloc(sizeof(t_room*) * lem->count_rooms);
+	curr = lem->list_rooms;
+	i = 0;
+	while (i < lem->count_rooms)
+	{
+		(lem->rooms)[i] = (t_room*)(curr->content);
+		i++;
+		curr = curr->next;
 	}
 }

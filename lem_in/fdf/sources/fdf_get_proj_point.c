@@ -12,13 +12,13 @@
 
 #include "fdf.h"
 
-static t_point	get_iso_point(t_mlx *m, int i, int j)
+static t_point	get_iso_point_to_draw(t_mlx *m, int i)
 {
 	t_point		p;
 	int			shift_x;
 	int			shift_y;
 
-	p = *get_point(m, i, j);
+	p = m->map_points[i];
 	shift_x = m->width / 2;
 	shift_y = m->height / 2;
 	p.x -= shift_x;
@@ -29,21 +29,21 @@ static t_point	get_iso_point(t_mlx *m, int i, int j)
 	return (p);
 }
 
-static t_point	get_zproj_point(t_mlx *m, int i, int j)
+static t_point	get_zproj_point_to_draw(t_mlx *m, int i)
 {
 	t_point		p;
 
-	p = *get_point(m, i, j);
+	p = m->map_points[i];
 	return (p);
 }
 
-static t_point	get_xproj_point(t_mlx *m, int i, int j)
+static t_point	get_xproj_point_to_draw(t_mlx *m, int i)
 {
 	t_point		p;
 	int			shift_z;
 	int			prev;
 
-	p = *get_point(m, i, j);
+	p = m->map_points[i];
 	shift_z = m->width / 2;
 	prev = p.x;
 	p.x = p.z + shift_z;
@@ -51,13 +51,13 @@ static t_point	get_xproj_point(t_mlx *m, int i, int j)
 	return (p);
 }
 
-static t_point	get_yproj_point(t_mlx *m, int i, int j)
+static t_point	get_yproj_point_to_draw(t_mlx *m, int i)
 {
 	t_point		p;
 	int			shift_z;
 	int			prev;
 
-	p = *get_point(m, i, j);
+	p = m->map_points[i];
 	shift_z = m->height / 2;
 	prev = p.y;
 	p.y = -p.z + shift_z;
@@ -65,13 +65,13 @@ static t_point	get_yproj_point(t_mlx *m, int i, int j)
 	return (p);
 }
 
-t_point			get_proj_point(t_mlx *m, int i, int j)
+t_point			get_proj_point_to_draw(t_mlx *m, int i)
 {
 	if (m->projection_type == 1)
-		return (get_zproj_point(m, i, j));
+		return (get_zproj_point_to_draw(m, i));
 	else if (m->projection_type == 2)
-		return (get_xproj_point(m, i, j));
+		return (get_xproj_point_to_draw(m, i));
 	else if (m->projection_type == 3)
-		return (get_yproj_point(m, i, j));
-	return (get_iso_point(m, i, j));
+		return (get_yproj_point_to_draw(m, i));
+	return (get_iso_point_to_draw(m, i));
 }

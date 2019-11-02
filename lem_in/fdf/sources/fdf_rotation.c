@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 12:34:23 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/10/14 12:38:21 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/02 15:39:02 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,19 @@ static void		correct_angles(t_mlx *m)
 void			x_rotation(t_mlx *m)
 {
 	int		i;
-	int		j;
 	double	angle;
 	t_point	prev;
 
 	i = 0;
 	correct_angles(m);
 	angle = m->x_angle * M_PI / 180;
-	while (i < m->map_y)
+	while (i < m->quantity_points)
 	{
-		j = 0;
-		while (j < m->map_x)
-		{
-			prev = *get_point(m, i, j);
-			prev.y -= m->height / 2;
-			get_point(m, i, j)->y = prev.y * cos(angle) -
-					prev.z * sin(angle) + m->height / 2;
-			get_point(m, i, j)->z = -prev.y * sin(angle) +
-					prev.z * cos(angle);
-			j++;
-		}
+		prev = m->map_points[i];
+		prev.y -= m->height / 2;
+		m->map_points[i].y = prev.y * cos(angle) - prev.z * sin(angle) +
+							m->height / 2;
+		m->map_points[i].z = -prev.y * sin(angle) + prev.z * cos(angle);
 		i++;
 	}
 }
@@ -49,7 +42,6 @@ void			x_rotation(t_mlx *m)
 void			y_rotation(t_mlx *m)
 {
 	int		i;
-	int		j;
 	int		shift_x;
 	double	angle;
 	t_point	prev;
@@ -58,18 +50,13 @@ void			y_rotation(t_mlx *m)
 	i = 0;
 	correct_angles(m);
 	angle = m->y_angle * M_PI / 180;
-	while (i < m->map_y)
+	while (i < m->quantity_points)
 	{
-		j = 0;
-		while (j < m->map_x)
-		{
-			prev = *get_point(m, i, j);
-			prev.x -= shift_x;
-			get_point(m, i, j)->x = prev.x * cos(angle) +
-					prev.z * sin(angle) + shift_x;
-			get_point(m, i, j)->z = -prev.x * sin(angle) + prev.z * cos(angle);
-			j++;
-		}
+		prev = m->map_points[i];
+		prev.x -= shift_x;
+		m->map_points[i].x = prev.x * cos(angle) + prev.z * sin(angle) +
+					shift_x;
+		m->map_points[i].z = -prev.x * sin(angle) + prev.z * cos(angle);
 		i++;
 	}
 }
@@ -77,27 +64,31 @@ void			y_rotation(t_mlx *m)
 void			z_rotation(t_mlx *m)
 {
 	int		i;
-	int		j;
 	double	angle;
 	t_point	prev;
 
 	correct_angles(m);
 	angle = m->z_angle * M_PI / 180;
 	i = 0;
-	while (i < m->map_y)
+	while (i < m->quantity_points)
 	{
-		j = 0;
-		while (j < m->map_x)
-		{
-			prev = *get_point(m, i, j);
-			prev.x -= m->width / 2;
-			prev.y -= m->height / 2;
-			get_point(m, i, j)->x = prev.x * cos(angle) -
-					prev.y * sin(angle) + m->width / 2;
-			get_point(m, i, j)->y = prev.x * sin(angle) +
-					prev.y * cos(angle) + m->height / 2;
-			j++;
-		}
+		prev = m->map_points[i];
+		prev.x -= m->width / 2;
+		prev.y -= m->height / 2;
+		m->map_points[i].x = prev.x * cos(angle) - prev.y * sin(angle) +
+					m->width / 2;
+		m->map_points[i].y = prev.x * sin(angle) + prev.y * cos(angle) +
+					m->height / 2;
 		i++;
 	}
+}
+
+void			rotate_points(t_mlx *m)
+{
+	if (m->x_angle != 0)
+		x_rotation(m);
+	if (m->z_angle != 0)
+		z_rotation(m);
+	if (m->y_angle != 0)
+		y_rotation(m);
 }

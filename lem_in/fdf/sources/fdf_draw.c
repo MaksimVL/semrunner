@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   fdf_draw.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 12:49:54 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/10/14 13:10:23 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/02 23:17:49 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void		init_dxy_xy(t_point *dxy, t_point *xy, t_point start,
 	xy->y = start.y;
 }
 
-static void		putline_low(t_mlx *m, t_point start, t_point end, int color)
+static void		putline_low(t_mlx *m, t_point start, t_point end, int not_black)
 {
 	t_point	dxy;
 	t_point	xy;
@@ -45,7 +45,7 @@ static void		putline_low(t_mlx *m, t_point start, t_point end, int color)
 	d = 2 * dxy.y - dxy.x;
 	while (xy.x <= end.x)
 	{
-		(color == 0x0) ? putpixel(m, xy.x, xy.y, color) : putpixel(m,
+		(not_black == 0x0) ? putpixel(m, xy.x, xy.y, not_black) : putpixel(m,
 			xy.x, xy.y, color_gradient(start, end, perc(start.x, end.x, xy.x)));
 		if (d > 0)
 		{
@@ -57,7 +57,7 @@ static void		putline_low(t_mlx *m, t_point start, t_point end, int color)
 	}
 }
 
-static void		putline_high(t_mlx *m, t_point start, t_point end, int color)
+static void		putline_high(t_mlx *m, t_point start, t_point end, int not_black)
 {
 	t_point	dxy;
 	t_point	xy;
@@ -74,7 +74,7 @@ static void		putline_high(t_mlx *m, t_point start, t_point end, int color)
 	d = 2 * dxy.x - dxy.y;
 	while (xy.y <= end.y)
 	{
-		(color == 0x0) ? putpixel(m, xy.x, xy.y, color) : putpixel(m,
+		(not_black == 0x0) ? putpixel(m, xy.x, xy.y, not_black) : putpixel(m,
 			xy.x, xy.y, color_gradient(start, end, perc(start.y, end.y, xy.y)));
 		if (d > 0)
 		{
@@ -86,20 +86,20 @@ static void		putline_high(t_mlx *m, t_point start, t_point end, int color)
 	}
 }
 
-void			putline(t_mlx *m, t_point start, t_point end, int color)
+void			putline(t_mlx *m, t_point start, t_point end, int not_black)
 {
 	if (ABS(end.y - start.y) < ABS(end.x - start.x))
 	{
 		if (start.x > end.x)
-			putline_low(m, end, start, color);
+			putline_low(m, end, start, not_black);
 		else
-			putline_low(m, start, end, color);
+			putline_low(m, start, end, not_black);
 	}
 	else
 	{
 		if (start.y > end.y)
-			putline_high(m, end, start, color);
+			putline_high(m, end, start, not_black);
 		else
-			putline_high(m, start, end, color);
+			putline_high(m, start, end, not_black);
 	}
 }

@@ -49,6 +49,8 @@ void			lemin_destroy(t_lemin *lemin)
 	ft_memdel((void**)&lemin->mark);
 	ft_memdel((void**)&lemin->pred);
 	ft_memdel((void**)&lemin->dist);
+	free(lemin->rooms);
+	lemin->rooms = NULL;
 
 	// if (lemin->list_rooms != NULL)
 	// 	ft_dlstdel(&(lemin->list_rooms), destroy_room);
@@ -60,6 +62,7 @@ void			lemin_init(t_lemin *lemin)
 {
 	lemin->list_rooms = NULL;
 	lemin->room_ways = NULL;
+	lemin->rooms = NULL;
 	lemin->count_rooms = 0;
 	lemin->number_of_ants = 0;
 	lemin->count_edges = 0;
