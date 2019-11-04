@@ -19,7 +19,7 @@
 # include <errno.h>
 # include "terminal_draw.h"
 
-# define BUFF_SIZE 20
+# define BUFF_SIZE 8192
 
 # define NO_DEFINE -2147483648
 

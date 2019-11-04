@@ -2,6 +2,7 @@
 # define LEMIN_H
 
 # include "libft.h"
+#include "fdf.h"
 
 # define INF 1e9
 
@@ -53,6 +54,12 @@ typedef struct			s_lemin
 	int					t; // конечная точка
 }						t_lemin;
 
+typedef struct	s_lemin_mlx
+{
+	t_mlx		*m;
+	t_lemin		*lem;
+}				t_lemin_mlx;
+
 /*
 ** initialize
 */
@@ -99,6 +106,17 @@ void				lemin_print_res(t_lemin *lem);
 */
 
 void				print_intmatrix(int **matrix, int num_of_lines, int num_of_cols);
+
+/*
+** visualization
+** file visual.c
+*/
+
+void				load_anthill(t_mlx *m, t_lemin *lem);
+void				calc_parameter_maps(t_mlx *m);
+void				put_names_rooms(t_mlx *m, t_lemin *l, int color);
+void				draw_anthill(t_lemin_mlx *lm, int not_black);
+int					lemin_keyhook(int keycode, void *lm);
 
 #endif
 

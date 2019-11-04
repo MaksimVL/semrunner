@@ -66,27 +66,29 @@ static int	readfile(const int fd, char **line, char **str)
 {
 	int		read_count;
 	char	*chr_n;
-	char	buff[BUFF_SIZE + 1];
+	char	*buff;
 
+	if (!(buff = (char*)malloc(sizeof(char) * (BUFF_SIZE + 1))))
+		return (-1);
 	while ((read_count = read(fd, buff, BUFF_SIZE)))
 	{
 		if (read_count < 0)
-			return (crash_f(NULL, NULL, NULL, NULL));
+			return (crash_f(&buff, NULL, NULL, NULL));
 		buff[read_count] = '\0';
 		if ((chr_n = ft_strnstr(buff, "\n", read_count)))
 		{
 			if (!(*line = ft_strnjoin(line, buff, (int)(chr_n - buff))))
-				return (crash_f(NULL, NULL, NULL, NULL));
+				return (crash_f(&buff, NULL, NULL, NULL));
 			if (read_count != (chr_n - buff + 1))
 				if (!(*str = ft_strnjoin(str, chr_n + 1,
 						read_count - (chr_n - buff + 1))))
-					return (crash_f(NULL, NULL, NULL, NULL));
-			return (return_ok(1, NULL, NULL, NULL));
+					return (crash_f(&buff, NULL, NULL, NULL));
+			return (return_ok(1, &buff, NULL, NULL));
 		}
 		else if (!(*line = ft_strnjoin(line, buff, read_count)))
-			return (crash_f(NULL, NULL, NULL, NULL));
+			return (crash_f(&buff, NULL, NULL, NULL));
 	}
-	return (return_ok(0, NULL, NULL, NULL));
+	return (return_ok(0, &buff, NULL, NULL));
 }
 
 int			get_next_line(const int fd, char **line)
