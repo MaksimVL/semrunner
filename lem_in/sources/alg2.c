@@ -32,9 +32,9 @@ int				check_cycles(t_lemin *lem)
 
 	u = 0;
 	v = 0;
-	while (u < lem->count_rooms)
+	while (u < lem->size_matrix)
 	{
-		while (v < lem->count_rooms)
+		while (v < lem->size_matrix)
 		{
 			if (lem->dist[v] > lem->dist[u] + edge_cost(lem, u, v))
 				return (u);
@@ -47,10 +47,10 @@ int				check_cycles(t_lemin *lem)
 
 void			lemin_init_vectors(t_lemin *lem)
 {
-	vector_int_assign(lem->mark, lem->count_rooms, 0);
-	vector_int_assign(lem->push, lem->count_rooms, 0);
-	vector_int_assign(lem->pred, lem->count_rooms, 0);
-	vector_int_assign(lem->dist, lem->count_rooms, INF);
+	vector_int_assign(lem->mark, lem->size_matrix, 0);
+	vector_int_assign(lem->push, lem->size_matrix, 0);
+	vector_int_assign(lem->pred, lem->size_matrix, 0);
+	vector_int_assign(lem->dist, lem->size_matrix, INF);
 }
 
 int				bfs(t_lemin *lem)
@@ -74,7 +74,7 @@ int				bfs(t_lemin *lem)
 	{
 		u = qi_pop(&q); 						// достаем из очереди вершину, помещаем в u
 		v = 0;
-		while (v < lem->count_rooms)			// цикл по всем вершинам переменной v
+		while (v < lem->size_matrix)			// цикл по всем вершинам переменной v
 		{
 			// если mark[v] == 0 (верш. v не посещена) &&
 			// capac[u][v] - flow[u][v] - оставшийся поток > 0, то есть можем пустить поток по ребру
@@ -131,7 +131,7 @@ int				bf(t_lemin *lem, int s)
 		// {
 		// 	qi_pop(&q); // удаляем последнй элемент
 		//  // увеличиваем series на 1
-		// 	if (++series > lem->count_rooms)	// если  series превысило количество вершин (комнат)
+		// 	if (++series > lem->size_matrix)	// если  series превысило количество вершин (комнат)
 		// 										// то прекращаем выполнение, возвращая check_cycles(lem)
 		// 		{
 		// 			qi_del(&q);
@@ -144,7 +144,7 @@ int				bf(t_lemin *lem, int s)
 
 		u = qi_pop(&q);
 		v = 0;
-		while (v < lem->count_rooms)
+		while (v < lem->size_matrix)
 		{
 			if (lem->dist[v] > lem->dist[u] + edge_cost(lem, u, v))
 			{
@@ -225,10 +225,10 @@ void			min_cost_f(t_lemin *lem)
 		neg_cycle = bf(lem, lem->t);
 	}
 	u = 0;
-	while (u < lem->count_rooms)
+	while (u < lem->size_matrix)
 	{
 		v = 0;
-		while (v < lem->count_rooms)
+		while (v < lem->size_matrix)
 		{
 			if (lem->flow[u][v] > 0)
 				lem->min_cost += lem->flow[u][v] * lem->cost[u][v];

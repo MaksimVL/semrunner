@@ -35,11 +35,14 @@ typedef struct			s_lemin
 	t_dlist				*list_rooms;
 	t_dlist				*room_ways;
 	int					count_rooms; // N - кол-во вершин
+	int					start_room;
+	int					end_room;
 	int					number_of_ants; // K
 	int					count_edges; // M - кол-во ребер
 	t_edge				*edges;
 	t_room				**rooms;
 
+	int					size_matrix;
 	int					**adj;
 	int					**cost; //P - матр стоимости (расстояний)
 	int					**capacity; // C - матр пропускных способностей
@@ -79,6 +82,7 @@ int					room_number(t_lemin *lemin, char *room_name);
 void				edges_assign(t_lemin *lemin);
 void				lemin_init_arrays(t_lemin *lemin);
 void				lemin_fill_matrix(t_lemin *lem);
+void				lemin_fill_matrix2x(t_lemin *lem);
 void				lemin_fill_rooms(t_lemin *lem);
 
 /*

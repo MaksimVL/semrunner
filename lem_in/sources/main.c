@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 18:48:15 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/11/03 00:16:46 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/04 21:05:08 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "lemin.h"
 #include "mlx.h"
 #include "fdf.h"
+#include <stdio.h>
 
 # define MAX_N 50
 
@@ -38,11 +39,13 @@ int				main(int argc, char **argv)
 	print_all_edges(&lemin);
 
 	lemin_fill_rooms(&lemin);
-	lemin_fill_matrix(&lemin);
+	//lemin_fill_matrix(&lemin);
+	lemin_fill_matrix2x(&lemin);
+	print_intmatrix(lemin.capacity, lemin.size_matrix, lemin.size_matrix);
 	min_cost_f(&lemin);
 	lemin_print_res(&lemin);
 
-	print_intmatrix(lemin.flow, lemin.count_rooms, lemin.count_rooms);
+	print_intmatrix(lemin.flow, lemin.size_matrix, lemin.size_matrix);
 
 	tmlx_initialize(&m, 1800, 1200);
 	load_anthill(&m, &lemin);
@@ -57,5 +60,6 @@ int				main(int argc, char **argv)
 	mlx_key_hook(m.win, lemin_keyhook, (void*)&lm);
 	mlx_loop(m.ptr);
 	lemin_destroy(&lemin);
+
 
 }
