@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 18:48:15 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/11/04 21:05:08 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/10 00:33:08 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "lemin.h"
 #include "mlx.h"
 #include "fdf.h"
+#include "float.h"
 #include <stdio.h>
 
 # define MAX_N 50
@@ -23,20 +24,44 @@ void			going_ants(t_lemin *l)
 {
 	int		ants_left;
 	int		ant_counter;
+	int		count_all_ways;
 	int		i;
 	int		j;
 	t_dlist	*curr;
 	t_dlist *next;
+	int		max_len;
+	int		flow_base;
 
+	count_all_ways = l->count_ways;
 	ants_left = l->number_of_ants;
 	ant_counter = 0;
-	ft_printf("ways:\n");
-	print_intmatrix(l->ways, l->max_flow, l->count_rooms);
+	 ft_printf("count ways: %d\n", count_all_ways);
+	// print_intmatrix(l->ways, l->max_flow, l->count_rooms);
 
 	while (ants_left != 0)
 	{
+		// чекаем перед запуском цикла по путям - уменьшаем количество путей или нет.
+		if (l->count_ways > 1)
+		{
+			max_len = max_int_array(l->way_length, l->count_ways);
+			// вычисляем базовый поток через оставшиеся пути
+			flow_base = count_flow_base(l->way_length, l->count_ways, max_len);
+			if (flow_base > l->number_of_ants - ant_counter) // если баз поток больше оставшихся муравьев, то уменьшаем количество путей.
+			{
+				l->count_ways--;
+				while (l->count_ways > 1)
+				{
+					max_len = max_int_array(l->way_length, l->count_ways);
+					flow_base = count_flow_base(l->way_length, l->count_ways, max_len);
+					if (flow_base < l->number_of_ants - ant_counter)
+						break ;
+					l->count_ways--;
+				}
+			}
+		}
+
 		i = -1;
-		while (++i < l->max_flow && ants_left != 0) // цикл по путям
+		while (++i < count_all_ways && ants_left != 0) // цикл по путям
 		{
 			j = -1;
 			while (l->ways[i][++j] != l->start_room)
@@ -55,8 +80,7 @@ void			going_ants(t_lemin *l)
 					l->ants_on_ways[i][j] = 0;
 				}
 			}
-			// l->ants_on_ways[i][j - 1] = l->ants_on_ways[i][j];
-			// l->ants_on_ways[i][j] = 0;
+			// запускаем нового муравья в i-й путь
 			if (ant_counter < l->number_of_ants)
 			{
 				ant_counter++;
@@ -69,10 +93,11 @@ void			going_ants(t_lemin *l)
 		while (++j < l->count_rooms)
 		{
 			i = -1;
-			while (++i < l->max_flow)
+			while (++i < count_all_ways)
 			{
 				if (l->ants_on_ways[i][j] != 0)
-					ft_printf("L%d-%d ", l->ants_on_ways[i][j], l->ways[i][j]);
+					ft_printf("L%d-%s ", l->ants_on_ways[i][j],
+						(l->rooms[l->ways[i][j]])->name);
 			}
 		}
 		ft_printf("\n");
@@ -99,6 +124,16 @@ void			*ft_dlistmap(t_dlist *list, void *f(t_dlist *))
 	return (list);
 }
 
+void			test_func(void *lm)
+{
+	int		i;
+
+
+	// i = 1;
+	// ft_printf("fuck\n");
+	// usleep(20000);
+}
+
 int				main(int argc, char **argv)
 {
 	t_lemin		lemin;
@@ -121,7 +156,8 @@ int				main(int argc, char **argv)
 
 //	print_intmatrix(lemin.flow, lemin.size_matrix, lemin.size_matrix);
 
-	calculate_ways(&lemin);
+//	calculate_ways(&lemin);
+
 
 	going_ants(&lemin);
 
@@ -132,10 +168,13 @@ int				main(int argc, char **argv)
 
 	lm.m = &m;
 	lm.lem = &lemin;
+
 	tmlx_create_mlx(&m, "lemin");
 
 	lemin_keyhook(-1, (void*)&lm);
 	mlx_key_hook(m.win, lemin_keyhook, (void*)&lm);
+	mlx_loop_hook(m.ptr, test_func, (void*)&lm);
 	mlx_loop(m.ptr);
 	lemin_destroy(&lemin);
+
 }

@@ -6,7 +6,7 @@
 #    By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 12:13:46 by odrinkwa          #+#    #+#              #
-#    Updated: 2019/11/03 00:14:22 by odrinkwa         ###   ########.fr        #
+#    Updated: 2019/11/09 20:23:52 by odrinkwa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ FDF_OBJ_WITH_PATH := $(addprefix $(FDF_OBJ_DIR)/, $(FDF_OBJ))
 
 
 CC := gcc
-CFLAGS := -g3 #-Wall -Wextra -Werror
+CFLAGS := -g3 -Wall -Wextra #-Werror
 MLXPARAMS := -L ./fdf/mlx -lmlx -framework OpenGL -framework AppKit
 LIBFT_NODEBUG :=
 

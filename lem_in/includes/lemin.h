@@ -129,6 +129,8 @@ void				lemin_init_vectors(t_lemin *lem);
 */
 
 void				solve(t_lemin *l);
+int					count_flow_base(int *ways_len, int count_ways, int max_len);
+int					max_int_array(int *arr, int size);
 
 /*
 ** calculate ways
@@ -143,6 +145,8 @@ void				calculate_ways(t_lemin *l);
 */
 
 void				print_intmatrix(int **matrix, int num_of_lines, int num_of_cols);
+void				vector_int_print(int *vector, int len);
+void				vector_int_assign(int *vector, int len, int value);
 
 /*
 ** visualization

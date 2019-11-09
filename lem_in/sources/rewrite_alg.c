@@ -75,11 +75,6 @@ void		remove_neg_cycle_with_bf(t_lemin *lem)
 	}
 }
 
-int			compare_ways(t_lemin *l)
-{
-
-}
-
 void		swap_ways(t_lemin *l)
 {
 	int **tmp;
@@ -97,27 +92,89 @@ void		swap_ways(t_lemin *l)
 	l->count_ways = tmp2;
 }
 
+int			max_int_array(int *arr, int size)
+{
+	int		i;
+	int		res;
+
+	if (size <= 0)
+		return (0);
+	res = arr[0];
+	i = 0;
+	while (++i < size)
+		if (arr[i] > res)
+			res = arr[i];
+	return (res);
+}
+
+int			count_flow_base(int *ways_len, int count_ways, int max_len)
+{
+	int		res;
+	int		i;
+
+	res = 0;
+	i = -1;
+	while (++i < count_ways)
+	{
+		res += max_len + 1 - ways_len[i];
+	}
+	return (res);
+}
+
+int		compare_ways(t_lemin *l)
+{
+	int		max_len;
+	int		max_len_prev;
+	int		flow_base;
+	int		flow_base_prev;
+	int		step_i;
+
+	max_len = max_int_array(l->way_length, l->count_ways);
+	flow_base = count_flow_base(l->way_length, l->count_ways, max_len);
+	if (l->number_of_ants < flow_base)
+		return (-1); // значит, предыдущий путь лучше
+	max_len_prev = max_int_array(l->prev_way_length, l->prev_count_ways);
+	flow_base_prev = count_flow_base(l->prev_way_length, l->prev_count_ways, max_len_prev);
+	step_i = max_len;
+	while (1)
+	{
+		if ((flow_base_prev + l->prev_count_ways * (step_i - max_len_prev)) > l->number_of_ants)
+			if (l->way_length[l->count_ways - 1] > l->prev_way_length[l->prev_count_ways - 1])
+				return (-1); // по предыдущему пути достигли максимума муравьев - значит, пред. путь лучше.
+		if ((flow_base + l->count_ways * (step_i - max_len)) > l->number_of_ants)
+			return (1); // по новому пути достигли максимума муравьев
+		step_i++;
+	}
+	return (-1);
+}
+
 void		solve(t_lemin *l)
 {
 	while (bfs(l))
 	{
+		swap_ways(l);
 		set_flow(l);
 		remove_neg_cycle_with_bf(l);
+		calculate_ways(l);
+		ft_printf("way:\n");
+		vector_int_print(l->way_length, l->count_ways);
+		ft_printf("way prev:\n");
+		vector_int_print(l->prev_way_length, l->prev_count_ways);
 		if (l->prev_count_ways == 0)
 		{
 			if (l->number_of_ants == 1)
 				break ;
-			else
-				swap_ways(l);
+		// 	else
+		// 	 	swap_ways(l);
 		}
 		else
-		{
-			compare_ways(l);
-		}
-
+			if (compare_ways(l) == -1)
+				{
+					swap_ways(l);
+					break ;
+				}
 	}
 	// bfs(l);			//находим кратчайший путь
 	// set_flow(l);	//прокручиваем путь, устанавливаем поток
 	// remove_neg_cycle_with_bf(l);
-
 }

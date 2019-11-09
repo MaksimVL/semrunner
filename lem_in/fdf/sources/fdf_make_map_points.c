@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 13:12:43 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/11/02 20:41:55 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/09 22:39:18 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,13 @@ void			make_map_points(t_mlx *m)
 	double	step;
 	int		i;
 
-	step = m->width / (m->map_x + 1) < m->height / (m->map_y + 1) ?
-			m->width / (m->map_x + 1) : m->height / (m->map_y + 1);
+	step = (double)(m->width) / (double)(m->map_x + 1) <
+			(double)(m->height) / (double)(m->map_y + 1) ?
+			(double)(m->width) / (double)(m->map_x + 1) :
+			(double)(m->height) / (double)(m->map_y + 1);
 	step *= m->zoom;
-	shift_x = (m->width - (m->map_x * step)) / 2;
-	shift_y = (m->height - (m->map_y * step)) / 2;
+	shift_x = ((double)m->width - ((double)m->map_x * step)) / 2.0;
+	shift_y = ((double)m->height - ((double)m->map_y * step)) / 2.0;
 	i = -1;
 	while (++i < m->quantity_points)
 	{

@@ -133,8 +133,8 @@ int				qi_empty(t_queue *queue)
 
 void			qi_print(t_queue *q)
 {
-	int			i;
 	t_dlist		*curr;
+
 	if (q->len == 0)
 		ft_printf("queue empty\n");
 	curr = q->top;

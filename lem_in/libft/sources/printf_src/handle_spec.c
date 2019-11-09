@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_spec.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrisha <mtrisha@student.42.fr>            +#+  +:+       +#+        */
+/*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 17:57:15 by mtrisha           #+#    #+#             */
-/*   Updated: 2019/10/12 17:07:06 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/09 20:36:19 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,8 @@ static int							print_spec(t_specifications_def spec,
 	if (spec.spec == 12 && (ft_strstr(output, "inf")
 							|| ft_strstr(output, "nan")))
 		spec.flags &= ~FLAG_COMMA & ~FLAG_ZERO;
+	if (spec.spec == 12 && ft_strstr(output, "nan"))
+		spec.flags &= ~FLAG_PLUS & ~FLAG_SPACE;
 	if (!output)
 		return (-1);
 	if (spec.flags & FLAG_COMMA)
