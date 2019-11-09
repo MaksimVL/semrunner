@@ -182,5 +182,6 @@ int				qi_pop(t_queue *queue);
 int				qi_front(t_queue *queue);
 int				qi_back(t_queue *queue);
 int				qi_empty(t_queue *queue);
+void			qi_print(t_queue *q);
 
 #endif

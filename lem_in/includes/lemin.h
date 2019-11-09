@@ -42,6 +42,18 @@ typedef struct			s_lemin
 	t_edge				*edges;
 	t_room				**rooms;
 
+	int					**ants_on_ways;
+	int					**flow1;
+
+	int					**ways;
+	int					*way_length;
+	int					count_ways;
+
+	int					**prev_ways;
+	int					*prev_way_length;
+	int					prev_count_ways;
+
+
 	int					size_matrix;
 	int					**adj;
 	int					**cost; //P - матр стоимости (расстояний)
@@ -102,8 +114,29 @@ void				vector_int_print(int *vector, int len);
 ** second try algorithm
 */
 
+void				lemin_init_vectors(t_lemin *lem);
+int					edge_cost(t_lemin *lem, int u, int v);
+int					check_cycles(t_lemin *lem);
+void				max_flow_ff(t_lemin *lem);
 void				min_cost_f(t_lemin *lem);
+int					bfs(t_lemin *lem);
+int					bf(t_lemin *lem, int s);
 void				lemin_print_res(t_lemin *lem);
+void				lemin_init_vectors(t_lemin *lem);
+
+/*
+** rewrite alg
+*/
+
+void				solve(t_lemin *l);
+
+/*
+** calculate ways
+*/
+
+void				lemin_init_ways(t_lemin *l);
+int					bfs_ways(t_lemin *lem);
+void				calculate_ways(t_lemin *l);
 
 /*
 ** aux functions

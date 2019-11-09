@@ -79,4 +79,7 @@ void			lemin_init(t_lemin *lemin)
 	lemin->min_cost = 0;
 	lemin->s = -1;
 	lemin->t = -1;
+
+	lemin->count_ways = 0;
+	lemin->prev_count_ways = 0;
 }

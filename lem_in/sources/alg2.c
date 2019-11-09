@@ -122,24 +122,19 @@ int				bf(t_lemin *lem, int s)
 	while (!qi_empty(&q)) // цикл пока в очереди что то есть
 	{
 		// если в начале очереди INF, то выходим, возвращая результат check_cycles
-		if (qi_front(&q) == INF)
+		while (qi_front(&q) == INF) // цикл пока в очереди первым элементом есть заглушка.
 		{
-			qi_del(&q);
-			return (check_cycles(lem));
-		}
-		// while (qi_front(&q) == INF) // цикл пока в очереди первым элементом есть заглушка.
-		// {
-		// 	qi_pop(&q); // удаляем последнй элемент
-		//  // увеличиваем series на 1
-		// 	if (++series > lem->size_matrix)	// если  series превысило количество вершин (комнат)
-		// 										// то прекращаем выполнение, возвращая check_cycles(lem)
-		// 		{
-		// 			qi_del(&q);
-		// 			return (check_cycles(lem));
-		// 		}
-		// 	else
-		// 		qi_push(&q, INF); // иначе - добавляем в начало очереди INF
-		// }
+		 	qi_pop(&q); // удаляем последнй элемент
+		  // увеличиваем series на 1
+		 	if (++series > lem->size_matrix)	// если  series превысило количество вершин (комнат)
+		 										// то прекращаем выполнение, возвращая check_cycles(lem)
+		 		{
+		 			qi_del(&q);
+		 			return (check_cycles(lem));
+		 		}
+		 	else
+		 		qi_push(&q, INF); // иначе - добавляем в начало очереди INF
+		 }
 
 
 		u = qi_pop(&q);
