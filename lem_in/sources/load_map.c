@@ -130,7 +130,6 @@ void			lemin_init_arrays(t_lemin *lemin)
 {
 	int i;
 	int from;
-	int to;
 	t_dlist		*curr;
 
 	lemin->adj = (int**)ft_memalloc(sizeof(int*) * lemin->count_rooms * 2);

@@ -131,16 +131,17 @@ int		compare_ways(t_lemin *l)
 
 	max_len = max_int_array(l->way_length, l->count_ways);
 	flow_base = count_flow_base(l->way_length, l->count_ways, max_len);
-	if (l->number_of_ants < flow_base)
-		return (-1); // значит, предыдущий путь лучше
+	// if (l->number_of_ants < flow_base)
+	// 	return (-1); // значит, предыдущий путь лучше
 	max_len_prev = max_int_array(l->prev_way_length, l->prev_count_ways);
 	flow_base_prev = count_flow_base(l->prev_way_length, l->prev_count_ways, max_len_prev);
+	ft_printf("flow_base = %d, flow_base_prev = %d\n", flow_base, flow_base_prev);
 	step_i = max_len;
 	while (1)
 	{
 		if ((flow_base_prev + l->prev_count_ways * (step_i - max_len_prev)) > l->number_of_ants)
 			if (l->way_length[l->count_ways - 1] > l->prev_way_length[l->prev_count_ways - 1])
-				return (-1); // по предыдущему пути достигли максимума муравьев - значит, пред. путь лучше.
+				return (-1); // по предыдущему пути достигли максимума муравьев
 		if ((flow_base + l->count_ways * (step_i - max_len)) > l->number_of_ants)
 			return (1); // по новому пути достигли максимума муравьев
 		step_i++;
@@ -152,7 +153,6 @@ void		solve(t_lemin *l)
 {
 	while (bfs(l))
 	{
-		swap_ways(l);
 		set_flow(l);
 		remove_neg_cycle_with_bf(l);
 		calculate_ways(l);
@@ -164,16 +164,16 @@ void		solve(t_lemin *l)
 		{
 			if (l->number_of_ants == 1)
 				break ;
-		// 	else
-		// 	 	swap_ways(l);
+		 	else
+		 	 	swap_ways(l);
 		}
 		else
-			if (compare_ways(l) == -1)
+			if (compare_ways(l) == 1)
 				{
 					swap_ways(l);
-					break ;
 				}
 	}
+	swap_ways(l);
 	// bfs(l);			//находим кратчайший путь
 	// set_flow(l);	//прокручиваем путь, устанавливаем поток
 	// remove_neg_cycle_with_bf(l);

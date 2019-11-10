@@ -53,6 +53,8 @@ typedef struct			s_lemin
 	int					*prev_way_length;
 	int					prev_count_ways;
 
+	int					*ants_left_on_ways;
+
 
 	int					size_matrix;
 	int					**adj;

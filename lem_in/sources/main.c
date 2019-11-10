@@ -20,6 +20,14 @@
 
 # define MAX_N 50
 
+int				count_bandwidth(int flow_len, int step)
+{
+	if (step - flow_len + 1 > 0)
+		return (step - flow_len + 1);
+	else
+		return (0);
+}
+
 void			going_ants(t_lemin *l)
 {
 	int		ants_left;
@@ -27,39 +35,34 @@ void			going_ants(t_lemin *l)
 	int		count_all_ways;
 	int		i;
 	int		j;
-	t_dlist	*curr;
-	t_dlist *next;
-	int		max_len;
-	int		flow_base;
+	int		step;
 
 	count_all_ways = l->count_ways;
 	ants_left = l->number_of_ants;
-	ant_counter = 0;
-	 ft_printf("count ways: %d\n", count_all_ways);
-	// print_intmatrix(l->ways, l->max_flow, l->count_rooms);
+	ft_printf("count ways: %d\n", count_all_ways);
 
-	while (ants_left != 0)
+	l->ants_left_on_ways = ft_memalloc(sizeof(int) * count_all_ways);
+
+	step = 0;
+	while (ants_left > 0)
 	{
-		// чекаем перед запуском цикла по путям - уменьшаем количество путей или нет.
-		if (l->count_ways > 1)
+		step++;
+		i = -1;
+		while (++i < count_all_ways && ants_left > 0)
 		{
-			max_len = max_int_array(l->way_length, l->count_ways);
-			// вычисляем базовый поток через оставшиеся пути
-			flow_base = count_flow_base(l->way_length, l->count_ways, max_len);
-			if (flow_base > l->number_of_ants - ant_counter) // если баз поток больше оставшихся муравьев, то уменьшаем количество путей.
+			if (count_bandwidth(l->way_length[i], step) > 0)
 			{
-				l->count_ways--;
-				while (l->count_ways > 1)
-				{
-					max_len = max_int_array(l->way_length, l->count_ways);
-					flow_base = count_flow_base(l->way_length, l->count_ways, max_len);
-					if (flow_base < l->number_of_ants - ant_counter)
-						break ;
-					l->count_ways--;
-				}
+				l->ants_left_on_ways[i]++;
+				ants_left--;
 			}
 		}
-
+	}
+	// print_intmatrix(l->ways, l->max_flow, l->count_rooms);
+	count_all_ways = l->count_ways;
+	ants_left = l->number_of_ants;
+	ant_counter = 0;
+	while (ants_left != 0)
+	{
 		i = -1;
 		while (++i < count_all_ways && ants_left != 0) // цикл по путям
 		{
@@ -81,8 +84,9 @@ void			going_ants(t_lemin *l)
 				}
 			}
 			// запускаем нового муравья в i-й путь
-			if (ant_counter < l->number_of_ants)
+			if (l->ants_left_on_ways[i] != 0)
 			{
+				l->ants_left_on_ways[i]--;
 				ant_counter++;
 				l->ants_on_ways[i][j - 1] = ant_counter;
 			}
@@ -124,20 +128,16 @@ void			*ft_dlistmap(t_dlist *list, void *f(t_dlist *))
 	return (list);
 }
 
-void			test_func(void *lm)
+int				test_func(void *lm)
 {
-	int		i;
-
-
-	// i = 1;
-	// ft_printf("fuck\n");
-	// usleep(20000);
+	if (lm == NULL)
+		;
+	return (1);
 }
 
 int				main(int argc, char **argv)
 {
 	t_lemin		lemin;
-	int			res;
 	t_mlx		m;
 	t_lemin_mlx	lm;
 
