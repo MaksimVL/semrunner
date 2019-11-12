@@ -32,6 +32,7 @@ int				bfs_ways(t_lemin *lem)
 	t_queue q;
 	int u;
 	int v;
+	int i;
 
 	queue_init(&q);
 	lemin_init_vectors(lem);
@@ -43,17 +44,29 @@ int				bfs_ways(t_lemin *lem)
 	while (!lem->mark[lem->t] && !qi_empty(&q))
 	{
 		u = qi_pop(&q); 						// достаем из очереди вершину, помещаем в u
-		v = 0;
-		while (v < lem->size_matrix)			// цикл по всем вершинам переменной v
+		i = -1;
+		while (++i < (lem->g.n)[u])
 		{
+			v = (lem->g.edges)[u][i];
 			if (!(lem->mark[v]) && lem->flow1[u][v] > 0)
 			{
 				lem->mark[v] = 1;
 				lem->pred[v] = u;
 				qi_push(&q, v);
 			}
-			v++;
 		}
+
+		// v = 0;
+		// while (v < lem->size_matrix)			// цикл по всем вершинам переменной v
+		// {
+		// 	if (!(lem->mark[v]) && lem->flow1[u][v] > 0)
+		// 	{
+		// 		lem->mark[v] = 1;
+		// 		lem->pred[v] = u;
+		// 		qi_push(&q, v);
+		// 	}
+		// 	v++;
+		// }
 	}
 	qi_del(&q);
 	return (lem->mark[lem->t]);
@@ -63,6 +76,7 @@ void				calculate_ways(t_lemin *l)
 {
 	int		i;
 	int		j;
+	int		k;
 	int		v;
 	int		u;
 
@@ -70,12 +84,20 @@ void				calculate_ways(t_lemin *l)
 	i = -1;
 	while (++i < l->size_matrix)
 	{
-		j = -1;
-		while (++j < l->size_matrix)
+
+		k = -1;
+		while (++k < (l->g.n)[i])
 		{
+			j = (l->g.edges)[i][k];
 			if (l->flow[i][j] == 1)
 				l->flow1[i][j] = 1;
 		}
+		// j = -1;
+		// while (++j < l->size_matrix)
+		// {
+		// 	if (l->flow[i][j] == 1)
+		// 		l->flow1[i][j] = 1;
+		// }
 	}
 	l->count_ways = l->max_flow;
 	// ищем все пути

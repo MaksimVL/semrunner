@@ -23,55 +23,6 @@ void		set_flow(t_lemin *lem)
 	lem->max_flow += flow;
 }
 
-void		remove_neg_cycle_with_bf(t_lemin *lem)
-{
-	int u;
-	int v;
-	int flow;
-	int add;
-	int neg_cycle;
-
-	flow = 0;
-	add = INF;
-	neg_cycle = bf(lem, lem->t);
-	while (neg_cycle != INF)
-	{
-		v = neg_cycle;
-		u = lem->pred[v];
-		while (1)
-		{
-			add = MIN(add, lem->capacity[u][v] - lem->flow[u][v]);
-			v = u;
-			u = lem->pred[v];
-			if (v == neg_cycle)
-				break ;
-		}
-		v = neg_cycle;
-		u = lem->pred[v];
-		while (1)
-		{
-			lem->flow[u][v] += add;
-			lem->flow[v][u] -= add;
-			v = u;
-			u = lem->pred[v];
-			if (v == neg_cycle)
-				break ;
-		}
-		neg_cycle = bf(lem, lem->t);
-	}
-	u = 0;
-	while (u < lem->size_matrix)
-	{
-		v = 0;
-		while (v < lem->size_matrix)
-		{
-			if (lem->flow[u][v] > 0)
-				lem->min_cost += lem->flow[u][v] * lem->cost[u][v];
-			v++;
-		}
-		u++;
-	}
-}
 
 void		swap_ways(t_lemin *l)
 {

@@ -37,13 +37,11 @@ void			lemin_destroy(t_lemin *lemin)
 	ft_dlstdel(&(lemin->list_rooms), destroy_room);
 	ft_dlstdel(&(lemin->room_ways), destroy_way);
 	ft_memdel((void**)&lemin->edges);
-	ft_delmatrix((void***)&lemin->cost, lemin->count_rooms);
 	ft_delmatrix((void***)&lemin->capacity, lemin->count_rooms);
 	ft_delmatrix((void***)&lemin->flow, lemin->count_rooms);
 	ft_memdel((void**)&lemin->push);
 	ft_memdel((void**)&lemin->mark);
 	ft_memdel((void**)&lemin->pred);
-	ft_memdel((void**)&lemin->dist);
 	free(lemin->rooms);
 	lemin->rooms = NULL;
 }
@@ -52,23 +50,30 @@ void			lemin_init(t_lemin *lemin)
 {
 	lemin->list_rooms = NULL;
 	lemin->room_ways = NULL;
-	lemin->rooms = NULL;
 	lemin->count_rooms = 0;
+	lemin->number_of_ants = 0;
+	lemin->start_room = -1;
+	lemin->end_room = -1;
 	lemin->number_of_ants = 0;
 	lemin->count_edges = 0;
 	lemin->edges = NULL;
-	lemin->cost = NULL;
+	lemin->rooms = NULL;
+	lemin->ants_left_on_ways = NULL;
+	lemin->flow1 = NULL;
+	lemin->ways = NULL;
+	lemin->way_length = NULL;
+	lemin->count_ways = 0;
+	lemin->prev_ways = NULL;
+	lemin->way_length = NULL;
+	lemin->prev_count_ways = 0;
+	lemin->ants_left_on_ways = NULL;
+	lemin->size_matrix = 0;
 	lemin->capacity = NULL;
 	lemin->flow = NULL;
 	lemin->push = NULL;
 	lemin->mark = NULL;
 	lemin->pred = NULL;
-	lemin->dist = NULL;
 	lemin->max_flow = 0;
-	lemin->min_cost = 0;
 	lemin->s = -1;
 	lemin->t = -1;
-
-	lemin->count_ways = 0;
-	lemin->prev_count_ways = 0;
 }

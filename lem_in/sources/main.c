@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 18:48:15 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/11/10 00:33:08 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/12 22:37:38 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,74 @@ int				test_func(void *lm)
 	return (1);
 }
 
+int				count_numbers_edges(t_lemin *l, int vertex)
+{
+	int		j;
+	int		res;
+
+	res = 0;
+	j = -1;
+	while (++j < l->size_matrix)
+	{
+		if (l->capacity[vertex][j] == 1 || l->capacity[j][vertex] == 1)
+			res++;
+	}
+	return (res);
+}
+
+void			add_edges_to_graph(t_lemin *l, int vertex)
+{
+	int		i;
+	int		j;
+
+	i = -1;
+	j = -1;
+	while (++i < l->size_matrix)
+	{
+		if (l->capacity[vertex][i] == 1 || l->capacity[i][vertex] == 1)
+			((l->g.edges)[vertex])[++j] = i;
+	}
+}
+
+void			lemin_init_fill_graph(t_lemin *l)
+{
+	int		i;
+	int		j;
+	int		tmp_i;
+
+	i = -1;
+	l->g.n = (int*)ft_memalloc((sizeof(int) * l->size_matrix));
+	l->g.edges = (int**)ft_memalloc(sizeof(int*) * l->size_matrix);
+	while (++i < l->size_matrix)
+	{
+		tmp_i = count_numbers_edges(l, i);
+		if (tmp_i != 0)
+		{
+			l->g.n[i] = tmp_i;
+			(l->g.edges)[i] = (int*)ft_memalloc(sizeof(int) * tmp_i);
+			add_edges_to_graph(l, i);
+		}
+	}
+}
+
+void			print_graph(t_lemin *l)
+{
+	int i;
+	int j;
+
+	i = -1;
+	while (++i < l->size_matrix)
+	{
+		ft_printf("vert %d: ", i);
+		j = -1;
+		while (++j < l->g.n[i])
+		{
+			ft_printf("%d ", l->g.edges[i][j]);
+		}
+		ft_printf("\n");
+	}
+}
+
 int				main(int argc, char **argv)
 {
 	t_lemin		lemin;
@@ -140,41 +208,46 @@ int				main(int argc, char **argv)
 
 	lemin_init(&lemin);
 
+	ft_printf("start load data...");
 	if (argc == 2)
 		load_data(&lemin, argv[1]); //TODO проверка на чтение, полная очистка если ошибка
 	else
 		exit(0);
+	ft_printf("finish load data\n");
+	ft_printf("start base assign...");
 	set_rooms_number(&lemin);
 	lemin.count_edges = ft_dlst_len(lemin.room_ways);
 	edges_assign(&lemin);
+	ft_printf("finish base assign\n");
+	ft_printf("start init arrays... ");
 	lemin_init_arrays(&lemin);
+	ft_printf("start fill rooms... ");
 	lemin_fill_rooms(&lemin);
+	ft_printf("start_fill_matrix... ");
 	lemin_fill_matrix2x(&lemin);
+	//ft_print_intmatrix(lemin.capacity, lemin.size_matrix, lemin.size_matrix);
+	ft_printf("start init graph... ");
+	lemin_init_fill_graph(&lemin);
+	ft_printf("start init ways... ");
 	lemin_init_ways(&lemin); // выделяем память под пути, в том числе под предыдущие пути
-	//min_cost_f(&lemin);
+	ft_printf("finish inits\n");
 	solve(&lemin);
-
-//	print_intmatrix(lemin.flow, lemin.size_matrix, lemin.size_matrix);
-
-//	calculate_ways(&lemin);
-
-
 	going_ants(&lemin);
 
-	tmlx_initialize(&m, 1800, 1200);
-	load_anthill(&m, &lemin);
-	calc_parameter_maps(&m);
-	make_map_points(&m);
+	// tmlx_initialize(&m, 1800, 1200);
+	// load_anthill(&m, &lemin);
+	// calc_parameter_maps(&m);
+	// make_map_points(&m);
 
-	lm.m = &m;
-	lm.lem = &lemin;
+	// lm.m = &m;
+	// lm.lem = &lemin;
 
-	tmlx_create_mlx(&m, "lemin");
+	// tmlx_create_mlx(&m, "lemin");
 
-	lemin_keyhook(-1, (void*)&lm);
-	mlx_key_hook(m.win, lemin_keyhook, (void*)&lm);
-	mlx_loop_hook(m.ptr, test_func, (void*)&lm);
-	mlx_loop(m.ptr);
+	// lemin_keyhook(-1, (void*)&lm);
+	// mlx_key_hook(m.win, lemin_keyhook, (void*)&lm);
+	// mlx_loop_hook(m.ptr, test_func, (void*)&lm);
+	// mlx_loop(m.ptr);
 	lemin_destroy(&lemin);
 
 }

@@ -30,6 +30,12 @@ typedef struct			s_edge
 	int					cost;
 }						t_edge;
 
+typedef struct			s_graph
+{
+	int					*n; // количество вершин, соединенных с данной
+	int					**edges; // номера вершин
+}						t_graph;
+
 typedef struct			s_lemin
 {
 	t_dlist				*list_rooms;
@@ -57,15 +63,13 @@ typedef struct			s_lemin
 
 
 	int					size_matrix;
-	int					**cost; //P - матр стоимости (расстояний)
+	t_graph				g;
 	int					**capacity; // C - матр пропускных способностей
 	int					**flow; // F - матр текущего потока в графе
 	int					*push; // поток в верш. из нач. точки
 	int					*mark; //отметки вершин где побывали
 	int					*pred; // предок вершины (откуда пришли)
-	int					*dist; // расст до верш. из нач. точки
 	int					max_flow;
-	int					min_cost;
 	int					s; // нач. точка
 	int					t; // конечная точка
 }						t_lemin;

@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/lem_in",
-            "args": ["testmap"],
+            "args": ["testmap_copy"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],

@@ -6,7 +6,7 @@ void			lemin_init_vectors(t_lemin *lem)
 	vector_int_assign(lem->mark, lem->size_matrix, 0);
 	vector_int_assign(lem->push, lem->size_matrix, 0);
 	vector_int_assign(lem->pred, lem->size_matrix, 0);
-	vector_int_assign(lem->dist, lem->size_matrix, INF);
+	//vector_int_assign(lem->dist, lem->size_matrix, INF);
 }
 
 int				bfs(t_lemin *lem)
@@ -14,6 +14,7 @@ int				bfs(t_lemin *lem)
 	t_queue q;
 	int u;
 	int v;
+	int i;
 
 	ft_printf("start calc bfs...\n");
 	queue_init(&q);
@@ -25,9 +26,10 @@ int				bfs(t_lemin *lem)
 	while (!lem->mark[lem->t] && !qi_empty(&q))
 	{
 		u = qi_pop(&q);
-		v = 0;
-		while (v < lem->size_matrix)
+		i = -1;
+		while (++i < (lem->g.n)[u])
 		{
+			v = (lem->g.edges)[u][i];
 			if (!lem->mark[v] && (lem->capacity[u][v] - lem->flow[u][v] > 0))
 			{
 				lem->push[v] = MIN(lem->push[u], lem->capacity[u][v] - lem->flow[u][v]);
@@ -35,8 +37,19 @@ int				bfs(t_lemin *lem)
 				lem->pred[v] = u;
 				qi_push(&q, v);
 			}
-			v++;
 		}
+		// v = 0;
+		// while (v < lem->size_matrix)
+		// {
+		// 	if (!lem->mark[v] && (lem->capacity[u][v] - lem->flow[u][v] > 0))
+		// 	{
+		// 		lem->push[v] = MIN(lem->push[u], lem->capacity[u][v] - lem->flow[u][v]);
+		// 		lem->mark[v] = 1;
+		// 		lem->pred[v] = u;
+		// 		qi_push(&q, v);
+		// 	}
+		// 	v++;
+		// }
 	}
 	qi_del(&q);
 	ft_printf("finish calc bfs\n");

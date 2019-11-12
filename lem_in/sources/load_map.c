@@ -129,14 +129,12 @@ void			lemin_init_arrays(t_lemin *lemin)
 {
 	int i;
 
-	lemin->cost = (int**)ft_memalloc(sizeof(int*) * lemin->count_rooms * 2);
 	lemin->capacity = (int**)ft_memalloc(sizeof(int*) * lemin->count_rooms * 2);
 	lemin->flow = (int**)ft_memalloc(sizeof(int*) * lemin->count_rooms * 2);
 	lemin->flow1 = (int**)ft_memalloc(sizeof(int*) * lemin->count_rooms * 2);
 	i = 0;
 	while (i < lemin->count_rooms * 2)
 	{
-		(lemin->cost)[i] = (int*)ft_memalloc(sizeof(int) * lemin->count_rooms * 2);
 		(lemin->capacity)[i] = (int*)ft_memalloc(sizeof(int) * lemin->count_rooms * 2);
 		(lemin->flow)[i] = (int*)ft_memalloc(sizeof(int) * lemin->count_rooms * 2);
 		(lemin->flow1)[i] = (int*)ft_memalloc(sizeof(int) * lemin->count_rooms * 2);
@@ -145,9 +143,7 @@ void			lemin_init_arrays(t_lemin *lemin)
 	lemin->push = (int*)ft_memalloc(sizeof(int) * lemin->count_rooms * 2);
 	lemin->mark = (int*)ft_memalloc(sizeof(int) * lemin->count_rooms * 2);
 	lemin->pred = (int*)ft_memalloc(sizeof(int) * lemin->count_rooms * 2);
-	lemin->dist = (int*)ft_memalloc(sizeof(int) * lemin->count_rooms * 2);
 	lemin->max_flow = 0;
-	lemin->min_cost = 0;
 }
 
 void			lemin_fill_matrix(t_lemin *lem)
@@ -161,8 +157,6 @@ void			lemin_fill_matrix(t_lemin *lem)
 		e = lem->edges[i];
 		lem->capacity[e.from][e.to] = e.capacity;
 		lem->capacity[e.to][e.from] = e.capacity;
-		lem->cost[e.from][e.to] = e.cost;
-		lem->cost[e.to][e.from] = e.cost;
 		i++;
 	}
 }
@@ -216,13 +210,9 @@ void			lemin_fill_matrix2x(t_lemin *lem)
 		}
 
 		lem->capacity[2 * start][2 * end + 1] = 1;
-		lem->cost[2 * start][2 * end + 1] = 1;
-		lem->cost[2 * end + 1][2 * start] = -1;
 		if (start != lem->s && end != lem->t)
 		{
 			lem->capacity[2 * end][2 * start + 1] = 1;
-			lem->cost[2 * end][2 * start + 1] = 1;
-			lem->cost[2 * start + 1][2 * end] = -1;
 		}
 	}
 	i = -1;
@@ -231,8 +221,6 @@ void			lemin_fill_matrix2x(t_lemin *lem)
 		if (i != lem->s && i != lem->t)
 		{
 			lem->capacity[2 * i + 1][2 * i] = 1;
-			lem->cost[2 * i + 1][2 * i] = 1;
-			lem->cost[2 * i][2 * i + 1] = -1;
 		}
 	}
 	lem->s = lem->start_room * 2;
