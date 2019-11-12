@@ -17,7 +17,7 @@ t_room			set_room_property(char **strings, int next_flag)
 	return (room_temp);
 }
 
-int				load_data(t_lemin *lemin)
+int				load_data(t_lemin *lemin, char *filename)
 {
 	int				res;
 	char			*line;
@@ -25,13 +25,12 @@ int				load_data(t_lemin *lemin)
 	int				next_flag;
 	t_room			room_temp;
 	t_room_ways		room_ways_temp;
-	t_dlist			*dlst_temp;
 	int				fd;
 
 	line = NULL;
 	strings = NULL;
 	next_flag = 0;
-	fd = open("testmap", O_RDONLY);
+	fd = open(filename, O_RDONLY);
 	if ((res = get_next_line(fd, &line)) == 1)
 	{
 		lemin->number_of_ants = ft_atoi(line);
@@ -129,10 +128,7 @@ void			edges_assign(t_lemin *lemin)
 void			lemin_init_arrays(t_lemin *lemin)
 {
 	int i;
-	int from;
-	t_dlist		*curr;
 
-	lemin->adj = (int**)ft_memalloc(sizeof(int*) * lemin->count_rooms * 2);
 	lemin->cost = (int**)ft_memalloc(sizeof(int*) * lemin->count_rooms * 2);
 	lemin->capacity = (int**)ft_memalloc(sizeof(int*) * lemin->count_rooms * 2);
 	lemin->flow = (int**)ft_memalloc(sizeof(int*) * lemin->count_rooms * 2);
@@ -140,7 +136,6 @@ void			lemin_init_arrays(t_lemin *lemin)
 	i = 0;
 	while (i < lemin->count_rooms * 2)
 	{
-		(lemin->adj)[i] = (int*)ft_memalloc(sizeof(int) * lemin->count_rooms * 2);
 		(lemin->cost)[i] = (int*)ft_memalloc(sizeof(int) * lemin->count_rooms * 2);
 		(lemin->capacity)[i] = (int*)ft_memalloc(sizeof(int) * lemin->count_rooms * 2);
 		(lemin->flow)[i] = (int*)ft_memalloc(sizeof(int) * lemin->count_rooms * 2);
@@ -151,7 +146,6 @@ void			lemin_init_arrays(t_lemin *lemin)
 	lemin->mark = (int*)ft_memalloc(sizeof(int) * lemin->count_rooms * 2);
 	lemin->pred = (int*)ft_memalloc(sizeof(int) * lemin->count_rooms * 2);
 	lemin->dist = (int*)ft_memalloc(sizeof(int) * lemin->count_rooms * 2);
-
 	lemin->max_flow = 0;
 	lemin->min_cost = 0;
 }
@@ -243,11 +237,4 @@ void			lemin_fill_matrix2x(t_lemin *lem)
 	}
 	lem->s = lem->start_room * 2;
 	lem->t = lem->end_room * 2 + 1;
-	// ft_printf("---- capacity ----\n");
-	// print_intmatrix(lem->capacity, lem->size_matrix, lem->size_matrix);
-	// ft_printf("----\n");
-	// ft_printf("---- cost ----\n");
-	// print_intmatrix(lem->cost, lem->size_matrix, lem->size_matrix);
-	// ft_printf("----\n");
-
 }

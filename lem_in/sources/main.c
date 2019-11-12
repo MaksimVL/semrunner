@@ -35,6 +35,7 @@ void			going_ants(t_lemin *l)
 	int		count_all_ways;
 	int		i;
 	int		j;
+	int		k;
 	int		step;
 
 	count_all_ways = l->count_ways;
@@ -43,6 +44,7 @@ void			going_ants(t_lemin *l)
 
 	l->ants_left_on_ways = ft_memalloc(sizeof(int) * count_all_ways);
 
+	k = 0;
 	step = 0;
 	while (ants_left > 0)
 	{
@@ -93,6 +95,8 @@ void			going_ants(t_lemin *l)
 		}
 		// ft_printf("ants_on_ways:\n");
 		// print_intmatrix(l->ants_on_ways, l->max_flow, l->count_rooms);
+		if (ants_left != 0)
+			ft_printf("%d.", ++k);
 		j = -1;
 		while (++j < l->count_rooms)
 		{
@@ -106,13 +110,6 @@ void			going_ants(t_lemin *l)
 		}
 		ft_printf("\n");
 	}
-}
-
-void			*set_cont_size_zero(t_dlist *list)
-{
-	if (list != NULL)
-		list->content_size = 0;
-	return (NULL);
 }
 
 void			*ft_dlistmap(t_dlist *list, void *f(t_dlist *))
@@ -143,7 +140,10 @@ int				main(int argc, char **argv)
 
 	lemin_init(&lemin);
 
-	load_data(&lemin); //TODO проверка на чтение, полная очистка если ошибка
+	if (argc == 2)
+		load_data(&lemin, argv[1]); //TODO проверка на чтение, полная очистка если ошибка
+	else
+		exit(0);
 	set_rooms_number(&lemin);
 	lemin.count_edges = ft_dlst_len(lemin.room_ways);
 	edges_assign(&lemin);

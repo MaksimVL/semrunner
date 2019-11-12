@@ -57,7 +57,6 @@ typedef struct			s_lemin
 
 
 	int					size_matrix;
-	int					**adj;
 	int					**cost; //P - матр стоимости (расстояний)
 	int					**capacity; // C - матр пропускных способностей
 	int					**flow; // F - матр текущего потока в графе
@@ -90,7 +89,7 @@ void				lemin_destroy(t_lemin *lemin);
 ** load data
 */
 
-int					load_data(t_lemin *lemin);
+int					load_data(t_lemin *lemin, char *filename);
 void				set_rooms_number(t_lemin *lemin);
 int					room_number(t_lemin *lemin, char *room_name);
 void				edges_assign(t_lemin *lemin);
@@ -113,26 +112,16 @@ void				vector_int_assign(int *vector, int len, int value);
 void				vector_int_print(int *vector, int len);
 
 /*
-** second try algorithm
+** algorithm
 */
 
 void				lemin_init_vectors(t_lemin *lem);
 int					edge_cost(t_lemin *lem, int u, int v);
 int					check_cycles(t_lemin *lem);
-void				max_flow_ff(t_lemin *lem);
-void				min_cost_f(t_lemin *lem);
 int					bfs(t_lemin *lem);
 int					bf(t_lemin *lem, int s);
-void				lemin_print_res(t_lemin *lem);
-void				lemin_init_vectors(t_lemin *lem);
-
-/*
-** rewrite alg
-*/
-
-void				solve(t_lemin *l);
 int					count_flow_base(int *ways_len, int count_ways, int max_len);
-int					max_int_array(int *arr, int size);
+void				solve(t_lemin *l);
 
 /*
 ** calculate ways

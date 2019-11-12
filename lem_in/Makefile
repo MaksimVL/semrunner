@@ -19,8 +19,8 @@ INCLIBFT_DIR := ./libft/includes
 OBJ_DIR := ./objects
 LIB_DIR := ./libft
 
-SRC  := main.c initialize.c load_map.c print_room_links_props.c try_alg1.c \
-	alg2.c auxf.c visual.c calc_ways.c rewrite_alg.c
+SRC  := main.c initialize.c load_map.c print_room_links_props.c \
+	auxf.c visual.c calc_ways.c rewrite_alg.c bfs.c bf.c
 
 
 HDRS := includes/lemin.h

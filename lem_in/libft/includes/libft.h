@@ -124,6 +124,11 @@ void				ft_lstdeli(t_list **alst, size_t nbr, void (*del)(void *,
 								size_t));
 void				ft_printstrsplit(char **tab);
 void				*ft_strnjoin(char **s1, const char *s2, size_t n);
+
+/*
+** dictionary
+*/
+
 t_dict				*ft_dictnew(void const *content, size_t content_size,
 								int key);
 void				ft_dictadd(t_dict **adict, t_dict *new);
@@ -134,6 +139,7 @@ void				ft_dictdelelement(t_dict **dict, t_dict **element,
 t_dict				*ft_dictgetvalue(t_dict *dict, int key);
 void				ft_dictdelbykey(t_dict **dict, int key,
 									void (*del)(void *, size_t));
+
 int					get_next_line(const int fd, char **line);
 const char			*ft_skip_digits(const char *str);
 char				*ft_zerostr(void);
@@ -150,6 +156,10 @@ int					ft_nbrlen(long int a);
 int					ft_printf(const char *format, ...);
 void				ft_del_strsplit(char ***strings);
 int					ft_isint(char *str);
+int					ft_intlen(int a);
+
+void				ft_print_intmatrix(int **matrix,
+						int num_of_lines, int num_of_cols);
 
 /*
 ** dlist
@@ -183,5 +193,12 @@ int				qi_front(t_queue *queue);
 int				qi_back(t_queue *queue);
 int				qi_empty(t_queue *queue);
 void			qi_print(t_queue *q);
+
+/*
+** max, min of array of int
+*/
+
+int				ft_max_intarray(int *arr, int size);
+int				ft_min_intarray(int *arr, int size);
 
 #endif
