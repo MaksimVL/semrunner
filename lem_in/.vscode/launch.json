@@ -21,7 +21,7 @@
             "type": "lldb",
             "request": "launch",
             "program": "${workspaceFolder}/lem_in",
-            "args": ["testmap"],
+            "args": ["testmap_copy3"],
             "cwd": "${workspaceFolder}"
         }
         // {

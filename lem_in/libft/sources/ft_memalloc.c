@@ -17,7 +17,10 @@ void	*ft_memalloc(size_t size)
 	void	*ptr;
 
 	if (!(ptr = (void*)malloc(size)))
+	{
 		return (NULL);
+		errno = ENOMEM;
+	}
 	ft_memset(ptr, 0, size);
 	return (ptr);
 }

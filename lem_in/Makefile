@@ -19,8 +19,8 @@ INCLIBFT_DIR := ./libft/includes
 OBJ_DIR := ./objects
 LIB_DIR := ./libft
 
-SRC  := main.c initialize.c load_map.c print_room_links_props.c \
-	auxf.c visual.c calc_ways.c rewrite_alg.c bfs.c bf.c
+SRC  := main.c initialize.c load_map.c \
+	auxf.c visual.c calc_ways.c solve.c bfs.c
 
 
 HDRS := includes/lemin.h
@@ -97,7 +97,7 @@ $(NAME): $(OBJ_DIR) $(OBJ) $(HEADER_LIB) $(HDRS) $(FULL_ALL_LIBFT) $(FDF_OBJ_DIR
 	$(CC) $(CFLAGS) $(OBJ) $(FDF_OBJ_WITH_PATH) -o $(NAME) -I $(INCLIBFT_DIR) -I $(INCMLX_DIR) -L libft -lft $(MLXPARAMS)
 
 
-nodebug: CFLAGS = -Wall -Wextra -Werror -O3
+nodebug: CFLAGS = -Wall -Wextra -O3 #-Werror
 
 nodebug: LIBFT_NODEBUG = nodebug
 

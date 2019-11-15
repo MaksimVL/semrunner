@@ -7,6 +7,8 @@ t_room			set_room_property(char **strings, int next_flag)
 	t_room			room_temp;
 
 	room_temp.name = ft_strdup(strings[0]);
+	if (ft_isint(strings[1]) == 0 || ft_isint(strings[2]) == 0)
+		errno = 200;
 	room_temp.x = ft_atoi(strings[1]);
 	room_temp.y = ft_atoi(strings[2]);
 	if (strings[3] != NULL)
@@ -17,6 +19,22 @@ t_room			set_room_property(char **strings, int next_flag)
 	return (room_temp);
 }
 
+int				find_duplicates_rooms(t_dlist *list_rooms, t_room room_temp)
+{
+	t_dlist	*curr;
+	t_room	*room;
+
+	curr = list_rooms;
+	while (curr != NULL)
+	{
+		room = curr->content;
+		if (ft_strequ(room->name, room_temp.name))
+			return (1);
+
+		curr = curr->next;
+	}
+	return (0);
+}
 int				load_data(t_lemin *lemin, char *filename)
 {
 	int				res;
@@ -31,14 +49,19 @@ int				load_data(t_lemin *lemin, char *filename)
 	strings = NULL;
 	next_flag = 0;
 	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+		finish_prog(lemin, -1, fd, NULL, NULL);
 	if ((res = get_next_line(fd, &line)) == 1)
 	{
 		lemin->number_of_ants = ft_atoi(line);
 		ft_memdel((void**)&line);
+		if (lemin->number_of_ants <= 0)
+			finish_prog(lemin, -1, fd, NULL, NULL);
 	}
+	else
+		finish_prog(lemin, -1, fd, NULL, NULL);
 	while ((res = get_next_line(fd, &line)) == 1) //TODO добавить проверку на корректность данных
 	{
-
 		if (ft_strequ(line, "##start"))
 			next_flag = 1;
 		else if (ft_strequ(line, "##end"))
@@ -47,27 +70,46 @@ int				load_data(t_lemin *lemin, char *filename)
 			next_flag = 0;
 		else if (ft_strstr(line, "-"))
 		{
-			strings = ft_strsplit(line, '-');
+			if (!(strings = ft_strsplit(line, '-')))
+				finish_prog(lemin, -1, fd, NULL, &line);
+			if (strings[0] == NULL || strings[1] == NULL)
+				finish_prog(lemin, -1, fd, &strings, &line);
 			room_ways_temp.start_room = ft_strdup(strings[0]);
 			room_ways_temp.end_room = ft_strdup(strings[1]);
 			ft_dlst_addcontent_back(&(lemin->room_ways), &room_ways_temp, sizeof(room_ways_temp));
+			lemin->count_edges++;
 			ft_del_strsplit(&strings);
 			next_flag = 0;
 		}
 		else
 		{
-			strings = ft_strsplit(line, ' '); //TODO сделать проверку на дублирование комнат
+			if (!(strings = ft_strsplit(line, ' ')))
+				finish_prog(lemin, -1, fd, NULL, &line);
+			if (strings[0] == NULL || strings[1] == NULL || strings[2] == NULL)
+				finish_prog(lemin, -1, fd, &strings, &line);
+			//TODO сделать проверку на дублирование комнат
 			room_temp = set_room_property(strings, next_flag);
+			room_temp.number = (lemin->count_rooms);
+			if (next_flag == 1)
+				lemin->start_room = lemin->count_rooms;
+			if (next_flag == 2)
+				lemin->end_room = lemin->count_rooms;
+			if (find_duplicates_rooms(lemin->list_rooms, room_temp) == 1)
+			 	finish_prog(lemin, -1, fd, &strings, &line);
 			ft_dlst_addcontent_back(&(lemin->list_rooms), &room_temp, sizeof(room_temp));
+			lemin->count_rooms++;
 			ft_del_strsplit(&strings);
 			next_flag = 0;
 		}
 		ft_memdel((void**)&line);
+		if (errno)
+			finish_prog(lemin, -1, fd, NULL, NULL);
 	}
 	close(fd);
 	ft_memdel((void**)&line);
 	if (res == -1)
 		return (0);
+	lemin->size_matrix = lemin->count_rooms * 2;
 	return (1);
 }
 
@@ -127,38 +169,10 @@ void			edges_assign(t_lemin *lemin)
 
 void			lemin_init_arrays(t_lemin *lemin)
 {
-	int i;
-
-	lemin->capacity = (int**)ft_memalloc(sizeof(int*) * lemin->count_rooms * 2);
-	lemin->flow = (int**)ft_memalloc(sizeof(int*) * lemin->count_rooms * 2);
-	lemin->flow1 = (int**)ft_memalloc(sizeof(int*) * lemin->count_rooms * 2);
-	i = 0;
-	while (i < lemin->count_rooms * 2)
-	{
-		(lemin->capacity)[i] = (int*)ft_memalloc(sizeof(int) * lemin->count_rooms * 2);
-		(lemin->flow)[i] = (int*)ft_memalloc(sizeof(int) * lemin->count_rooms * 2);
-		(lemin->flow1)[i] = (int*)ft_memalloc(sizeof(int) * lemin->count_rooms * 2);
-		i++;
-	}
-	lemin->push = (int*)ft_memalloc(sizeof(int) * lemin->count_rooms * 2);
-	lemin->mark = (int*)ft_memalloc(sizeof(int) * lemin->count_rooms * 2);
-	lemin->pred = (int*)ft_memalloc(sizeof(int) * lemin->count_rooms * 2);
+	lemin->push = (int*)malloc(sizeof(int) * lemin->count_rooms * 2);
+	lemin->mark = (int*)malloc(sizeof(int) * lemin->count_rooms * 2);
+	lemin->pred = (int*)malloc(sizeof(int) * lemin->count_rooms * 2);
 	lemin->max_flow = 0;
-}
-
-void			lemin_fill_matrix(t_lemin *lem)
-{
-	int i;
-	t_edge e;
-
-	i = 0;
-	while (i < lem->count_edges)
-	{
-		e = lem->edges[i];
-		lem->capacity[e.from][e.to] = e.capacity;
-		lem->capacity[e.to][e.from] = e.capacity;
-		i++;
-	}
 }
 
 void			lemin_fill_rooms(t_lemin *lem)
@@ -177,12 +191,34 @@ void			lemin_fill_rooms(t_lemin *lem)
 	}
 }
 
+void			*add_edge(t_lemin *lem, int start, int end, int capacity)
+{
+	t_dlist *curr;
+	t_gedge tmp;
+
+	curr = lem->g[start];
+	while (curr != NULL)
+	{
+		if (((t_gedge*)(curr->content))->to == end)
+			return (lem);
+		curr = curr->next;
+	}
+	tmp.to = end;
+	tmp.capacity = capacity;
+	tmp.flow = 0;
+	tmp.flow1 = 0;
+	ft_dlst_addcontent_back(&(lem->g[start]), &tmp, sizeof(tmp));
+	return (lem);
+}
+
 void			lemin_fill_matrix2x(t_lemin *lem)
 {
 	int		i;
 	t_edge	e;
 	int		start;
 	int		end;
+
+	lem->g = (t_dlist**)ft_memalloc(sizeof(t_dlist*) * lem->size_matrix);
 
 	i = -1;
 	while (++i < lem->count_edges)
@@ -208,11 +244,12 @@ void			lemin_fill_matrix2x(t_lemin *lem)
 			start = e.from;
 			end = e.to;
 		}
-
-		lem->capacity[2 * start][2 * end + 1] = 1;
+		add_edge(lem, 2 * start, 2 * end + 1, 1);
+		add_edge(lem, 2 * end + 1, 2 * start, 0);
 		if (start != lem->s && end != lem->t)
 		{
-			lem->capacity[2 * end][2 * start + 1] = 1;
+			add_edge(lem, 2 * end, 2 * start + 1, 1);
+			add_edge(lem, 2 * start + 1, 2 * end, 0);
 		}
 	}
 	i = -1;
@@ -220,7 +257,8 @@ void			lemin_fill_matrix2x(t_lemin *lem)
 	{
 		if (i != lem->s && i != lem->t)
 		{
-			lem->capacity[2 * i + 1][2 * i] = 1;
+			add_edge(lem, 2 * i + 1, 2 * i, 1);
+			add_edge(lem, 2 * i, 2 * i + 1, 0);
 		}
 	}
 	lem->s = lem->start_room * 2;

@@ -93,8 +93,6 @@ void			going_ants(t_lemin *l)
 				l->ants_on_ways[i][j - 1] = ant_counter;
 			}
 		}
-		// ft_printf("ants_on_ways:\n");
-		// print_intmatrix(l->ants_on_ways, l->max_flow, l->count_rooms);
 		if (ants_left != 0)
 			ft_printf("%d.", ++k);
 		j = -1;
@@ -132,79 +130,11 @@ int				test_func(void *lm)
 	return (1);
 }
 
-int				count_numbers_edges(t_lemin *l, int vertex)
-{
-	int		j;
-	int		res;
-
-	res = 0;
-	j = -1;
-	while (++j < l->size_matrix)
-	{
-		if (l->capacity[vertex][j] == 1 || l->capacity[j][vertex] == 1)
-			res++;
-	}
-	return (res);
-}
-
-void			add_edges_to_graph(t_lemin *l, int vertex)
-{
-	int		i;
-	int		j;
-
-	i = -1;
-	j = -1;
-	while (++i < l->size_matrix)
-	{
-		if (l->capacity[vertex][i] == 1 || l->capacity[i][vertex] == 1)
-			((l->g.edges)[vertex])[++j] = i;
-	}
-}
-
-void			lemin_init_fill_graph(t_lemin *l)
-{
-	int		i;
-	int		j;
-	int		tmp_i;
-
-	i = -1;
-	l->g.n = (int*)ft_memalloc((sizeof(int) * l->size_matrix));
-	l->g.edges = (int**)ft_memalloc(sizeof(int*) * l->size_matrix);
-	while (++i < l->size_matrix)
-	{
-		tmp_i = count_numbers_edges(l, i);
-		if (tmp_i != 0)
-		{
-			l->g.n[i] = tmp_i;
-			(l->g.edges)[i] = (int*)ft_memalloc(sizeof(int) * tmp_i);
-			add_edges_to_graph(l, i);
-		}
-	}
-}
-
-void			print_graph(t_lemin *l)
-{
-	int i;
-	int j;
-
-	i = -1;
-	while (++i < l->size_matrix)
-	{
-		ft_printf("vert %d: ", i);
-		j = -1;
-		while (++j < l->g.n[i])
-		{
-			ft_printf("%d ", l->g.edges[i][j]);
-		}
-		ft_printf("\n");
-	}
-}
-
 int				main(int argc, char **argv)
 {
 	t_lemin		lemin;
-	t_mlx		m;
-	t_lemin_mlx	lm;
+	// t_mlx		m;
+	// t_lemin_mlx	lm;
 
 	lemin_init(&lemin);
 
@@ -215,19 +145,16 @@ int				main(int argc, char **argv)
 		exit(0);
 	ft_printf("finish load data\n");
 	ft_printf("start base assign...");
-	set_rooms_number(&lemin);
-	lemin.count_edges = ft_dlst_len(lemin.room_ways);
+	// set_rooms_number(&lemin);
+	//lemin.count_edges = ft_dlst_len(lemin.room_ways);
 	edges_assign(&lemin);
 	ft_printf("finish base assign\n");
 	ft_printf("start init arrays... ");
 	lemin_init_arrays(&lemin);
 	ft_printf("start fill rooms... ");
 	lemin_fill_rooms(&lemin);
-	ft_printf("start_fill_matrix... ");
+	ft_printf("start_fill_matrix... \n");
 	lemin_fill_matrix2x(&lemin);
-	//ft_print_intmatrix(lemin.capacity, lemin.size_matrix, lemin.size_matrix);
-	ft_printf("start init graph... ");
-	lemin_init_fill_graph(&lemin);
 	ft_printf("start init ways... ");
 	lemin_init_ways(&lemin); // выделяем память под пути, в том числе под предыдущие пути
 	ft_printf("finish inits\n");

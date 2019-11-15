@@ -1,130 +1,101 @@
 #include "libft.h"
 #include "lemin.h"
 
-void				lemin_init_ways(t_lemin *l)
+void				copy_flow_to_flow1(t_lemin *lem)
 {
 	int i;
-	int max_flow;
+	t_dlist *curr;
+	t_gedge *edg;
 
-	max_flow = 0;
 	i = -1;
-	while (++i < l->size_matrix)
-		if (l->capacity[l->s][i] == 1)
-			max_flow++;
-	l->way_length = (int*)ft_memalloc(sizeof(int) * max_flow);
-	l->prev_way_length = (int*)ft_memalloc(sizeof(int) * max_flow);
-	l->ways = (int**)ft_memalloc(sizeof(int*) * max_flow);
-	l->prev_ways = (int**)ft_memalloc(sizeof(int*) * max_flow);
-	l->ants_on_ways = (int**)ft_memalloc(sizeof(int*) * max_flow);
-	i = -1;
-	while (++i < max_flow)
+	while (++i < lem->size_matrix)
 	{
-		(l->ways)[i] = (int*)ft_memalloc(sizeof(int) * l->count_rooms);
-		(l->prev_ways)[i] = (int*)ft_memalloc(sizeof(int) * l->count_rooms);
-		vector_int_assign(l->ways[i], l->count_rooms, -1);
-		vector_int_assign(l->prev_ways[i], l->count_rooms, -1);
-		(l->ants_on_ways)[i] = (int*)ft_memalloc(sizeof(int) * l->count_rooms);
+		curr = lem->g[i];
+		while (curr != NULL)
+		{
+			edg = curr->content;
+			edg->flow1 = edg->flow;
+			curr = curr->next;
+		}
 	}
 }
 
-int				bfs_ways(t_lemin *lem)
+t_gedge				*g_edg(t_lemin *lem, int u, int v)
 {
-	t_queue q;
-	int u;
-	int v;
-	int i;
+	t_dlist *curr;
 
-	queue_init(&q);
-	lemin_init_vectors(lem);
-	lem->mark[lem->s] = 1; 						// первая посещенная вершина - s
-	lem->pred[lem->s] = lem->s;					// предыдущая для первой вершины - s
-	lem->push[lem->s] = INF;					// поток в вершину s = INF
-	qi_push(&q, lem->s);						// помещаем в очередь q вершину s
-
-	while (!lem->mark[lem->t] && !qi_empty(&q))
+	curr = lem->g[u];
+	while (curr != NULL)
 	{
-		u = qi_pop(&q); 						// достаем из очереди вершину, помещаем в u
-		i = -1;
-		while (++i < (lem->g.n)[u])
-		{
-			v = (lem->g.edges)[u][i];
-			if (!(lem->mark[v]) && lem->flow1[u][v] > 0)
-			{
-				lem->mark[v] = 1;
-				lem->pred[v] = u;
-				qi_push(&q, v);
-			}
-		}
-
-		// v = 0;
-		// while (v < lem->size_matrix)			// цикл по всем вершинам переменной v
-		// {
-		// 	if (!(lem->mark[v]) && lem->flow1[u][v] > 0)
-		// 	{
-		// 		lem->mark[v] = 1;
-		// 		lem->pred[v] = u;
-		// 		qi_push(&q, v);
-		// 	}
-		// 	v++;
-		// }
+		if (((t_gedge*)curr->content)->to == v)
+			return ((t_gedge*)curr->content);
+		curr = curr->next;
 	}
-	qi_del(&q);
-	return (lem->mark[lem->t]);
+	return (NULL);
+}
+
+void	count_steps(t_lemin *l)
+{
+	int i;
+	int steps;
+	int count_ants;
+
+	if (l->count_ways == 0)
+		return ;
+	count_ants = 0;
+	steps = 1;
+	while (1)
+	{
+		i = -1;
+		while (++i < l->count_ways)
+		{
+			if (steps + 1 - l->way_length[i] > 0)
+			count_ants++;
+		}
+		if (count_ants >= l->number_of_ants)
+			break ;
+		steps++;
+	}
+	l->count_steps = steps;
+}
+
+void				calc_ways_aux(t_lemin *l, int *u, int *v)
+{
+	if (*u / 2 == *v / 2)
+	{
+		g_edg(l, *u, *v)->flow1 = 0;
+		*v = *u;
+		*u = l->pred[*v];
+	}
+	g_edg(l, *u, *v)->flow1 = 0;
+	*v = *u;
+	*u = l->pred[*v];
 }
 
 void				calculate_ways(t_lemin *l)
 {
 	int		i;
 	int		j;
-	int		k;
 	int		v;
 	int		u;
 
-	// оставляем в flow только те вершины, по которым идет поток
-	i = -1;
-	while (++i < l->size_matrix)
-	{
-
-		k = -1;
-		while (++k < (l->g.n)[i])
-		{
-			j = (l->g.edges)[i][k];
-			if (l->flow[i][j] == 1)
-				l->flow1[i][j] = 1;
-		}
-		// j = -1;
-		// while (++j < l->size_matrix)
-		// {
-		// 	if (l->flow[i][j] == 1)
-		// 		l->flow1[i][j] = 1;
-		// }
-	}
+	copy_flow_to_flow1(l);
 	l->count_ways = l->max_flow;
-	// ищем все пути
 	i = -1;
 	while (++i < l->max_flow)
 	{
-		//queue_init(&(l->ways[i]));
 		bfs_ways(l);
-		v = l->t; // v - конечая точка
-		u = l->pred[v]; // u - предпоследняя точка
+		v = l->t;
+		u = l->pred[v];
 		j = 0;
-		while (v != l->s) // прокручиваем весь путь назад, до начальной точки, все складываем в очередь пути.
+		while (v != l->s)
 		{
-			l->ways[i][j] = v / 2;
-			j++;
-			if (u / 2 == v / 2)
-			{
-				l->flow1[u][v] = 0; // обнуляем соответствующее ребро
-				v = u;
-				u = l->pred[v];
-			}
-			l->flow1[u][v] = 0; // обнуляем соответствующее ребро
-			v = u;
-			u = l->pred[v];
+			l->ways[i][j++] = v / 2;
+			calc_ways_aux(l, &u, &v);
 		}
 		l->ways[i][j] = l->start_room;
 		l->way_length[i] = j;
 	}
+	count_steps(l);
 }
 

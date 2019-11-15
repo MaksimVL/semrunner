@@ -1,57 +1,73 @@
 #include "libft.h"
 #include "lemin.h"
 
-void			lemin_init_vectors(t_lemin *lem)
+void			lemin_assign_vectors_bfs(t_lemin *lem)
 {
 	vector_int_assign(lem->mark, lem->size_matrix, 0);
 	vector_int_assign(lem->push, lem->size_matrix, 0);
 	vector_int_assign(lem->pred, lem->size_matrix, 0);
-	//vector_int_assign(lem->dist, lem->size_matrix, INF);
+	lem->mark[lem->s] = 1;
+	lem->pred[lem->s] = lem->s;
+	lem->push[lem->s] = INF;
 }
 
 int				bfs(t_lemin *lem)
 {
-	t_queue q;
-	int u;
-	int v;
-	int i;
+	t_queue		q;
+	int			u;
+	t_dlist		*curr;
+	t_gedge		*edg;
 
-	ft_printf("start calc bfs...\n");
 	queue_init(&q);
-	lemin_init_vectors(lem);
-	lem->mark[lem->s] = 1;
-	lem->pred[lem->s] = lem->s;
-	lem->push[lem->s] = INF;
+	lemin_assign_vectors_bfs(lem);
 	qi_push(&q, lem->s);
 	while (!lem->mark[lem->t] && !qi_empty(&q))
 	{
 		u = qi_pop(&q);
-		i = -1;
-		while (++i < (lem->g.n)[u])
+		curr = lem->g[u];
+		while (curr != NULL)
 		{
-			v = (lem->g.edges)[u][i];
-			if (!lem->mark[v] && (lem->capacity[u][v] - lem->flow[u][v] > 0))
+			edg = curr->content;
+			if (!lem->mark[edg->to] && edg->capacity - edg->flow > 0)
 			{
-				lem->push[v] = MIN(lem->push[u], lem->capacity[u][v] - lem->flow[u][v]);
-				lem->mark[v] = 1;
-				lem->pred[v] = u;
-				qi_push(&q, v);
+				lem->push[edg->to] = MIN(lem->push[u], edg->capacity - edg->flow);
+				lem->mark[edg->to] = 1;
+				lem->pred[edg->to] = u;
+				qi_push(&q, edg->to);
 			}
+			curr = curr->next;
 		}
-		// v = 0;
-		// while (v < lem->size_matrix)
-		// {
-		// 	if (!lem->mark[v] && (lem->capacity[u][v] - lem->flow[u][v] > 0))
-		// 	{
-		// 		lem->push[v] = MIN(lem->push[u], lem->capacity[u][v] - lem->flow[u][v]);
-		// 		lem->mark[v] = 1;
-		// 		lem->pred[v] = u;
-		// 		qi_push(&q, v);
-		// 	}
-		// 	v++;
-		// }
 	}
 	qi_del(&q);
-	ft_printf("finish calc bfs\n");
+	return (lem->mark[lem->t]);
+}
+
+int				bfs_ways(t_lemin *lem)
+{
+	t_queue		q;
+	int			u;
+	t_dlist		*curr;
+	t_gedge		*edg;
+
+	queue_init(&q);
+	lemin_assign_vectors_bfs(lem);
+	qi_push(&q, lem->s);
+	while (!lem->mark[lem->t] && !qi_empty(&q))
+	{
+		u = qi_pop(&q);
+		curr = lem->g[u];
+		while (curr != NULL)
+		{
+			edg = curr->content;
+			if (!(lem->mark[edg->to]) && edg->flow1 > 0)
+			{
+				lem->mark[edg->to] = 1;
+				lem->pred[edg->to] = u;
+				qi_push(&q, edg->to);
+			}
+			curr = curr->next;
+		}
+	}
+	qi_del(&q);
 	return (lem->mark[lem->t]);
 }

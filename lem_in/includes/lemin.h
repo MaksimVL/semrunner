@@ -30,11 +30,19 @@ typedef struct			s_edge
 	int					cost;
 }						t_edge;
 
-typedef struct			s_graph
+// typedef struct			s_graph
+// {
+// 	int					*n; // количество вершин, соединенных с данной (количество ребер)
+// 	int					**edges; // номера вершин
+// }						t_graph;
+
+typedef struct			s_gedge
 {
-	int					*n; // количество вершин, соединенных с данной
-	int					**edges; // номера вершин
-}						t_graph;
+	int					to;
+	int					capacity;
+	int					flow;
+	int					flow1;
+}						t_gedge;
 
 typedef struct			s_lemin
 {
@@ -49,23 +57,24 @@ typedef struct			s_lemin
 	t_room				**rooms;
 
 	int					**ants_on_ways;
-	int					**flow1;
+	int					max_ways;
 
 	int					**ways;
 	int					*way_length;
 	int					count_ways;
+	int					count_steps;
 
 	int					**prev_ways;
 	int					*prev_way_length;
 	int					prev_count_ways;
+	int					prev_count_steps;
 
 	int					*ants_left_on_ways;
 
 
 	int					size_matrix;
-	t_graph				g;
-	int					**capacity; // C - матр пропускных способностей
-	int					**flow; // F - матр текущего потока в графе
+
+ 	t_dlist				**g;
 	int					*push; // поток в верш. из нач. точки
 	int					*mark; //отметки вершин где побывали
 	int					*pred; // предок вершины (откуда пришли)
@@ -88,7 +97,8 @@ void				lemin_init(t_lemin *lemin);
 void				destroy_room(void *room, size_t size);
 void				destroy_way(void *room_ways, size_t size);
 void				lemin_destroy(t_lemin *lemin);
-
+void				finish_prog(t_lemin *l, int res, int fd, char ***strings,
+						char **line);
 /*
 ** load data
 */
@@ -120,6 +130,7 @@ void				vector_int_print(int *vector, int len);
 */
 
 void				lemin_init_vectors(t_lemin *lem);
+void				lemin_init_vectors_bfs(t_lemin *lem);
 int					edge_cost(t_lemin *lem, int u, int v);
 int					check_cycles(t_lemin *lem);
 int					bfs(t_lemin *lem);
