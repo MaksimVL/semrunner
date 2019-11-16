@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lemin.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/16 16:29:54 by odrinkwa          #+#    #+#             */
+/*   Updated: 2019/11/16 19:58:53 by odrinkwa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LEMIN_H
 # define LEMIN_H
 
 # include "libft.h"
-#include "fdf.h"
+# include "fdf.h"
 
 # define INF 1e9
 
@@ -30,29 +42,29 @@ typedef struct			s_edge
 	int					cost;
 }						t_edge;
 
-// typedef struct			s_graph
-// {
-// 	int					*n; // количество вершин, соединенных с данной (количество ребер)
-// 	int					**edges; // номера вершин
-// }						t_graph;
-
 typedef struct			s_gedge
 {
 	int					to;
-	int					capacity;
+	int					cap;
 	int					flow;
 	int					flow1;
 }						t_gedge;
+
+typedef struct			s_start_end
+{
+	int					start;
+	int					end;
+}						t_start_end;
 
 typedef struct			s_lemin
 {
 	t_dlist				*list_rooms;
 	t_dlist				*room_ways;
-	int					count_rooms; // N - кол-во вершин
+	int					count_rooms;
 	int					start_room;
 	int					end_room;
-	int					number_of_ants; // K
-	int					count_edges; // M - кол-во ребер
+	int					number_of_ants;
+	int					count_edges;
 	t_edge				*edges;
 	t_room				**rooms;
 
@@ -71,46 +83,68 @@ typedef struct			s_lemin
 
 	int					*ants_left_on_ways;
 
-
 	int					size_matrix;
 
- 	t_dlist				**g;
-	int					*push; // поток в верш. из нач. точки
-	int					*mark; //отметки вершин где побывали
-	int					*pred; // предок вершины (откуда пришли)
+	t_dlist				**g;
+	int					*push;
+	int					*mark;
+	int					*pred;
 	int					max_flow;
-	int					s; // нач. точка
-	int					t; // конечная точка
+	int					s;
+	int					t;
 }						t_lemin;
 
-typedef struct	s_lemin_mlx
+typedef struct			s_lemin_mlx
 {
-	t_mlx		*m;
-	t_lemin		*lem;
-}				t_lemin_mlx;
+	t_mlx				*m;
+	t_lemin				*lem;
+}						t_lemin_mlx;
 
 /*
 ** initialize
 */
 
 void				lemin_init(t_lemin *lemin);
-void				destroy_room(void *room, size_t size);
-void				destroy_way(void *room_ways, size_t size);
-void				lemin_destroy(t_lemin *lemin);
-void				finish_prog(t_lemin *l, int res, int fd, char ***strings,
-						char **line);
+
 /*
-** load data
+** destroy
 */
 
-int					load_data(t_lemin *lemin, char *filename);
-void				set_rooms_number(t_lemin *lemin);
-int					room_number(t_lemin *lemin, char *room_name);
-void				edges_assign(t_lemin *lemin);
-void				lemin_init_arrays(t_lemin *lemin);
-void				lemin_fill_matrix(t_lemin *lem);
-void				lemin_fill_matrix2x(t_lemin *lem);
-void				lemin_fill_rooms(t_lemin *lem);
+void				lemin_destroy(t_lemin *lemin);
+void				finish_prog(t_lemin *l, int res, int fd, char **line);
+
+/*
+** load data from file
+*/
+
+void				load_data(t_lemin *lemin, char *filename);
+t_room				set_room_property(char **strings, int next_flag);
+int					find_duplicates_rooms(t_dlist *list_rooms,
+											t_room room_temp);
+
+/*
+** prepare data
+*/
+
+void				prepare_data(t_lemin *lemin);
+void				lemin_fill_graph(t_lemin *lem);
+void				lemin_init_ways(t_lemin *l);
+
+/*
+** solve
+*/
+
+void				solve(t_lemin *l);
+int					bfs(t_lemin *lem);
+int					bfs_ways(t_lemin *lem);
+void				calculate_ways(t_lemin *l);
+
+/*
+** going ants
+*/
+
+void				going_ants(t_lemin *l);
+int					count_bandwidth(int flow_len, int step);
 
 /*
 ** print properties
@@ -133,17 +167,15 @@ void				lemin_init_vectors(t_lemin *lem);
 void				lemin_init_vectors_bfs(t_lemin *lem);
 int					edge_cost(t_lemin *lem, int u, int v);
 int					check_cycles(t_lemin *lem);
-int					bfs(t_lemin *lem);
 int					bf(t_lemin *lem, int s);
 int					count_flow_base(int *ways_len, int count_ways, int max_len);
-void				solve(t_lemin *l);
+
 
 /*
 ** calculate ways
 */
 
 void				lemin_init_ways(t_lemin *l);
-int					bfs_ways(t_lemin *lem);
 void				calculate_ways(t_lemin *l);
 
 /*

@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bfs.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/16 18:47:06 by odrinkwa          #+#    #+#             */
+/*   Updated: 2019/11/16 18:55:39 by odrinkwa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 #include "lemin.h"
 
-void			lemin_assign_vectors_bfs(t_lemin *lem)
+static void		lemin_assign_vectors_bfs(t_lemin *lem)
 {
 	vector_int_assign(lem->mark, lem->size_matrix, 0);
 	vector_int_assign(lem->push, lem->size_matrix, 0);
@@ -9,6 +21,13 @@ void			lemin_assign_vectors_bfs(t_lemin *lem)
 	lem->mark[lem->s] = 1;
 	lem->pred[lem->s] = lem->s;
 	lem->push[lem->s] = INF;
+}
+
+static void		bfs_aux(t_lemin *lem, int v, int u, t_queue *q)
+{
+	lem->mark[v] = 1;
+	lem->pred[v] = u;
+	qi_push(q, v);
 }
 
 int				bfs(t_lemin *lem)
@@ -28,12 +47,10 @@ int				bfs(t_lemin *lem)
 		while (curr != NULL)
 		{
 			edg = curr->content;
-			if (!lem->mark[edg->to] && edg->capacity - edg->flow > 0)
+			if (!lem->mark[edg->to] && edg->cap - edg->flow > 0)
 			{
-				lem->push[edg->to] = MIN(lem->push[u], edg->capacity - edg->flow);
-				lem->mark[edg->to] = 1;
-				lem->pred[edg->to] = u;
-				qi_push(&q, edg->to);
+				lem->push[edg->to] = MIN(lem->push[u], edg->cap - edg->flow);
+				bfs_aux(lem, edg->to, u, &q);
 			}
 			curr = curr->next;
 		}
@@ -60,11 +77,7 @@ int				bfs_ways(t_lemin *lem)
 		{
 			edg = curr->content;
 			if (!(lem->mark[edg->to]) && edg->flow1 > 0)
-			{
-				lem->mark[edg->to] = 1;
-				lem->pred[edg->to] = u;
-				qi_push(&q, edg->to);
-			}
+				bfs_aux(lem, edg->to, u, &q);
 			curr = curr->next;
 		}
 	}

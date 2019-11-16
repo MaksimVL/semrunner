@@ -6,7 +6,7 @@
 #    By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 12:13:46 by odrinkwa          #+#    #+#              #
-#    Updated: 2019/11/09 20:23:52 by odrinkwa         ###   ########.fr        #
+#    Updated: 2019/11/16 20:06:47 by odrinkwa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,9 @@ INCLIBFT_DIR := ./libft/includes
 OBJ_DIR := ./objects
 LIB_DIR := ./libft
 
-SRC  := main.c initialize.c load_map.c \
-	auxf.c visual.c calc_ways.c solve.c bfs.c
+SRC  := main.c initialize.c load_map.c load_map1.c destroy.c \
+	auxf.c visual.c calc_ways.c solve.c bfs.c prepare_data.c \
+	prepare_data1.c prepare_data2.c going_ants.c going_ants1.c
 
 
 HDRS := includes/lemin.h

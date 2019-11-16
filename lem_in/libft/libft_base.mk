@@ -6,7 +6,7 @@
 #    By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 15:24:49 by hwolf             #+#    #+#              #
-#    Updated: 2019/09/19 00:11:37 by odrinkwa         ###   ########.fr        #
+#    Updated: 2019/11/16 16:34:34 by odrinkwa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ LIBFT_SRC		= ft_atoi.c ft_bzero.c ft_dictadd.c ft_dictclearzero.c \
 	ft_strset.c ft_strsplit.c ft_strstr.c ft_strsub.c ft_strtrim.c \
 	ft_tolower.c ft_toupper.c ft_zerostr.c get_next_line.c ft_nbrlen.c \
 	ft_isint.c ft_del_strsplit.c ft_dlist.c ft_queue.c ft_max_min_intarray.c \
-	ft_intlen.c ft_print_intmatrix.c
+	ft_intlen.c ft_print_intmatrix.c ft_delmatrix.c
 
 LIBFT_OBJ		= $(LIBFT_SRC:.c=.o)
 

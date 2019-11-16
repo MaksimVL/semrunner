@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 20:59:45 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/10/26 19:10:54 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/16 16:32:39 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,9 +158,13 @@ void				ft_del_strsplit(char ***strings);
 int					ft_isint(char *str);
 int					ft_intlen(int a);
 
+/*
+** matrix
+*/
+
 void				ft_print_intmatrix(int **matrix,
 						int num_of_lines, int num_of_cols);
-
+void				ft_delmatrix(void ***matrix, int num_of_lines);
 /*
 ** dlist
 */

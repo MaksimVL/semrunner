@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   calc_ways.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/16 18:59:28 by odrinkwa          #+#    #+#             */
+/*   Updated: 2019/11/16 19:01:39 by odrinkwa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 #include "lemin.h"
 
-void				copy_flow_to_flow1(t_lemin *lem)
+static void			copy_flow_to_flow1(t_lemin *lem)
 {
-	int i;
-	t_dlist *curr;
-	t_gedge *edg;
+	int			i;
+	t_dlist		*curr;
+	t_gedge		*edg;
 
 	i = -1;
 	while (++i < lem->size_matrix)
@@ -20,7 +32,7 @@ void				copy_flow_to_flow1(t_lemin *lem)
 	}
 }
 
-t_gedge				*g_edg(t_lemin *lem, int u, int v)
+static t_gedge		*g_edg(t_lemin *lem, int u, int v)
 {
 	t_dlist *curr;
 
@@ -34,7 +46,7 @@ t_gedge				*g_edg(t_lemin *lem, int u, int v)
 	return (NULL);
 }
 
-void	count_steps(t_lemin *l)
+static void			count_steps(t_lemin *l)
 {
 	int i;
 	int steps;
@@ -50,7 +62,7 @@ void	count_steps(t_lemin *l)
 		while (++i < l->count_ways)
 		{
 			if (steps + 1 - l->way_length[i] > 0)
-			count_ants++;
+				count_ants++;
 		}
 		if (count_ants >= l->number_of_ants)
 			break ;
@@ -59,7 +71,7 @@ void	count_steps(t_lemin *l)
 	l->count_steps = steps;
 }
 
-void				calc_ways_aux(t_lemin *l, int *u, int *v)
+static void			calc_ways_aux(t_lemin *l, int *u, int *v)
 {
 	if (*u / 2 == *v / 2)
 	{
@@ -98,4 +110,3 @@ void				calculate_ways(t_lemin *l)
 	}
 	count_steps(l);
 }
-

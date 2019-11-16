@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   solve.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/16 18:58:38 by odrinkwa          #+#    #+#             */
+/*   Updated: 2019/11/16 19:02:46 by odrinkwa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 #include "lemin.h"
 
-void		add_in_flow(t_lemin *lem, int u, int v, int add)
+static void		add_in_flow(t_lemin *lem, int u, int v, int add)
 {
 	t_dlist *curr;
 	t_gedge *edg;
@@ -19,7 +31,7 @@ void		add_in_flow(t_lemin *lem, int u, int v, int add)
 	}
 }
 
-void		set_flow(t_lemin *lem)
+static void		set_flow(t_lemin *lem)
 {
 	int u;
 	int v;
@@ -41,8 +53,7 @@ void		set_flow(t_lemin *lem)
 	lem->max_flow += flow;
 }
 
-
-void		swap_ways(t_lemin *l)
+static void		swap_ways(t_lemin *l)
 {
 	int **tmp;
 	int *tmp1;
@@ -62,21 +73,7 @@ void		swap_ways(t_lemin *l)
 	l->count_steps = tmp2;
 }
 
-
-
-int			count_flow_base(int *ways_len, int count_ways, int max_len)
-{
-	int		res;
-	int		i;
-
-	res = 0;
-	i = -1;
-	while (++i < count_ways)
-		res += max_len + 1 - ways_len[i];
-	return (res);
-}
-
-void		solve(t_lemin *l)
+void			solve(t_lemin *l)
 {
 	while (bfs(l))
 	{
@@ -91,11 +88,11 @@ void		solve(t_lemin *l)
 		{
 			if (l->number_of_ants == 1)
 				return ;
-		 	else
-		 	 	swap_ways(l);
+			else
+				swap_ways(l);
 		}
 		else if (l->count_steps < l->prev_count_steps)
-					swap_ways(l);
+			swap_ways(l);
 		else if (l->count_ways - l->prev_count_ways > 10)
 			break ;
 	}
