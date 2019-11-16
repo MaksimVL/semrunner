@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 19:04:51 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/11/16 20:09:40 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/16 22:17:50 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,11 @@ static void		print_ants_on_ways(t_lemin *l)
 {
 	int		i;
 	int		j;
+	char	flag;
+	char	space[2];
 
+	flag = 0;
+	space[1] = '\0';
 	j = -1;
 	while (++j < l->count_rooms)
 	{
@@ -87,33 +91,33 @@ static void		print_ants_on_ways(t_lemin *l)
 		while (++i < l->count_ways)
 		{
 			if (l->ants_on_ways[i][j] != 0)
-				ft_printf("L%d-%s ", l->ants_on_ways[i][j],
-					(l->rooms[l->ways[i][j]])->name);
+			{
+				space[0] = flag == 1 ? ' ' : '\0';
+				ft_printf("%sL%d-%s", space, l->ants_on_ways[i][j],
+						(l->rooms[l->ways[i][j]])->name);
+				flag = 1;
+			}
 		}
 	}
-	ft_printf("\n");
+	if (flag)
+		ft_printf("\n");
 }
 
 void			going_ants(t_lemin *l)
 {
 	int		ants_left;
 	int		ant_counter;
-	int		k;
 
-	ft_printf("count ways: %d\n", l->count_ways);
 	if (l->count_ways == 0)
 		return ;
 	if (!(l->ants_left_on_ways = ft_memalloc(sizeof(int) * l->count_ways)))
 		finish_prog(l, -1, -1, NULL);
 	set_ants_to_left_on_ways(l);
-	k = 0; // счетчик номера строк, надо будет убрать.
 	ants_left = l->number_of_ants;
 	ant_counter = 0;
 	while (ants_left != 0)
 	{
 		going_on_ways(l, &ants_left, &ant_counter);
-		if (ants_left != 0) // убрать
-			ft_printf("%d.", ++k); // убрать
 		print_ants_on_ways(l);
 	}
 }

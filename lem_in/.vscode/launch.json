@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/lem_in",
-            "args": ["testmap_copy"],
+            "args": ["testmap_copy2"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
@@ -23,6 +23,18 @@
             "program": "${workspaceFolder}/lem_in",
             "args": ["testmap_copy3"],
             "cwd": "${workspaceFolder}"
+        },
+        {
+            "name": "(cppdbg) launch visu",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/visu",
+            "args": ["restest"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb"
         }
         // {
         //     "name": "(gdb) Launch",

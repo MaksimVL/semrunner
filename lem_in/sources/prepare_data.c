@@ -6,14 +6,14 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 17:55:16 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/11/16 18:25:47 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/17 00:41:35 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "lemin.h"
 
-static int		room_number(t_lemin *lemin, char *room_name)
+int				room_number(t_lemin *lemin, char *room_name)
 {
 	t_dlist		*curr;
 

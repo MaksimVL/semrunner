@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 13:12:43 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/11/09 22:39:18 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/17 00:58:50 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,5 @@ void			make_map_points(t_mlx *m)
 		m->map_points[i].y = shift_y + step * m->map_points[i].y0;
 		m->map_points[i].z = m->map_points[i].z0 * m->h;
 	}
-	correct_color(m);
 	rotate_points(m);
 }

@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 16:22:18 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/11/16 18:27:12 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/17 01:14:15 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static void		lemin_init_aux(t_lemin *lemin)
 	lemin->max_flow = 0;
 	lemin->s = -1;
 	lemin->t = -1;
+	lemin->ants_moving = NULL;
+	lemin->current_step = 0;
 }
 
 void			lemin_init(t_lemin *lemin)

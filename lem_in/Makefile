@@ -6,11 +6,12 @@
 #    By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 12:13:46 by odrinkwa          #+#    #+#              #
-#    Updated: 2019/11/16 20:06:47 by odrinkwa         ###   ########.fr        #
+#    Updated: 2019/11/16 22:12:38 by odrinkwa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lem_in #TODO не забыть проверить название программы (lem-in ?)
+NAME_VISU = visu
 
 SRC_DIR := ./sources
 INC_DIR := ./includes
@@ -19,15 +20,20 @@ INCLIBFT_DIR := ./libft/includes
 OBJ_DIR := ./objects
 LIB_DIR := ./libft
 
-SRC  := main.c initialize.c load_map.c load_map1.c destroy.c \
+SRC_COMMON := initialize.c load_map.c load_map1.c destroy.c \
 	auxf.c visual.c calc_ways.c solve.c bfs.c prepare_data.c \
-	prepare_data1.c prepare_data2.c going_ants.c going_ants1.c
+	prepare_data1.c prepare_data2.c going_ants.c going_ants1.c \
+	print_anthill.c
 
+SRC  := main.c $(SRC_COMMON)
 
 HDRS := includes/lemin.h
 OBJ  := $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 OBJECTS = $(SOURCES:.c=.o)
 
+
+SRC_VISU := visu.c $(SRC_COMMON)
+OBJ_VISU = $(addprefix $(OBJ_DIR)/,$(SRC_VISU:.c=.o))
 
 FDF_SRC_DIR := ./fdf/sources
 FDF_HDR_DIR := ./fdf/includes
@@ -61,7 +67,7 @@ HEADER_LIB = $(INCLIBFT_DIR)/libft.h
 
 .PHONY: all clean fclean re
 
-all: $(OBJ_DIR) $(NAME)
+all: $(OBJ_DIR) $(NAME) $(NAME_VISU)
 
 test:
 	@echo $(FULL_ALL_LIBFT)
@@ -97,6 +103,10 @@ $(NAME): $(OBJ_DIR) $(OBJ) $(HEADER_LIB) $(HDRS) $(FULL_ALL_LIBFT) $(FDF_OBJ_DIR
 #	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) -I $(INCLIBFT_DIR) -L libft -lft
 	$(CC) $(CFLAGS) $(OBJ) $(FDF_OBJ_WITH_PATH) -o $(NAME) -I $(INCLIBFT_DIR) -I $(INCMLX_DIR) -L libft -lft $(MLXPARAMS)
 
+$(NAME_VISU): $(OBJ_DIR) $(OBJ_VISU) $(HEADER_LIB) $(HDRS) $(FULL_ALL_LIBFT) $(FDF_OBJ_DIR) $(FDF_OBJ_WITH_PATH)
+	$(MAKE) -C $(L_FT) $(LIBFT_NODEBUG)
+#	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) -I $(INCLIBFT_DIR) -L libft -lft
+	$(CC) $(CFLAGS) $(OBJ_VISU) $(FDF_OBJ_WITH_PATH) -o $(NAME_VISU) -I $(INCLIBFT_DIR) -I $(INCMLX_DIR) -L libft -lft $(MLXPARAMS)
 
 nodebug: CFLAGS = -Wall -Wextra -O3 #-Werror
 

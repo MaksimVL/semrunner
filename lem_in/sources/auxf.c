@@ -1,36 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   auxf.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/16 20:33:22 by odrinkwa          #+#    #+#             */
+/*   Updated: 2019/11/16 20:39:07 by odrinkwa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 #include "lemin.h"
 
-void			vector_int_assign(int *vector, int len, int value)
-{
-	int i;
-
-	i = 0;
-	while (i < len)
-	{
-		vector[i] = value;
-		i++;
-	}
-}
-
-void			vector_int_print(int *vector, int len)
-{
-	int i;
-
-	i = 0;
-	while (i < len)
-	{
-		ft_printf("%d ", vector[i]);
-		i++;
-	}
-	ft_printf("\n");
-}
-
 void			print_newgraph(t_lemin *l)
 {
-	int i;
-	t_dlist *curr;
-	t_gedge *edg;
+	int			i;
+	t_dlist		*curr;
+	t_gedge		*edg;
 
 	i = -1;
 	while (++i < l->size_matrix)

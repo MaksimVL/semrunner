@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 18:58:38 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/11/16 19:02:46 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/16 21:58:24 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,21 @@ static void		swap_ways(t_lemin *l)
 	l->count_steps = tmp2;
 }
 
+void			debug_print_solve(t_lemin *l)
+{
+	ft_printf("--------------\n");
+	ft_printf("way      (step % 3d): ", l->count_steps);
+	vector_int_print(l->way_length, l->count_ways);
+	ft_printf("way prev (step % 3d): ", l->prev_count_steps);
+	vector_int_print(l->prev_way_length, l->prev_count_ways);
+}
+
 void			solve(t_lemin *l)
 {
 	while (bfs(l))
 	{
 		set_flow(l);
 		calculate_ways(l);
-		ft_printf("--------------\n");
-		ft_printf("way      (step % 3d): ", l->count_steps);
-		vector_int_print(l->way_length, l->count_ways);
-		ft_printf("way prev (step % 3d): ", l->prev_count_steps);
-		vector_int_print(l->prev_way_length, l->prev_count_ways);
 		if (l->prev_count_ways == 0)
 		{
 			if (l->number_of_ants == 1)
@@ -93,8 +97,8 @@ void			solve(t_lemin *l)
 		}
 		else if (l->count_steps < l->prev_count_steps)
 			swap_ways(l);
-		else if (l->count_ways - l->prev_count_ways > 10)
-			break ;
+		// else if (l->count_ways - l->prev_count_ways > 10)
+		// 	break ;
 	}
 	swap_ways(l);
 }

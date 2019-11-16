@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 18:48:15 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/11/16 20:18:45 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/16 22:31:43 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,20 @@
 #include "float.h"
 #include <stdio.h>
 
-void			print_anthill(t_lemin *l)
+void			open_file_load_data(t_lemin *lemin, int argc, char **argv)
 {
-	t_dlist		*curr;
-	t_room		*room;
+	int		fd;
 
-	curr = l->list_rooms;
-	while (curr != NULL)
+	if (argc == 1)
+		load_data(lemin, 0, 0);
+	else if (argc == 2)
 	{
-		room = curr->content;
-		if (room->start_end_flag == 1)
-			ft_printf("##start\n");
-		else if (room->start_end_flag == 2)
-			ft_printf("##end\n");
-		ft_printf("%s %d %d", room->name, room->x, room->y);
-		if (room->z != NO_DEFINE)
-			ft_printf(" %d", room->z);
-		ft_printf("\n");
-		curr = curr->next;
+		fd = open(argv[1], O_RDONLY);
+		load_data(lemin, fd, 0);
+		close(fd);
 	}
+	else
+		finish_prog(lemin, -1, -1, NULL);
 }
 
 int				main(int argc, char **argv)
@@ -46,12 +41,8 @@ int				main(int argc, char **argv)
 	// t_lemin_mlx	lm;
 
 	lemin_init(&lemin);
-
-	ft_printf("start load data...");
-	if (argc == 2)
-		load_data(&lemin, argv[1]); //TODO проверка на чтение, полная очистка если ошибка
-	else
-		exit(0);
+	errno = 0;
+	open_file_load_data(&lemin, argc, argv);
 	prepare_data(&lemin);
 	solve(&lemin);
 	print_anthill(&lemin);

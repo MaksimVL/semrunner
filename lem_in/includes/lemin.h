@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 16:29:54 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/11/16 19:58:53 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/17 00:52:23 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,13 @@ typedef struct			s_start_end
 	int					end;
 }						t_start_end;
 
+typedef struct			s_ant_move
+{
+	int					step;
+	char				*to_name;
+	int					to;
+}						t_ant_move;
+
 typedef struct			s_lemin
 {
 	t_dlist				*list_rooms;
@@ -92,6 +99,9 @@ typedef struct			s_lemin
 	int					max_flow;
 	int					s;
 	int					t;
+
+	t_dlist				**ants_moving;
+	int					current_step;
 }						t_lemin;
 
 typedef struct			s_lemin_mlx
@@ -117,7 +127,7 @@ void				finish_prog(t_lemin *l, int res, int fd, char **line);
 ** load data from file
 */
 
-void				load_data(t_lemin *lemin, char *filename);
+void				load_data(t_lemin *lemin, int fd, char flag_visu);
 t_room				set_room_property(char **strings, int next_flag);
 int					find_duplicates_rooms(t_dlist *list_rooms,
 											t_room room_temp);
@@ -129,6 +139,7 @@ int					find_duplicates_rooms(t_dlist *list_rooms,
 void				prepare_data(t_lemin *lemin);
 void				lemin_fill_graph(t_lemin *lem);
 void				lemin_init_ways(t_lemin *l);
+int					room_number(t_lemin *lemin, char *room_name);
 
 /*
 ** solve
@@ -145,6 +156,22 @@ void				calculate_ways(t_lemin *l);
 
 void				going_ants(t_lemin *l);
 int					count_bandwidth(int flow_len, int step);
+
+/*
+** print
+*/
+
+void				print_anthill(t_lemin *l);
+
+/*
+** visualization
+*/
+
+void				load_anthill(t_mlx *m, t_lemin *lem);
+void				calc_parameter_maps(t_mlx *m);
+void				put_names_rooms(t_mlx *m, t_lemin *l, int color);
+void				draw_anthill(t_lemin_mlx *lm, int not_black);
+int					lemin_keyhook(int keycode, void *lm);
 
 /*
 ** print properties
@@ -182,20 +209,14 @@ void				calculate_ways(t_lemin *l);
 ** aux functions
 */
 
-void				print_intmatrix(int **matrix, int num_of_lines, int num_of_cols);
-void				vector_int_print(int *vector, int len);
-void				vector_int_assign(int *vector, int len, int value);
+//void				print_intmatrix(int **matrix, int num_of_lines, int num_of_cols);
 
 /*
 ** visualization
 ** file visual.c
 */
 
-void				load_anthill(t_mlx *m, t_lemin *lem);
-void				calc_parameter_maps(t_mlx *m);
-void				put_names_rooms(t_mlx *m, t_lemin *l, int color);
-void				draw_anthill(t_lemin_mlx *lm, int not_black);
-int					lemin_keyhook(int keycode, void *lm);
+
 
 #endif
 

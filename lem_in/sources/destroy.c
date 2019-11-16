@@ -6,12 +6,13 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 16:22:57 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/11/16 17:32:27 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/17 01:00:12 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "lemin.h"
+#include "stdio.h"
 
 static void		destroy_room(void *room, size_t size)
 {
@@ -19,6 +20,13 @@ static void		destroy_room(void *room, size_t size)
 		;
 	ft_memdel((void**)&(((t_room*)room)->name));
 }
+
+// static void		destroy_ant_move(void *ant_move, size_t size)
+// {
+// 	if (size == 0 && size != 0)
+// 		;
+// 	ft_memdel((void**)&(((t_ant_move*)ant_move)->to_name));
+// }
 
 static void		destroy_way(void *room_ways, size_t size)
 {
@@ -43,6 +51,7 @@ void			lemin_destroy(t_lemin *lemin)
 {
 	ft_dlstdel(&(lemin->list_rooms), destroy_room);
 	ft_dlstdel(&(lemin->room_ways), destroy_way);
+	//ft_dlstdel(&(lemin->ants_moving), destroy_ant_move); TODO сделать удаление ant_move;
 	ft_memdel((void**)&lemin->edges);
 	if (lemin->rooms != NULL)
 	{
@@ -66,6 +75,8 @@ void			lemin_destroy(t_lemin *lemin)
 
 void			finish_prog(t_lemin *l, int res, int fd, char **line)
 {
+	if (res < 0)
+		perror("fuck!");
 	lemin_destroy(l);
 	ft_memdel((void**)line);
 	if (fd > 0)

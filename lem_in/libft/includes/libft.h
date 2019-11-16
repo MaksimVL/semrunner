@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 20:59:45 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/11/16 16:32:39 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/16 20:37:36 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,7 @@ int					ft_intlen(int a);
 void				ft_print_intmatrix(int **matrix,
 						int num_of_lines, int num_of_cols);
 void				ft_delmatrix(void ***matrix, int num_of_lines);
+
 /*
 ** dlist
 */
@@ -204,5 +205,12 @@ void			qi_print(t_queue *q);
 
 int				ft_max_intarray(int *arr, int size);
 int				ft_min_intarray(int *arr, int size);
+
+/*
+** vector int
+*/
+
+void			vector_int_assign(int *vector, int len, int value);
+void			vector_int_print(int *vector, int len);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 17:43:13 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/11/16 17:50:05 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/17 00:39:15 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ static void		load_number_of_ants(t_lemin *lemin, int fd)
 		ft_memdel((void**)&line);
 		if (lemin->number_of_ants <= 0)
 			finish_prog(lemin, -1, fd, NULL);
+		else
+		{
+			lemin->ants_moving = (t_dlist**)ft_memalloc(sizeof(t_dlist) * lemin->number_of_ants); //TODO проверку выделения памяти
+		}
 	}
 	else
 		finish_prog(lemin, -1, fd, NULL);
@@ -93,29 +97,80 @@ static void		load_line(t_lemin *lemin, char **line, int *next_flag, int fd)
 		load_link(lemin, line, next_flag, fd);
 	else
 		load_room(lemin, line, next_flag, fd);
+	ft_memdel((void**)line);
+	if (errno)
+		finish_prog(lemin, -1, fd, NULL);
 }
 
-void			load_data(t_lemin *lemin, char *filename)
+int				load_position_ant(t_lemin *lemin, char *line, int step)
+{
+	char		**strings;
+	t_ant_move	am;
+	int			num_ant;
+
+	if (!(strings = ft_strsplit(line + 1, '-')))
+		return (0);
+	if (strings[0] == NULL || strings[1] == NULL)
+	{
+		ft_del_strsplit(&strings);
+		return (0);
+	}
+	else
+	{
+		num_ant = ft_atoi(strings[0]);
+		am.step = step;
+		am.to_name = ft_strdup(strings[1]);
+		am.to = -1;
+		ft_dlst_addcontent_back(&(lemin->ants_moving[num_ant - 1]), &am,
+							sizeof(am));
+	}
+	ft_del_strsplit(&strings);
+	return (1);
+}
+
+void			load_line_moving_ants(t_lemin *lemin, char **line, int fd, int step)
+{
+	char		**strings;
+	int			i;
+
+	strings = NULL;
+	if (!(strings = ft_strsplit(*line, ' ')))
+		finish_prog(lemin, -1, fd, NULL);
+	i = 0;
+	while (strings[i] != NULL)
+	{
+		if (load_position_ant(lemin, strings[i], step) == 0)
+		{
+			ft_del_strsplit(&strings);
+			finish_prog(lemin, -1, fd, NULL);
+		}
+		i++;
+	}
+	ft_del_strsplit(&strings);
+}
+
+void			load_data(t_lemin *lemin, int fd, char flag_visu)
 {
 	int				res;
 	char			*line;
 	int				next_flag;
-	int				fd;
+	int				step;
 
 	line = NULL;
 	next_flag = 0;
-	fd = open(filename, O_RDONLY);
+	step = 0;
 	if (fd < 0)
 		finish_prog(lemin, -1, fd, NULL);
 	load_number_of_ants(lemin, fd);
 	while ((res = get_next_line(fd, &line)) == 1)
 	{
-		load_line(lemin, &line, &next_flag, fd);
-		ft_memdel((void**)&line);
-		if (errno)
-			finish_prog(lemin, -1, fd, NULL);
+		if (flag_visu == 1 && line[0] == 'L')
+			load_line_moving_ants(lemin, &line, fd, ++step);
+		else if (flag_visu == 1 && line[0] == '\0')
+			;
+		else
+			load_line(lemin, &line, &next_flag, fd);
 	}
-	close(fd);
 	ft_memdel((void**)&line);
 	if (res == -1)
 		finish_prog(lemin, -1, fd, NULL);
