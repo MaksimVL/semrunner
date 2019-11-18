@@ -14,7 +14,7 @@
 #include "libft.h"
 #include "fdf.h"
 
-void	keyhook1(int keycode, t_mlx *m)
+int		keyhook1(int keycode, t_mlx *m)
 {
 	if (keycode == 126)
 	{
@@ -40,9 +40,12 @@ void	keyhook1(int keycode, t_mlx *m)
 		m->x_angle -= m->rotate_prec;
 	else if (keycode == 1)
 		m->x_angle += m->rotate_prec;
+	else
+		return (0);
+	return(1);
 }
 
-void	keyhook2(int keycode, t_mlx *m)
+int		keyhook2(int keycode, t_mlx *m)
 {
 	if (keycode == 0)
 		m->y_angle -= m->rotate_prec;
@@ -61,15 +64,18 @@ void	keyhook2(int keycode, t_mlx *m)
 			++(m->angle_projection_type) % 3;
 	else if (keycode == 6)
 		m->type_color_spectrum = ++(m->type_color_spectrum) % 2;
+	else
+		return (0);
+	return (1);
 }
 
-void	keyhook3(int keycode, t_mlx *m)
+int		keyhook3(int keycode, t_mlx *m)
 {
 	if (keycode == 53 || keycode == 12)
 		tmlx_destroy((t_mlx*)m, 0);
 	else if (keycode == 7)
 		reset_map((t_mlx*)m);
-	if (keycode == 32)
+	else if (keycode == 32)
 		m->camera_y += 40 * m->zoom;
 	else if (keycode == 38)
 		m->camera_y -= 40 * m->zoom;
@@ -81,13 +87,16 @@ void	keyhook3(int keycode, t_mlx *m)
 		m->h *= (m->h > 0.001) ? 0.6666667 : 1;
 	else if (keycode == 15)
 		m->h *= (m->h < 1000) ? 1.5 : 1;
+	else
+		return (0);
+	return (1);
 }
 
-void	keyhooks(int keycode, t_mlx *m)
+int		keyhooks(int keycode, t_mlx *m)
 {
-	keyhook1(keycode, (t_mlx*)m);
-	keyhook2(keycode, (t_mlx*)m);
-	keyhook3(keycode, (t_mlx*)m);
+	m->prev_ang_proj_type = m->angle_projection_type;
+	m->prev_proj_type = m->projection_type;
+	return (keyhook1(keycode, (t_mlx*)m) ||	keyhook2(keycode, (t_mlx*)m) ||	keyhook3(keycode, (t_mlx*)m));
 }
 
 // int		keyhook(int keycode, void *m)

@@ -53,7 +53,9 @@ typedef struct		s_mlx
 	int				z_angle;
 	int				rotate_prec;
 	int				angle_projection_type;
+	int				prev_ang_proj_type;
 	int				projection_type;
+	int				prev_proj_type;
 	int				camera_x;
 	int				camera_y;
 	int				type_color_spectrum;
@@ -87,7 +89,7 @@ void				calculate_max_min_h_in_map(t_mlx *m);
 */
 
 void				main_legend(t_mlx *m);
-void				keyhooks(int keycode, t_mlx *m);
+int					keyhooks(int keycode, t_mlx *m);
 int					keyhook(int keycode, void *m);
 
 /*

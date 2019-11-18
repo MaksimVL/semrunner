@@ -104,10 +104,24 @@ typedef struct			s_lemin
 	int					current_step;
 }						t_lemin;
 
+typedef struct			s_ant_draw_move
+{
+	int					start_room;
+	int					end_room;
+	t_point				start;
+	t_point				curr;
+	t_point				end;
+}						t_ant_draw_move;
 typedef struct			s_lemin_mlx
 {
 	t_mlx				*m;
 	t_lemin				*lem;
+	void				*ant_im;
+	t_ant_draw_move		*ants_move;
+	t_point				start_move;
+	t_point				finish_move;
+	t_point				curr_pos;
+	int					step_counter;
 }						t_lemin_mlx;
 
 /*
@@ -172,6 +186,11 @@ void				calc_parameter_maps(t_mlx *m);
 void				put_names_rooms(t_mlx *m, t_lemin *l, int color);
 void				draw_anthill(t_lemin_mlx *lm, int not_black);
 int					lemin_keyhook(int keycode, void *lm);
+
+void	draw_ants(t_lemin_mlx *lm);
+void	put_ant(t_lemin_mlx *lm, int x, int y);
+void	put_main_image(t_lemin_mlx *m);
+void	put_all(void *lm);
 
 /*
 ** print properties

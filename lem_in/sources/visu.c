@@ -86,6 +86,59 @@ void			correct_color_ants(t_lemin *l, t_mlx *m)
 	}
 }
 
+int				ant_move(t_lemin_mlx *lm)
+{
+	t_mlx	*m = lm->m;
+	t_lemin *l = lm->lem;
+	double step_x;
+	double step_y;
+	int i;
+	t_ant_draw_move *ant_move;
+
+	put_all(lm);
+
+	i = -1;
+	while (++i < lm->lem->number_of_ants)
+	{
+		ant_move = &(lm->ants_move[i]);
+		if (ant_move->start_room == ant_move->end_room)
+		{
+			ant_move->curr = get_point_to_draw(lm->m, ant_move->start_room);
+		 	continue ;
+		}
+		ant_move->start = get_point_to_draw(lm->m, ant_move->start_room);
+		ant_move->end = get_point_to_draw(lm->m, ant_move->end_room);
+		step_x = (double)(ant_move->end.x - ant_move->start.x) / 10.0;
+		step_y = (double)(ant_move->end.y - ant_move->start.y) / 10.0;
+		ant_move->curr.x = ant_move->start.x + step_x * lm->step_counter;
+		ant_move->curr.y = ant_move->start.y + step_y * lm->step_counter;
+	}
+	if (lm->step_counter < 10)
+		lm->step_counter++;
+	else
+	{
+		ant_move->end = ant_move->start;
+		ant_move->start_room = ant_move->end_room;
+	}
+
+	usleep(2000);
+	draw_ants(lm);
+	return (1);
+}
+
+void			create_ant_draw_move(t_lemin_mlx *lm)
+{
+	int		i;
+
+	lm->ants_move = (t_ant_draw_move*)ft_memalloc(sizeof(t_ant_draw_move) * lm->lem->number_of_ants);
+	i = -1;
+	while (++i < lm->lem->number_of_ants)
+	{
+		lm->ants_move[i].start_room = lm->lem->start_room;
+		lm->ants_move[i].end_room = lm->lem->start_room;
+	}
+}
+
 int				main(int argc, char **argv)
 {
 	t_lemin		lemin;
@@ -101,7 +154,7 @@ int				main(int argc, char **argv)
 	print_anthill(&lemin);
 	// going_ants(&lemin);
 	set_num_rooms_to_ant_moves(&lemin);
-	print_ants_moves(&lemin);
+	//print_ants_moves(&lemin);
 	tmlx_initialize(&m, 1800, 1200);
 	load_anthill(&m, &lemin);
 	calc_parameter_maps(&m);
@@ -112,11 +165,24 @@ int				main(int argc, char **argv)
 	lm.m = &m;
 	lm.lem = &lemin;
 
+	create_ant_draw_move(&lm);
+
 	tmlx_create_mlx(&m, "lemin");
+
+	int x = 22;
+	int y = 21;
+	lm.ant_im = mlx_xpm_file_to_image(m.ptr, "white_ant_22_21.xpm", &x, &y);
+	// if (!(lm.ant_im = mlx_new_image(m.ptr, 49, 48)))
+	// 	tmlx_destroy(&m, -1);
+
+	lm.start_move.x = 50;
+	lm.start_move.y = 50;
+	lm.finish_move.x = 500;
+	lm.finish_move.y = 50;
 
 	lemin_keyhook(-1, (void*)&lm);
 	mlx_key_hook(m.win, lemin_keyhook, (void*)&lm);
-//	mlx_loop_hook(m.ptr, test_func, (void*)&lm);
+	mlx_loop_hook(m.ptr, ant_move, (void*)&lm);
 	mlx_loop(m.ptr);
 	finish_prog(&lemin, 0, -1, NULL);
 }

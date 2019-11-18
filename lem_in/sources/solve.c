@@ -75,10 +75,10 @@ static void		swap_ways(t_lemin *l)
 
 void			debug_print_solve(t_lemin *l)
 {
-	ft_printf("--------------\n");
-	ft_printf("way      (step % 3d): ", l->count_steps);
+	ft_printf("#--------------\n");
+	ft_printf("#way      (num_ways %2d) (step % 3d): ", l->count_ways , l->count_steps);
 	vector_int_print(l->way_length, l->count_ways);
-	ft_printf("way prev (step % 3d): ", l->prev_count_steps);
+	ft_printf("#way prev (num_ways %2d) (step % 3d): ", l->prev_count_ways, l->prev_count_steps);
 	vector_int_print(l->prev_way_length, l->prev_count_ways);
 }
 
@@ -88,6 +88,7 @@ void			solve(t_lemin *l)
 	{
 		set_flow(l);
 		calculate_ways(l);
+		//debug_print_solve(l);
 		if (l->prev_count_ways == 0)
 		{
 			if (l->number_of_ants == 1)
