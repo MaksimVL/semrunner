@@ -23,7 +23,8 @@
         "iterator": "c",
         "string": "c",
         "vector": "c",
-        "hashtable": "c"
+        "hashtable": "c",
+        "prf_spectostr_funcs.h": "c"
     },
     "python.testing.pytestArgs": [
         "."

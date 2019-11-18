@@ -40,6 +40,7 @@ typedef struct			s_edge
 	int					to;
 	int					capacity;
 	int					cost;
+	int					flow;
 }						t_edge;
 
 typedef struct			s_gedge
@@ -117,6 +118,7 @@ typedef struct			s_lemin_mlx
 	t_mlx				*m;
 	t_lemin				*lem;
 	void				*ant_im;
+	int					size_ant_im;
 	t_ant_draw_move		*ants_move;
 	t_point				start_move;
 	t_point				finish_move;
@@ -183,7 +185,7 @@ void				print_anthill(t_lemin *l);
 
 void				load_anthill(t_mlx *m, t_lemin *lem);
 void				calc_parameter_maps(t_mlx *m);
-void				put_names_rooms(t_mlx *m, t_lemin *l, int color);
+void				put_names_rooms(t_mlx *m, t_lemin *l, t_lemin_mlx *lm, int color);
 void				draw_anthill(t_lemin_mlx *lm, int not_black);
 int					lemin_keyhook(int keycode, void *lm);
 

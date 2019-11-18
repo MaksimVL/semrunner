@@ -36,6 +36,11 @@ void				putbox(t_mlx *m, t_point center, int size, int not_black)
 	putline(m, start, end, not_black);
 }
 
+void				put_full_box(t_mlx *m, t_point center, int size, int not_black)
+{
+	while (size)
+		putbox(m, center, size--, not_black);
+}
 void				putcircle(t_mlx *m, t_point center, int radius,
 							int not_black)
 {
@@ -72,6 +77,16 @@ void				put_thickcircle(t_mlx *m, t_point center,
 	putcircle(m, center, radius, not_black);
 	putcircle(m, center, radius - 1, not_black);
 	putcircle(m, center, radius + 1, not_black);
+}
+
+void				put_full_thickcircle(t_mlx *m, t_point center,
+								int radius, int not_black)
+{
+	putcircle(m, center, radius, not_black);
+	putcircle(m, center, radius - 1, not_black);
+	putcircle(m, center, --radius, not_black);
+	while (radius)
+		putcircle(m, center, --radius, not_black);
 }
 
 void				put_thickline(t_mlx *m, t_point start,

@@ -126,10 +126,13 @@ t_point				get_point_to_draw(t_mlx *m, int i);
 t_point				get_proj_point_to_draw(t_mlx *m, int i);
 void				iso(t_mlx *m, int *x, int *y, int z);
 void				putbox(t_mlx *m, t_point center, int size, int not_black);
+void				put_full_box(t_mlx *m, t_point center, int size, int not_black);
 void				putcircle(t_mlx *m, t_point center, int radius,
 							int not_black);
 void				put_thickcircle(t_mlx *m, t_point center, int radius,
 							int not_black);
+void				put_full_thickcircle(t_mlx *m, t_point center,
+								int radius, int not_black);
 void				put_thickline(t_mlx *m, t_point start, t_point end,
 							int not_black);
 
