@@ -182,27 +182,20 @@ void			set_ants_to_rooms(t_lemin_mlx *lm, t_mlx *m, t_lemin *lem)
 
 }
 
-// void	draw_ants(t_lemin_mlx *lm)
-// {
-// 	int		x;
-// 	int		y;
-// 	t_point		p;
-// 	int			i;
-
-// 	i = lm->lem->count_rooms;
-// 	while (++i < lm->m->quantity_points)
-// 	{
-// 		p = get_point_to_draw(lm->m, i);
-// 		put_ant(lm, p.x, p.y);
-// 	}
-// }
-
 int		keyhook_move_ants(int keycode, t_lemin_mlx *lm, t_mlx *m, t_lemin *l)
 {
-	if (keycode == 43)
+	if (keycode == 43 && l->current_step > 0)
+		l->current_step--;
+	else if (keycode == 44)
 		l->current_step = 0;
-	if (keycode == 47)
+	else if (keycode == 47 && l->current_step < l->max_step)
 		l->current_step += 1;
+	else if (keycode == 46)
+		lm->nonstop = (lm->nonstop + 1) % 2;
+	else if (keycode == 30 && lm->speed > 2)
+		lm->speed /= 2;
+	else if (keycode == 33 && lm->speed < 16)
+		lm->speed *= 2;
 	set_ants_to_rooms(lm, m, l);
 	return (1);
 }
@@ -218,12 +211,34 @@ void	draw_ant(t_lemin_mlx *lm, int i, t_point p)
 							((t_lemin_mlx*)lm)->ant_im, p.x, p.y);
 }
 
+void	lemin_legend(t_lemin_mlx *lm, t_mlx *m, int color)
+{
+	char str[50];
+
+	str[0] = '\0';
+	mlx_string_put(m->ptr, m->win, 10, 480, 0xFFFFFF, "ANTHILL:");
+	mlx_string_put(m->ptr, m->win, 10, 500, color, "move ants     : <, >, /");
+	if (lm->nonstop == 0)
+		mlx_string_put(m->ptr, m->win, 10, 520, color, "nonstop (off) : m");
+	else
+		mlx_string_put(m->ptr, m->win, 10, 520, color, "nonstop (on)  : m");
+	mlx_string_put(m->ptr, m->win, 10, 540, color, "size rooms    : ', \\");
+	str[0] = '\0';
+	ft_printf("%yspeed ants(%2d): [, ]", str, lm->speed);
+	mlx_string_put(m->ptr, m->win, 10, 560, color, str);
+	str[0] = '\0';
+	ft_printf("%ycurrent step: %d", str, lm->lem->current_step);
+	mlx_string_put(m->ptr, m->win, 10, 580, color, str);
+
+}
+
 void	put_all(void *lm)
 {
 	put_main_image(lm);
 	//draw_ants(lm);
 	main_legend(((t_lemin_mlx*)lm)->m);
 	put_names_rooms(((t_lemin_mlx*)lm)->m, ((t_lemin_mlx*)lm)->lem, ((t_lemin_mlx*)lm), 0xFF0000);
+	lemin_legend(((t_lemin_mlx*)lm), ((t_lemin_mlx*)lm)->m, 0xFFFF00);
 	//put_num_ants(((t_lemin_mlx*)lm)->m, ((t_lemin_mlx*)lm)->lem, 0xAAAAFF);
 }
 
@@ -274,28 +289,56 @@ void	draw_ants(t_lemin_mlx *lm)
 	str[0] = '\0';
 	ft_printf("%y(%d)", str, count_in_start);
 	mlx_string_put(lm->m->ptr, lm->m->win, p.x + (lm->size_ant_im) / 2 + 5,
-										p.y - (lm->size_ant_im) / 2 - 10,
+										p.y - (lm->size_ant_im) / 2 - 12,
 										0x55FF,
 										str);
 	str[0] = '\0';
 	p = get_point_to_draw(lm->m, lm->lem->end_room);
 	ft_printf("%y(%d)", str, count_in_end);
 	mlx_string_put(lm->m->ptr, lm->m->win, p.x + (lm->size_ant_im) / 2 + 5,
-										p.y - (lm->size_ant_im) / 2 - 10,
+										p.y - (lm->size_ant_im) / 2 - 12,
 										0x00FF00,
 										str);
 }
 
+void	load_ant_im(t_lemin_mlx *lm)
+{
+	mlx_destroy_image(lm->m->ptr, lm->ant_im);
+	if (lm->size_ant_im == 10)
+		lm->ant_im = mlx_xpm_file_to_image(lm->m->ptr, "white_ant_10_10.xpm", &(lm->size_ant_im), &(lm->size_ant_im));
+	else if (lm->size_ant_im == 20)
+		lm->ant_im = mlx_xpm_file_to_image(lm->m->ptr, "white_ant_20_20.xpm", &(lm->size_ant_im), &(lm->size_ant_im));
+	else if (lm->size_ant_im == 30)
+		lm->ant_im = mlx_xpm_file_to_image(lm->m->ptr, "white_ant_30_30.xpm", &(lm->size_ant_im), &(lm->size_ant_im));
+	else
+		lm->ant_im = mlx_xpm_file_to_image(lm->m->ptr, "white_ant_40_40.xpm", &(lm->size_ant_im), &(lm->size_ant_im));
+
+}
+
+int		keycode_change_size_room(int keycode, t_lemin_mlx *lm)
+{
+	if (keycode == 42 && lm->size_ant_im < 40)
+		lm->size_ant_im += 10;
+	else if (keycode == 39 && lm->size_ant_im > 10)
+		lm->size_ant_im -= 10;
+	else
+		return (0);
+	load_ant_im(lm);
+	return (1);
+}
 int		lemin_keyhook(int keycode, void *lm)
 {
 	t_lemin_mlx *lm1 = lm;
 
 	ft_printf("%d\n", keycode);
 	if (keycode == 18 || keycode == 19 || keycode == 20 || keycode == 21 || keycode == 23 || keycode == 7 ||
-		keycode == 4 || keycode == 32 || keycode == 40 || keycode == 38)
+		keycode == 4 || keycode == 32 || keycode == 40 || keycode == 38 ||
+		keycode == 39 || keycode == 42)
 		draw_anthill((t_lemin_mlx*)lm, 0);
-	if (keycode == -1 || keyhooks(keycode, ((t_lemin_mlx*)lm)->m))
+	if (keycode == -1 || keyhooks(keycode, ((t_lemin_mlx*)lm)->m) ||
+		keycode == 39 || keycode == 42)
 	{
+		keycode_change_size_room(keycode, (t_lemin_mlx*)((t_lemin_mlx*)lm));
 		draw_anthill((t_lemin_mlx*)lm, 0);
 		make_map_points(((t_lemin_mlx*)lm)->m);
 		draw_anthill((t_lemin_mlx*)lm, 1);
@@ -303,6 +346,7 @@ int		lemin_keyhook(int keycode, void *lm)
 							((t_mlx*)((t_lemin_mlx*)lm)->m)->win,
 							((t_mlx*)((t_lemin_mlx*)lm)->m)->main_im, 0, 0);
 		main_legend(((t_lemin_mlx*)lm)->m);
+		lemin_legend(lm1, ((t_lemin_mlx*)lm)->m, 0xFFFF00);
 		put_names_rooms(((t_lemin_mlx*)lm)->m, ((t_lemin_mlx*)lm)->lem, ((t_lemin_mlx*)lm), 0xFF0000);
 		ft_printf("draw_anthill\n");
 	}

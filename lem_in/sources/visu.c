@@ -108,18 +108,20 @@ int				ant_move(t_lemin_mlx *lm)
 		}
 		ant_move->start = get_point_to_draw(lm->m, ant_move->start_room);
 		ant_move->end = get_point_to_draw(lm->m, ant_move->end_room);
-		step_x = (double)(ant_move->end.x - ant_move->start.x) / 10.0;
-		step_y = (double)(ant_move->end.y - ant_move->start.y) / 10.0;
+		step_x = (double)(ant_move->end.x - ant_move->start.x) / ((float)lm->speed);
+		step_y = (double)(ant_move->end.y - ant_move->start.y) / ((float)lm->speed);
 		ant_move->curr.x = ant_move->start.x + step_x * lm->step_counter;
 		ant_move->curr.y = ant_move->start.y + step_y * lm->step_counter;
-		if (lm->step_counter >= 10)
+		if (lm->step_counter >= lm->speed)
 		{
 			ant_move->start = ant_move->end;
 			ant_move->start_room = ant_move->end_room;
 		}
 	}
-	if (lm->step_counter < 10)
+	if (lm->step_counter < lm->speed + 2)
 		lm->step_counter++;
+	if (lm->step_counter == lm->speed + 2 && lm->nonstop == 1)
+		lemin_keyhook(47, lm);
 	usleep(2000);
 	draw_ants(lm);
 	return (1);
@@ -199,6 +201,9 @@ int				main(int argc, char **argv)
 	create_ant_draw_move(&lm);
 
 	tmlx_create_mlx(&m, "lemin");
+
+	lm.nonstop = 0;
+	lm.speed = 8;
 
 	int x = 30;
 	int y = 30;

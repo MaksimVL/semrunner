@@ -103,6 +103,7 @@ typedef struct			s_lemin
 
 	t_dlist				**ants_moving;
 	int					current_step;
+	int					max_step;
 }						t_lemin;
 
 typedef struct			s_ant_draw_move
@@ -123,7 +124,10 @@ typedef struct			s_lemin_mlx
 	t_point				start_move;
 	t_point				finish_move;
 	t_point				curr_pos;
+	int					count_steps;
 	int					step_counter;
+	int					nonstop;
+	int					speed;
 }						t_lemin_mlx;
 
 /*

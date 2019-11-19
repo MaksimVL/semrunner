@@ -136,6 +136,7 @@ void			load_line_moving_ants(t_lemin *lemin, char **line, int fd, int step)
 	strings = NULL;
 	if (!(strings = ft_strsplit(*line, ' ')))
 		finish_prog(lemin, -1, fd, NULL);
+	lemin->max_step++;
 	i = 0;
 	while (strings[i] != NULL)
 	{
