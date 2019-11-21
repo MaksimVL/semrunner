@@ -21,9 +21,11 @@ OBJ_DIR := ./objects
 LIB_DIR := ./libft
 
 SRC_COMMON := initialize.c load_map.c load_map1.c destroy.c \
-	auxf.c visual.c calc_ways.c solve.c bfs.c prepare_data.c \
+	auxf.c lemin_keyhooks.c calc_ways.c solve.c bfs.c prepare_data.c \
 	prepare_data1.c prepare_data2.c going_ants.c going_ants1.c \
-	print_anthill.c
+	print_anthill.c ants_move.c draw_anthill.c load_ant_im.c \
+	draw_ants.c change_step.c put_all_anthill.c start_assign_anthill.c \
+	start_assign_data.c load_from_file.c tlemin_mlx_init.c
 
 SRC  := main.c $(SRC_COMMON)
 

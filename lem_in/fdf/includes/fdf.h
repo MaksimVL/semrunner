@@ -68,7 +68,7 @@ typedef struct		s_mlx
 
 void				tmlx_destroy(t_mlx *m, int value_exit);
 void				tmlx_initialize(t_mlx *m, int x, int y);
-void				tmlx_create_mlx(t_mlx *m, char *title);
+int					tmlx_create_mlx(t_mlx *m, char *title);
 void				reset_map(t_mlx *m);
 
 /*
@@ -90,7 +90,7 @@ void				calculate_max_min_h_in_map(t_mlx *m);
 
 void				main_legend(t_mlx *m);
 int					keyhooks(int keycode, t_mlx *m);
-int					keyhook(int keycode, void *m);
+int					check_keyhooks_fdf(int k);
 
 /*
 ** making map_points from map. it's doing on every iteration, in map_points
@@ -99,6 +99,7 @@ int					keyhook(int keycode, void *m);
 */
 
 void				make_map_points(t_mlx *m);
+void				calc_parameter_maps(t_mlx *m);
 
 void				draw_surface(t_mlx *m, int not_black);
 

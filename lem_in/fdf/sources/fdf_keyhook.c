@@ -92,6 +92,15 @@ int		keyhook3(int keycode, t_mlx *m)
 	return (1);
 }
 
+int		check_keyhooks_fdf(int k)
+{
+	if (k == 126 || k == 125 || k == 123 || k == 124 || k == 13 || k == 1 ||
+		k == 0 || k == 2 || k == 18 || k == 19 || k == 20 || k == 21 ||
+		k == 23 || k == 6 || k == 53 || k == 7 || k == 32 || k == 38 ||
+		k == 4 || k == 40 || k == 3 || k == 15 || k == 7 || k == 12)
+		return (1);
+	return (0);
+}
 int		keyhooks(int keycode, t_mlx *m)
 {
 	m->prev_ang_proj_type = m->angle_projection_type;

@@ -1,0 +1,43 @@
+#include "libft.h"
+#include "lemin.h"
+#include "mlx.h"
+#include "fdf.h"
+
+static void		set_room_in_ants_move(t_lemin_mlx *lm, t_ant_move *am, int i)
+{
+	if (am->step == lm->lem->current_step)
+	{
+		lm->ants_move[i].start_room = lm->ants_move[i].end_room;
+		lm->ants_move[i].start = get_point_to_draw(lm->m, lm->ants_move[i].start_room);
+		lm->ants_move[i].end_room = am->to;
+		lm->ants_move[i].end = get_point_to_draw(lm->m, am->to);
+		lm->ants_move[i].curr = get_point_to_draw(lm->m, lm->ants_move[i].start_room);
+	}
+}
+
+void			set_ants_to_rooms_on_step(t_lemin_mlx *lm)
+{
+	int i;
+	t_dlist *curr;
+	int start_step = -1;
+	int end_step = -1;
+
+	i = -1;
+	while (++i < lm->lem->number_of_ants)
+	{
+		curr = lm->lem->ants_moving[i];
+		if (curr != NULL)
+			start_step = ((t_ant_move*)(curr->content))->step;
+		while (curr != NULL)
+		{
+			set_room_in_ants_move(lm, curr->content, i);
+			end_step = ((t_ant_move*)(curr->content))->step;
+			curr = curr->next;
+		}
+		if (lm->lem->current_step < start_step)
+			lm->ants_move[i].end_room = lm->lem->start_room;
+		else if (lm->lem->current_step > end_step)
+			lm->ants_move[i].end_room = lm->lem->end_room;
+	}
+	lm->step_counter = 0;
+}

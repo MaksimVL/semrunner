@@ -35,3 +35,26 @@ void			make_map_points(t_mlx *m)
 	}
 	rotate_points(m);
 }
+
+void				calc_parameter_maps(t_mlx *m)
+{
+	int i;
+
+	m->max_h = m->map_points[0].z0;
+	m->min_h = m->map_points[0].z0;
+	m->map_x = m->map_points[0].x0;
+	m->map_y = m->map_points[0].y0;
+	i = 0;
+	while (i < m->quantity_points)
+	{
+		if (m->max_h < m->map_points[i].z0)
+			m->max_h = m->map_points[i].z0;
+		if (m->min_h > m->map_points[i].z0)
+			m->min_h = m->map_points[i].z0;
+		if (m->map_x < m->map_points[i].x0)
+			m->map_x = m->map_points[i].x0;
+		if (m->map_y < m->map_points[i].y0)
+			m->map_y = m->map_points[i].y0;
+		i++;
+	}
+}

@@ -26,7 +26,9 @@ void	tmlx_destroy(t_mlx *m, int value_exit)
 		ft_memdel((void**)&(m->map));
 	if (m->map_points != NULL)
 		ft_memdel((void**)&(m->map_points));
-	exit(value_exit);
+	errno = 200;
+	if (value_exit != -10)
+		exit(value_exit);
 }
 
 void	reset_map(t_mlx *m)
@@ -64,14 +66,19 @@ void	tmlx_initialize(t_mlx *m, int x, int y)
 	m->projection_type = 0;
 }
 
-void	tmlx_create_mlx(t_mlx *m, char *title)
+int		tmlx_create_mlx(t_mlx *m, char *title)
 {
 	if (!(m->ptr = mlx_init()))
-		tmlx_destroy(m, -1);
+		tmlx_destroy(m, -10);
 	else if (!(m->win = mlx_new_window(m->ptr, m->width, m->height, title)))
-		tmlx_destroy(m, -1);
+		tmlx_destroy(m, -10);
 	else if (!(m->main_im = mlx_new_image(m->ptr, m->width, m->height)))
-		tmlx_destroy(m, -1);
-	m->data_mainim = (int*)mlx_get_data_addr(m->main_im,
+		tmlx_destroy(m, -10);
+	else
+	{
+		m->data_mainim = (int*)mlx_get_data_addr(m->main_im,
 							&(m->bits_pixel), &(m->size_line), &(m->endian));
+		return (1);
+	}
+	return (0);
 }

@@ -21,12 +21,12 @@ static void		destroy_room(void *room, size_t size)
 	ft_memdel((void**)&(((t_room*)room)->name));
 }
 
-// static void		destroy_ant_move(void *ant_move, size_t size)
-// {
-// 	if (size == 0 && size != 0)
-// 		;
-// 	ft_memdel((void**)&(((t_ant_move*)ant_move)->to_name));
-// }
+static void		destroy_ant_move(void *ant_move, size_t size)
+{
+	if (size == 0 && size != 0)
+		;
+	ft_memdel((void**)&(((t_ant_move*)ant_move)->to_name));
+}
 
 static void		destroy_way(void *room_ways, size_t size)
 {
@@ -47,11 +47,26 @@ static void		del_g(t_lemin *l)
 	l->g = NULL;
 }
 
+void			del_ants_moving(t_lemin *l)
+{
+	int		i;
+
+	if (l->ants_moving == NULL)
+		return ;
+	i = 0;
+	while (i < l->number_of_ants)
+	{
+		ft_dlstdel(&(l->ants_moving[i]), destroy_ant_move);
+		i++;
+	}
+	free(l->ants_moving);
+	l->ants_moving = NULL;
+}
+
 void			lemin_destroy(t_lemin *lemin)
 {
 	ft_dlstdel(&(lemin->list_rooms), destroy_room);
 	ft_dlstdel(&(lemin->room_ways), destroy_way);
-	//ft_dlstdel(&(lemin->ants_moving), destroy_ant_move); TODO сделать удаление ant_move;
 	ft_memdel((void**)&lemin->edges);
 	if (lemin->rooms != NULL)
 	{
@@ -61,6 +76,7 @@ void			lemin_destroy(t_lemin *lemin)
 	ft_delmatrix((void***)&(lemin->ants_on_ways), lemin->max_ways);
 	ft_delmatrix((void***)&(lemin->ways), lemin->max_ways);
 	ft_delmatrix((void***)&(lemin->prev_ways), lemin->max_ways);
+	ft_delmatrix((void***)&(lemin->ants_moving), lemin->number_of_ants);
 	ft_memdel((void**)&lemin->way_length);
 	ft_memdel((void**)&lemin->prev_way_length);
 	ft_memdel((void*)&lemin->ants_left_on_ways);
@@ -75,15 +91,16 @@ void			lemin_destroy(t_lemin *lemin)
 
 void			finish_prog(t_lemin *l, int res, int fd, char **line)
 {
-	if (res < 0)
-		perror("fuck!");
 	lemin_destroy(l);
 	ft_memdel((void**)line);
 	if (fd > 0)
 		close(fd);
+	if (res == -10)
+		exit(res);
+	if (res < 0)
+		perror("fuck!");
 	if (res != 0)
 	{
 		ft_printf("ERROR\n");
 	}
-	exit(res);
 }

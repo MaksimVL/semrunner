@@ -26,6 +26,7 @@ typedef struct			s_room
 	int					y;
 	int					z;
 	int					start_end_flag;
+	int					flow;
 }						t_room;
 
 typedef struct			s_room_ways
@@ -121,13 +122,13 @@ typedef struct			s_lemin_mlx
 	void				*ant_im;
 	int					size_ant_im;
 	t_ant_draw_move		*ants_move;
-	t_point				start_move;
-	t_point				finish_move;
 	t_point				curr_pos;
 	int					count_steps;
 	int					step_counter;
 	int					nonstop;
 	int					speed;
+	int					show_room_numbers;
+	int					show_not_use_edges;
 }						t_lemin_mlx;
 
 /*
@@ -147,6 +148,7 @@ void				finish_prog(t_lemin *l, int res, int fd, char **line);
 ** load data from file
 */
 
+void				open_file_load_data(t_lemin *lemin, int argc, char **argv);
 void				load_data(t_lemin *lemin, int fd, char flag_visu);
 t_room				set_room_property(char **strings, int next_flag);
 int					find_duplicates_rooms(t_dlist *list_rooms,
@@ -187,17 +189,36 @@ void				print_anthill(t_lemin *l);
 ** visualization
 */
 
-void				load_anthill(t_mlx *m, t_lemin *lem);
+void				tlemin_mlx_initialize(t_lemin_mlx *lm);
+void				load_anthill_to_map_points(t_mlx *m, t_lemin *lem);
+void				set_ants_to_start(t_lemin_mlx *lm);
+
 void				calc_parameter_maps(t_mlx *m);
+
+void				set_num_rooms_to_ant_moves(t_lemin *l);
+void				create_ant_draw_move(t_lemin_mlx *lm);
+void				set_flow_anthill(t_lemin *l);
+
+void				start_load_ant_im(t_lemin_mlx *lm);
+void				load_ant_im(t_lemin_mlx *lm);
+
 void				put_names_rooms(t_mlx *m, t_lemin *l, t_lemin_mlx *lm, int color);
 void				draw_anthill(t_lemin_mlx *lm, int not_black);
 int					lemin_keyhook(int keycode, void *lm);
 
-void	draw_ants(t_lemin_mlx *lm);
-void	put_ant(t_lemin_mlx *lm, int x, int y);
-void	put_main_image(t_lemin_mlx *m);
-void	put_all(void *lm);
+void				set_ants_to_rooms_on_step(t_lemin_mlx *lm);
+int					loop_ants_move(t_lemin_mlx *lm);
 
+void				draw_ants(t_lemin_mlx *lm);
+void				draw_ant(t_lemin_mlx *lm, int i, t_point p);
+
+
+
+void				put_ant(t_lemin_mlx *lm, int x, int y);
+//void				put_main_image(t_lemin_mlx *m);
+void				put_all_anthill(void *lm);
+
+void				finish_all(t_lemin_mlx *lm, int res);
 /*
 ** print properties
 */
