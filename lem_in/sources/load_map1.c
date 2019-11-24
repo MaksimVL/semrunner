@@ -6,12 +6,13 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 17:50:59 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/11/16 20:15:08 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/24 23:06:44 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "lemin.h"
+#include <time.h>
 
 t_room			set_room_property(char **strings, int next_flag)
 {
@@ -41,8 +42,54 @@ int				find_duplicates_rooms(t_dlist *list_rooms, t_room room_temp)
 		room = curr->content;
 		if (ft_strequ(room->name, room_temp.name))
 			return (1);
-
 		curr = curr->next;
 	}
 	return (0);
+}
+
+static int		set_first_end_room(t_lemin *lemin, int *next_flag)
+{
+	if (*next_flag == 1)
+	{
+		if (lemin->start_room == -1)
+			lemin->start_room = lemin->count_rooms;
+		else
+			return (-1);
+	}
+	if (*next_flag == 2)
+	{
+		if (lemin->end_room == -1)
+			lemin->end_room = lemin->count_rooms;
+		else
+			return (-1);
+	}
+	return (1);
+}
+
+void			load_room(t_lemin *lemin, char **line, int *next_flag, int fd)
+{
+	char		**strings;
+	t_room		room_temp;
+
+	strings = NULL;
+	if (!(strings = ft_strsplit(*line, ' ')) || strings[0] == NULL ||
+		strings[1] == NULL || strings[2] == NULL)
+	{
+		ft_del_strsplit(&strings);
+		finish_prog(lemin, -1, fd, line);
+	}
+	ft_memdel((void**)line);
+	room_temp = set_room_property(strings, *next_flag);
+	ft_del_strsplit(&strings);
+	room_temp.number = (lemin->count_rooms);
+	if (set_first_end_room(lemin, next_flag) == -1)
+		finish_prog(lemin, -1, fd, &(room_temp.name));
+	if (find_duplicates_rooms(lemin->list_rooms, room_temp) == 1 ||
+		ft_strstr(room_temp.name, "-"))
+		finish_prog(lemin, -1, fd, &(room_temp.name));
+	else
+		ft_dlst_addcontent_back(&(lemin->list_rooms), &room_temp,
+								sizeof(room_temp));
+	lemin->count_rooms++;
+	*next_flag = 0;
 }

@@ -6,13 +6,13 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 13:12:43 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/11/17 00:58:50 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/24 20:51:20 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void			make_map_points(t_mlx *m)
+void				make_map_points(t_mlx *m)
 {
 	double	shift_x;
 	double	shift_y;

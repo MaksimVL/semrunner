@@ -6,20 +6,20 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 12:49:54 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/11/02 23:17:49 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/24 19:58:00 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "fdf.h"
 
-void			putpixel(t_mlx *m, int x, int y, int color)
+void		putpixel(t_mlx *m, int x, int y, int color)
 {
 	if ((0 <= x && x < m->width) && (0 <= y && y < m->height))
 		m->data_mainim[y * (m->size_line / sizeof(int)) + x] = color;
 }
 
-static void		init_dxy_xy(t_point *dxy, t_point *xy, t_point start,
+static void	init_dxy_xy(t_point *dxy, t_point *xy, t_point start,
 							t_point end)
 {
 	dxy->x = end.x - start.x;
@@ -28,7 +28,7 @@ static void		init_dxy_xy(t_point *dxy, t_point *xy, t_point start,
 	xy->y = start.y;
 }
 
-static void		putline_low(t_mlx *m, t_point start, t_point end, int not_black)
+static void	putline_low(t_mlx *m, t_point start, t_point end, int not_black)
 {
 	t_point	dxy;
 	t_point	xy;
@@ -57,7 +57,7 @@ static void		putline_low(t_mlx *m, t_point start, t_point end, int not_black)
 	}
 }
 
-static void		putline_high(t_mlx *m, t_point start, t_point end, int not_black)
+static void	putline_high(t_mlx *m, t_point start, t_point end, int not_black)
 {
 	t_point	dxy;
 	t_point	xy;
@@ -86,7 +86,7 @@ static void		putline_high(t_mlx *m, t_point start, t_point end, int not_black)
 	}
 }
 
-void			putline(t_mlx *m, t_point start, t_point end, int not_black)
+void		putline(t_mlx *m, t_point start, t_point end, int not_black)
 {
 	if (ABS(end.y - start.y) < ABS(end.x - start.x))
 	{

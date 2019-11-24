@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 13:19:24 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/11/03 00:19:31 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/24 23:11:17 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void				calculate_max_min_h_in_map(t_mlx *m);
 void				main_legend(t_mlx *m);
 int					keyhooks(int keycode, t_mlx *m);
 int					check_keyhooks_fdf(int k);
+void				calc_hzoom(t_mlx *m, int coef);
 
 /*
 ** making map_points from map. it's doing on every iteration, in map_points
@@ -129,7 +130,8 @@ t_point				get_point_to_draw(t_mlx *m, int i);
 t_point				get_proj_point_to_draw(t_mlx *m, int i);
 void				iso(t_mlx *m, int *x, int *y, int z);
 void				putbox(t_mlx *m, t_point center, int size, int not_black);
-void				put_full_box(t_mlx *m, t_point center, int size, int not_black);
+void				put_full_box(t_mlx *m, t_point center, int size,
+								int not_black);
 void				putcircle(t_mlx *m, t_point center, int radius,
 							int not_black);
 void				put_thickcircle(t_mlx *m, t_point center, int radius,

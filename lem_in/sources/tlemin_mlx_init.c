@@ -1,5 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tlemin_mlx_init.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/24 16:23:15 by odrinkwa          #+#    #+#             */
+/*   Updated: 2019/11/24 19:15:51 by odrinkwa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
-#include "lemin.h"
+#include "lemin_mlx.h"
 #include "mlx.h"
 
 void			finish_all(t_lemin_mlx *lm, int res)
@@ -30,4 +42,3 @@ void			tlemin_mlx_initialize(t_lemin_mlx *lm)
 	lm->show_not_use_edges = 1;
 	lm->show_interm_rooms = 1;
 }
-

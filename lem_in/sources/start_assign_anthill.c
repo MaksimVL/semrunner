@@ -1,5 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   start_assign_anthill.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/24 16:23:48 by odrinkwa          #+#    #+#             */
+/*   Updated: 2019/11/24 19:25:50 by odrinkwa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
-#include "lemin.h"
+#include "lemin_mlx.h"
 #include "mlx.h"
 #include "fdf.h"
 
@@ -7,7 +19,8 @@ void			load_anthill_to_map_points(t_mlx *m, t_lemin *lem)
 {
 	int		i;
 
-	if (!(m->map_points = (t_point*)ft_memalloc(sizeof(t_point) * lem->count_rooms)))
+	if (!(m->map_points = (t_point*)ft_memalloc(sizeof(t_point) *
+			lem->count_rooms)))
 		finish_prog(lem, -1, -1, NULL);
 	i = 0;
 	while (i < lem->count_rooms)

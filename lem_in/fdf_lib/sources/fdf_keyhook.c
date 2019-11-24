@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keyhook.c                                          :+:      :+:    :+:   */
+/*   fdf_keyhook.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 12:40:57 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/11/02 21:31:53 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/24 20:52:38 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,71 +14,17 @@
 #include "libft.h"
 #include "fdf.h"
 
-void	calc_hzoom(t_mlx *m)
-{
-	int		i;
-
-	m->zoom = 1.0;
-	m->h = 1.0;
-	i = m->zoom_coef;
-	if (i == 20)
-		m->zoom = 1.0;
-	else if (i < 20)
-		while (i++ < 20)
-			m->zoom *= 0.6666667;
-	else if (i > 20)
-		while (i-- > 20)
-			m->zoom *= 1.5;
-	i = m->h_coef;
-	if (i == 40)
-		m->h = 1.0;
-	else if (i < 40)
-		while (i++ < 40)
-			m->h *= 0.6666667;
-	else if (i > 40)
-		while (i-- > 40)
-			m->h *= 1.5;
-
-
-}
-
 int		keyhook1(int keycode, t_mlx *m)
 {
 	if (keycode == 126)
 	{
 		if (m->zoom_coef < 40 && m->h_coef < 80)
-		{
-			m->zoom_coef++;
-			m->h_coef++;
-			m->camera_x = (int)(1.5 * (double)m->camera_x);
-			m->camera_y = (int)(1.5 * (double)m->camera_y);
-			calc_hzoom(m);
-			ft_printf("%f %f\n", m->zoom, m->h);
-		}
-		// if (m->zoom < 1000 && m->h < 10000)
-		// {
-		// 	m->zoom *= 1.5;
-		// 	m->h *= 1.5;
-		// 	ft_printf("%f %f\n", m->zoom, m->h);
-		// }
+			calc_hzoom(m, 1);
 	}
 	else if (keycode == 125)
 	{
 		if (m->zoom_coef > 1 && m->h_coef > 1)
-		{
-			m->zoom_coef--;
-			m->h_coef--;
-			m->camera_x = (int)(0.6666667 * (double)m->camera_x);
-			m->camera_y = (int)(0.6666667 * (double)m->camera_y);
-			calc_hzoom(m);
-			ft_printf("%f %f\n", m->zoom, m->h);
-		}
-		// if (m->zoom > 0.001 && m->h > 0.0001)
-		// {
-		// 	m->zoom *= 0.6666667;
-		// 	m->h *= 0.6666667;
-		// 	ft_printf("%f %f\n", m->zoom, m->h);
-		// }
+			calc_hzoom(m, -1);
 	}
 	else if (keycode == 123)
 		m->z_angle -= m->rotate_prec;
@@ -90,7 +36,7 @@ int		keyhook1(int keycode, t_mlx *m)
 		m->x_angle += m->rotate_prec;
 	else
 		return (0);
-	return(1);
+	return (1);
 }
 
 int		keyhook2(int keycode, t_mlx *m)
@@ -134,12 +80,12 @@ int		keyhook3(int keycode, t_mlx *m)
 	else if (keycode == 3)
 	{
 		m->h_coef -= m->h_coef > 1 ? 1 : 0;
-		calc_hzoom(m);
+		calc_hzoom(m, 0);
 	}
 	else if (keycode == 15)
 	{
 		m->h_coef += m->h_coef < 80 ? 1 : 0;
-		calc_hzoom(m);
+		calc_hzoom(m, 0);
 	}
 	else
 		return (0);
@@ -155,21 +101,12 @@ int		check_keyhooks_fdf(int k)
 		return (1);
 	return (0);
 }
+
 int		keyhooks(int keycode, t_mlx *m)
 {
 	m->prev_ang_proj_type = m->angle_projection_type;
 	m->prev_proj_type = m->projection_type;
-	return (keyhook1(keycode, (t_mlx*)m) ||	keyhook2(keycode, (t_mlx*)m) ||	keyhook3(keycode, (t_mlx*)m));
+	return (keyhook1(keycode, (t_mlx*)m) ||
+			keyhook2(keycode, (t_mlx*)m) ||
+			keyhook3(keycode, (t_mlx*)m));
 }
-
-// int		keyhook(int keycode, void *m)
-// {
-// 	draw_surface((t_mlx*)m, 0);
-// 	keyhooks(keycode, (t_mlx*)m);
-// 	make_map_points((t_mlx*)m);
-// 	draw_surface((t_mlx*)m, 1);
-// 	mlx_put_image_to_window(((t_mlx*)m)->ptr, ((t_mlx*)m)->win,
-// 							((t_mlx*)m)->main_im, 1, 0);
-// 	main_legend(m);
-// 	return (1);
-// }

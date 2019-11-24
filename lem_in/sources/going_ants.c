@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 19:04:51 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/11/16 22:17:50 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/24 15:57:47 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,28 +51,28 @@ static void		going_on_ways(t_lemin *l, int *ants_left, int *ant_counter)
 	int		i;
 	int		j;
 
-		i = -1;
-		while (++i < l->count_ways && *ants_left != 0)
+	i = -1;
+	while (++i < l->count_ways && *ants_left != 0)
+	{
+		j = -1;
+		while (l->ways[i][++j] != l->start_room)
 		{
-			j = -1;
-			while (l->ways[i][++j] != l->start_room)
+			if (j == 0)
 			{
-				if (j == 0)
-					{
-						if (l->ants_on_ways[i][j] != 0)
-						{
-							l->ants_on_ways[i][j] = 0;
-							*ants_left = *ants_left - 1;
-						}
-					}
-				else
+				if (l->ants_on_ways[i][j] != 0)
 				{
-					l->ants_on_ways[i][j - 1] = l->ants_on_ways[i][j];
 					l->ants_on_ways[i][j] = 0;
+					*ants_left = *ants_left - 1;
 				}
 			}
-			add_ant_to_way(l, i, j, ant_counter);
+			else
+			{
+				l->ants_on_ways[i][j - 1] = l->ants_on_ways[i][j];
+				l->ants_on_ways[i][j] = 0;
+			}
 		}
+		add_ant_to_way(l, i, j, ant_counter);
+	}
 }
 
 static void		print_ants_on_ways(t_lemin *l)
@@ -121,4 +121,3 @@ void			going_ants(t_lemin *l)
 		print_ants_on_ways(l);
 	}
 }
-

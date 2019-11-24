@@ -1,11 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_ants.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/24 15:56:34 by odrinkwa          #+#    #+#             */
+/*   Updated: 2019/11/24 23:09:37 by odrinkwa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
-#include "lemin.h"
+#include "lemin_mlx.h"
 #include "mlx.h"
 #include "fdf.h"
 
-void	draw_ant(t_lemin_mlx *lm, int i, t_point p)
+void			draw_ant(t_lemin_mlx *lm, int i, t_point p)
 {
-
 	i = 0;
 	p.x -= (lm->size_ant_im) / 2;
 	p.y -= (lm->size_ant_im) / 2;
@@ -14,10 +25,12 @@ void	draw_ant(t_lemin_mlx *lm, int i, t_point p)
 							((t_lemin_mlx*)lm)->ant_im, p.x, p.y);
 }
 
-static void		put_count_of_ants(t_lemin_mlx *lm, int count_in_start, int count_in_end)
+static void		put_count_of_ants(t_lemin_mlx *lm, int count_in_start,
+									int count_in_end)
 {
 	t_point p;
 	char	str[20];
+
 	p = get_point_to_draw(lm->m, lm->lem->start_room);
 	str[0] = '\0';
 	ft_printf("%y(%d)", str, count_in_start);
@@ -34,7 +47,7 @@ static void		put_count_of_ants(t_lemin_mlx *lm, int count_in_start, int count_in
 										str);
 }
 
-void	draw_ants(t_lemin_mlx *lm)
+void			draw_ants(t_lemin_mlx *lm)
 {
 	int		i;
 	int		count_in_start;

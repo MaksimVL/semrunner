@@ -121,6 +121,15 @@ if int(type_connections) >= 4:
     addlinks(links1, rooms, start_room_i, start_room_j, directions4)
     addlinks(links1, rooms, end_room_i, end_room_j, directions4)
 
+if int(type_connections) >= 5:
+    for i in range(len(rooms)):
+        for j in range(len(rooms[i])):
+            addlinks(links, rooms, i, j, directions1)
+            addlinks(links, rooms, i, j, directions2)
+            addlinks(links, rooms, i, j, directions3)
+            addlinks(links, rooms, i, j, directions4)
+
+
 # remove duplicates of links
 links = set(links)
 links1 = set(links1)

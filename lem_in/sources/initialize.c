@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 16:22:18 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/11/17 01:14:15 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/24 15:58:06 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,3 @@ void			lemin_init(t_lemin *lemin)
 	lemin->size_matrix = 0;
 	lemin_init_aux(lemin);
 }
-

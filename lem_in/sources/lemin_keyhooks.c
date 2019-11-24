@@ -1,5 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lemin_keyhooks.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/24 15:58:13 by odrinkwa          #+#    #+#             */
+/*   Updated: 2019/11/24 23:10:08 by odrinkwa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
-#include "lemin.h"
+#include "lemin_mlx.h"
 #include "mlx.h"
 #include "fdf.h"
 
@@ -48,24 +60,22 @@ int		keycode_names_room(int keycode, t_lemin_mlx *lm)
 
 int		lemin_keyhook(int keycode, void *lm)
 {
-	t_lemin_mlx *lm1 = lm;
 	ft_printf("%d\n", keycode);
 	if (keycode == 12 || keycode == 53)
 		finish_all((t_lemin_mlx*)lm, -10);
-
-	if (check_keyhooks_fdf(keycode) ||
-		keycode == 39 || keycode == 42 || keycode == 35 || keycode == -1 || keycode == 31 || keycode == 34)
-		{
-			draw_anthill((t_lemin_mlx*)lm, 0);
-			keyhooks(keycode, ((t_lemin_mlx*)lm)->m);
-			keycode_names_room(keycode, ((t_lemin_mlx*)lm));
-			if (keycode_change_size_room(keycode, ((t_lemin_mlx*)lm)))
-				load_ant_im(lm);
-			make_map_points(((t_lemin_mlx*)lm)->m);
-			draw_anthill((t_lemin_mlx*)lm, 1);
-			put_all_anthill(lm);
-			ft_printf("draw_anthill\n");
-		}
+	if (check_keyhooks_fdf(keycode) || keycode == 39 || keycode == 42 ||
+		keycode == 35 || keycode == -1 || keycode == 31 || keycode == 34)
+	{
+		draw_anthill((t_lemin_mlx*)lm, 0);
+		keyhooks(keycode, ((t_lemin_mlx*)lm)->m);
+		keycode_names_room(keycode, ((t_lemin_mlx*)lm));
+		if (keycode_change_size_room(keycode, ((t_lemin_mlx*)lm)))
+			load_ant_im(lm);
+		make_map_points(((t_lemin_mlx*)lm)->m);
+		draw_anthill((t_lemin_mlx*)lm, 1);
+		put_all_anthill(lm);
+		ft_printf("draw_anthill\n");
+	}
 	if (keyhook_move_ants(keycode, ((t_lemin_mlx*)lm)))
 		set_ants_to_rooms_on_step(lm);
 	if (keycode == -1)

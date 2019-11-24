@@ -1,5 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ants_move.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/24 14:23:09 by odrinkwa          #+#    #+#             */
+/*   Updated: 2019/11/24 16:23:31 by odrinkwa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
-#include "lemin.h"
+#include "lemin_mlx.h"
 #include "mlx.h"
 
 static void		set_ant_move(t_lemin_mlx *lm, t_ant_draw_move *ant_move)

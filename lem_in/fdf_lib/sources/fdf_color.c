@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 13:15:24 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/11/17 00:58:49 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/24 19:49:14 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int				calc_color_spectrum(int type_color_spectrum, int percent)
 		else if (60 < percent && percent <= 85)
 			return (0x915f50);
 		else
-			return (0xCCCCCC);
+			return (0xAAAAAA);
 	}
 	return (0xFFFFFF);
 }

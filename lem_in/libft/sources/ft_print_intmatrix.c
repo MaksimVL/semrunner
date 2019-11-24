@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_print_intmatrix.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/24 14:17:21 by odrinkwa          #+#    #+#             */
+/*   Updated: 2019/11/24 14:17:40 by odrinkwa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-static int		find_max_len_int(int **matrix, int num_of_lines, int num_of_cols)
+static int		find_max_len_int(int **matrix, int num_of_lines,
+								int num_of_cols)
 {
 	int		i;
 	int		j;
@@ -23,7 +36,8 @@ static int		find_max_len_int(int **matrix, int num_of_lines, int num_of_cols)
 	return (max_len);
 }
 
-void			ft_print_intmatrix(int **matrix, int num_of_lines, int num_of_cols)
+void			ft_print_intmatrix(int **matrix, int num_of_lines,
+									int num_of_cols)
 {
 	int		i;
 	int		j;

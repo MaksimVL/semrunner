@@ -6,12 +6,13 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 17:55:16 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/11/17 00:41:35 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/24 23:08:11 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "lemin.h"
+#include <time.h>
 
 int				room_number(t_lemin *lemin, char *room_name)
 {
@@ -48,6 +49,8 @@ static void		edges_assign(t_lemin *lemin)
 		lemin->edges[i].cost = 1;
 		i++;
 		curr = curr->next;
+		if (errno != 0)
+			finish_prog(lemin, -1, -1, NULL);
 	}
 }
 
@@ -82,9 +85,31 @@ static void		lemin_fill_rooms(t_lemin *lem)
 
 void			prepare_data(t_lemin *lemin)
 {
+	clock_t start, end;
+
+	start = clock();
+	errno = 0;
 	edges_assign(lemin);
+	end = clock();
+	ft_printf("%w# edg assign %lf\n", 2, ((double)end - (double)start) / (double)(CLOCKS_PER_SEC));
+
+	start = clock();
 	lemin_init_arrays(lemin);
+	end = clock();
+	ft_printf("%w# lem_init_arr %lf\n", 2, ((double)end - (double)start) / (double)(CLOCKS_PER_SEC));
+
+	start = clock();
 	lemin_fill_rooms(lemin);
+	end = clock();
+	ft_printf("%w# fill_rooms %lf\n", 2, ((double)end - (double)start) / (double)(CLOCKS_PER_SEC));
+
+	start = clock();
 	lemin_fill_graph(lemin);
+	end = clock();
+	ft_printf("%w# fill_graph %lf\n", 2, ((double)end - (double)start) / (double)(CLOCKS_PER_SEC));
+
+	start = clock();
 	lemin_init_ways(lemin);
+	end = clock();
+	ft_printf("%w# init_ways %lf\n", 2, ((double)end - (double)start) / (double)(CLOCKS_PER_SEC));
 }

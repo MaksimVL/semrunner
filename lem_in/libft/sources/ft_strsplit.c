@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 14:18:13 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/10/12 17:07:06 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/24 13:57:50 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ char			**ft_strsplit(char const *s, char c)
 		i = 0;
 		while (i < word_cnt)
 		{
-			free(result[i]);
+			ft_memdel((void**)(result[i]));
 			i++;
 		}
 		free(result);

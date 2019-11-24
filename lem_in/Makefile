@@ -6,7 +6,7 @@
 #    By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 12:13:46 by odrinkwa          #+#    #+#              #
-#    Updated: 2019/11/16 22:12:38 by odrinkwa         ###   ########.fr        #
+#    Updated: 2019/11/24 23:46:14 by odrinkwa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,21 +20,25 @@ INCLIBFT_DIR := ./libft/includes
 OBJ_DIR := ./objects
 LIB_DIR := ./libft
 
-SRC_COMMON := initialize.c load_map.c load_map1.c destroy.c \
-	auxf.c lemin_keyhooks.c calc_ways.c solve.c bfs.c prepare_data.c \
+SRC_COMMON := initialize.c load_map.c load_map1.c load_map2.c destroy.c \
+	auxf.c calc_ways.c solve.c bfs.c prepare_data.c \
 	prepare_data1.c prepare_data2.c going_ants.c going_ants1.c \
-	print_anthill.c ants_move.c draw_anthill.c load_ant_im.c \
-	draw_ants.c change_step.c put_all_anthill.c start_assign_anthill.c \
-	start_assign_data.c load_from_file.c tlemin_mlx_init.c
+	print_anthill.c destroy1.c\
+	start_assign_data.c load_from_file.c
+
+SRC_TO_VISU := lemin_keyhooks.c draw_anthill.c draw_anthill1.c \
+	load_ant_im.c draw_ants.c tlemin_mlx_init.c start_assign_data_lm.c \
+	ants_move.c change_step.c start_assign_anthill.c put_all_anthill.c
 
 SRC  := main.c $(SRC_COMMON)
 
 HDRS := includes/lemin.h
+HDRS_VISU := includes/lemin_mlx.h
 OBJ  := $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 OBJECTS = $(SOURCES:.c=.o)
 
 
-SRC_VISU := visu.c $(SRC_COMMON)
+SRC_VISU := visu.c $(SRC_COMMON) $(SRC_TO_VISU)
 OBJ_VISU = $(addprefix $(OBJ_DIR)/,$(SRC_VISU:.c=.o))
 
 FDF_SRC_DIR := ./fdf_lib/sources
@@ -44,7 +48,8 @@ FDF_OBJ_DIR := ./fdf_lib/objects
 FDF_SRC := fdf_color.c fdf_draw_point.c fdf_draw.c fdf_get_proj_point.c \
 	fdf_initialize_mlx.c fdf_iso_transform.c fdf_rotation.c \
 	fdf_make_map_points.c fdf_keyhook.c draw_surface.c \
-	fdf_draw_figures.c legend.c
+	fdf_draw_figures.c legend.c fdf_draw_figures_box.c \
+	fdf_calc_hzoom.c
 
 FDF_HDR := ./fdf_lib/includes/fdf.h
 
@@ -102,8 +107,8 @@ $(OBJ_DIR)/%.o:$(SRC_DIR)/%.c $(HDRS)
 
 $(NAME): $(OBJ_DIR) $(OBJ) $(HEADER_LIB) $(HDRS) $(FULL_ALL_LIBFT) $(FDF_OBJ_DIR) $(FDF_OBJ_WITH_PATH)
 	$(MAKE) -C $(L_FT) $(LIBFT_NODEBUG)
-#	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) -I $(INCLIBFT_DIR) -L libft -lft
-	$(CC) $(CFLAGS) $(OBJ) $(FDF_OBJ_WITH_PATH) -o $(NAME) -I $(INCLIBFT_DIR) -I $(INCMLX_DIR) -L libft -lft $(MLXPARAMS)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) -I $(INCLIBFT_DIR) -L libft -lft
+#	$(CC) $(CFLAGS) $(OBJ) $(FDF_OBJ_WITH_PATH) -o $(NAME) -I $(INCLIBFT_DIR) -I $(INCMLX_DIR) -L libft -lft $(MLXPARAMS)
 
 $(NAME_VISU): $(OBJ_DIR) $(OBJ_VISU) $(HEADER_LIB) $(HDRS) $(FULL_ALL_LIBFT) $(FDF_OBJ_DIR) $(FDF_OBJ_WITH_PATH)
 	$(MAKE) -C $(L_FT) $(LIBFT_NODEBUG)

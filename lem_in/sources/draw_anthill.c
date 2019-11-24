@@ -1,33 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_anthill.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/24 15:52:53 by odrinkwa          #+#    #+#             */
+/*   Updated: 2019/11/24 19:32:33 by odrinkwa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
-#include "lemin.h"
+#include "lemin_mlx.h"
 #include "mlx.h"
 
-static void		draw_ways (t_lemin_mlx *lm, int not_black)
-{
-	int i;
-	int n1;
-	int n2;
-
-	i = -1;
-	while (++i < lm->lem->count_edges)
-	{
-		n1 = lm->lem->edges[i].from;
-		n2 = lm->lem->edges[i].to;
-		if (lm->lem->edges[i].flow == 1)
-			put_thickline(lm->m, get_point_to_draw(lm->m, n1),
-						get_point_to_draw(lm->m, n2), not_black);
-		else
-		{
-			if (lm->show_not_use_edges == 1)
-				putline(lm->m, get_point_to_draw(lm->m, n1),
-						get_point_to_draw(lm->m, n2), not_black);
-		}
-	}
-}
-
-static void		draw_start_end_room(t_lemin_mlx *lm, int not_black, int color_frontier, int i)
+static void		draw_start_end_room(t_lemin_mlx *lm, int not_black,
+									int color_frontier, int i)
 {
 	t_point p;
+
 	p = get_point_to_draw(lm->m, i);
 	p.color = color_frontier;
 	putbox(lm->m, get_point_to_draw(lm->m, i), lm->size_ant_im + 2, not_black);
@@ -37,14 +28,16 @@ static void		draw_start_end_room(t_lemin_mlx *lm, int not_black, int color_front
 	put_full_box(lm->m, get_point_to_draw(lm->m, i), lm->size_ant_im, 0);
 }
 
-draw_intermed_room_aux(t_lemin_mlx *lm, int not_black, int i)
+void			draw_intermed_room_aux(t_lemin_mlx *lm, int not_black, int i)
 {
 	if (lm->show_interm_rooms == 0)
 		putbox(lm->m, get_point_to_draw(lm->m, i), 2, not_black);
 	else
 	{
-		putbox(lm->m, get_point_to_draw(lm->m, i), lm->size_ant_im + 2, not_black);
-		putbox(lm->m, get_point_to_draw(lm->m, i), lm->size_ant_im + 4, not_black);
+		putbox(lm->m, get_point_to_draw(lm->m, i),
+				lm->size_ant_im + 2, not_black);
+		putbox(lm->m, get_point_to_draw(lm->m, i),
+				lm->size_ant_im + 4, not_black);
 		put_full_box(lm->m, get_point_to_draw(lm->m, i), lm->size_ant_im, 0);
 	}
 }
@@ -68,6 +61,7 @@ static void		draw_intermed_room(t_lemin_mlx *lm, int not_black, int i)
 static void		draw_rooms(t_lemin_mlx *lm, int not_black)
 {
 	int		i;
+
 	i = -1;
 	while (++i < lm->lem->count_rooms)
 	{
