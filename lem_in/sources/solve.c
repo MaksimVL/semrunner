@@ -88,7 +88,7 @@ void			solve(t_lemin *l)
 	{
 		set_flow(l);
 		calculate_ways(l);
-		//debug_print_solve(l);
+		debug_print_solve(l);
 		if (l->prev_count_ways == 0)
 		{
 			if (l->number_of_ants == 1)

@@ -95,12 +95,14 @@ void			finish_prog(t_lemin *l, int res, int fd, char **line)
 	ft_memdel((void**)line);
 	if (fd > 0)
 		close(fd);
+	if (res == -1)
+	{
+		ft_printf("ERROR\n");
+		exit(res);
+	}
 	if (res == -10)
 		exit(res);
 	if (res < 0)
 		perror("fuck!");
-	if (res != 0)
-	{
-		ft_printf("ERROR\n");
-	}
+
 }

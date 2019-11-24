@@ -20,18 +20,28 @@ static void		load_number_of_ants(t_lemin *lemin, int fd)
 	int		res;
 
 	line = NULL;
-	if ((res = get_next_line(fd, &line)) == 1)
+	while ((res = get_next_line(fd, &line)) == 1)
 	{
-		lemin->number_of_ants = ft_atoi(line);
-		ft_memdel((void**)&line);
-		if (lemin->number_of_ants <= 0)
-			finish_prog(lemin, -1, fd, NULL);
-		else
+		if (line[0] == '#')
+			{
+				ft_memdel((void**)&line);
+				continue ;
+			}
+		else if (ft_isint(line))
 		{
-			lemin->ants_moving = (t_dlist**)ft_memalloc(sizeof(t_dlist) * lemin->number_of_ants); //TODO проверку выделения памяти
+			lemin->number_of_ants = ft_atoi(line);
+			ft_memdel((void**)&line);
+			if (lemin->number_of_ants <= 0)
+				finish_prog(lemin, -1, fd, NULL);
+			else
+				if (!(lemin->ants_moving = (t_dlist**)ft_memalloc(sizeof(t_dlist) * lemin->number_of_ants)))
+					finish_prog(lemin, -1, fd, NULL);
+			break ;
 		}
+		else
+			finish_prog(lemin, -1, fd, NULL);
 	}
-	else
+	if (res < 0)
 		finish_prog(lemin, -1, fd, NULL);
 }
 
@@ -74,12 +84,28 @@ static void		load_room(t_lemin *lemin, char **line, int *next_flag, int fd)
 	ft_del_strsplit(&strings);
 	room_temp.number = (lemin->count_rooms);
 	if (*next_flag == 1)
-		lemin->start_room = lemin->count_rooms;
+	{
+		if (lemin->start_room == -1)
+			lemin->start_room = lemin->count_rooms;
+		else
+			finish_prog(lemin, -1, fd, line);
+	}
 	if (*next_flag == 2)
-		lemin->end_room = lemin->count_rooms;
-	if (find_duplicates_rooms(lemin->list_rooms, room_temp) == 1)
-		finish_prog(lemin, -1, fd, line);
-	ft_dlst_addcontent_back(&(lemin->list_rooms), &room_temp,
+	{
+		if (lemin->end_room == -1)
+			lemin->end_room = lemin->count_rooms;
+		else
+			finish_prog(lemin, -1, fd, line);
+	}
+	if (find_duplicates_rooms(lemin->list_rooms, room_temp) == 1 ||
+		ft_strstr(room_temp.name, "-"))
+		{
+			ft_dlst_addcontent_back(&(lemin->list_rooms), &room_temp,
+								sizeof(room_temp));
+			finish_prog(lemin, -1, fd, line);
+		}
+	else
+		ft_dlst_addcontent_back(&(lemin->list_rooms), &room_temp,
 								sizeof(room_temp));
 	lemin->count_rooms++;
 	*next_flag = 0;
@@ -93,10 +119,10 @@ static void		load_line(t_lemin *lemin, char **line, int *next_flag, int fd)
 		*next_flag = 2;
 	else if (ft_strnstr(*line, "#", 1))
 		*next_flag = 0;
+	else if (ft_strstr(*line, " "))
+		load_room(lemin, line, next_flag, fd);
 	else if (ft_strstr(*line, "-"))
 		load_link(lemin, line, next_flag, fd);
-	else
-		load_room(lemin, line, next_flag, fd);
 	ft_memdel((void**)line);
 	if (errno)
 		finish_prog(lemin, -1, fd, NULL);
@@ -149,6 +175,8 @@ void			load_line_moving_ants(t_lemin *lemin, char **line, int fd, int step)
 	}
 	ft_del_strsplit(&strings);
 }
+
+
 
 void			load_data(t_lemin *lemin, int fd, char flag_visu)
 {

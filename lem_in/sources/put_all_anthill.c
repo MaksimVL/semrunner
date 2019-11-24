@@ -10,21 +10,30 @@ void	lemin_legend(t_lemin_mlx *lm, int color)
 
 	m = lm->m;
 	str[0] = '\0';
-	mlx_string_put(m->ptr, m->win, 10, 480, 0xFFFFFF, "ANTHILL:");
-	mlx_string_put(m->ptr, m->win, 10, 500, color, "move ants     : <, >, /");
+	mlx_string_put(m->ptr, m->win, 10, 480, 0xFFFFFF, "ANTHILL KEYS:");
+	mlx_string_put(m->ptr, m->win, 10, 500, color, "steps                 : <, >");
+	mlx_string_put(m->ptr, m->win, 10, 520, color, "reset steps to 0      : /");
 	if (lm->nonstop == 0)
-		mlx_string_put(m->ptr, m->win, 10, 520, color, "nonstop (off) : m");
+		mlx_string_put(m->ptr, m->win, 10, 540, color, "nonstop (off)     : m");
 	else
-		mlx_string_put(m->ptr, m->win, 10, 520, color, "nonstop (on)  : m");
-	mlx_string_put(m->ptr, m->win, 10, 540, color, "size rooms    : ', \\");
+		mlx_string_put(m->ptr, m->win, 10, 540, color, "nonstop (on)      : m");
+	mlx_string_put(m->ptr, m->win, 10, 560, color,     "change size rooms : ', \\");
 	str[0] = '\0';
-	ft_printf("%yspeed ants(%2d): [, ]", str, lm->speed);
-	mlx_string_put(m->ptr, m->win, 10, 560, color, str);
+	ft_printf("%ychange speed ants(%2d): [, ]", str, lm->speed);
+	mlx_string_put(m->ptr, m->win, 10, 580, color, str);
+	mlx_string_put(m->ptr, m->win, 10, 600, color, "show/remove room names : p");
+	mlx_string_put(m->ptr, m->win, 10, 620, color, "show/remove not used edges : o");
+	mlx_string_put(m->ptr, m->win, 10, 650, 0xFFFFFF, "ANTHILL INFO:");
+	str[0] = '\0';
+	ft_printf("%ynumber of ants: %d", str, lm->lem->number_of_ants);
+	mlx_string_put(m->ptr, m->win, 10, 670, 0x9f9e90,
+		str);
+	str[0] = '\0';
+	ft_printf("%ynumber of steps: %d", str, lm->lem->max_step);
+	mlx_string_put(m->ptr, m->win, 10, 690, 0x9f9e90, str);
 	str[0] = '\0';
 	ft_printf("%ycurrent step: %d", str, lm->lem->current_step);
-	mlx_string_put(m->ptr, m->win, 10, 580, color, str);
-	mlx_string_put(m->ptr, m->win, 10, 600, color, "room names    : p");
-	mlx_string_put(m->ptr, m->win, 10, 620, color, "show/remove not used edges : o");
+	mlx_string_put(m->ptr, m->win, 10, 710, 0x9f9e90, str);
 }
 
 void				put_names_rooms(t_mlx *m, t_lemin *l, t_lemin_mlx *lm, int color)

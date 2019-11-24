@@ -50,6 +50,8 @@ static void			*add_edge(t_lemin *lem, int start, int end, int capacity)
 	curr = lem->g[start];
 	while (curr != NULL)
 	{
+		if (curr->content == NULL)
+			finish_prog(lem, -1, -1, NULL);
 		if (((t_gedge*)(curr->content))->to == end)
 			return (lem);
 		curr = curr->next;

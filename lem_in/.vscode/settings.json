@@ -25,7 +25,9 @@
         "vector": "c",
         "hashtable": "c",
         "prf_spectostr_funcs.h": "c",
-        "fcntl.h": "c"
+        "fcntl.h": "c",
+        "locale": "c",
+        "float.h": "c"
     },
     "python.testing.pytestArgs": [
         "."

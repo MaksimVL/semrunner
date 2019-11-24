@@ -46,15 +46,16 @@ void			set_flow_anthill(t_lemin *l)
 	t_ant_move *am;
 	t_ant_move *am_next;
 
+	l->rooms[l->start_room]->flow = 1;
 	i = -1;
 	while (++i < l->number_of_ants)
 	{
 		curr = l->ants_moving[i];
 		am = curr->content;
 		j = -1;
-		l->rooms[l->start_room]->flow = 1;
 		while (++j < l->count_edges)
-			if (l->edges[j].from == l->start_room && l->edges[j].to == am->to)
+			if ((l->edges[j].from == l->start_room && l->edges[j].to == am->to) ||
+				(l->edges[j].from == am->to && l->edges[j].to == l->start_room))
 				l->edges[j].flow = 1;
 
 		while (curr != NULL && curr->next != NULL)
@@ -64,7 +65,8 @@ void			set_flow_anthill(t_lemin *l)
 			j = -1;
 			while (++j < l->count_edges)
 			{
-				if (l->edges[j].from == am->to && l->edges[j].to == am_next->to)
+				if ((l->edges[j].from == am->to && l->edges[j].to == am_next->to) ||
+					 (l->edges[j].to == am->to && l->edges[j].from == am_next->to))
 					l->edges[j].flow = 1;
 				l->rooms[am->to]->flow = 1;
 				l->rooms[am_next->to]->flow = 1;

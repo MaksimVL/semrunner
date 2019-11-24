@@ -5,11 +5,21 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Python: Current File",
+            "args":["./lem_in", "./test_maps_lemin/test_map_5_1_1_3_3_1_z"],
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        },
+        {
             "name": "(cppdbg) launch",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/lem_in",
-            "args": ["testmap_copy2"],
+            "args": [
+                "testmap_copy2"
+            ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
@@ -20,8 +30,10 @@
             "name": "Launch",
             "type": "lldb",
             "request": "launch",
-            "program": "${workspaceFolder}/lem_in",
-            "args": ["testmap_copy3"],
+            "program": "${workspaceFolder}/visu",
+            "args": [
+                "./test_maps_lemin/pylone_400_10_10_35_35_3_z_res_lem_in"
+            ],
             "cwd": "${workspaceFolder}"
         },
         {
@@ -29,7 +41,9 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/visu",
-            "args": ["restest"],
+            "args": [
+                "restest"
+            ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
@@ -46,7 +60,6 @@
         // }
     ]
 }
-
 // {
 //     // Use IntelliSense to learn about possible attributes.
 //     // Hover to view descriptions of existing attributes.
@@ -80,4 +93,3 @@
 //         }
 //     ]
 // }
-

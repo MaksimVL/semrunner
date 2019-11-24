@@ -129,6 +129,7 @@ typedef struct			s_lemin_mlx
 	int					speed;
 	int					show_room_numbers;
 	int					show_not_use_edges;
+	int					show_interm_rooms;
 }						t_lemin_mlx;
 
 /*

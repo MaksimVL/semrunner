@@ -15,7 +15,7 @@ NAME_VISU = visu
 
 SRC_DIR := ./sources
 INC_DIR := ./includes
-INCMLX_DIR := ./fdf/mlx
+INCMLX_DIR := ./fdf_lib/mlx
 INCLIBFT_DIR := ./libft/includes
 OBJ_DIR := ./objects
 LIB_DIR := ./libft
@@ -37,16 +37,16 @@ OBJECTS = $(SOURCES:.c=.o)
 SRC_VISU := visu.c $(SRC_COMMON)
 OBJ_VISU = $(addprefix $(OBJ_DIR)/,$(SRC_VISU:.c=.o))
 
-FDF_SRC_DIR := ./fdf/sources
-FDF_HDR_DIR := ./fdf/includes
-FDF_OBJ_DIR := ./fdf/objects
+FDF_SRC_DIR := ./fdf_lib/sources
+FDF_HDR_DIR := ./fdf_lib/includes
+FDF_OBJ_DIR := ./fdf_lib/objects
 
 FDF_SRC := fdf_color.c fdf_draw_point.c fdf_draw.c fdf_get_proj_point.c \
 	fdf_initialize_mlx.c fdf_iso_transform.c fdf_rotation.c \
 	fdf_make_map_points.c fdf_keyhook.c draw_surface.c \
 	fdf_draw_figures.c legend.c
 
-FDF_HDR := ./fdf/includes/fdf.h
+FDF_HDR := ./fdf_lib/includes/fdf.h
 
 FDF_OBJ := $(FDF_SRC:.c=.o)
 FDF_OBJ_WITH_PATH := $(addprefix $(FDF_OBJ_DIR)/, $(FDF_OBJ))
@@ -54,7 +54,7 @@ FDF_OBJ_WITH_PATH := $(addprefix $(FDF_OBJ_DIR)/, $(FDF_OBJ))
 
 CC := gcc
 CFLAGS := -g3 -Wall -Wextra #-Werror
-MLXPARAMS := -L ./fdf/mlx -lmlx -framework OpenGL -framework AppKit
+MLXPARAMS := -L ./fdf_lib/mlx -lmlx -framework OpenGL -framework AppKit
 LIBFT_NODEBUG :=
 
 L_FT := libft
@@ -114,4 +114,4 @@ nodebug: CFLAGS = -Wall -Wextra -O3 #-Werror
 
 nodebug: LIBFT_NODEBUG = nodebug
 
-nodebug: fclean all
+nodebug: all

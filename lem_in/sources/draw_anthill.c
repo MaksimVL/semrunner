@@ -37,14 +37,32 @@ static void		draw_start_end_room(t_lemin_mlx *lm, int not_black, int color_front
 	put_full_box(lm->m, get_point_to_draw(lm->m, i), lm->size_ant_im, 0);
 }
 
+draw_intermed_room_aux(t_lemin_mlx *lm, int not_black, int i)
+{
+	if (lm->show_interm_rooms == 0)
+		putbox(lm->m, get_point_to_draw(lm->m, i), 2, not_black);
+	else
+	{
+		putbox(lm->m, get_point_to_draw(lm->m, i), lm->size_ant_im + 2, not_black);
+		putbox(lm->m, get_point_to_draw(lm->m, i), lm->size_ant_im + 4, not_black);
+		put_full_box(lm->m, get_point_to_draw(lm->m, i), lm->size_ant_im, 0);
+	}
+}
+
 static void		draw_intermed_room(t_lemin_mlx *lm, int not_black, int i)
 {
-
-	if (lm->lem->rooms[i]->flow != 1 && lm->show_not_use_edges != 1)
-		return ;
-	putbox(lm->m, get_point_to_draw(lm->m, i), lm->size_ant_im + 2, not_black);
-	putbox(lm->m, get_point_to_draw(lm->m, i), lm->size_ant_im + 4, not_black);
-	put_full_box(lm->m, get_point_to_draw(lm->m, i), lm->size_ant_im, 0);
+	if (lm->show_not_use_edges == 0)
+	{
+		if (lm->lem->rooms[i]->flow == 1)
+			draw_intermed_room_aux(lm, not_black, i);
+		else
+		{
+			if (lm->show_interm_rooms == 0)
+				draw_intermed_room_aux(lm, not_black, i);
+		}
+	}
+	else
+		draw_intermed_room_aux(lm, not_black, i);
 }
 
 static void		draw_rooms(t_lemin_mlx *lm, int not_black)
@@ -53,13 +71,11 @@ static void		draw_rooms(t_lemin_mlx *lm, int not_black)
 	i = -1;
 	while (++i < lm->lem->count_rooms)
 	{
-		if (i == lm->lem->start_room)
-			draw_start_end_room(lm, not_black, 0xFF0000, i);
-		else if (i == lm->lem->end_room)
-			draw_start_end_room(lm, not_black, 0x00FF00, i);
-		else
+		if (i != lm->lem->start_room && i != lm->lem->end_room)
 			draw_intermed_room(lm, not_black, i);
 	}
+	draw_start_end_room(lm, not_black, 0xFF0000, lm->lem->start_room);
+	draw_start_end_room(lm, not_black, 0x00FF00, lm->lem->end_room);
 }
 
 void			draw_anthill(t_lemin_mlx *lm, int not_black)
