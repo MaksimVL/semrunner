@@ -17,6 +17,8 @@
 #include <stdio.h>
 #include <time.h>
 
+clock_t llinks;
+
 void			check_data(t_lemin *l)
 {
 	if (errno != 0)
@@ -36,6 +38,7 @@ int				main(int argc, char **argv)
 	t_lemin		lemin;
 	clock_t start, end;
 
+	llinks = 0;
 	lemin_init(&lemin);
 	errno = 0;
 	start = clock();
@@ -43,6 +46,7 @@ int				main(int argc, char **argv)
 	check_data(&lemin);
 	end = clock();
 	ft_printf("%w# load data: %lf\n", 2, ((double)end - (double)start) / (double)(CLOCKS_PER_SEC));
+	ft_printf("%w# llinks: %lf\n", 2, ((double)llinks) / (double)(CLOCKS_PER_SEC));
 	start = clock();
 	prepare_data(&lemin);
 	end = clock();

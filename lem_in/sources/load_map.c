@@ -19,7 +19,10 @@ void			load_link(t_lemin *lemin, char **line, int *next_flag, int fd)
 {
 	char			**strings;
 	t_room_ways		room_ways_temp;
+	clock_t s, e;
+	extern clock_t llinks;
 
+	s = clock();
 	strings = NULL;
 	if (!(strings = ft_strsplit(*line, '-')))
 		finish_prog(lemin, -1, fd, line);
@@ -32,11 +35,14 @@ void			load_link(t_lemin *lemin, char **line, int *next_flag, int fd)
 	room_ways_temp.end_room = ft_strdup(strings[1]);
 	ft_del_strsplit(&strings);
 	ft_dlst_addcontent_back(&(lemin->room_ways), &room_ways_temp,
-							sizeof(room_ways_temp));
+	  						sizeof(t_room_ways));
+	// ft_printf("test");
 	if (room_ways_temp.start_room == NULL || room_ways_temp.end_room == NULL)
 		finish_prog(lemin, -1, fd, line);
 	lemin->count_edges++;
 	*next_flag = 0;
+	e = clock();
+	llinks += e - s;
 }
 
 static void		load_line(t_lemin *lemin, char **line, int *next_flag, int fd)

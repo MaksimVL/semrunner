@@ -176,6 +176,8 @@ void				ft_dlst_addback(t_dlist **alst, t_dlist *new);
 void				ft_dlstdel(t_dlist **alst, void (*del)(void *, size_t));
 void				*ft_dlst_addcontent_back(t_dlist **list, void *content,
 											size_t content_size);
+void				*ft_dlst_addcontent(t_dlist **list, void *content,
+										size_t content_size);
 int					ft_dlst_len(t_dlist *lst);
 
 /*

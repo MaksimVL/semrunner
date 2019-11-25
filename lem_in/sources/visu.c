@@ -18,6 +18,8 @@
 #include "float.h"
 #include <stdio.h>
 
+clock_t llinks;
+
 void			set_start_conditions(t_lemin_mlx *lm)
 {
 	if (lm->lem->count_rooms > 100)

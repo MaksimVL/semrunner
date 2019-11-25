@@ -17,13 +17,19 @@ t_dlist		*ft_dlstnew(void const *content, size_t content_size)
 	t_dlist	*ptr_list;
 
 	if (!(ptr_list = (t_dlist*)malloc(sizeof(t_dlist))))
+	{
+		errno = ENOMEM;
 		return (NULL);
+	}
 	ptr_list->next = NULL;
 	ptr_list->prev = NULL;
 	if (content)
 	{
 		if (!(ptr_list->content = (void*)malloc(content_size)))
+		{
+			errno = ENOMEM;
 			return (NULL);
+		}
 		ft_memcpy(ptr_list->content, content, content_size);
 		ptr_list->content_size = content_size;
 	}
@@ -43,7 +49,10 @@ void		ft_dlstadd(t_dlist **alst, t_dlist *new)
 	{
 		new->next = *alst;
 		if (*alst)
+		{
+			new->prev = (*alst)->prev;
 			(*alst)->prev = new;
+		}
 		*alst = new;
 	}
 }
@@ -55,14 +64,16 @@ void		ft_dlst_addback(t_dlist **alst, t_dlist *new)
 	if (alst == NULL)
 		return ;
 	if (*alst == NULL)
+	{
 		*alst = new;
+		(*alst)->prev = *alst;
+	}
 	else
 	{
-		temp = *alst;
-		while (temp->next)
-			temp = temp->next;
+		temp = (*alst)->prev;
 		temp->next = new;
 		new->prev = temp;
+		(*alst)->prev = new;
 	}
 }
 
@@ -94,5 +105,17 @@ void		*ft_dlst_addcontent_back(t_dlist **list, void *content,
 	if (temp == NULL)
 		return (NULL);
 	ft_dlst_addback(list, temp);
+	return (list);
+}
+
+void		*ft_dlst_addcontent(t_dlist **list, void *content,
+										size_t content_size)
+{
+	t_dlist		*temp;
+
+	temp = ft_dlstnew(content, content_size);
+	if (temp == NULL)
+		return (NULL);
+	ft_dlstadd(list, temp);
 	return (list);
 }
