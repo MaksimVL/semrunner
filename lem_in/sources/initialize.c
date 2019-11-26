@@ -25,6 +25,7 @@ static void		lemin_init_aux(t_lemin *lemin)
 	lemin->ants_moving = NULL;
 	lemin->current_step = 0;
 	lemin->max_step = 0;
+	lemin->count_all_edges_moving = 0;
 }
 
 void			lemin_init(t_lemin *lemin)

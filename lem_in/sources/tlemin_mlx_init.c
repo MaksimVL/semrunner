@@ -41,4 +41,5 @@ void			tlemin_mlx_initialize(t_lemin_mlx *lm)
 	lm->show_room_numbers = 1;
 	lm->show_not_use_edges = 1;
 	lm->show_interm_rooms = 1;
+	lm->show_ways = 1;
 }

@@ -53,6 +53,8 @@ int		keycode_names_room(int keycode, t_lemin_mlx *lm)
 		lm->show_not_use_edges = (lm->show_not_use_edges + 1) % 2;
 	else if (keycode == 34)
 		lm->show_interm_rooms = (lm->show_interm_rooms + 1) % 2;
+	else if (keycode == 45)
+		lm->show_ways = (lm->show_ways + 1) % 3;
 	else
 		return (0);
 	return (1);
@@ -64,7 +66,8 @@ int		lemin_keyhook(int keycode, void *lm)
 	if (keycode == 12 || keycode == 53)
 		finish_all((t_lemin_mlx*)lm, -10);
 	if (check_keyhooks_fdf(keycode) || keycode == 39 || keycode == 42 ||
-		keycode == 35 || keycode == -1 || keycode == 31 || keycode == 34)
+		keycode == 35 || keycode == -1 || keycode == 31 || keycode == 34 ||
+		keycode == 45)
 	{
 		draw_anthill((t_lemin_mlx*)lm, 0);
 		keyhooks(keycode, ((t_lemin_mlx*)lm)->m);

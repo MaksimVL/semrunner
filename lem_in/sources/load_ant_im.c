@@ -21,15 +21,19 @@ void			load_ant_im(t_lemin_mlx *lm)
 		mlx_destroy_image(lm->m->ptr, lm->ant_im);
 	if (lm->size_ant_im == 10)
 		lm->ant_im = mlx_xpm_file_to_image(lm->m->ptr,
-			"white_ant_10_10.xpm", &(lm->size_ant_im), &(lm->size_ant_im));
+			"./images/white_ant_10_10.xpm",
+			&(lm->size_ant_im), &(lm->size_ant_im));
 	else if (lm->size_ant_im == 20)
-		lm->ant_im = mlx_xpm_file_to_image(lm->m->ptr, "white_ant_20_20.xpm",
+		lm->ant_im = mlx_xpm_file_to_image(lm->m->ptr,
+			"./images/white_ant_20_20.xpm",
 			&(lm->size_ant_im), &(lm->size_ant_im));
 	else if (lm->size_ant_im == 30)
-		lm->ant_im = mlx_xpm_file_to_image(lm->m->ptr, "white_ant_30_30.xpm",
+		lm->ant_im = mlx_xpm_file_to_image(lm->m->ptr,
+		"./images/white_ant_30_30.xpm",
 		&(lm->size_ant_im), &(lm->size_ant_im));
 	else
-		lm->ant_im = mlx_xpm_file_to_image(lm->m->ptr, "white_ant_40_40.xpm",
+		lm->ant_im = mlx_xpm_file_to_image(lm->m->ptr,
+		"./images/white_ant_40_40.xpm",
 		&(lm->size_ant_im), &(lm->size_ant_im));
 }
 

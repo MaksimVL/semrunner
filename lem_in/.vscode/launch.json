@@ -30,9 +30,9 @@
             "name": "Launch",
             "type": "lldb",
             "request": "launch",
-            "program": "${workspaceFolder}/visu",
+            "program": "${workspaceFolder}/lem_in",
             "args": [
-                "./test_maps_lemin/pylone_400_10_10_35_35_3_z_res_lem_in"
+                "testmap_copy6"
             ],
             "cwd": "${workspaceFolder}"
         },

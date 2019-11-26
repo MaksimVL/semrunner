@@ -93,4 +93,4 @@ nodebug: CFLAGS = -Wall -Wextra -Werror -O3
 
 nodebug: LIBFT_NODEBUG = nodebug
 
-nodebug: fclean all
+nodebug: all

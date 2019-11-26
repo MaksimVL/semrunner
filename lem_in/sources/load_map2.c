@@ -42,3 +42,17 @@ void		load_number_of_ants(t_lemin *lemin, int fd)
 	if (res < 0)
 		finish_prog(lemin, -1, fd, NULL);
 }
+
+void			check_data(t_lemin *l)
+{
+	if (errno != 0)
+		finish_prog(l, -1, -1, NULL);
+	if (l->number_of_ants <= 0)
+		finish_prog(l, -1, -1, NULL);
+	if (l->count_rooms == 0)
+		finish_prog(l, -1, -1, NULL);
+	if (l->count_edges == 0)
+		finish_prog(l, -1, -1, NULL);
+	if (l->start_room == -1 || l->end_room == -1)
+		finish_prog(l, -1, -1, NULL);
+}

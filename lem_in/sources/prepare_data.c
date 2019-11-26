@@ -14,19 +14,62 @@
 #include "lemin.h"
 #include <time.h>
 
-int				room_number(t_lemin *lemin, char *room_name)
-{
-	t_dlist		*curr;
+// char			*name(t_room *room_in_list)
+// {
+// 	t_room	*room;
 
-	curr = lemin->list_rooms;
-	while (curr != NULL)
+// 	room = room_in_list->content;
+// 	return (room->name);
+// }
+
+int				find_binary(t_room **rooms, int count_rooms, char *room_name)
+{
+	// int		i;
+
+	// i = -1;
+	// while (++i < count_rooms)
+	// 	if (ft_strequ(rooms[i]->name, room_name))
+	// 		return (i);
+	// errno = 200;
+	// return (-1);
+
+	int		left = 0;
+	int		right = count_rooms;
+	int		mid = 0;
+	int		cmp;
+
+	while(!(left >= right))
 	{
-		if (ft_strequ(((t_room*)(curr->content))->name, room_name))
-			return (((t_room*)(curr->content))->number);
-		curr = curr->next;
+		mid = left + (right - left) / 2;
+		cmp = ft_strcmp(rooms[mid]->name, room_name);
+		if (cmp == 0)
+			return (mid);
+		else if (cmp > 0)
+			right = mid;
+		else
+			left = mid + 1;
 	}
 	errno = 200;
 	return (-1);
+}
+
+int				room_number(t_lemin *lemin, char *room_name)
+{
+	int		res;
+
+	res = find_binary(lemin->rooms, lemin->count_rooms, room_name);
+	return (res);
+	// t_dlist		*curr;
+
+	// curr = lemin->list_rooms;
+	// while (curr != NULL)
+	// {
+	// 	if (ft_strequ(((t_room*)(curr->content))->name, room_name))
+	// 		return (((t_room*)(curr->content))->number);
+	// 	curr = curr->next;
+	// }
+	// errno = 200;
+	// return (-1);
 }
 
 static void		edges_assign(t_lemin *lemin)
@@ -88,6 +131,11 @@ void			prepare_data(t_lemin *lemin)
 	clock_t start, end;
 
 	start = clock();
+	lemin_fill_rooms(lemin);
+	end = clock();
+	ft_printf("%w# fill_rooms %lf\n", 2, ((double)end - (double)start) / (double)(CLOCKS_PER_SEC));
+
+	start = clock();
 	errno = 0;
 	edges_assign(lemin);
 	end = clock();
@@ -97,11 +145,6 @@ void			prepare_data(t_lemin *lemin)
 	lemin_init_arrays(lemin);
 	end = clock();
 	ft_printf("%w# lem_init_arr %lf\n", 2, ((double)end - (double)start) / (double)(CLOCKS_PER_SEC));
-
-	start = clock();
-	lemin_fill_rooms(lemin);
-	end = clock();
-	ft_printf("%w# fill_rooms %lf\n", 2, ((double)end - (double)start) / (double)(CLOCKS_PER_SEC));
 
 	start = clock();
 	lemin_fill_graph(lemin);

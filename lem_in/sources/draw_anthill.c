@@ -31,7 +31,7 @@ static void		draw_start_end_room(t_lemin_mlx *lm, int not_black,
 void			draw_intermed_room_aux(t_lemin_mlx *lm, int not_black, int i)
 {
 	if (lm->show_interm_rooms == 0)
-		putbox(lm->m, get_point_to_draw(lm->m, i), 2, not_black);
+		putbox(lm->m, get_point_to_draw(lm->m, i), 1, not_black);
 	else
 	{
 		putbox(lm->m, get_point_to_draw(lm->m, i),
@@ -56,6 +56,9 @@ static void		draw_intermed_room(t_lemin_mlx *lm, int not_black, int i)
 	}
 	else
 		draw_intermed_room_aux(lm, not_black, i);
+	if (lm->lem->rooms[i]->flow == 1 && (lm->show_ways == 0 ||
+		lm->show_ways == 2))
+	 	putbox(lm->m, get_point_to_draw(lm->m, i), 4, not_black);
 }
 
 static void		draw_rooms(t_lemin_mlx *lm, int not_black)

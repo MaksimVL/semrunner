@@ -28,12 +28,13 @@ void			*stack_push(t_stack *stack, int a)
 	}
 	else
 	{
-		ft_dlst_addback(&(stack->bottom), temp);
+		ft_dlst_addback(&(stack->top), temp);
 		stack->bottom = temp;
 		stack->len += 1;
 	}
 	stack->pos_max = -1;
 	stack->pos_min = -1;
+	stack->top->prev = stack->bottom;
 	return (stack);
 }
 
@@ -57,6 +58,7 @@ void			stack_swap(t_stack *stack)
 	stack->top = next;
 	if (stack->len == 2)
 		stack->bottom = top;
+	stack->top->prev = stack->bottom; //added
 }
 
 static void		stack_push_ab_aux(t_stack *a, t_stack *b, t_dlist *nextb)
@@ -97,4 +99,8 @@ void			stack_push_ab(t_stack *a, t_stack *b)
 	a->len++;
 	a->top = topb;
 	stack_push_ab_aux(a, b, nextb);
+	if (a->len != 0) //added
+		a->top->prev = a->bottom;
+	if (b->len != 0)
+		b->top->prev = b->bottom;
 }

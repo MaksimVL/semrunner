@@ -63,4 +63,4 @@ $(NAME): $(OBJ)
 
 nodebug: CFLAGS := -Wall -Wextra -Werror -O3
 
-nodebug: fclean all
+nodebug: all

@@ -31,7 +31,9 @@
         "__locale": "c",
         "functional": "c",
         "cerrno": "c",
-        "lemin.h": "c"
+        "lemin.h": "c",
+        "time.h": "c",
+        "stdlib.h": "c"
     },
     "python.testing.pytestArgs": [
         "."

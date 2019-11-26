@@ -14,6 +14,26 @@
 #include "lemin.h"
 #include <time.h>
 
+void			set_numbers_rooms(t_lemin *lemin)
+{
+	int i = -1;
+	t_dlist *curr;
+	t_room *room;
+
+	curr = lemin->list_rooms;
+	while (++i < lemin->count_rooms)
+	{
+		room = curr->content;
+		room->number = i;
+		if (room->start_end_flag == 1)
+			lemin->start_room = i;
+		else if (room->start_end_flag == 2)
+			lemin->end_room = i;
+//		ft_printf("%s, ", room->name);
+		curr = curr->next;
+	}
+}
+
 t_room			set_room_property(char **strings, int next_flag)
 {
 	t_room			room_temp;
@@ -28,6 +48,7 @@ t_room			set_room_property(char **strings, int next_flag)
 	else
 		room_temp.z = NO_DEFINE;
 	room_temp.start_end_flag = next_flag;
+	room_temp.flow = 0;
 	return (room_temp);
 }
 
@@ -66,6 +87,36 @@ static int		set_first_end_room(t_lemin *lemin, int *next_flag)
 	return (1);
 }
 
+int				load_ordered_room(t_dlist **list_rooms, t_room *room_temp)
+{
+	t_dlist		*curr;
+	t_room		*room;
+	int			cmp;
+
+	if (*list_rooms == NULL)
+	{
+		ft_dlst_addcontent_back(list_rooms, room_temp, sizeof(*room_temp));
+		return (1);
+	}
+	curr = *list_rooms;
+	while (curr != NULL)
+	{
+		room = curr->content;
+		cmp = ft_strcmp(room->name, room_temp->name);
+		if (cmp == 0)
+			return (0);
+		else if (cmp > 0)
+		{
+			ft_dlst_addcontent(&curr, room_temp, sizeof(*room_temp));
+			return (1);
+		}
+		curr = curr->next;
+	}
+	ft_dlst_addcontent_back(list_rooms, room_temp, sizeof(*room_temp));
+	return (1);
+}
+
+
 void			load_room(t_lemin *lemin, char **line, int *next_flag, int fd)
 {
 	char		**strings;
@@ -84,12 +135,17 @@ void			load_room(t_lemin *lemin, char **line, int *next_flag, int fd)
 	room_temp.number = (lemin->count_rooms);
 	if (set_first_end_room(lemin, next_flag) == -1)
 		finish_prog(lemin, -1, fd, &(room_temp.name));
-	if (find_duplicates_rooms(lemin->list_rooms, room_temp) == 1 ||
-		ft_strstr(room_temp.name, "-"))
-		finish_prog(lemin, -1, fd, &(room_temp.name));
-	else
-		ft_dlst_addcontent_back(&(lemin->list_rooms), &room_temp,
-								sizeof(room_temp));
+	if (load_ordered_room(&(lemin->list_rooms), &room_temp) == 0 ||
+	 	ft_strstr(room_temp.name, "-"))
+	 	finish_prog(lemin, -1, fd, &(room_temp.name));
+
+	//print_list(lemin->list_rooms);
+	// if (find_duplicates_rooms(lemin->list_rooms, &room_temp) == 1 ||
+	// 	ft_strstr(room_temp.name, "-"))
+	// 	finish_prog(lemin, -1, fd, &(room_temp.name));
+	// else
+	// 	ft_dlst_addcontent_back(&(lemin->list_rooms), &room_temp,
+	// 							sizeof(room_temp));
 	lemin->count_rooms++;
 	*next_flag = 0;
 }

@@ -46,6 +46,7 @@ int				main(int argc, char **argv)
 			return (error_clear_vars(&a, &b, &str_numbers, &prog));
 		i++;
 	}
+	//print_stacks(&a, &b);
 	if (check(&a) == 0)
 		return (error_clear_vars(&a, &b, &str_numbers, &prog));
 	sort(&a, &b);

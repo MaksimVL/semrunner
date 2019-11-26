@@ -17,7 +17,9 @@ void			del_int(void *content, size_t size)
 {
 	if (size == 0 && size != 0)
 		return ;
-	ft_memdel((void**)&content);
+	if (content == NULL && content != NULL)
+		return ;
+	//ft_memdel((void**)&content);
 }
 
 int				int_content(t_dlist *list)

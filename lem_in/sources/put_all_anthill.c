@@ -23,14 +23,14 @@ static void		lemin_legend1(t_lemin_mlx *lm)
 	m = lm->m;
 	str[0] = '\0';
 	ft_printf("%ynumber of ants: %d", str, lm->lem->number_of_ants);
-	mlx_string_put(m->ptr, m->win, 10, 670, 0x9f9e90,
+	mlx_string_put(m->ptr, m->win, 10, 690, 0x9f9e90,
 		str);
 	str[0] = '\0';
 	ft_printf("%ynumber of steps: %d", str, lm->lem->max_step);
-	mlx_string_put(m->ptr, m->win, 10, 690, 0x9f9e90, str);
+	mlx_string_put(m->ptr, m->win, 10, 710, 0x9f9e90, str);
 	str[0] = '\0';
 	ft_printf("%ycurrent step: %d", str, lm->lem->current_step);
-	mlx_string_put(m->ptr, m->win, 10, 710, 0x9f9e90, str);
+	mlx_string_put(m->ptr, m->win, 10, 730, 0x9f9e90, str);
 }
 
 void			lemin_legend(t_lemin_mlx *lm, int color)
@@ -56,7 +56,9 @@ void			lemin_legend(t_lemin_mlx *lm, int color)
 					"show/remove room names : p");
 	mlx_string_put(m->ptr, m->win, 10, 620, color,
 					"show/remove not used edges : o");
-	mlx_string_put(m->ptr, m->win, 10, 650, 0xFFFFFF, "ANTHILL INFO:");
+	mlx_string_put(m->ptr, m->win, 10, 640, color,
+					"type of edges ant moves : n");
+	mlx_string_put(m->ptr, m->win, 10, 670, 0xFFFFFF, "ANTHILL INFO:");
 	lemin_legend1(lm);
 }
 

@@ -52,5 +52,6 @@ int				read_arguments(t_stack *a, t_dlist **prog,
 		a->flag = 2;
 	else if (load_stack(a, arg_str, str_numbers) == 0)
 		return (0);
+	//print_stacks(a, a);
 	return (1);
 }

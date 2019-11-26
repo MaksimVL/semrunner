@@ -17,7 +17,9 @@ static void		del_str(void *content, size_t size)
 {
 	if (size == 0)
 		;
-	ft_memdel((void**)&content);
+	if (content)
+		;
+	//ft_memdel((void**)&content);
 }
 
 static void		clear_vars(t_stack *a, t_stack *b,

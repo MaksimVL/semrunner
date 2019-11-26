@@ -32,6 +32,7 @@ int				qi_pop(t_queue *queue)
 		{
 			queue->bottom = queue->bottom->prev;
 			queue->bottom->next = NULL;
+			queue->top->prev = queue->bottom;
 		}
 		queue->len--;
 		ft_dlstdel(&tmp_lst, NULL);

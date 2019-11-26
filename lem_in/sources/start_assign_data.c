@@ -29,6 +29,8 @@ void			set_num_rooms_to_ant_moves(t_lemin *l)
 		{
 			am = curr->content;
 			am->to = room_number(l, am->to_name);
+			l->rooms[am->to]->flow = 1;
+			l->count_all_edges_moving++;
 			curr = curr->next;
 		}
 	}

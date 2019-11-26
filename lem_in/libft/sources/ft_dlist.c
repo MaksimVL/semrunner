@@ -38,11 +38,14 @@ t_dlist		*ft_dlstnew(void const *content, size_t content_size)
 		ptr_list->content = NULL;
 		ptr_list->content_size = 0;
 	}
+	ptr_list->prev = ptr_list;
 	return (ptr_list);
 }
 
 void		ft_dlstadd(t_dlist **alst, t_dlist *new)
 {
+	t_dlist *prev;
+
 	if (!(alst))
 		return ;
 	if (new)
@@ -50,8 +53,11 @@ void		ft_dlstadd(t_dlist **alst, t_dlist *new)
 		new->next = *alst;
 		if (*alst)
 		{
+			prev = (*alst)->prev;
 			new->prev = (*alst)->prev;
 			(*alst)->prev = new;
+			if (prev->next == (*alst))
+				prev->next = new;
 		}
 		*alst = new;
 	}

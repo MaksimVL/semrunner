@@ -103,6 +103,7 @@ typedef struct		s_lemin
 	int				t;
 
 	t_dlist			**ants_moving;
+	int				count_all_edges_moving;
 	int				current_step;
 	int				max_step;
 }					t_lemin;
@@ -135,7 +136,8 @@ int					find_duplicates_rooms(t_dlist *list_rooms,
 void				load_room(t_lemin *lemin, char **line, int *next_flag,
 								int fd);
 void				load_number_of_ants(t_lemin *lemin, int fd);
-
+void				set_numbers_rooms(t_lemin *lemin);
+void				check_data(t_lemin *l);
 /*
 ** prepare data
 */
