@@ -42,6 +42,7 @@ typedef struct			s_lemin_mlx
 	int					show_not_use_edges;
 	int					show_interm_rooms;
 	int					show_ways;
+	double				time_draw_anthill;
 }						t_lemin_mlx;
 
 /*

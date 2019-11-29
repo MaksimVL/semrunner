@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "libft.h"
 
 static void		correct_angles(t_mlx *m)
 {
@@ -19,76 +20,50 @@ static void		correct_angles(t_mlx *m)
 	m->z_angle %= 360;
 }
 
-void			x_rotation(t_mlx *m)
+static void		calc_r_x_y_z(t_mlx *m, t_rot *mr)
 {
-	int		i;
-	double	angle;
-	t_point	prev;
-
-	i = 0;
-	correct_angles(m);
-	angle = m->x_angle * M_PI / 180;
-	while (i < m->quantity_points)
-	{
-		prev = m->map_points[i];
-		prev.y -= m->height / 2;
-		m->map_points[i].y = prev.y * cos(angle) - prev.z * sin(angle) +
-							m->height / 2;
-		m->map_points[i].z = -prev.y * sin(angle) + prev.z * cos(angle);
-		i++;
-	}
+ 	calc_r_x(mr, m->x_angle);
+ 	calc_r_y(mr, m->y_angle);
+ 	calc_r_z(mr, m->z_angle);
 }
 
-void			y_rotation(t_mlx *m)
+void			mult_xyz_rmatrix(t_mlx *m, double *rmatrix, t_point *p)
 {
-	int		i;
-	int		shift_x;
-	double	angle;
-	t_point	prev;
+	t_point		prev;
+	double		tmp;
 
-	shift_x = m->width / 2;
-	i = 0;
-	correct_angles(m);
-	angle = m->y_angle * M_PI / 180;
-	while (i < m->quantity_points)
-	{
-		prev = m->map_points[i];
-		prev.x -= shift_x;
-		m->map_points[i].x = prev.x * cos(angle) + prev.z * sin(angle) +
-					shift_x;
-		m->map_points[i].z = -prev.x * sin(angle) + prev.z * cos(angle);
-		i++;
-	}
-}
-
-void			z_rotation(t_mlx *m)
-{
-	int		i;
-	double	angle;
-	t_point	prev;
-
-	correct_angles(m);
-	angle = m->z_angle * M_PI / 180;
-	i = 0;
-	while (i < m->quantity_points)
-	{
-		prev = m->map_points[i];
-		prev.x -= m->width / 2;
-		prev.y -= m->height / 2;
-		m->map_points[i].x = prev.x * cos(angle) - prev.y * sin(angle) +
-					m->width / 2;
-		m->map_points[i].y = prev.x * sin(angle) + prev.y * cos(angle) +
-					m->height / 2;
-		i++;
-	}
+	prev = *p;
+	prev.x -= m->width / 2;
+	prev.y -= m->height / 2;
+	p->x = prev.x * rmatrix[0] + prev.y * rmatrix[4] + prev.z * rmatrix[8] + 1 * rmatrix[12];
+	p->y = prev.x * rmatrix[1] + prev.y * rmatrix[5] + prev.z * rmatrix[9] + 1 * rmatrix[13];
+	p->z = prev.x * rmatrix[2] + prev.y * rmatrix[6] + prev.z * rmatrix[10] + 1 * rmatrix[14];
+	tmp = prev.x * rmatrix[3] + prev.y * rmatrix[7] + prev.z * rmatrix[11] + 1 * rmatrix[15];
+	p->x = p->x / (tmp);
+	p->y = p->y / (tmp);
+	p->z = p->z / (tmp);
+	p->x += m->width / 2;
+	p->y += m->height / 2;
 }
 
 void			rotate_points(t_mlx *m)
 {
-	if (m->x_angle != 0)
-		x_rotation(m);
-	if (m->z_angle != 0)
-		z_rotation(m);
-	if (m->y_angle != 0)
-		y_rotation(m);
+	t_rot	mr;
+	int		i;
+
+	m->mr = &mr;
+	correct_angles(m);
+	calc_r_x_y_z(m, &mr);
+	set_rotate_matrix_to_one(mr.r_all);
+	mult_rmatrix(mr.r_all, mr.r_all, mr.r_x);
+	mult_rmatrix(mr.r_all, mr.r_all, mr.r_y);
+	mult_rmatrix(mr.r_all, mr.r_all, mr.r_z);
+	i = -1;
+	while (++i < m->quantity_points)
+		mult_xyz_rmatrix(m, mr.r_all, &(m->map_points[i]));
+	// set_rotate_matrix_to_one(mr.r_persp);
+	// mr.r_persp[3] = 0.9;
+	// i = -1;
+	// while (++i < m->quantity_points)
+	// 	mult_xyz_rmatrix(m, mr.r_persp, i);
 }

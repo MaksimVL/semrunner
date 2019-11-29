@@ -6,7 +6,7 @@
     "configurations": [
         {
             "name": "Python: Current File",
-            "args":["./lem_in", "./test_maps_lemin/test_map_5_1_1_3_3_1_z"],
+            "args":["./lem-in_smight", "./maps_lemin/pylone_400_10_10_35_35_3_z"],
             "type": "python",
             "request": "launch",
             "program": "${file}",

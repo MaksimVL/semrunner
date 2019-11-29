@@ -49,7 +49,8 @@ FDF_SRC := fdf_color.c fdf_draw_point.c fdf_draw.c fdf_get_proj_point.c \
 	fdf_initialize_mlx.c fdf_iso_transform.c fdf_rotation.c \
 	fdf_make_map_points.c fdf_keyhook.c draw_surface.c \
 	fdf_draw_figures.c legend.c fdf_draw_figures_box.c \
-	fdf_calc_hzoom.c
+	fdf_calc_hzoom.c fdf_clear_image.c fdf_rotation_matrix.c \
+	fdf_rotation_matrix1.c
 
 FDF_HDR := ./fdf_lib/includes/fdf.h
 

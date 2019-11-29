@@ -28,6 +28,15 @@ typedef struct		s_point
 	int				z0;
 }					t_point;
 
+typedef struct		m_rot
+{
+	double			r_x[16];
+	double			r_y[16];
+	double			r_z[16];
+	double			r_persp[16];
+	double			r_all[16];
+}					t_rot;
+
 typedef struct		s_mlx
 {
 	void			*ptr;
@@ -61,6 +70,9 @@ typedef struct		s_mlx
 	int				camera_x;
 	int				camera_y;
 	int				type_color_spectrum;
+	t_rot			*mr;
+
+	//double			r_xyz[4][4];
 }					t_mlx;
 
 /*
@@ -111,6 +123,14 @@ void				draw_surface(t_mlx *m, int not_black);
 ** file rotation.c
 */
 
+void				set_rotate_matrix_zero(double *m);
+void				set_rotate_matrix_to_one(double *m);
+void				calc_r_x(t_rot *mr, int x_angle);
+void				calc_r_y(t_rot *mr, int y_angle);
+void				calc_r_z(t_rot *mr, int z_angle);
+void				mult_rmatrix(double *res, double *a, double *b);
+void				mult_xyz_rmatrix(t_mlx *m, double *rmatrix, t_point *p);
+
 void				z_rotation(t_mlx *m);
 void				x_rotation(t_mlx *m);
 void				y_rotation(t_mlx *m);
@@ -121,6 +141,8 @@ void				rotate_points(t_mlx *m);
 ** file draw.c draw_point.c get_proj_point.c iso_transform.c
 **      fdf_draw_figures.c
 */
+
+void				clear_image(t_mlx *m);
 
 void				putpixel(t_mlx *m, int x, int y, int color);
 void				putline(t_mlx *m, t_point start, t_point end,

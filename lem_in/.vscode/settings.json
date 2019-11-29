@@ -42,5 +42,5 @@
     "python.testing.nosetestsEnabled": false,
     "python.testing.pytestEnabled": false,
     "python.testing.promptToConfigure": false,
-    "python.pythonPath": "env/bin/python3"
+    "python.pythonPath": "/Users/semenbegunov/opt/anaconda3/bin/python"
 }

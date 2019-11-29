@@ -15,6 +15,30 @@ def print_usage():
         3. run ./visu with res with z coordinate
     ''')
 
+def convert_res_noz_to_z(anthill_z, res_no_z, res_z):
+    if (len(sys.argv) != 3):
+        for i in sys.argv:
+            print(i)
+        #print(len(sys.argv))
+        print_usage()
+        exit()
+
+    anthill_print = []
+
+    with open(anthill_z, 'r') as fd:
+        for line in fd:
+            anthill_print.append(line)
+
+    with open(res_no_z, 'r') as fd:
+        for line in fd:
+            if line[0] == "L":
+                anthill_print.append(line)
+
+    with open(res_z, 'w') as fd:
+        for line in anthill_print:
+            print(line)
+            fd.write(line)
+
 if len(sys.argv) != 3:
     print_usage()
     exit()
@@ -55,10 +79,13 @@ print(start_str)
 p = spr.Popen(start_str, shell=True)
 p.wait()
 
-start_convert_str = "python3 _convert_res_noz_to_z.py " + map_name_z + " " + res_name_no_z + " > " + res_name_z
-print(start_convert_str)
-p = spr.Popen(start_convert_str, shell=True)
-p.wait()
+convert_res_noz_to_z(map_name_z, res_name_no_z, res_name_z)
+
+# start_convert_str = "python3 _convert_res_noz_to_z.py " + map_name_z + " " + res_name_no_z + " > " + res_name_z
+
+# print(start_convert_str)
+# p = spr.Popen(start_convert_str, shell=True)
+# p.wait()
 
 p = spr.Popen("./visu " + res_name_z, shell=True)
 print("finished")

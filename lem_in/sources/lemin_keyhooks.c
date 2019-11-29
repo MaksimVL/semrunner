@@ -14,6 +14,7 @@
 #include "lemin_mlx.h"
 #include "mlx.h"
 #include "fdf.h"
+#include <time.h>
 
 int		keyhook_move_ants(int keycode, t_lemin_mlx *lm)
 {
@@ -69,7 +70,10 @@ int		lemin_keyhook(int keycode, void *lm)
 		keycode == 35 || keycode == -1 || keycode == 31 || keycode == 34 ||
 		keycode == 45)
 	{
-		draw_anthill((t_lemin_mlx*)lm, 0);
+		if (((t_lemin_mlx*)lm)->time_draw_anthill > 0.1)
+			draw_anthill((t_lemin_mlx*)lm, 0);
+		else
+			clear_image(((t_lemin_mlx*)lm)->m);
 		keyhooks(keycode, ((t_lemin_mlx*)lm)->m);
 		keycode_names_room(keycode, ((t_lemin_mlx*)lm));
 		if (keycode_change_size_room(keycode, ((t_lemin_mlx*)lm)))

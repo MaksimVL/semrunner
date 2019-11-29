@@ -12,6 +12,29 @@
 
 #include "fdf.h"
 
+// static t_point	get_iso_point_to_draw(t_mlx *m, int i)
+// {
+// 	double		rm[16];
+// //	double		angle = 26.57;
+// 	t_point		p;
+// 	double		angle = 26.57 * M_PI / 180.0;
+
+
+// 	p = m->map_points[i];
+// //	set_rotate_matrix_to_one(rm);
+// 	set_rotate_matrix_zero(rm);
+// 	rm[0] = cos(angle);
+// 	rm[1] = sin(angle);
+// 	rm[4] = -cos(angle);
+// 	rm[5] = sin(angle);
+// 	rm[9] = -1;
+// 	rm[3] = 0.15;
+// 	rm[15] = 1;
+// 	mult_xyz_rmatrix(m, rm, &p);
+// 	return (p);
+// }
+
+
 static t_point	get_iso_point_to_draw(t_mlx *m, int i)
 {
 	t_point		p;

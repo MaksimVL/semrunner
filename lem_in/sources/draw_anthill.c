@@ -13,6 +13,7 @@
 #include "libft.h"
 #include "lemin_mlx.h"
 #include "mlx.h"
+#include <time.h>
 
 static void		draw_start_end_room(t_lemin_mlx *lm, int not_black,
 									int color_frontier, int i)
@@ -77,6 +78,12 @@ static void		draw_rooms(t_lemin_mlx *lm, int not_black)
 
 void			draw_anthill(t_lemin_mlx *lm, int not_black)
 {
+	clock_t		start;
+	clock_t		end;
+
+	start = clock();
 	draw_ways(lm, not_black);
 	draw_rooms(lm, not_black);
+	end = clock();
+	lm->time_draw_anthill = ((double)end - (double)start) / (double)(CLOCKS_PER_SEC);
 }
