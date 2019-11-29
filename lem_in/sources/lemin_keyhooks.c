@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 15:58:13 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/11/24 23:10:08 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/29 20:34:54 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int		keycode_names_room(int keycode, t_lemin_mlx *lm)
 
 int		lemin_keyhook(int keycode, void *lm)
 {
-	ft_printf("%d\n", keycode);
 	if (keycode == 12 || keycode == 53)
 		finish_all((t_lemin_mlx*)lm, -10);
 	if (check_keyhooks_fdf(keycode) || keycode == 39 || keycode == 42 ||
@@ -81,7 +80,6 @@ int		lemin_keyhook(int keycode, void *lm)
 		make_map_points(((t_lemin_mlx*)lm)->m);
 		draw_anthill((t_lemin_mlx*)lm, 1);
 		put_all_anthill(lm);
-		ft_printf("draw_anthill\n");
 	}
 	if (keyhook_move_ants(keycode, ((t_lemin_mlx*)lm)))
 		set_ants_to_rooms_on_step(lm);

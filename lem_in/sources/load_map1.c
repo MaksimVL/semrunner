@@ -6,33 +6,13 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 17:50:59 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/11/24 23:06:44 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/29 20:28:25 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "lemin.h"
 #include <time.h>
-
-void			set_numbers_rooms(t_lemin *lemin)
-{
-	int i = -1;
-	t_dlist *curr;
-	t_room *room;
-
-	curr = lemin->list_rooms;
-	while (++i < lemin->count_rooms)
-	{
-		room = curr->content;
-		room->number = i;
-		if (room->start_end_flag == 1)
-			lemin->start_room = i;
-		else if (room->start_end_flag == 2)
-			lemin->end_room = i;
-//		ft_printf("%s, ", room->name);
-		curr = curr->next;
-	}
-}
 
 t_room			set_room_property(char **strings, int next_flag)
 {
@@ -116,7 +96,6 @@ int				load_ordered_room(t_dlist **list_rooms, t_room *room_temp)
 	return (1);
 }
 
-
 void			load_room(t_lemin *lemin, char **line, int *next_flag, int fd)
 {
 	char		**strings;
@@ -136,16 +115,8 @@ void			load_room(t_lemin *lemin, char **line, int *next_flag, int fd)
 	if (set_first_end_room(lemin, next_flag) == -1)
 		finish_prog(lemin, -1, fd, &(room_temp.name));
 	if (load_ordered_room(&(lemin->list_rooms), &room_temp) == 0 ||
-	 	ft_strstr(room_temp.name, "-"))
-	 	finish_prog(lemin, -1, fd, &(room_temp.name));
-
-	//print_list(lemin->list_rooms);
-	// if (find_duplicates_rooms(lemin->list_rooms, &room_temp) == 1 ||
-	// 	ft_strstr(room_temp.name, "-"))
-	// 	finish_prog(lemin, -1, fd, &(room_temp.name));
-	// else
-	// 	ft_dlst_addcontent_back(&(lemin->list_rooms), &room_temp,
-	// 							sizeof(room_temp));
+		ft_strstr(room_temp.name, "-"))
+		finish_prog(lemin, -1, fd, &(room_temp.name));
 	lemin->count_rooms++;
 	*next_flag = 0;
 }

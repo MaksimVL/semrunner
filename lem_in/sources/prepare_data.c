@@ -6,71 +6,12 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 17:55:16 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/11/24 23:08:11 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/29 20:32:30 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "lemin.h"
-#include <time.h>
-
-// char			*name(t_room *room_in_list)
-// {
-// 	t_room	*room;
-
-// 	room = room_in_list->content;
-// 	return (room->name);
-// }
-
-int				find_binary(t_room **rooms, int count_rooms, char *room_name)
-{
-	// int		i;
-
-	// i = -1;
-	// while (++i < count_rooms)
-	// 	if (ft_strequ(rooms[i]->name, room_name))
-	// 		return (i);
-	// errno = 200;
-	// return (-1);
-
-	int		left = 0;
-	int		right = count_rooms;
-	int		mid = 0;
-	int		cmp;
-
-	while(!(left >= right))
-	{
-		mid = left + (right - left) / 2;
-		cmp = ft_strcmp(rooms[mid]->name, room_name);
-		if (cmp == 0)
-			return (mid);
-		else if (cmp > 0)
-			right = mid;
-		else
-			left = mid + 1;
-	}
-	errno = 200;
-	return (-1);
-}
-
-int				room_number(t_lemin *lemin, char *room_name)
-{
-	int		res;
-
-	res = find_binary(lemin->rooms, lemin->count_rooms, room_name);
-	return (res);
-	// t_dlist		*curr;
-
-	// curr = lemin->list_rooms;
-	// while (curr != NULL)
-	// {
-	// 	if (ft_strequ(((t_room*)(curr->content))->name, room_name))
-	// 		return (((t_room*)(curr->content))->number);
-	// 	curr = curr->next;
-	// }
-	// errno = 200;
-	// return (-1);
-}
 
 static void		edges_assign(t_lemin *lemin)
 {
@@ -128,31 +69,10 @@ static void		lemin_fill_rooms(t_lemin *lem)
 
 void			prepare_data(t_lemin *lemin)
 {
-	clock_t start, end;
-
-	start = clock();
 	lemin_fill_rooms(lemin);
-	end = clock();
-	ft_printf("%w# fill_rooms %lf\n", 2, ((double)end - (double)start) / (double)(CLOCKS_PER_SEC));
-
-	start = clock();
 	errno = 0;
 	edges_assign(lemin);
-	end = clock();
-	ft_printf("%w# edg assign %lf\n", 2, ((double)end - (double)start) / (double)(CLOCKS_PER_SEC));
-
-	start = clock();
 	lemin_init_arrays(lemin);
-	end = clock();
-	ft_printf("%w# lem_init_arr %lf\n", 2, ((double)end - (double)start) / (double)(CLOCKS_PER_SEC));
-
-	start = clock();
 	lemin_fill_graph(lemin);
-	end = clock();
-	ft_printf("%w# fill_graph %lf\n", 2, ((double)end - (double)start) / (double)(CLOCKS_PER_SEC));
-
-	start = clock();
 	lemin_init_ways(lemin);
-	end = clock();
-	ft_printf("%w# init_ways %lf\n", 2, ((double)end - (double)start) / (double)(CLOCKS_PER_SEC));
 }

@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 15:52:53 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/11/24 16:22:53 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/29 20:33:56 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 void		draw_ways_ant_moves(t_lemin_mlx *lm, int not_black)
 {
-	int		i;
-	t_dlist *curr;
-	int		start_point;
+	int			i;
+	t_dlist		*curr;
+	int			start_point;
 	t_ant_move	*am;
 
 	i = -1;

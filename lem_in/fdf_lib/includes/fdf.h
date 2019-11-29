@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 13:19:24 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/11/29 19:22:30 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/29 20:53:05 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct		s_point
 	int				z0;
 }					t_point;
 
-typedef struct		m_rot
+typedef struct		s_rot
 {
 	double			r_x[16];
 	double			r_y[16];
@@ -71,8 +71,6 @@ typedef struct		s_mlx
 	int				camera_y;
 	int				type_color_spectrum;
 	t_rot			*mr;
-
-	//double			r_xyz[4][4];
 }					t_mlx;
 
 /*
@@ -130,8 +128,8 @@ void				calc_r_y(t_rot *mr, int y_angle);
 void				calc_r_z(t_rot *mr, int z_angle);
 void				mult_rmatrix(double *res, double *a, double *b);
 void				mult_xyz_rmatrix(t_mlx *m, double *rmatrix, t_point *p);
-
-void				mult_xyz_rmatrix_persp(t_mlx *m, double *rmatrix, t_point *p);
+void				mult_xyz_rmatrix_persp(t_mlx *m, double *rmatrix,
+											t_point *p);
 
 void				z_rotation(t_mlx *m);
 void				x_rotation(t_mlx *m);

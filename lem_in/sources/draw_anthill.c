@@ -6,14 +6,13 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 15:52:53 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/11/24 19:32:33 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/29 20:34:28 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "lemin_mlx.h"
 #include "mlx.h"
-#include <time.h>
 
 static void		draw_start_end_room(t_lemin_mlx *lm, int not_black,
 									int color_frontier, int i)
@@ -59,7 +58,7 @@ static void		draw_intermed_room(t_lemin_mlx *lm, int not_black, int i)
 		draw_intermed_room_aux(lm, not_black, i);
 	if (lm->lem->rooms[i]->flow == 1 && (lm->show_ways == 0 ||
 		lm->show_ways == 2))
-	 	putbox(lm->m, get_point_to_draw(lm->m, i), 4, not_black);
+		putbox(lm->m, get_point_to_draw(lm->m, i), 4, not_black);
 }
 
 static void		draw_rooms(t_lemin_mlx *lm, int not_black)
@@ -78,12 +77,6 @@ static void		draw_rooms(t_lemin_mlx *lm, int not_black)
 
 void			draw_anthill(t_lemin_mlx *lm, int not_black)
 {
-	clock_t		start;
-	clock_t		end;
-
-	start = clock();
 	draw_ways(lm, not_black);
 	draw_rooms(lm, not_black);
-	end = clock();
-	lm->time_draw_anthill = ((double)end - (double)start) / (double)(CLOCKS_PER_SEC);
 }

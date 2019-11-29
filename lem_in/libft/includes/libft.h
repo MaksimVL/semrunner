@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 20:59:45 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/11/16 20:37:36 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/29 20:51:50 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ typedef struct		s_dlist
 	struct s_dlist	*prev;
 }					t_dlist;
 
-typedef struct	s_queue
+typedef struct		s_queue
 {
-	int			len;
-	t_dlist		*top;
-	t_dlist		*bottom;
-}				t_queue;
+	int				len;
+	t_dlist			*top;
+	t_dlist			*bottom;
+}					t_queue;
 
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_bzero(void *s, size_t n);
@@ -192,27 +192,27 @@ int					int_content(t_dlist *list);
 ** qi - queue with integer values
 */
 
-void			queue_init(t_queue *queue);
-void			qi_del(t_queue *queue);
-void			*qi_push(t_queue *queue, int value);
-int				qi_pop(t_queue *queue);
-int				qi_front(t_queue *queue);
-int				qi_back(t_queue *queue);
-int				qi_empty(t_queue *queue);
-void			qi_print(t_queue *q);
+void				queue_init(t_queue *queue);
+void				qi_del(t_queue *queue);
+void				*qi_push(t_queue *queue, int value);
+int					qi_pop(t_queue *queue);
+int					qi_front(t_queue *queue);
+int					qi_back(t_queue *queue);
+int					qi_empty(t_queue *queue);
+void				qi_print(t_queue *q);
 
 /*
 ** max, min of array of int
 */
 
-int				ft_max_intarray(int *arr, int size);
-int				ft_min_intarray(int *arr, int size);
+int					ft_max_intarray(int *arr, int size);
+int					ft_min_intarray(int *arr, int size);
 
 /*
 ** vector int
 */
 
-void			vector_int_assign(int *vector, int len, int value);
-void			vector_int_print(int *vector, int len);
+void				vector_int_assign(int *vector, int len, int value);
+void				vector_int_print(int *vector, int len);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 18:26:40 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/11/16 18:54:06 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/29 20:32:33 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,37 @@ void			lemin_init_ways(t_lemin *l)
 	if (!(l->ants_on_ways = (int**)ft_memalloc(sizeof(int*) * max_flow)))
 		finish_prog(l, -1, -1, NULL);
 	lemin_init_ways_lines(l, max_flow);
+}
+
+static int		find_binary(t_room **rooms, int count_rooms, char *room_name)
+{
+	int		left;
+	int		right;
+	int		mid;
+	int		cmp;
+
+	left = 0;
+	right = count_rooms;
+	mid = 0;
+	while (!(left >= right))
+	{
+		mid = left + (right - left) / 2;
+		cmp = ft_strcmp(rooms[mid]->name, room_name);
+		if (cmp == 0)
+			return (mid);
+		else if (cmp > 0)
+			right = mid;
+		else
+			left = mid + 1;
+	}
+	errno = 200;
+	return (-1);
+}
+
+int				room_number(t_lemin *lemin, char *room_name)
+{
+	int		res;
+
+	res = find_binary(lemin->rooms, lemin->count_rooms, room_name);
+	return (res);
 }

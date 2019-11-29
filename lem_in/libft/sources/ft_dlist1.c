@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 14:52:53 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/11/24 14:19:22 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/29 20:47:27 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,28 @@ int			ft_dlst_len(t_dlist *lst)
 		i++;
 	}
 	return (i);
+}
+
+void		*ft_dlst_addcontent_back(t_dlist **list, void *content,
+										size_t content_size)
+{
+	t_dlist		*temp;
+
+	temp = ft_dlstnew(content, content_size);
+	if (temp == NULL)
+		return (NULL);
+	ft_dlst_addback(list, temp);
+	return (list);
+}
+
+void		*ft_dlst_addcontent(t_dlist **list, void *content,
+										size_t content_size)
+{
+	t_dlist		*temp;
+
+	temp = ft_dlstnew(content, content_size);
+	if (temp == NULL)
+		return (NULL);
+	ft_dlstadd(list, temp);
+	return (list);
 }

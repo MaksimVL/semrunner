@@ -6,30 +6,30 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 14:52:53 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/11/24 14:19:44 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/29 20:49:51 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+static void	*return_null(void)
+{
+	errno = ENOMEM;
+	return (NULL);
+}
 
 t_dlist		*ft_dlstnew(void const *content, size_t content_size)
 {
 	t_dlist	*ptr_list;
 
 	if (!(ptr_list = (t_dlist*)malloc(sizeof(t_dlist))))
-	{
-		errno = ENOMEM;
-		return (NULL);
-	}
+		return (return_null());
 	ptr_list->next = NULL;
 	ptr_list->prev = NULL;
 	if (content)
 	{
 		if (!(ptr_list->content = (void*)malloc(content_size)))
-		{
-			errno = ENOMEM;
-			return (NULL);
-		}
+			return (return_null());
 		ft_memcpy(ptr_list->content, content, content_size);
 		ptr_list->content_size = content_size;
 	}
@@ -100,28 +100,4 @@ void		ft_dlstdel(t_dlist **alst, void (*del)(void *, size_t))
 		curr = next;
 	}
 	*alst = NULL;
-}
-
-void		*ft_dlst_addcontent_back(t_dlist **list, void *content,
-										size_t content_size)
-{
-	t_dlist		*temp;
-
-	temp = ft_dlstnew(content, content_size);
-	if (temp == NULL)
-		return (NULL);
-	ft_dlst_addback(list, temp);
-	return (list);
-}
-
-void		*ft_dlst_addcontent(t_dlist **list, void *content,
-										size_t content_size)
-{
-	t_dlist		*temp;
-
-	temp = ft_dlstnew(content, content_size);
-	if (temp == NULL)
-		return (NULL);
-	ft_dlstadd(list, temp);
-	return (list);
 }

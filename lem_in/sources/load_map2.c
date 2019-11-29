@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 17:43:13 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/11/24 16:58:34 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/29 20:33:12 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include "lemin.h"
 
-void		load_number_of_ants(t_lemin *lemin, int fd)
+void			load_number_of_ants(t_lemin *lemin, int fd)
 {
 	char	*line;
 	int		res;
@@ -55,4 +55,24 @@ void			check_data(t_lemin *l)
 		finish_prog(l, -1, -1, NULL);
 	if (l->start_room == -1 || l->end_room == -1)
 		finish_prog(l, -1, -1, NULL);
+}
+
+void			set_numbers_rooms(t_lemin *lemin)
+{
+	int			i;
+	t_dlist		*curr;
+	t_room		*room;
+
+	curr = lemin->list_rooms;
+	i = -1;
+	while (++i < lemin->count_rooms)
+	{
+		room = curr->content;
+		room->number = i;
+		if (room->start_end_flag == 1)
+			lemin->start_room = i;
+		else if (room->start_end_flag == 2)
+			lemin->end_room = i;
+		curr = curr->next;
+	}
 }
