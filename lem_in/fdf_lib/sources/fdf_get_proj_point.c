@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_proj_point.c                                   :+:      :+:    :+:   */
+/*   fdf_get_proj_point.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 12:46:34 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/10/14 12:46:35 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/29 19:29:34 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,26 @@
 // 	rm[4] = -cos(angle);
 // 	rm[5] = sin(angle);
 // 	rm[9] = -1;
-// 	rm[3] = 0.15;
+// //	rm[3] = 0.15;
 // 	rm[15] = 1;
 // 	mult_xyz_rmatrix(m, rm, &p);
+
+
+// 	p = m->map_points[i];
+// 	set_rotate_matrix_to_one(rm);
+// //	set_rotate_matrix_zero(rm);
+// 	rm[10] = 1;
+// 	// rm[0] = cos(angle);
+// 	// rm[1] = sin(angle);
+// 	// rm[4] = -cos(angle);
+// 	// rm[5] = sin(angle);
+// 	rm[11] = -0.01;
+// 	rm[15] = 1;
+// // 	rm[9] = -1;
+// // //	rm[3] = 0.15;
+// // 	rm[15] = 1;
+// 	mult_xyz_rmatrix_persp(m, rm, &p);
+
 // 	return (p);
 // }
 

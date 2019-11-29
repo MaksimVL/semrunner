@@ -6,7 +6,7 @@
 /*   By: odrinkwa <odrinkwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 13:19:24 by odrinkwa          #+#    #+#             */
-/*   Updated: 2019/11/24 23:11:17 by odrinkwa         ###   ########.fr       */
+/*   Updated: 2019/11/29 19:22:30 by odrinkwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,8 @@ void				calc_r_y(t_rot *mr, int y_angle);
 void				calc_r_z(t_rot *mr, int z_angle);
 void				mult_rmatrix(double *res, double *a, double *b);
 void				mult_xyz_rmatrix(t_mlx *m, double *rmatrix, t_point *p);
+
+void				mult_xyz_rmatrix_persp(t_mlx *m, double *rmatrix, t_point *p);
 
 void				z_rotation(t_mlx *m);
 void				x_rotation(t_mlx *m);

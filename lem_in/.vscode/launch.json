@@ -42,7 +42,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/visu",
             "args": [
-                "restest"
+                "res_test"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
